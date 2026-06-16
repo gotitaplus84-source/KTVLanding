@@ -4,309 +4,576 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KTV Dental Lab | Labo răng sứ kỹ thuật số cho nha khoa</title>
-  <meta name="description" content="KTV Dental Lab chuyên sản xuất và gia công răng sứ kim loại, răng sứ không kim loại, răng toàn sứ zirconia và phục hình trên implant theo chỉ định của cơ sở nha khoa." />
-  <meta name="keywords" content="KTV Dental Lab, KTVLAB, labo răng sứ, răng sứ kim loại, răng toàn sứ zirconia, phục hình implant, CAD/CAM nha khoa" />
+  <meta name="description" content="KTV Dental Lab chuyên sản xuất phục hình răng sứ kim loại, răng toàn sứ zirconia và phục hình trên implant theo chỉ định của cơ sở nha khoa. Quy trình CAD/CAM, ISO 13485, công bố trang thiết bị y tế." />
+  <meta name="keywords" content="KTV Dental Lab, KTVLAB, labo răng sứ, răng sứ kim loại, răng toàn sứ zirconia, phục hình implant, labo nha khoa, CAD CAM nha khoa, ISO 13485" />
+  <meta name="author" content="CÔNG TY TNHH MTV KTV" />
   <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0050A8" />
 
   <meta property="og:title" content="KTV Dental Lab | Labo răng sứ kỹ thuật số cho nha khoa" />
-  <meta property="og:description" content="Sản xuất phục hình răng sứ theo chỉ định của nha khoa, quy trình CAD/CAM, kiểm soát chất lượng ISO 13485 và hồ sơ công bố trang thiết bị y tế." />
+  <meta property="og:description" content="Sản xuất phục hình răng sứ theo chỉ định của nha khoa, quy trình CAD/CAM, ISO 13485 và hồ sơ công bố trang thiết bị y tế." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/ktv-logo.png" />
+  <meta property="og:image" content="./assets/ktv-logo.png" />
+  <meta property="og:locale" content="vi_VN" />
 
-  <link rel="icon" href="assets/ktv-logo.png" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="./assets/ktv-logo.png" />
+  <link rel="preload" as="image" href="./assets/ktv-logo.png" />
+  <link rel="stylesheet" href="./styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "KTV Dental Lab",
+    "legalName": "CÔNG TY TNHH MTV KTV",
+    "description": "Labo nha khoa chuyên sản xuất và gia công phục hình răng sứ theo đơn đặt hàng của cơ sở nha khoa.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "614/18/21 Lê Hồng Phong",
+      "addressLocality": "Phường Phú Lợi",
+      "addressRegion": "TP. Hồ Chí Minh",
+      "addressCountry": "VN"
+    },
+    "url": "https://ktvlab.com"
+  }
+  </script>
 </head>
+
 <body>
-  <header class="site-header">
+  <a class="skip-link" href="#main">Bỏ qua menu</a>
+
+  <header class="site-header" data-header>
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="KTV Dental Lab">
-        <img src="assets/ktv-logo.png" alt="KTV Dental Lab" />
-        <span>KTV Dental Lab</span>
+        <img src="./assets/ktv-logo.png" alt="KTV Dental Lab" />
+        <span>
+          <strong>KTV</strong>
+          <small>Dental Lab</small>
+        </span>
       </a>
 
-      <nav class="nav" aria-label="Điều hướng chính">
+      <nav class="nav" data-nav aria-label="Điều hướng chính">
+        <a href="#gioi-thieu">Giới thiệu</a>
         <a href="#san-pham">Sản phẩm</a>
-        <a href="#chat-luong">Chất lượng</a>
+        <a href="#nang-luc">Năng lực</a>
+        <a href="#iso">ISO & Công bố</a>
         <a href="#quy-trinh">Quy trình</a>
-        <a href="#phap-ly">Hồ sơ</a>
-        <a class="nav-cta" href="#lien-he">Liên hệ</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="#lien-he">Liên hệ gửi ca</a>
       </nav>
 
-      <button class="menu-btn" type="button" aria-label="Mở menu" aria-expanded="false">
+      <button class="menu-btn" data-menu type="button" aria-label="Mở menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero">
+  <main id="main">
+    <section id="top" class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="orb orb-blue"></span>
+        <span class="orb orb-red"></span>
+        <span class="grid-glow"></span>
+      </div>
+
       <div class="container hero-grid">
-        <div class="hero-content">
-          <p class="eyebrow">Labo phục hình nha khoa • CAD/CAM • ISO 13485</p>
-          <h1>Labo răng sứ kỹ thuật số dành cho nha khoa</h1>
-          <p class="hero-lead">
+        <div class="hero-copy reveal">
+          <div class="badge-row">
+            <span>ISO 13485</span>
+            <span>CAD/CAM</span>
+            <span>Công bố TBYT</span>
+            <span>B2B nha khoa</span>
+          </div>
+
+          <p class="eyebrow">KTV Dental Lab · Labo phục hình nha khoa</p>
+          <h1>Labo răng sứ kỹ thuật số dành cho phòng khám nha khoa</h1>
+          <p class="lead">
             KTV Dental Lab chuyên sản xuất và gia công phục hình răng sứ theo đơn đặt hàng,
             chỉ định chuyên môn và dữ liệu phục hình từ các cơ sở nha khoa.
           </p>
-          <p class="hero-sub">
-            Răng sứ kim loại, răng sứ không kim loại, răng toàn sứ zirconia và phục hình
-            răng sứ trên implant được thực hiện trên nền tảng quy trình CAD/CAM,
-            kiểm soát chất lượng theo ISO 13485 và hồ sơ công bố trang thiết bị y tế theo quy định.
+          <p class="hero-note">
+            Chúng tôi tập trung vào răng sứ kim loại, răng sứ không kim loại, răng toàn sứ zirconia
+            và phục hình răng sứ trên implant; kết hợp quy trình CAD/CAM, kiểm soát chất lượng theo
+            ISO 13485 và hồ sơ công bố trang thiết bị y tế theo quy định.
           </p>
+
           <div class="hero-actions">
             <a class="btn primary" href="#lien-he">Liên hệ gửi ca</a>
-            <a class="btn secondary" href="#nang-luc">Xem năng lực sản xuất</a>
+            <a class="btn secondary" href="#san-pham">Xem sản phẩm</a>
           </div>
-          <div class="trust-row">
-            <span>Gia công theo chỉ định nha khoa</span>
-            <span>Kiểm soát từng ca phục hình</span>
-            <span>Hồ sơ rõ ràng, truy xuất được</span>
+
+          <div class="proof-strip" aria-label="Điểm mạnh KTV Dental Lab">
+            <div>
+              <strong>100%</strong>
+              <span>Theo chỉ định nha khoa</span>
+            </div>
+            <div>
+              <strong>CAD/CAM</strong>
+              <span>Thiết kế & gia công số</span>
+            </div>
+            <div>
+              <strong>QC</strong>
+              <span>Kiểm tra trước giao</span>
+            </div>
           </div>
         </div>
 
-        <div class="hero-card" aria-label="KTV Dental Lab">
-          <img src="assets/ktv-logo.png" alt="Logo KTV Dental Lab" />
-          <div class="hero-card-note">
-            <strong>Tận tâm phục vụ</strong>
-            <span>Sản xuất phục hình răng sứ rõ quy trình, ổn định và chuyên nghiệp.</span>
+        <div class="hero-visual reveal">
+          <div class="glass-card logo-card">
+            <img src="./assets/ktv-logo.png" alt="Logo KTV Dental Lab" />
+          </div>
+
+          <div class="floating-card card-a">
+            <small>Phục hình chính</small>
+            <strong>Răng sứ kim loại · Zirconia · Implant</strong>
+          </div>
+
+          <div class="floating-card card-b">
+            <small>Định hướng hợp tác</small>
+            <strong>Rõ quy trình · Dễ truy xuất · Đồng hành lâu dài</strong>
+          </div>
+
+          <div class="tooth-line" aria-hidden="true">
+            <svg viewBox="0 0 260 220" role="img" aria-label="">
+              <path d="M128 23c29-25 76-19 96 17 23 41 0 98-20 134-12 22-24 39-34 35-9-4-4-28-2-45 3-26 0-52-17-69-14-14-34-17-51-9-22 10-32 35-34 60-2 25 5 57-8 61-10 3-23-21-34-44C4 123-11 70 14 35 36 4 83 0 128 23z" />
+            </svg>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section about">
-      <div class="container split">
-        <div>
-          <p class="section-kicker">Về KTV Dental Lab</p>
-          <h2>Labo phục vụ chuyên biệt cho phòng khám nha khoa</h2>
+    <section id="gioi-thieu" class="section intro">
+      <div class="container intro-grid">
+        <div class="section-title reveal">
+          <p class="eyebrow">Giới thiệu</p>
+          <h2>Một labo chuyên biệt cho nha khoa, không bán trực tiếp cho bệnh nhân</h2>
         </div>
-        <div class="section-text">
+
+        <div class="intro-content reveal">
           <p>
-            KTV Dental Lab hoạt động theo mô hình B2B, chỉ tiếp nhận và sản xuất phục hình
-            theo đơn đặt hàng từ phòng khám nha khoa, cơ sở nha khoa và đơn vị chuyên môn.
+            KTV Dental Lab hoạt động theo mô hình B2B, tiếp nhận và sản xuất phục hình theo đơn đặt hàng
+            từ phòng khám nha khoa, cơ sở nha khoa và đơn vị chuyên môn.
           </p>
           <p>
-            Chúng tôi không khám chữa bệnh, không tư vấn điều trị trực tiếp cho bệnh nhân và
-            không bán trực tiếp sản phẩm phục hình cho người sử dụng cuối. Mỗi sản phẩm được
-            thực hiện dựa trên chỉ định, mẫu hàm, dữ liệu scan hoặc yêu cầu kỹ thuật từ nha khoa gửi đến.
+            Chúng tôi không khám chữa bệnh, không tư vấn điều trị trực tiếp cho bệnh nhân và không bán trực tiếp
+            sản phẩm phục hình cho người sử dụng cuối. Mỗi sản phẩm được sản xuất dựa trên chỉ định, mẫu hàm,
+            dữ liệu scan, vật liệu và yêu cầu kỹ thuật từ nha khoa gửi đến.
           </p>
+
+          <div class="quote-box">
+            <span>“</span>
+            <p>Gia công theo chỉ định của nha khoa – kiểm soát từng ca phục hình – hồ sơ rõ ràng, truy xuất được.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="san-pham" class="section products">
       <div class="container">
-        <div class="section-heading">
-          <p class="section-kicker">Sản phẩm chính</p>
-          <h2>Các dòng phục hình KTV Dental Lab sản xuất</h2>
+        <div class="section-heading center reveal">
+          <p class="eyebrow">Sản phẩm chính</p>
+          <h2>Các dòng phục hình được sản xuất theo từng ca cụ thể</h2>
           <p>
-            Sản phẩm được thực hiện theo từng ca cụ thể, phù hợp với chỉ định chuyên môn,
-            vật liệu và yêu cầu kỹ thuật từ nha khoa.
+            KTV Dental Lab không sản xuất hàng loạt cho bệnh nhân. Mỗi phục hình được thực hiện theo thông tin
+            lâm sàng, dữ liệu và chỉ định chuyên môn từ cơ sở nha khoa.
           </p>
         </div>
 
-        <div class="card-grid three">
-          <article class="info-card">
-            <div class="icon">01</div>
-            <h3>Răng sứ kim loại</h3>
-            <p>
-              Phục hình có sườn kim loại nha khoa kết hợp lớp sứ bên ngoài, sử dụng cho mão răng,
-              cầu răng và các phục hình cố định theo chỉ định.
-            </p>
-          </article>
+        <div class="product-tabs reveal" data-tabs>
+          <div class="tab-buttons" role="tablist" aria-label="Nhóm sản phẩm">
+            <button class="tab-btn active" data-tab="metal" type="button">Răng sứ kim loại</button>
+            <button class="tab-btn" data-tab="zirconia" type="button">Răng toàn sứ zirconia</button>
+            <button class="tab-btn" data-tab="implant" type="button">Phục hình trên implant</button>
+          </div>
 
-          <article class="info-card">
-            <div class="icon">02</div>
-            <h3>Răng sứ không kim loại</h3>
-            <p>
-              Răng toàn sứ zirconia, răng toàn khối hoặc phục hình có xử lý thẩm mỹ bề mặt,
-              được kiểm soát về hình thể, độ dày và khớp cắn.
-            </p>
-          </article>
+          <div class="tab-panel active" data-panel="metal">
+            <div class="panel-copy">
+              <span class="panel-number">01</span>
+              <h3>Răng sứ kim loại</h3>
+              <p>
+                Dòng phục hình có sườn kim loại nha khoa kết hợp lớp sứ bên ngoài, phù hợp cho mão răng,
+                cầu răng và các phục hình cố định theo chỉ định của nha khoa.
+              </p>
+              <ul class="check-list">
+                <li>Kiểm soát hình thể, khớp cắn, tiếp xúc bên và độ sát khít</li>
+                <li>Có thể thực hiện theo nhiều yêu cầu vật liệu hợp kim nha khoa phù hợp</li>
+                <li>Phù hợp với ca cần độ bền, ổn định và chi phí hợp lý</li>
+              </ul>
+            </div>
+            <div class="panel-card">
+              <strong>Tiêu chí kiểm tra</strong>
+              <span>Đúng đơn hàng</span>
+              <span>Đúng vật liệu</span>
+              <span>Sát khít trên mẫu</span>
+              <span>Tiếp xúc & khớp cắn</span>
+              <span>Bề mặt hoàn thiện</span>
+            </div>
+          </div>
 
-          <article class="info-card">
-            <div class="icon">03</div>
-            <h3>Răng sứ trên implant</h3>
-            <p>
-              Gia công phục hình răng sứ trên implant theo dữ liệu, linh kiện và kế hoạch phục hình
-              do nha khoa cung cấp cho từng ca lâm sàng.
-            </p>
-          </article>
+          <div class="tab-panel" data-panel="zirconia">
+            <div class="panel-copy">
+              <span class="panel-number">02</span>
+              <h3>Răng sứ không kim loại / răng toàn sứ zirconia</h3>
+              <p>
+                Phục hình sử dụng vật liệu zirconia hoặc vật liệu toàn sứ phù hợp trong nha khoa,
+                có thể thực hiện dưới dạng mão răng, cầu răng, full contour hoặc phục hình có xử lý thẩm mỹ bề mặt.
+              </p>
+              <ul class="check-list">
+                <li>Thiết kế CAD để kiểm soát độ dày, hình thể và đường hoàn tất</li>
+                <li>Gia công CAM, thiêu kết, chỉnh màu và hoàn thiện theo từng chỉ định</li>
+                <li>Phù hợp với yêu cầu thẩm mỹ, sinh học và phục hình cố định</li>
+              </ul>
+            </div>
+            <div class="panel-card">
+              <strong>Vật liệu thường gặp</strong>
+              <span>Zirconia đa lớp</span>
+              <span>Zirconia thẩm mỹ</span>
+              <span>Zirconia cường độ cao</span>
+              <span>Sườn zirconia đắp sứ</span>
+              <span>Răng full zirconia</span>
+            </div>
+          </div>
+
+          <div class="tab-panel" data-panel="implant">
+            <div class="panel-copy">
+              <span class="panel-number">03</span>
+              <h3>Răng sứ trên implant</h3>
+              <p>
+                KTV Dental Lab tiếp nhận và gia công phục hình răng sứ trên implant theo dữ liệu,
+                linh kiện và kế hoạch phục hình do nha khoa cung cấp cho từng ca lâm sàng.
+              </p>
+              <ul class="check-list">
+                <li>Thực hiện theo vị trí răng, loại phục hình và dữ liệu từ nha khoa</li>
+                <li>Phối hợp với chỉ định về abutment, scanbody, model và khớp cắn</li>
+                <li>Áp dụng tiêu chí kiểm tra riêng cho phục hình implant trước giao</li>
+              </ul>
+            </div>
+            <div class="panel-card">
+              <strong>Dạng ca tiếp nhận</strong>
+              <span>Mão trên implant</span>
+              <span>Cầu trên implant</span>
+              <span>Zirconia trên implant</span>
+              <span>Phục hình theo file scan</span>
+              <span>Phục hình theo mẫu hàm</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="nang-luc" class="section capability">
-      <div class="container split reverse">
-        <div class="feature-box">
-          <h3>Năng lực sản xuất</h3>
-          <ul class="check-list">
-            <li>Tiếp nhận mẫu hàm, dấu scan và dữ liệu phục hình</li>
-            <li>Thiết kế phục hình bằng phần mềm CAD chuyên dụng</li>
-            <li>Gia công CAM đối với các dòng vật liệu phù hợp</li>
-            <li>Đắp sứ, chỉnh hình thể, xử lý màu và hoàn thiện bề mặt</li>
-            <li>Kiểm tra trước khi giao theo từng đơn hàng</li>
-          </ul>
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Năng lực sản xuất</p>
+          <h2>Quy trình số kết hợp tay nghề kỹ thuật viên labo</h2>
+          <p>
+            KTV Dental Lab xây dựng năng lực sản xuất xoay quanh dữ liệu nha khoa, thiết kế CAD/CAM,
+            kiểm soát vật liệu và hoàn thiện phục hình trước khi giao.
+          </p>
         </div>
 
-        <div>
-          <p class="section-kicker">CAD/CAM & kiểm soát kỹ thuật</p>
-          <h2>Kết hợp kỹ thuật viên và quy trình số</h2>
-          <p class="section-text">
-            KTV Dental Lab ứng dụng quy trình kỹ thuật số trong nhiều công đoạn sản xuất,
-            từ tiếp nhận dữ liệu, thiết kế CAD, gia công CAM đến hoàn thiện phục hình.
-            Các yếu tố như đường hoàn tất, hình thể răng, tiếp xúc bên, khớp cắn và bề mặt
-            hoàn thiện được kiểm tra trước khi giao cho nha khoa.
-          </p>
+        <div class="capability-grid">
+          <article class="cap-card reveal">
+            <div class="cap-icon">CAD</div>
+            <h3>Thiết kế phục hình</h3>
+            <p>
+              Thiết kế mão, cầu và phục hình theo dữ liệu mẫu hàm hoặc file scan; kiểm soát đường hoàn tất,
+              điểm tiếp xúc, hình thể giải phẫu và khoảng phục hình.
+            </p>
+          </article>
+
+          <article class="cap-card reveal">
+            <div class="cap-icon">CAM</div>
+            <h3>Gia công vật liệu</h3>
+            <p>
+              Gia công sườn, zirconia và các dạng phục hình phù hợp bằng quy trình CAM; kiểm soát độ dày,
+              hướng lắp, vùng tiếp xúc và bề mặt sau gia công.
+            </p>
+          </article>
+
+          <article class="cap-card reveal">
+            <div class="cap-icon">3D</div>
+            <h3>Hỗ trợ in 3D</h3>
+            <p>
+              Ứng dụng in 3D cho mẫu, sáp hoặc các công đoạn hỗ trợ quy trình; giúp chuẩn hóa dữ liệu,
+              giảm phụ thuộc vào thao tác thủ công không cần thiết.
+            </p>
+          </article>
+
+          <article class="cap-card reveal">
+            <div class="cap-icon">QC</div>
+            <h3>Kiểm tra trước giao</h3>
+            <p>
+              Kiểm tra đúng đơn hàng, màu sắc, vật liệu, khớp cắn, tiếp xúc, độ sát khít, hình thể và hoàn thiện
+              bề mặt trước khi bàn giao cho nha khoa.
+            </p>
+          </article>
+        </div>
+
+        <div class="equipment reveal">
+          <div>
+            <p class="eyebrow">Thiết bị & công nghệ</p>
+            <h3>Hệ sinh thái sản xuất phục hình số</h3>
+            <p>
+              Quy trình của KTV Dental Lab được hỗ trợ bởi hệ thống CAD/CAM, scanner 3D, máy milling,
+              máy in 3D và các thiết bị labo cần thiết cho sản xuất phục hình răng sứ.
+            </p>
+          </div>
+          <div class="equipment-list">
+            <span>Roland DWX‑52Di</span>
+            <span>Scanner 3D</span>
+            <span>Exocad / CAD nha khoa</span>
+            <span>Milling zirconia</span>
+            <span>In 3D mẫu hàm</span>
+            <span>Lò nung & hoàn thiện sứ</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="chat-luong" class="section quality">
-      <div class="container">
-        <div class="section-heading">
-          <p class="section-kicker">Hệ thống quản lý chất lượng</p>
-          <h2>Kiểm soát chất lượng theo ISO 13485</h2>
+    <section id="iso" class="section iso">
+      <div class="container iso-grid">
+        <div class="iso-card reveal">
+          <p class="eyebrow">ISO 13485</p>
+          <h2>Hệ thống quản lý chất lượng cho sản xuất trang thiết bị y tế nha khoa</h2>
           <p>
-            KTV Dental Lab áp dụng hệ thống quản lý chất lượng theo tiêu chuẩn ISO 13485
-            trong hoạt động sản xuất trang thiết bị y tế nha khoa.
+            KTV Dental Lab áp dụng hệ thống quản lý chất lượng theo tiêu chuẩn ISO 13485 trong hoạt động
+            sản xuất phục hình nha khoa. Hệ thống được xây dựng để kiểm soát quy trình, nhân sự, thiết bị,
+            vật liệu, hồ sơ sản xuất và truy xuất thông tin khi cần thiết.
           </p>
+
+          <div class="iso-points">
+            <div><strong>01</strong><span>Kiểm soát vật liệu đầu vào</span></div>
+            <div><strong>02</strong><span>Kiểm soát thông tin đơn hàng</span></div>
+            <div><strong>03</strong><span>Kiểm soát thiết kế và gia công</span></div>
+            <div><strong>04</strong><span>Kiểm tra chất lượng trước giao</span></div>
+            <div><strong>05</strong><span>Lưu hồ sơ sản xuất</span></div>
+            <div><strong>06</strong><span>Truy xuất thông tin sản phẩm</span></div>
+          </div>
         </div>
 
-        <div class="card-grid four">
-          <div class="mini-card">Kiểm soát vật liệu đầu vào</div>
-          <div class="mini-card">Kiểm soát thông tin đơn hàng</div>
-          <div class="mini-card">Kiểm soát thiết kế và gia công</div>
-          <div class="mini-card">Kiểm tra chất lượng trước giao</div>
-          <div class="mini-card">Lưu hồ sơ sản xuất</div>
-          <div class="mini-card">Truy xuất thông tin sản phẩm</div>
-          <div class="mini-card">Kiểm soát thiết bị sản xuất</div>
-          <div class="mini-card">Đào tạo và phân công nhân sự</div>
+        <div class="document-stack reveal">
+          <div class="doc-card top">
+            <span>ISO 13485</span>
+            <strong>Hệ thống quản lý chất lượng</strong>
+            <small>Quy trình · Hồ sơ · Truy xuất</small>
+          </div>
+          <div class="doc-card">
+            <span>Công bố đủ điều kiện sản xuất</span>
+            <strong>Cơ sở sản xuất TBYT</strong>
+            <small>Theo quy định hiện hành</small>
+          </div>
+          <div class="doc-card">
+            <span>Công bố lưu hành</span>
+            <strong>Răng sứ kim loại · Răng sứ không kim loại</strong>
+            <small>Tiêu chuẩn cơ sở · Kiểm nghiệm · Hồ sơ kỹ thuật</small>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="quy-trinh" class="section process">
       <div class="container">
-        <div class="section-heading">
-          <p class="section-kicker">Quy trình làm việc</p>
-          <h2>Từ dữ liệu nha khoa đến sản phẩm hoàn thiện</h2>
+        <div class="section-heading center reveal">
+          <p class="eyebrow">Quy trình làm việc</p>
+          <h2>Từ dữ liệu nha khoa đến phục hình hoàn thiện</h2>
+          <p>
+            Quy trình được thiết kế để nha khoa dễ phối hợp, dễ kiểm tra thông tin và giảm sai lệch giữa
+            chỉ định ban đầu với sản phẩm giao nhận.
+          </p>
         </div>
 
-        <div class="timeline">
-          <div class="timeline-item">
+        <div class="process-line reveal">
+          <div class="step">
             <span>1</span>
-            <h3>Tiếp nhận thông tin</h3>
-            <p>Nhận mẫu hàm, dấu scan, file thiết kế, phiếu chỉ định hoặc thông tin ca phục hình.</p>
+            <h3>Tiếp nhận ca</h3>
+            <p>Mẫu hàm, dấu scan, file thiết kế, phiếu chỉ định hoặc thông tin phục hình.</p>
           </div>
-          <div class="timeline-item">
+          <div class="step">
             <span>2</span>
-            <h3>Kiểm tra dữ liệu đầu vào</h3>
-            <p>Đối chiếu loại phục hình, vị trí răng, màu răng, vật liệu và yêu cầu kỹ thuật.</p>
+            <h3>Kiểm tra dữ liệu</h3>
+            <p>Đối chiếu vị trí răng, loại phục hình, vật liệu, màu răng và yêu cầu kỹ thuật.</p>
           </div>
-          <div class="timeline-item">
+          <div class="step">
             <span>3</span>
             <h3>Thiết kế CAD</h3>
-            <p>Thiết kế phục hình theo dữ liệu mẫu hàm, dấu scan và chỉ định của nha khoa.</p>
+            <p>Thiết kế đường hoàn tất, hình thể, tiếp xúc, khớp cắn và độ dày vật liệu.</p>
           </div>
-          <div class="timeline-item">
+          <div class="step">
             <span>4</span>
-            <h3>Gia công & hoàn thiện</h3>
-            <p>Milling, thiêu kết, đắp sứ, chỉnh sửa hình thể, xử lý màu và nướng bóng khi cần.</p>
+            <h3>Sản xuất</h3>
+            <p>Gia công CAM, thiêu kết, đắp sứ, xử lý màu, chỉnh hình thể và hoàn thiện.</p>
           </div>
-          <div class="timeline-item">
+          <div class="step">
             <span>5</span>
-            <h3>Kiểm tra chất lượng</h3>
-            <p>Kiểm tra thông tin đơn hàng, độ sát khít, tiếp xúc, khớp cắn, màu sắc và bề mặt.</p>
+            <h3>QC trước giao</h3>
+            <p>Kiểm tra sản phẩm trên mẫu, thông tin đơn hàng và các tiêu chí kỹ thuật.</p>
           </div>
-          <div class="timeline-item">
+          <div class="step">
             <span>6</span>
-            <h3>Đóng gói & giao hàng</h3>
-            <p>Ghi nhận thông tin, đóng gói và giao lại cho nha khoa theo quy trình giao nhận.</p>
+            <h3>Đóng gói</h3>
+            <p>Ghi nhận thông tin, đóng gói, giao hàng và lưu hồ sơ phục vụ truy xuất.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="phap-ly" class="section compliance">
-      <div class="container split">
-        <div>
-          <p class="section-kicker">Hồ sơ pháp lý & truy xuất</p>
-          <h2>Hồ sơ sản phẩm rõ ràng, phục vụ quản lý chất lượng</h2>
+    <section class="section standards">
+      <div class="container standards-grid">
+        <div class="section-title reveal">
+          <p class="eyebrow">Tiêu chí kiểm soát</p>
+          <h2>Những điểm được kiểm tra trước khi giao nha khoa</h2>
+          <p>
+            Mỗi dòng phục hình có đặc thù riêng, nhưng KTV Dental Lab luôn duy trì các điểm kiểm soát
+            cơ bản nhằm đảm bảo sự ổn định khi nha khoa tiếp nhận sản phẩm.
+          </p>
         </div>
-        <div class="section-text">
-          <p>
-            Các sản phẩm phục hình nha khoa của KTV Dental Lab được sản xuất trong phạm vi
-            công bố đủ điều kiện sản xuất trang thiết bị y tế và hồ sơ công bố lưu hành theo
-            quy định hiện hành.
-          </p>
-          <p>
-            Sản phẩm được sản xuất theo tiêu chuẩn cơ sở, hồ sơ kỹ thuật, phiếu kiểm nghiệm
-            và hệ thống kiểm soát chất lượng nội bộ. Thông tin sản phẩm, vật liệu sử dụng
-            và hồ sơ liên quan được lưu trữ nhằm phục vụ việc truy xuất, kiểm tra và quản lý
-            chất lượng khi cần thiết.
-          </p>
-          <div class="notice">
-            Thông tin số chứng nhận ISO 13485, số công bố và tài liệu pháp lý liên quan có thể được cập nhật tại đây theo hồ sơ đã được cấp/công bố.
-          </div>
+
+        <div class="standard-list reveal">
+          <div><span></span>Đúng thông tin đơn hàng và vị trí răng</div>
+          <div><span></span>Đúng loại phục hình và vật liệu được chỉ định</div>
+          <div><span></span>Độ sát khít trên mẫu hoặc dữ liệu phục hình</div>
+          <div><span></span>Tiếp xúc bên và khớp cắn theo yêu cầu</div>
+          <div><span></span>Hình thể giải phẫu và đường viền phục hình</div>
+          <div><span></span>Màu sắc, bề mặt hoàn thiện và đóng gói</div>
         </div>
       </div>
     </section>
 
-    <section class="section why">
+    <section class="section partners">
       <div class="container">
-        <div class="section-heading">
-          <p class="section-kicker">Vì sao chọn KTV Dental Lab?</p>
-          <h2>Ổn định, rõ ràng và đồng hành lâu dài với nha khoa</h2>
+        <div class="partner-card reveal">
+          <div>
+            <p class="eyebrow">Dành cho nha khoa</p>
+            <h2>Hợp tác rõ ràng, ổn định và lâu dài</h2>
+            <p>
+              KTV Dental Lab hướng đến quan hệ hợp tác bền vững với phòng khám nha khoa:
+              quy trình tiếp nhận rõ, sản phẩm kiểm soát theo từng ca, hồ sơ có thể truy xuất
+              và phối hợp kỹ thuật khi ca phục hình cần trao đổi thêm.
+            </p>
+          </div>
+
+          <div class="partner-grid">
+            <div>
+              <strong>Gửi ca linh hoạt</strong>
+              <span>Mẫu hàm, dấu scan, file hoặc phiếu chỉ định</span>
+            </div>
+            <div>
+              <strong>Trao đổi kỹ thuật</strong>
+              <span>Làm rõ yêu cầu trước khi sản xuất khi cần</span>
+            </div>
+            <div>
+              <strong>Theo dõi hồ sơ</strong>
+              <span>Lưu thông tin ca phục vụ đối chiếu và truy xuất</span>
+            </div>
+            <div>
+              <strong>Đồng hành lâu dài</strong>
+              <span>Ưu tiên ổn định chất lượng và quy trình hợp tác</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section faq">
+      <div class="container faq-grid">
+        <div class="section-title reveal">
+          <p class="eyebrow">Câu hỏi thường gặp</p>
+          <h2>Thông tin dành cho phòng khám khi hợp tác</h2>
         </div>
 
-        <div class="card-grid three">
-          <article class="info-card">
-            <h3>Quy trình rõ ràng</h3>
-            <p>Mỗi ca phục hình được tiếp nhận, sản xuất, kiểm tra và giao hàng theo quy trình thống nhất.</p>
-          </article>
-          <article class="info-card">
-            <h3>Kiểm soát từng đơn hàng</h3>
-            <p>Chú trọng các yếu tố kỹ thuật như sát khít, tiếp xúc, khớp cắn, hình thể và hoàn thiện bề mặt.</p>
-          </article>
-          <article class="info-card">
-            <h3>Hồ sơ đầy đủ</h3>
-            <p>Hệ thống hồ sơ sản xuất, tiêu chuẩn cơ sở, kiểm nghiệm, công bố sản phẩm và ISO 13485.</p>
-          </article>
+        <div class="faq-list reveal">
+          <details open>
+            <summary>KTV Dental Lab có làm trực tiếp cho bệnh nhân không?</summary>
+            <p>
+              Không. KTV Dental Lab chỉ sản xuất và gia công phục hình theo đơn đặt hàng, chỉ định chuyên môn
+              và dữ liệu từ cơ sở nha khoa.
+            </p>
+          </details>
+          <details>
+            <summary>Sản phẩm có hồ sơ ISO và công bố không?</summary>
+            <p>
+              KTV Dental Lab áp dụng hệ thống quản lý chất lượng ISO 13485 và sản xuất trong phạm vi hồ sơ công bố
+              trang thiết bị y tế theo quy định. Thông tin số chứng nhận, số công bố và tài liệu liên quan có thể
+              được hiển thị theo hồ sơ đã được cấp/công bố.
+            </p>
+          </details>
+          <details>
+            <summary>Nha khoa có thể gửi file scan thay mẫu hàm không?</summary>
+            <p>
+              Có. KTV Dental Lab có thể tiếp nhận dữ liệu số, file thiết kế hoặc mẫu hàm tùy quy trình của từng nha khoa
+              và yêu cầu của từng ca phục hình.
+            </p>
+          </details>
+          <details>
+            <summary>KTV Dental Lab kiểm tra sản phẩm theo tiêu chí nào?</summary>
+            <p>
+              Các tiêu chí chính gồm đúng thông tin đơn hàng, đúng vật liệu, độ sát khít, tiếp xúc bên, khớp cắn,
+              hình thể, màu sắc, bề mặt hoàn thiện và đóng gói trước khi giao.
+            </p>
+          </details>
         </div>
       </div>
     </section>
 
     <section id="lien-he" class="section contact">
-      <div class="container contact-card">
-        <div>
-          <p class="section-kicker">Liên hệ hợp tác</p>
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <p class="eyebrow">Liên hệ hợp tác</p>
           <h2>Gửi ca phục hình hoặc trao đổi quy trình làm việc</h2>
           <p>
-            Nha khoa có nhu cầu gửi ca phục hình, trao đổi quy trình làm việc hoặc hợp tác lâu dài
+            Phòng khám nha khoa có nhu cầu gửi ca phục hình, trao đổi tiêu chuẩn kỹ thuật hoặc hợp tác lâu dài
             có thể liên hệ KTV Dental Lab để được hỗ trợ.
           </p>
+
+          <div class="contact-actions">
+            <a class="btn primary" href="tel:0900000000">Gọi/Zalo: 0900 000 000</a>
+            <a class="btn secondary" href="mailto:contact@ktvlab.com">Gửi email</a>
+          </div>
         </div>
 
-        <div class="contact-info">
+        <div class="business-card reveal">
+          <img src="./assets/ktv-logo.png" alt="KTV Dental Lab" />
           <h3>CÔNG TY TNHH MTV KTV</h3>
-          <p><strong>Tên giao dịch:</strong> KTV Dental Lab</p>
-          <p><strong>Địa chỉ:</strong> 614/18/21 Lê Hồng Phong, Phường Phú Lợi, TP. Hồ Chí Minh, Việt Nam</p>
-          <p><strong>Điện thoại/Zalo:</strong> <a href="tel:0900000000">0900 000 000</a></p>
-          <p><strong>Email:</strong> <a href="mailto:contact@ktvlab.com">contact@ktvlab.com</a></p>
-          <a class="btn primary wide" href="tel:0900000000">Gọi KTV Dental Lab</a>
+          <dl>
+            <div>
+              <dt>Tên giao dịch</dt>
+              <dd>KTV Dental Lab</dd>
+            </div>
+            <div>
+              <dt>Mã số thuế</dt>
+              <dd>3703340735</dd>
+            </div>
+            <div>
+              <dt>Địa chỉ</dt>
+              <dd>614/18/21 Lê Hồng Phong, Phường Phú Lợi, TP. Hồ Chí Minh, Việt Nam</dd>
+            </div>
+            <div>
+              <dt>Điện thoại/Zalo</dt>
+              <dd><a href="tel:0900000000">0900 000 000</a></dd>
+            </div>
+            <div>
+              <dt>Email</dt>
+              <dd><a href="mailto:contact@ktvlab.com">contact@ktvlab.com</a></dd>
+            </div>
+          </dl>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> KTV Dental Lab. All rights reserved.</p>
-      <p>Sản xuất phục hình răng sứ theo đơn đặt hàng của cơ sở nha khoa.</p>
+    <div class="container footer-grid">
+      <div>
+        <strong>KTV Dental Lab</strong>
+        <p>Sản xuất phục hình răng sứ theo đơn đặt hàng của cơ sở nha khoa.</p>
+      </div>
+      <div>
+        <a href="#top">Lên đầu trang</a>
+      </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>

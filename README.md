@@ -1,31 +1,35 @@
-# KTV Dental Lab Landing Page
+# KTV Dental Lab Premium Landing Page
 
-Bộ landing page tĩnh cho ktvlab.com, dùng được với GitHub Pages hoặc hosting tĩnh.
+Phiên bản landing page đẹp hơn, chi tiết hơn cho `ktvlab.com`.
 
-## Cấu trúc
+## File cần upload lên GitHub
 
 ```text
-.
-├── index.html
-├── styles.css
-├── script.js
-└── assets/
-    └── ktv-logo.png
+index.html
+styles.css
+script.js
+assets/ktv-logo.png
+CNAME
+.nojekyll
+README.md
 ```
-
-## Cách đưa lên GitHub Pages
-
-1. Tạo repository, ví dụ: `ktvlab.com`
-2. Upload toàn bộ file trong thư mục này lên repository
-3. Vào `Settings` → `Pages`
-4. Chọn `Deploy from a branch`
-5. Branch: `main`, folder: `/root`
-6. Lưu lại và đợi GitHub Pages build
 
 ## Cần sửa trước khi public
 
-Trong `index.html`, tìm và sửa:
+Trong `index.html`, tìm và sửa các thông tin placeholder:
 
-- `0900 000 000`
-- `contact@ktvlab.com`
-- Nếu đã có số chứng nhận ISO 13485, số công bố đủ điều kiện sản xuất, số công bố lưu hành: cập nhật vào mục "Hồ sơ pháp lý & truy xuất".
+```text
+0900 000 000
+contact@ktvlab.com
+```
+
+Khi có số chứng nhận ISO 13485, số công bố đủ điều kiện sản xuất, số công bố lưu hành, cập nhật ở mục:
+
+```text
+ISO & Công bố
+```
+
+## Lưu ý
+
+Website này là HTML/CSS/JS tĩnh, dùng được với GitHub Pages.
+Đường dẫn logo đã dùng dạng `./assets/ktv-logo.png` để tránh lỗi khi deploy trên GitHub Pages.
