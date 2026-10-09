@@ -184,8 +184,8 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false } = {}
 
   // state with targets for smooth easing
   const st = {
-    x: 0.9, y: 0, s: 1, op: 1, ring: 0, years: 0,
-    tx: 0.9, ty: 0, ts: 1, top: 1, tring: 0, tyears: 0,
+    x: 0.9, y: 0, s: 1, op: 1, ring: 0, years: 0, war: 1,
+    tx: 0.9, ty: 0, ts: 1, top: 1, tring: 0, tyears: 0, twar: 1,
     mx: 0, my: 0, tmx: 0, tmy: 0,
     rot: 0.6, scrollVel: 0,
     trans: LOOKS.zirconia.transmission, ttrans: LOOKS.zirconia.transmission,
@@ -242,6 +242,7 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false } = {}
     st.x += (st.tx - st.x) * k; st.y += (st.ty - st.y) * k;
     st.s += (st.ts - st.s) * k; st.op += (st.top - st.op) * k;
     st.ring += (st.tring - st.ring) * k;
+    st.war += (st.twar - st.war) * k;
     st.years += (st.tyears - st.years) * ks;
     st.mx += (st.tmx - st.mx) * k; st.my += (st.tmy - st.my) * k;
     st.trans += (st.ttrans - st.trans) * k; st.cop += (st.tcop - st.cop) * k; st.rough += (st.trough - st.rough) * k;
@@ -271,7 +272,7 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false } = {}
     shadow.material.opacity = st.op;
     stage.visible = st.op > 0.02;
 
-    const ro = st.ring * st.op;
+    const ro = st.ring * st.op * st.war;
     trackMat.opacity = 0.55 * ro; progMat.opacity = ro; tickMat.opacity = 0.5 * ro; dotMat.opacity = ro;
     const frac = Math.max(0.001, Math.min(1, st.years / 15));
     if (Math.abs(frac - lastFrac) > 0.0015) {
@@ -309,12 +310,14 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false } = {}
       if (o !== undefined) st.top = o;
       if (ring !== undefined) st.tring = ring;
     },
-    setMaterial({ look = 'zirconia', years = 0, tone, coping: copColor }) {
+    setMaterial({ look = 'zirconia', years = 0, tone, coping: copColor } = {}) {
       const L = LOOKS[look] || LOOKS.zirconia;
       st.ttrans = L.transmission; st.tcop = L.coping; st.trough = L.roughness;
       st.tcolor.set(tone || L.color);
       if (copColor) st.tcopColor.set(copColor);
-      st.tyears = years;
+      // years === null → warranty by agreement: fade the ring out, keep its last value while fading
+      if (years === null || years === undefined) st.twar = 0;
+      else { st.twar = 1; st.tyears = years; }
       st.scrollVel += 0.35; // a little spin on change
     },
     onFrame(fn) { onFrame = fn; },
