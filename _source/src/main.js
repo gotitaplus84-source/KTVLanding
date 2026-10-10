@@ -154,9 +154,13 @@ async function boot() {
       let idx = 0;
       steps.forEach((s, i) => { const r = s.getBoundingClientRect(); if (r.top < mid) idx = i; });
       showMaterial(idx, crown);
-    } else if (crown && activeMat !== -1 && best.id === 'top') {
-      activeMat = -1;
-      crown.setMaterial({ look: 'zirconia', years: 0 });
+      if (crown) crown.setBlank(steps[idx].dataset.blank);   // photo of that material's blank, if any
+    } else {
+      if (crown) crown.setBlank(null);
+      if (crown && activeMat !== -1 && best.id === 'top') {
+        activeMat = -1;
+        crown.setMaterial({ look: 'zirconia', years: 0 });
+      }
     }
   }
   window.addEventListener('scroll', pickStage, { passive: true });
