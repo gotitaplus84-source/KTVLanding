@@ -134,9 +134,6 @@ async function boot() {
 
   // stage per section
   const stageEls = [...document.querySelectorAll('[data-stage]')];
-  const annos = [...document.querySelectorAll('.anno')];
-  const annoWrap = document.querySelector('.annos');
-  let annoOpacity = 0;
 
   function pickStage() {
     const mid = window.innerHeight * 0.5;
@@ -148,7 +145,6 @@ async function boot() {
     if (!best) return;
     const cfg = JSON.parse(isMobile() ? (best.dataset.stageM || best.dataset.stage) : best.dataset.stage);
     crown && crown.setStage(cfg);
-    annoOpacity = best.dataset.annos ? 1 : 0;
     if (best.classList.contains('mat-scroll')) {
       // which step crosses the middle?
       let idx = 0;
@@ -167,17 +163,6 @@ async function boot() {
   window.addEventListener('resize', pickStage);
   pickStage();
   if (!crown) showMaterial(0, null);
-
-  if (crown && annoWrap) {
-    crown.onFrame(({ points, opacity }) => {
-      annoWrap.style.opacity = String(annoOpacity * Math.min(1, opacity * 1.2));
-      for (const a of annos) {
-        const p = points[a.dataset.anchor];
-        if (!p) continue;
-        a.style.transform = `translate(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px)`;
-      }
-    });
-  }
 }
 boot();
 
