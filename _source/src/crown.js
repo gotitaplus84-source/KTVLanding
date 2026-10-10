@@ -3,7 +3,7 @@ import {
   WebGLRenderer, Scene, BufferAttribute, PerspectiveCamera, Group, Mesh, Color, Vector3, MathUtils,
   MeshPhysicalMaterial, MeshStandardMaterial, MeshBasicMaterial, PMREMGenerator,
   ACESFilmicToneMapping, SRGBColorSpace, DirectionalLight, AmbientLight,
-  RingGeometry, CircleGeometry, PlaneGeometry, SphereGeometry, CanvasTexture, DoubleSide, Plane, BufferGeometry,
+  RingGeometry, CircleGeometry, PlaneGeometry, SphereGeometry, CanvasTexture, DoubleSide, Plane, BufferGeometry, TextureLoader,
 } from 'three';
 import { ParametricGeometry } from 'three/addons/geometries/ParametricGeometry.js';
 import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
@@ -259,6 +259,38 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, model
   shadow.scale.set(1, 0.75, 1);
   stage.add(shadow);
 
+  // product photo (box + blank) behind the crown — up and to the right so the label stays readable;
+  // two planes so one can fade into the next
+  const BLANK_X = 0.5, BLANK_Y = 0.78;
+  const blankLoader = new TextureLoader(), blankCache = new Map();
+  const blankMats = [0, 1].map(() => new MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false, toneMapped: false }));
+  const blanks = blankMats.map((m) => {
+    const p = new Mesh(new PlaneGeometry(1, 1), m);
+    p.position.set(BLANK_X, BLANK_Y, -2.0);
+    p.rotation.x = -Math.atan2(camera.position.y, camera.position.z);   // face the camera
+    p.visible = false;
+    stage.add(p);
+    return p;
+  });
+  const blankFade = [{ a: 0, t: 0 }, { a: 0, t: 0 }];
+  let blankFront = 0, blankUrl = null;
+  function showBlank(url) {
+    if (url === blankUrl) return;
+    blankUrl = url;
+    if (!url) { blankFade[0].t = blankFade[1].t = 0; return; }
+    const apply = (tex) => {
+      if (blankUrl !== url) return;                 // user already scrolled on
+      const n = 1 - blankFront, img = tex.image, asp = img.width / img.height;
+      blankMats[n].map = tex; blankMats[n].needsUpdate = true;
+      const S = W < 760 ? 2.9 : 3.6;
+      blanks[n].scale.set(asp >= 1 ? S : S * asp, asp >= 1 ? S / asp : S, 1);
+      blankFade[n].t = 1; blankFade[blankFront].t = 0; blankFront = n;
+    };
+    if (blankCache.has(url)) apply(blankCache.get(url));
+    else blankLoader.load(url, (tex) => { tex.colorSpace = SRGBColorSpace; tex.anisotropy = 4; blankCache.set(url, tex); apply(tex); },
+      undefined, () => { if (blankUrl === url) blankFade[0].t = blankFade[1].t = 0; });
+  }
+
   // anchors for DOM annotations (local to `spin`)
   const anchors = models ? anchorsFrom(models.crown) : {
     occlusal: new Vector3(0.18, H + 0.32, 0.2),
@@ -355,6 +387,15 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, model
     cut.constant = -(cut.normal.x * cx + cut.normal.z * cz) + (1 - st.cop) * 6 + st.cop * 0.02;
     shadow.material.opacity = st.op;
     stage.visible = st.op > 0.02;
+    const kb = 1 - Math.pow(0.004, dt);
+    for (let i = 0; i < 2; i++) {
+      const f = blankFade[i];
+      f.a += (f.t - f.a) * kb;
+      blankMats[i].opacity = f.a * st.op;
+      blanks[i].visible = blankMats[i].opacity > 0.01;
+      blanks[i].position.x = BLANK_X - st.mx * 0.12;                     // slight parallax against the crown
+      blanks[i].position.y = BLANK_Y + st.my * 0.06;
+    }
 
     const ro = st.ring * st.op * st.war;
     trackMat.opacity = 0.55 * ro; progMat.opacity = ro; tickMat.opacity = 0.5 * ro; dotMat.opacity = ro;
@@ -404,6 +445,8 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, model
       else { st.twar = 1; st.tyears = years; }
       st.scrollVel += 0.35; // a little spin on change
     },
+    // photo of the material blank behind the crown; null hides it
+    setBlank(url) { showBlank(url || null); },
     onFrame(fn) { onFrame = fn; },
   };
 }
