@@ -124,8 +124,10 @@ async function boot() {
   const ok = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch { return false; } })();
   if (canvas && ok) {
     try {
-      const { initCrown } = await import('./crown.js');
-      crown = initCrown(canvas, { reducedMotion: reduced });
+      const { initCrown, loadToothModels } = await import('./crown.js');
+      let models = null;
+      try { models = await loadToothModels(); } catch (err) { console.warn('real crown model unavailable, using fallback', err); }
+      crown = initCrown(canvas, { reducedMotion: reduced, models });
       root.classList.add('webgl');
     } catch (err) { console.warn('3D disabled', err); root.classList.add('no-webgl'); }
   } else root.classList.add('no-webgl');

@@ -3,7 +3,7 @@ import {
   WebGLRenderer, Scene, BufferAttribute, PerspectiveCamera, Group, Mesh, Color, Vector3, MathUtils,
   MeshPhysicalMaterial, MeshStandardMaterial, MeshBasicMaterial, PMREMGenerator,
   ACESFilmicToneMapping, SRGBColorSpace, DirectionalLight, AmbientLight,
-  RingGeometry, CircleGeometry, PlaneGeometry, SphereGeometry, CanvasTexture, DoubleSide, Plane,
+  RingGeometry, CircleGeometry, PlaneGeometry, SphereGeometry, CanvasTexture, DoubleSide, Plane, BufferGeometry,
 } from 'three';
 import { ParametricGeometry } from 'three/addons/geometries/ParametricGeometry.js';
 import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
@@ -95,7 +95,87 @@ export const LOOKS = {
   metal:    { color: '#f6f1e9', transmission: 0.32, roughness: 0.28, coping: 1 },
 };
 
-export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false } = {}) {
+/* ---------- real crown from the lab's CAD files (see _source/tools/stl_to_bin.py) ---------- */
+const C_NECK = new Color('#e2c49c'), C_BODY = new Color('#f1e4cd'), C_TOP = new Color('#f8f2e7'), C_STAIN = new Color('#8a6340');
+
+function decodeBin(buf, shade) {
+  const dv = new DataView(buf);
+  if (dv.getUint32(0, true) !== 0x3156544b) throw new Error('bad model file');   // 'KTV1'
+  const n = dv.getUint32(4, true), m = dv.getUint32(8, true);
+  const lo = [0, 1, 2].map((i) => dv.getFloat32(12 + i * 4, true));
+  const st = [0, 1, 2].map((i) => dv.getFloat32(24 + i * 4, true));
+  const q = new Uint16Array(buf, 36, n * 3);
+  const idx = new Uint16Array(buf, 36 + n * 6, m);
+  const cav = new Uint8Array(buf, 36 + n * 6 + m * 2, n);
+  const pos = new Float32Array(n * 3);
+  for (let i = 0; i < n * 3; i++) pos[i] = lo[i % 3] + q[i] * st[i % 3];
+  const g = new BufferGeometry();
+  g.setAttribute('position', new BufferAttribute(pos, 3));
+  g.setIndex(new BufferAttribute(idx, 1));
+  g.computeVertexNormals();
+  g.computeBoundingBox();
+  // design meshes show faint facet ripples under a glossy glaze; relax the normals (not the shape)
+  {
+    const nr = g.attributes.normal.array, acc = new Float32Array(n * 3), cnt = new Uint16Array(n);
+    for (let pass = 0; pass < 4; pass++) {
+      acc.fill(0); cnt.fill(0);
+      for (let t = 0; t < m; t += 3) {
+        const a = idx[t], b = idx[t + 1], c3 = idx[t + 2];
+        for (const [i, j, k] of [[a, b, c3], [b, c3, a], [c3, a, b]]) {
+          acc[i * 3] += nr[j * 3] + nr[k * 3]; acc[i * 3 + 1] += nr[j * 3 + 1] + nr[k * 3 + 1]; acc[i * 3 + 2] += nr[j * 3 + 2] + nr[k * 3 + 2]; cnt[i] += 2;
+        }
+      }
+      for (let i = 0; i < n; i++) {
+        let x = nr[i * 3] + 0.5 * acc[i * 3] / cnt[i], y = nr[i * 3 + 1] + 0.5 * acc[i * 3 + 1] / cnt[i], z = nr[i * 3 + 2] + 0.5 * acc[i * 3 + 2] / cnt[i];
+        const L = Math.hypot(x, y, z) || 1; nr[i * 3] = x / L; nr[i * 3 + 1] = y / L; nr[i * 3 + 2] = z / L;
+      }
+    }
+  }
+  if (shade) {
+    // chroma at the neck → lighter body → bright occlusal; light stain in fissures and pits
+    const y0 = g.boundingBox.min.y, y1 = g.boundingBox.max.y, col = new Float32Array(n * 3), c = new Color();
+    for (let i = 0; i < n; i++) {
+      const t = (pos[i * 3 + 1] - y0) / (y1 - y0);
+      if (t < 0.5) c.copy(C_NECK).lerp(C_BODY, MathUtils.smoothstep(t, 0, 0.5));
+      else c.copy(C_BODY).lerp(C_TOP, MathUtils.smoothstep(t, 0.5, 1));
+      c.lerp(C_STAIN, 0.7 * MathUtils.smoothstep(cav[i] / 255, 0.14, 0.7));
+      col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
+    }
+    g.setAttribute('color', new BufferAttribute(col, 3));
+  }
+  return g;
+}
+
+export async function loadToothModels(base = '/assets/models/') {
+  const get = (name) => fetch(base + name + '.bin').then((r) => { if (!r.ok) throw new Error(name + ' ' + r.status); return r.arrayBuffer(); });
+  const [crown, coping] = await Promise.all([get('crown'), get('coping')]);
+  return { crown: decodeBin(crown, true), coping: decodeBin(coping, false) };
+}
+
+// anchor points for the DOM annotations, picked on the real surface
+function anchorsFrom(g) {
+  const p = g.attributes.position, bb = g.boundingBox, h = bb.max.y - bb.min.y;
+  const best = (score) => { let bi = 0, bs = -Infinity; for (let i = 0; i < p.count; i++) { const s = score(p.getX(i), p.getY(i), p.getZ(i)); if (s > bs) { bs = s; bi = i; } } return new Vector3(p.getX(bi), p.getY(bi), p.getZ(bi)); };
+  const dir = (x, z) => { const L = Math.hypot(x, z); return [x / L, z / L]; };
+  const [mx, mz] = dir(-0.62, 0.45), [cx, cz] = dir(-1, 0.3);
+  const occlusal = best((x, y) => y).add(new Vector3(0, 0.02, 0));
+  const margin = best((x, y, z) => (y < bb.min.y + 0.05 * h ? x * mx + z * mz : -Infinity));
+  const contour = best((x, y, z) => (y > bb.min.y + 0.3 * h && y < bb.min.y + 0.6 * h ? x * cx + z * cz : -Infinity));
+  margin.x += mx * 0.03; margin.z += mz * 0.03; contour.x += cx * 0.03; contour.z += cz * 0.03;
+  return { occlusal, margin, contour };
+}
+
+export function makeCeramic() {
+  return new MeshPhysicalMaterial({
+    color: new Color(LOOKS.zirconia.color), roughness: 0.3, metalness: 0, vertexColors: true,
+    transmission: 0.32, thickness: 1.4, ior: 1.55,
+    attenuationColor: new Color('#f1e3cf'), attenuationDistance: 2.2,
+    clearcoat: 0.85, clearcoatRoughness: 0.12, sheen: 0.35, sheenColor: new Color('#ffffff'),
+    specularIntensity: 0.7, side: DoubleSide,
+  });
+}
+
+export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, models = null } = {}) {
   const renderer = new WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
   const mobile = window.matchMedia('(max-width: 760px)').matches;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 1.75));
@@ -109,15 +189,15 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false } = {}
   scene.background = new Color(bg);
   const pmrem = new PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-  scene.environmentIntensity = 0.95;
+  scene.environmentIntensity = 0.62;
 
   const camera = new PerspectiveCamera(30, 1, 0.1, 100);
   camera.position.set(0, 1.1, 7.2);
   camera.lookAt(0, 0, 0);
 
-  const key = new DirectionalLight('#ffffff', 2.2); key.position.set(3, 5, 4); scene.add(key);
-  const rim = new DirectionalLight('#7fa8ff', 1.6); rim.position.set(-4, 2, -3); scene.add(rim);
-  const warm = new DirectionalLight('#ffd9c2', 0.7); warm.position.set(2, -3, 3); scene.add(warm);
+  const key = new DirectionalLight('#ffffff', 1.5); key.position.set(3, 5, 4); scene.add(key);
+  const rim = new DirectionalLight('#7fa8ff', 1.1); rim.position.set(-4, 2, -3); scene.add(rim);
+  const warm = new DirectionalLight('#ffd9c2', 0.5); warm.position.set(2, -3, 3); scene.add(warm);
   scene.add(new AmbientLight('#ffffff', 0.25));
 
   const stage = new Group();   // moves around the screen
@@ -125,22 +205,26 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false } = {}
   stage.add(spin);
   scene.add(stage);
 
-  const ceramic = new MeshPhysicalMaterial({
-    color: new Color(LOOKS.zirconia.color), roughness: 0.3, metalness: 0, vertexColors: true,
-    transmission: 0.32, thickness: 1.4, ior: 1.55,
-    attenuationColor: new Color('#f1e3cf'), attenuationDistance: 2.2,
-    clearcoat: 0.85, clearcoatRoughness: 0.12, sheen: 0.35, sheenColor: new Color('#ffffff'),
-    specularIntensity: 0.7, side: DoubleSide,
-  });
+  const ceramic = makeCeramic();
   const cut = new Plane(new Vector3(-1, 0, 0.35).normalize(), 100);
   ceramic.clippingPlanes = [cut];
-  const crown = new Mesh(buildCrownGeometry(1), ceramic);
+  // the real crown + coping from the lab's CAD files; procedural crown only as a fallback
+  const crown = new Mesh(models ? models.crown : buildCrownGeometry(1), ceramic);
   spin.add(crown);
 
   const metalMat = new MeshStandardMaterial({ color: '#a7adb6', metalness: 1, roughness: 0.28 });
-  const coping = new Mesh(buildCrownGeometry(0.82, [96, 80]), metalMat);
-  coping.geometry.deleteAttribute('color');
-  coping.position.y = -0.06;
+  let coping;
+  if (models) {
+    const cg = models.coping, c = new Vector3();
+    cg.boundingBox.getCenter(c);
+    cg.translate(-c.x, -c.y, -c.z);               // grow the coping from its own centre
+    coping = new Mesh(cg, metalMat);
+    coping.position.copy(c);
+  } else {
+    coping = new Mesh(buildCrownGeometry(0.82, [96, 80]), metalMat);
+    coping.geometry.deleteAttribute('color');
+    coping.position.y = -0.06;
+  }
   coping.scale.setScalar(0.001);
   spin.add(coping);
 
@@ -176,7 +260,7 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false } = {}
   stage.add(shadow);
 
   // anchors for DOM annotations (local to `spin`)
-  const anchors = {
+  const anchors = models ? anchorsFrom(models.crown) : {
     occlusal: new Vector3(0.18, H + 0.32, 0.2),
     margin: new Vector3(-0.62, BOTTOM + 0.12, 0.45),
     contour: new Vector3(-1.02, 0.0, 0.3),
