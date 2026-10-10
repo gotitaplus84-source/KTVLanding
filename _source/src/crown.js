@@ -259,12 +259,14 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, model
   shadow.scale.set(1, 0.75, 1);
   stage.add(shadow);
 
-  // material blank (phôi) photo behind the crown — two planes so one can fade into the next
+  // product photo (box + blank) behind the crown — up and to the right so the label stays readable;
+  // two planes so one can fade into the next
+  const BLANK_X = 0.5, BLANK_Y = 0.78;
   const blankLoader = new TextureLoader(), blankCache = new Map();
   const blankMats = [0, 1].map(() => new MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false, toneMapped: false }));
   const blanks = blankMats.map((m) => {
     const p = new Mesh(new PlaneGeometry(1, 1), m);
-    p.position.set(0.2, 0.3, -2.0);
+    p.position.set(BLANK_X, BLANK_Y, -2.0);
     p.rotation.x = -Math.atan2(camera.position.y, camera.position.z);   // face the camera
     p.visible = false;
     stage.add(p);
@@ -280,7 +282,7 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, model
       if (blankUrl !== url) return;                 // user already scrolled on
       const n = 1 - blankFront, img = tex.image, asp = img.width / img.height;
       blankMats[n].map = tex; blankMats[n].needsUpdate = true;
-      const S = W < 760 ? 2.5 : 3.1;
+      const S = W < 760 ? 2.9 : 3.6;
       blanks[n].scale.set(asp >= 1 ? S : S * asp, asp >= 1 ? S / asp : S, 1);
       blankFade[n].t = 1; blankFade[blankFront].t = 0; blankFront = n;
     };
@@ -391,8 +393,8 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, model
       f.a += (f.t - f.a) * kb;
       blankMats[i].opacity = f.a * st.op;
       blanks[i].visible = blankMats[i].opacity > 0.01;
-      blanks[i].position.x = 0.2 - st.mx * 0.12;                         // slight parallax against the crown
-      blanks[i].position.y = 0.3 + st.my * 0.06;
+      blanks[i].position.x = BLANK_X - st.mx * 0.12;                     // slight parallax against the crown
+      blanks[i].position.y = BLANK_Y + st.my * 0.06;
     }
 
     const ro = st.ring * st.op * st.war;
