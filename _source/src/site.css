@@ -180,6 +180,13 @@ html.js .hero-title:not(.in) em::after{transform:scaleX(0)}
 .mp-bar{--p:.2;height:6px;border-radius:9px;background:var(--blue-50);margin-top:20px;overflow:hidden}
 .mp-bar i{display:block;height:100%;width:calc(var(--p)*100%);background:linear-gradient(90deg,var(--blue),var(--blue) calc(100% - 6px),var(--red) calc(100% - 6px));border-radius:9px;transition:width .8s var(--ease)}
 .mp-scale{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin-top:8px}
+/* metal-ceramic: warranty by agreement — no number, no bar, no 3D ring */
+.mp-war .deal{display:none;font-weight:800;font-size:clamp(30px,3vw,44px);letter-spacing:-.035em;line-height:1;color:var(--blue);min-height:calc(clamp(84px,8vw,128px)*.8);align-content:end}
+.no-war .mp-war .big,.no-war .mp-war .lbl{display:none}
+.no-war .mp-war .deal{display:block;animation:swap .6s var(--ease)}
+.no-war .mp-bar,.no-war .mp-scale{visibility:hidden}
+.ring-cap{transition:opacity .4s var(--ease)}
+.no-war .ring-cap{opacity:0}
 .mp-note{margin-top:18px;color:var(--muted);font-size:15px}
 .mat-panel.swap h3,.mat-panel.swap .mp-facts dd,.mat-panel.swap .mp-note{animation:swap .6s var(--ease)}
 @keyframes swap{from{opacity:0;transform:translateY(14px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
@@ -301,6 +308,7 @@ html.no-webgl .annos,html.no-webgl .ring-cap{display:none}
   .mp-facts{grid-template-columns:1fr;gap:10px;padding:12px 0}
   .mp-war{margin-top:14px}
   .mp-war .big{font-size:72px}
+  .mp-war .deal{font-size:30px;min-height:58px}
   .mp-note{display:none}
   .iso{padding:110px 0}
   .contact{padding:110px 0 90px}
