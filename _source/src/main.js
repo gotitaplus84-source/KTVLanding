@@ -79,32 +79,38 @@ if (clock) {
 /* ---------- materials panel ---------- */
 const steps = [...document.querySelectorAll('.mat-step')];
 const panel = document.querySelector('.mat-panel');
+const matScroll = document.querySelector('.mat-scroll');
 const idxLinks = [...document.querySelectorAll('.mat-index a')];
 let activeMat = -1;
 function showMaterial(i, crown) {
   if (i === activeMat || !steps[i]) return;
   activeMat = i;
   const d = steps[i].dataset;
+  // empty data-years = warranty by agreement (metal-ceramic): no number, no ring
+  const hasWar = d.years !== undefined && d.years.trim() !== '';
   if (panel) {
     panel.querySelector('[data-f="group"]').textContent = d.group;
     panel.querySelector('[data-f="name"]').textContent = d.name;
     panel.querySelector('[data-f="country"]').textContent = d.country;
     panel.querySelector('[data-f="maker"]').textContent = d.maker;
     panel.querySelector('[data-f="note"]').textContent = d.note || '';
-    const yEl = panel.querySelector('[data-f="years"]');
-    const target = +d.years;
-    if (reduced) yEl.textContent = String(target).padStart(2, '0');
-    else {
-      const from = parseInt(yEl.textContent, 10) || 0; const t0 = performance.now();
-      const run = (t) => { const p = Math.min(1, (t - t0) / 600); yEl.textContent = String(Math.round(from + (target - from) * p)).padStart(2, '0'); if (p < 1) requestAnimationFrame(run); };
-      requestAnimationFrame(run);
+    if (matScroll) matScroll.classList.toggle('no-war', !hasWar);
+    if (hasWar) {
+      const yEl = panel.querySelector('[data-f="years"]');
+      const target = +d.years;
+      if (reduced) yEl.textContent = String(target).padStart(2, '0');
+      else {
+        const from = parseInt(yEl.textContent, 10) || 0; const t0 = performance.now();
+        const run = (t) => { const p = Math.min(1, (t - t0) / 600); yEl.textContent = String(Math.round(from + (target - from) * p)).padStart(2, '0'); if (p < 1) requestAnimationFrame(run); };
+        requestAnimationFrame(run);
+      }
+      panel.querySelector('[data-f="bar"]').style.setProperty('--p', (target / 15).toFixed(3));
     }
-    panel.querySelector('[data-f="bar"]').style.setProperty('--p', (target / 15).toFixed(3));
     panel.querySelector('[data-f="num"]').textContent = String(i + 1).padStart(2, '0');
     panel.classList.remove('swap'); void panel.offsetWidth; panel.classList.add('swap');
   }
   idxLinks.forEach((a, j) => a.classList.toggle('on', j === i));
-  if (crown) crown.setMaterial({ look: d.look, years: +d.years, tone: d.tone, coping: d.coping });
+  if (crown) crown.setMaterial({ look: d.look, years: hasWar ? +d.years : null, tone: d.tone, coping: d.coping });
 }
 idxLinks.forEach((a, j) => a.addEventListener('click', (e) => {
   e.preventDefault();
@@ -118,8 +124,10 @@ async function boot() {
   const ok = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch { return false; } })();
   if (canvas && ok) {
     try {
-      const { initCrown } = await import('./crown.js');
-      crown = initCrown(canvas, { reducedMotion: reduced });
+      const { initCrown, loadToothModels } = await import('./crown.js');
+      let models = null;
+      try { models = await loadToothModels(); } catch (err) { console.warn('real crown model unavailable, using fallback', err); }
+      crown = initCrown(canvas, { reducedMotion: reduced, models });
       root.classList.add('webgl');
     } catch (err) { console.warn('3D disabled', err); root.classList.add('no-webgl'); }
   } else root.classList.add('no-webgl');
