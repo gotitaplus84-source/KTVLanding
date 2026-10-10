@@ -3,7 +3,11 @@
 
 Cách dùng (từ thư mục _source/):
     pip install pillow numpy scipy
-    python3 tools/blank_image.py anh-goc.jpg ../assets/img/blanks/katana.webp [ngưỡng-nền]
+    python3 tools/blank_image.py anh-goc.jpg ../assets/img/blanks/katana.webp [ngưỡng-nền] [--convex]
+
+    --convex: dùng cho phôi trắng trên nền trắng. Vật thể (đĩa phôi, hộp) là hình lồi nên lấy
+              đường bao lồi của mọi điểm khác nền rồi giữ trọn bên trong, không sợ mặt phôi
+              trắng bị coi nhầm là nền.
 
 Việc script làm:
   1. Tách nền: loang từ mép ảnh qua những điểm gần với màu nền (trắng/xám nhạt của ảnh
@@ -38,12 +42,43 @@ def remove_background(im, tol=TOL):
     return out
 
 
+def remove_background_convex(im, tol=8):
+    from PIL import ImageDraw
+    from scipy.spatial import ConvexHull
+    rgb = np.asarray(im.convert('RGB')).astype(np.int16)
+    border = np.concatenate([rgb[0], rgb[-1], rgb[:, 0], rgb[:, -1]])
+    bg = np.median(border, axis=0)
+    obj = np.abs(rgb - bg).max(axis=2) > tol
+    obj = ndimage.binary_opening(obj, iterations=2)          # bỏ chấm nhiễu JPEG ngoài nền
+    lab, n = ndimage.label(ndimage.binary_closing(obj, iterations=6))
+    if n == 0:
+        sys.exit('Không tìm thấy vật thể')
+    sizes = ndimage.sum(np.ones_like(lab), lab, range(1, n + 1))
+    keep = np.isin(lab, 1 + np.flatnonzero(sizes >= 0.02 * sizes.max()))
+    ys, xs = np.nonzero(keep & obj)
+    pts = np.column_stack([xs, ys])
+    hull = pts[ConvexHull(pts).vertices]
+    mask = Image.new('L', im.size, 0)
+    ImageDraw.Draw(mask).polygon([tuple(map(float, p)) for p in hull], fill=255)
+    mask = mask.filter(ImageFilter.GaussianBlur(1.0))
+    out = im.convert('RGBA')
+    out.putalpha(mask)
+    return out
+
+
 def main():
-    src, dst = sys.argv[1], sys.argv[2]
-    tol = int(sys.argv[3]) if len(sys.argv) > 3 else TOL
+    args = [a for a in sys.argv[1:] if not a.startswith('--')]
+    convex = '--convex' in sys.argv
+    src, dst = args[0], args[1]
+    tol = int(args[2]) if len(args) > 2 else None
     im = Image.open(src)
     has_alpha = im.mode in ('RGBA', 'LA') and np.asarray(im.getchannel('A')).min() < 250
-    im = im.convert('RGBA') if has_alpha else remove_background(im, tol)
+    if has_alpha:
+        im = im.convert('RGBA')
+    elif convex:
+        im = remove_background_convex(im, tol or 8)
+    else:
+        im = remove_background(im, tol or TOL)
     box = im.getchannel('A').point(lambda a: 255 if a > 8 else 0).getbbox()
     if not box:
         sys.exit('Không tìm thấy vật thể trong ảnh (nền và vật cùng màu?)')

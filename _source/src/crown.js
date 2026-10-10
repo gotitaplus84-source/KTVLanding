@@ -282,8 +282,10 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, model
       if (blankUrl !== url) return;                 // user already scrolled on
       const n = 1 - blankFront, img = tex.image, asp = img.width / img.height;
       blankMats[n].map = tex; blankMats[n].needsUpdate = true;
-      const S = W < 760 ? 2.9 : 3.6;
-      blanks[n].scale.set(asp >= 1 ? S : S * asp, asp >= 1 ? S / asp : S, 1);
+      // fit inside S wide × HMAX tall so square disc photos don't climb into the header
+      const S = W < 760 ? 2.9 : 3.6, HMAX = W < 760 ? 2.2 : 2.7;
+      const w = Math.min(S, HMAX * asp);
+      blanks[n].scale.set(w, w / asp, 1);
       blankFade[n].t = 1; blankFade[blankFront].t = 0; blankFront = n;
     };
     if (blankCache.has(url)) apply(blankCache.get(url));
