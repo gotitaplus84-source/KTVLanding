@@ -279,4 +279,55 @@ ${pages.map((p) => `  <url><loc>${SITE}${p}</loc><lastmod>${today}</lastmod><pri
 </urlset>
 `;
 writeFileSync(join(ROOT, 'sitemap.xml'), sitemap);
+
+/* ---------- llms.txt: bản tóm tắt cho trợ lý AI (https://llmstxt.org) ---------- */
+{
+  const zr = MATERIALS.filter((m) => m.kind === 'zirconia');
+  const metal = MATERIALS.filter((m) => m.kind !== 'zirconia');
+  const L = (name, path, note) => `- [${name}](${SITE}${path})${note ? ': ' + note : ''}`;
+  const txt = `# KTV Dental Lab
+
+> Labo răng sứ (CÔNG TY TNHH MTV KTV) sản xuất phục hình nha khoa — răng sứ kim loại và răng sứ không kim loại (zirconia) — cho phòng khám nha khoa. Địa chỉ ${BIZ.address} (${BIZ.area}). Hệ thống quản lý chất lượng đạt ${BIZ.iso.std}, chứng nhận bởi ${BIZ.iso.body}. Nhận ca khắp khu vực miền Nam.
+
+Labo sản xuất phục hình theo từng ca của phòng khám nha khoa và giao trực tiếp đến phòng khám.
+
+## Thông tin chính
+
+- Tên: ${BIZ.name} — pháp nhân ${BIZ.legal}, mã số thuế 3703340735
+- Địa chỉ: ${BIZ.address} (${BIZ.area})
+- Giờ làm việc: ${BIZ.hours}
+- Điện thoại: ${BIZ.phones.map((p) => `${p.text} (${p.label.toLowerCase()})`).join(', ')}
+- Email: ${BIZ.email}
+- Báo giá, tư vấn ban đầu: Zalo ${BIZ.quote.label}
+- Khu vực: ${BIZ.delivery}
+- Chứng nhận: ${BIZ.iso.std}, ${BIZ.iso.body}, số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}
+- Thời gian sản xuất (mọi loại phục hình, tính từ lúc labo nhận hàng): ${TURNAROUND.map((t) => `${t.what.toLowerCase()} ${t.time}${t.max ? ` (${t.max})` : ''}`).join('; ')}
+- Bảo hành: ${zr.map((m) => `${m.name} ${m.years} năm`).join(', ')}; răng sứ kim loại (${metal.map((m) => m.name).join(', ')}) theo thỏa thuận; phục hình trên implant như phục hình trên răng thật cùng dòng vật liệu
+- Gửi ca: nhận dấu theo mọi phương thức (dấu, mẫu hàm, file scan trong miệng); phiếu chỉ định nha khoa gửi qua mọi kênh online
+- Dịch vụ miễn phí: xoi mòn mặt dán zirconia bằng dung dịch Zircos-E cho inlay, onlay, overlay
+
+## Phục hình
+
+${PRODUCTS.map((p) => L(p.title, `/phuc-hinh/${p.slug}/`, p.short)).join('\n')}
+
+## Vật liệu
+
+${MATERIALS.map((m) => L(m.name, `/vat-lieu/${m.slug}/`, `${m.kind === 'zirconia' ? 'zirconia' : 'hợp kim'}, ${m.maker}, ${m.country}; bảo hành ${m.years ? m.years + ' năm' : 'theo thỏa thuận'}`)).join('\n')}
+${L('So sánh các dòng zirconia', '/vat-lieu/so-sanh-zirconia/', 'độ bền, độ trong theo công bố của hãng, xuất xứ, bảo hành')}
+
+## Thông tin cho phòng khám
+
+${L('Cách gửi ca', '/gui-ca/')}
+${L('Thời gian sản xuất', '/thoi-gian-san-xuat/')}
+${L('Bảo hành', '/bao-hanh/')}
+${L('Xoi mòn zirconia bằng Zircos-E (miễn phí)', '/dich-vu/xoi-mon-zirconia-zircos-e/')}
+${L('Câu hỏi thường gặp', '/cau-hoi-thuong-gap/')}
+
+## Optional
+
+${L('Trang chủ', '/')}
+- [Sitemap](${SITE}/sitemap.xml)
+`;
+  writeFileSync(join(ROOT, 'llms.txt'), txt);
+}
 console.log(`Đã tạo ${pages.length - 1} trang con + sitemap.xml (${pages.length} URL).`);
