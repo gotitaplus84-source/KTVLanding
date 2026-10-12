@@ -84,6 +84,49 @@ idxLinks.forEach((a, j) => a.addEventListener('click', (e) => {
   steps[j].scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
 }));
 
+/* ---------- materials: one wheel notch = one material ----------
+   While the material panel is pinned, a mouse-wheel notch moves exactly one material up or down.
+   Past the first or last material the page scrolls normally again. Touch and keyboard scrolling are untouched. */
+const stepTarget = (i) => {
+  const mid = window.innerHeight * 0.5;
+  const top = steps[i].getBoundingClientRect().top + window.scrollY;
+  // step 0: panel just pinned; others: that step has just crossed the middle of the screen
+  return i === 0 ? matScroll.getBoundingClientRect().top + window.scrollY : Math.ceil(top - mid + 12);
+};
+const currentStep = () => {
+  const mid = window.innerHeight * 0.5; let idx = 0;
+  steps.forEach((st, i) => { if (st.getBoundingClientRect().top < mid) idx = i; });
+  return idx;
+};
+if (matScroll && steps.length && window.matchMedia('(pointer: fine)').matches) {
+  let goal = -1, lastWheel = 0, lockUntil = 0, moveUntil = 0, acc = 0;
+  window.addEventListener('wheel', (e) => {
+    if (e.ctrlKey || Math.abs(e.deltaY) < Math.abs(e.deltaX) || !e.deltaY) return;
+    const r = matScroll.getBoundingClientRect();
+    if (!(r.top <= 2 && r.bottom >= window.innerHeight - 2)) return;   // panel not pinned
+    const now = performance.now();
+    if (now - lastWheel > 700) { goal = currentStep(); acc = 0; }      // new gesture: start from what is on screen
+    lastWheel = now;
+    const dir = Math.sign(e.deltaY);
+    if ((dir > 0 && goal >= steps.length - 1) || (dir < 0 && goal <= 0)) {
+      if (now < moveUntil) e.preventDefault();   // let the move to the first/last material finish first
+      return;                                     // then leave the section normally
+    }
+    e.preventDefault();
+    // a mouse notch (large delta) always moves one material, even while the previous move is still running;
+    // a trackpad (many small deltas) moves one material per ~60px of swipe, at most one per 450 ms
+    const notch = Math.abs(e.deltaY) >= 40 && e.deltaMode === 0 || e.deltaMode === 1;
+    if (!notch) {
+      acc += e.deltaY;
+      if (Math.abs(acc) < 60 || now < lockUntil) return;
+      acc = 0; lockUntil = now + 450;
+    }
+    goal += dir;
+    moveUntil = now + 600;
+    window.scrollTo({ top: stepTarget(goal), behavior: reduced ? 'auto' : 'smooth' });
+  }, { passive: false });
+}
+
 /* ---------- scroll stages (run immediately; the 3D crown joins later) ---------- */
 let crown = null;
 const stageEls = [...document.querySelectorAll('[data-stage]')];
