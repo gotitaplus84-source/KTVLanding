@@ -43,6 +43,10 @@ export const SOURCES = {
   cerconML: ['Cercon® ht ML — Dentsply Sirona', 'https://www.dentsplysirona.com/en/discover/discover-by-brand/cercon-ht-ml.html'],
   ddbio: ['DD Bio ZX² — Dental Direkt GmbH', 'https://shop.dentaldirekt.de/en/products/zirconia-dd-bio-zx'],
   upcera: ['Upcera Dental — danh mục sản phẩm (Lab Management Today)', 'https://lmtmag.com/products/vendors/30904'],
+  zircosE: ['Zircos-E Etching Solution — RH Marketing (Lab Management Today)', 'https://lmtmag.com/products/rh-marketing-zircos-e-etching-solution'],
+  sokolowski: ['Sokolowski G. và cs. (2023). The Shear Bond Strength of Resin-Based Luting Cement to Zirconia Ceramics after Different Surface Treatments. Materials 16(15):5433', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10419834'],
+  cho2017: ['Cho J.H. và cs. (2017). Effect of zirconia surface treatment using nitric acid-hydrofluoric acid on the shear bond strengths of resin cements. J Adv Prosthodont 9(2):77–84', 'https://synapse.koreamed.org/articles/1054452'],
+  alawawda: ['Alawawda O., Altalla H., Bayındır F. (2026). Comparative effect of Zircos-E and airborne-particle abrasion on zirconia surface treatment: A meta-analysis. J Prosthodont 35(7):988–994', 'https://doi.org/10.1111/jopr.70033'],
 };
 
 /* ---------- Thời gian sản xuất (áp dụng cho mọi loại phục hình, tính từ lúc labo nhận hàng) ---------- */
@@ -80,7 +84,8 @@ const ZR_CEMENT = `<p>Zirconia không xoi mòn bằng axit HF và không silane 
 <ul>
 <li><strong>Xi măng thông thường</strong> (glass ionomer, glass ionomer biến tính nhựa) khi cùi có đủ lưu giữ và kháng lực.</li>
 <li><strong>Xi măng nhựa</strong> khi cùi ngắn hoặc thuôn nhiều: thổi cát mặt trong bằng Al₂O₃ 50 µm (khoảng 2,5 bar), sau đó dùng chất dán / primer có chứa <strong>MDP</strong>.</li>
-</ul>`;
+</ul>
+<p>Với inlay, onlay, overlay zirconia — loại phục hình phụ thuộc nhiều vào dán — labo có thể <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">xoi mòn mặt dán bằng Zircos-E</a> (hiện miễn phí).</p>`;
 
 /* ---------- Vật liệu ---------- */
 export const MATERIALS = [
@@ -347,11 +352,13 @@ ${table(['', 'Inlay', 'Onlay'], [
 <li><strong>Zirconia</strong> — màu răng, bền. Nhiều dòng zirconia có chỉ định inlay/onlay theo hãng (ví dụ <a href="/vat-lieu/katana/">Katana</a>, <a href="/vat-lieu/lava/">Lava</a>).</li>
 <li><strong>Kim loại</strong> (<a href="/vat-lieu/ni-cr/">Ni-Cr</a>, <a href="/vat-lieu/co-cr/">Co-Cr</a>) — vùng răng sau không cần thẩm mỹ.</li>
 </ul>
+<h2>Xử lý mặt dán inlay · onlay zirconia</h2>
+<p>Inlay, onlay ít lưu giữ cơ học nên phụ thuộc nhiều vào dán. Labo có thể <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">xoi mòn mặt dán bằng Zircos-E</a> trước khi giao — hiện miễn phí. Khi gắn, dùng xi măng nhựa kèm primer chứa MDP.</p>
 <h2>Gửi ca cho labo</h2>
 ${SEND_CASE}`,
     faq: [['Inlay khác miếng trám thường thế nào?', 'Miếng trám thường được bác sĩ đắp trực tiếp trong miệng; inlay được labo chế tác ngoài miệng theo dấu hoặc file scan rồi gắn vào, nên kiểm soát hình thể và điểm tiếp xúc tốt hơn với lỗ hổng lớn.'],
       ['Khi nào nên làm onlay thay vì mão?', 'Khi múi răng yếu cần được bảo vệ nhưng phần thành răng còn tốt — onlay giữ lại nhiều mô răng hơn mão toàn phần.']],
-    sources: ['katana', 'lavaBro'] },
+    sources: ['katana', 'lavaBro', 'sokolowski'] },
 
   { slug: 'overlay', name: 'Overlay', short: 'Zirconia',
     img: '/assets/img/products/overlay-lg.webp', thumb: '/assets/img/products/overlay.webp', imgAlt: 'Overlay zirconia phủ mặt nhai',
@@ -555,7 +562,46 @@ export const FAQ = [
     'Phôi Multilayer có nhiều lớp màu chuyển dần từ cổ răng đến rìa cắn, nên răng làm ra có màu tự nhiên hơn phôi một màu. <a href="/phuc-hinh/mao-zirconia-multilayer/">Xem thêm về Multilayer</a>.'],
   ['Mão zirconia nên gắn bằng xi măng gì?',
     'Xi măng thông thường (glass ionomer, glass ionomer biến tính nhựa) khi cùi đủ lưu giữ; xi măng nhựa kèm thổi cát Al₂O₃ 50 µm và primer chứa MDP khi cùi ngắn hoặc thuôn. Zirconia không xoi mòn bằng axit HF.'],
+  ['Labo có xử lý bề mặt dán cho phục hình zirconia không?',
+    'Có. Với inlay, onlay, overlay zirconia, labo xoi mòn mặt dán bằng dung dịch Zircos-E theo yêu cầu, hiện miễn phí. <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Xem chi tiết</a>.'],
   ['Labo phục vụ những ai?',
     'KTV Dental Lab sản xuất phục hình cho phòng khám nha khoa ở khu vực miền Nam và giao phục hình trực tiếp đến phòng khám.'],
 ];
 export const FAQ_SOURCES = ['spear'];
+
+/* ---------- Dịch vụ: xoi mòn zirconia bằng Zircos-E ---------- */
+export function etchBody() {
+  return `
+<h2>Vì sao zirconia khó dán?</h2>
+<p>Sứ thuỷ tinh (như lithium disilicate) được xoi mòn bằng axit HF và silane hoá để dán. <strong>Zirconia</strong> gần như không có pha thuỷ tinh nên không đáp ứng với cách xử lý này; cách thường dùng là thổi cát Al₂O₃ rồi phủ primer chứa MDP.</p>
+<p>Với <a href="/phuc-hinh/inlay-onlay/">inlay, onlay</a> và <a href="/phuc-hinh/overlay/">overlay</a>, phục hình ít có thành trục để lưu giữ cơ học như mão toàn phần, nên độ bám của lớp dán càng quan trọng.</p>
+<h2>Zircos-E là gì?</h2>
+<p><strong>Zircos-E Etching Solution</strong> là dung dịch xoi mòn bề mặt zirconia của RH Marketing (Mỹ). Theo nhà sản xuất, dung dịch tạo độ xốp nhẹ trên <strong>toàn bộ bề mặt</strong> zirconia để tăng khả năng bám dính. Các nghiên cứu mô tả đây là hợp chất axit nitric – axit HF.</p>
+<h2>Nghiên cứu nói gì?</h2>
+<p>Các nghiên cứu hiện có đều là thử nghiệm <strong>trong phòng thí nghiệm</strong> (in vitro), đo độ bền dán cắt (shear bond strength) giữa xi măng nhựa và zirconia:</p>
+${table(['Nghiên cứu', 'Kết quả chính'], [
+  ['Sokolowski và cs., 2023 (<em>Materials</em>)', 'Sau thổi cát 50 µm, xoi mòn thêm bằng Zircos-E (30 phút, 30 °C) làm tăng đáng kể độ bền dán so với chỉ thổi cát. Sau 24 giờ: trung vị cao nhất 17,7 MPa (xoi mòn + primer) so với 6,1 MPa (chỉ thổi cát). Sau lão hoá nhiệt 5.000 chu kỳ, độ bền dán giảm ở hầu hết các nhóm.'],
+  ['Alawawda và cs., 2026 (<em>J Prosthodont</em>, phân tích gộp)', '8 nghiên cứu in vitro: Zircos-E cho độ bền dán cao hơn thổi cát; khác biệt rõ ở nhóm không lão hoá nhiệt, không có ý nghĩa thống kê ở nhóm đã lão hoá nhiệt. Các nghiên cứu khác nhau nhiều.'],
+  ['Cho và cs., 2017 (<em>J Adv Prosthodont</em>)', 'Độ bền dán sau xử lý tăng với Superbond C&B (16,15 so với 7,09 MPa khi thổi cát) và RelyX Unicem, nhưng giảm với Panavia F 2.0 — hiệu quả phụ thuộc loại xi măng.'],
+], 'wide')}
+<p class="note">Chưa có dữ liệu lâm sàng dài hạn; ảnh hưởng của việc xoi mòn lên độ bền uốn của zirconia chưa được các nghiên cứu trên đánh giá. Lựa chọn quy trình dán thuộc về bác sĩ.</p>
+<h2>Dịch vụ tại KTV Dental Lab</h2>
+${table(['Mục', 'Chi tiết'], [
+  ['Áp dụng', 'Thường dùng cho <a href="/phuc-hinh/inlay-onlay/">inlay · onlay</a> và <a href="/phuc-hinh/overlay/">overlay</a> zirconia. Trường hợp khác, trao đổi với labo.'],
+  ['Xử lý', 'Mặt dán của phục hình được xoi mòn bằng Zircos-E tại labo, trước khi giao.'],
+  ['Chi phí', '<strong>Hiện miễn phí</strong>'],
+  ['Cách yêu cầu', `Ghi “Xoi mòn Zircos-E” trên phiếu gửi ca, hoặc nhắn Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>.`],
+])}
+<h2>Khi gắn tại phòng khám</h2>
+<ul>
+<li>Dùng <strong>xi măng nhựa</strong> và primer / chất dán có chứa <strong>MDP</strong> — trong nghiên cứu của Sokolowski, dùng primer sau xoi mòn cho độ bền dán cao hơn.</li>
+<li>Làm sạch mặt dán sau khi thử phục hình trong miệng, theo hướng dẫn của hãng xi măng.</li>
+</ul>`;
+}
+export const ETCH_FAQ = [
+  ['Xoi mòn Zircos-E có mất phí không?', 'Hiện KTV Dental Lab xử lý miễn phí.'],
+  ['Dịch vụ áp dụng cho loại phục hình nào?', 'Thường dùng cho inlay, onlay và overlay zirconia — các phục hình phụ thuộc nhiều vào dán. Trường hợp khác, bác sĩ trao đổi với labo.'],
+  ['Xoi mòn có thay thế được primer MDP không?', 'Không. Xoi mòn tạo bề mặt vi lưu; primer chứa MDP vẫn cần để tạo liên kết hoá học. Trong nghiên cứu của Sokolowski và cộng sự (2023), nhóm xoi mòn kèm primer có độ bền dán cao nhất.'],
+  ['Xoi mòn có làm yếu zirconia không?', 'Các nghiên cứu in vitro hiện có tập trung vào độ bền dán, chưa đánh giá đầy đủ ảnh hưởng lên độ bền uốn của zirconia.'],
+];
+export const ETCH_SOURCES = ['zircosE', 'sokolowski', 'alawawda', 'cho2017'];

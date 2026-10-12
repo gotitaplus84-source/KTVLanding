@@ -8,7 +8,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, BIZ, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES } from './content.mjs';
+import { SITE, BIZ, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES } from './content.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const today = new Date().toISOString().slice(0, 10);
@@ -21,7 +21,7 @@ const footLinks = `<!--@links-->
   <div class="wrap foot-links">
     <nav aria-label="Phục hình"><p class="mono dim">Phục hình</p>${PRODUCTS.map((p) => `<a href="/phuc-hinh/${p.slug}/">${p.name}</a>`).join('')}</nav>
     <nav aria-label="Vật liệu"><p class="mono dim">Vật liệu</p>${MATERIALS.map((m) => `<a href="/vat-lieu/${m.slug}/">${m.name}</a>`).join('')}<a href="/vat-lieu/so-sanh-zirconia/">So sánh zirconia</a></nav>
-    <nav aria-label="Thông tin"><p class="mono dim">Thông tin</p><a href="/thoi-gian-san-xuat/">Thời gian sản xuất</a><a href="/bao-hanh/">Bảo hành</a><a href="/cau-hoi-thuong-gap/">Câu hỏi thường gặp</a><a href="/#lien-he">Liên hệ</a></nav>
+    <nav aria-label="Thông tin"><p class="mono dim">Thông tin</p><a href="/thoi-gian-san-xuat/">Thời gian sản xuất</a><a href="/bao-hanh/">Bảo hành</a><a href="/cau-hoi-thuong-gap/">Câu hỏi thường gặp</a><a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Xoi mòn Zircos-E</a><a href="/#lien-he">Liên hệ</a></nav>
     <div><p class="mono dim">Liên hệ</p><p>${esc(BIZ.address)}<br>Giờ làm việc ${BIZ.hours}</p><p class="dim">${esc(BIZ.delivery)}</p><p>${BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')}</p></div>
   </div>
   <!--/@links-->`;
@@ -150,7 +150,7 @@ for (const p of PRODUCTS) {
     kicker: [String(PRODUCTS.indexOf(p) + 1).padStart(2, '0'), 'Phục hình'],
     h1: esc(p.title), lead: p.lead, img: p.img, imgAlt: p.imgAlt, body: p.body,
     side: sideBox([['Vật liệu', esc(p.short)], ['Thời gian sản xuất', fastest], ['Bảo hành', '<a href="/bao-hanh/">Theo dòng vật liệu</a>'], ['Giao nhận', 'Khắp miền Nam · lấy/giao tận nơi Bình Dương cũ']]),
-    related: PRODUCTS.filter((x) => x !== p).map((x) => ({ name: x.name, url: `/phuc-hinh/${x.slug}/`, thumb: x.thumb })),
+    related: [...(['inlay-onlay', 'overlay'].includes(p.slug) ? [{ name: 'Xoi mòn Zircos-E (miễn phí)', url: '/dich-vu/xoi-mon-zirconia-zircos-e/' }] : []), ...PRODUCTS.filter((x) => x !== p).map((x) => ({ name: x.name, url: `/phuc-hinh/${x.slug}/`, thumb: x.thumb }))],
     relatedTitle: 'Phục hình khác',
     faq: p.faq || [], sources: p.sources || [],
     schema: [service(p.title, path, { serviceType: p.name, ...(p.img ? { image: SITE + p.img } : {}) })],
@@ -199,6 +199,22 @@ for (const m of MATERIALS) {
     schema: [{ '@type': 'ItemList', name: 'Các dòng zirconia tại KTV Dental Lab', itemListElement: zrs.map((m, i) => ({ '@type': 'ListItem', position: i + 1, name: m.name, url: `${SITE}/vat-lieu/${m.slug}/` })) }],
   }));
 }
+
+/* ---------- dịch vụ: xoi mòn Zircos-E ---------- */
+pages.push(page({
+  path: '/dich-vu/xoi-mon-zirconia-zircos-e/',
+  title: 'Xoi mòn bề mặt zirconia bằng Zircos-E – miễn phí | KTV Dental Lab',
+  desc: 'Xử lý mặt dán inlay, onlay, overlay zirconia bằng dung dịch xoi mòn Zircos-E tại labo KTV Dental Lab, hiện miễn phí. Kèm tóm tắt nghiên cứu về độ bền dán.',
+  crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Phục hình', url: '/#phuc-hinh' }, { name: 'Xoi mòn Zircos-E', url: '/dich-vu/xoi-mon-zirconia-zircos-e/' }],
+  kicker: ['+', 'Dịch vụ · Miễn phí'], h1: 'Xoi mòn bề mặt zirconia bằng Zircos-E',
+  lead: 'Tạo bề mặt vi lưu trên mặt dán của inlay, onlay, overlay zirconia bằng dung dịch xoi mòn Zircos-E, giúp tăng độ bám của xi măng nhựa. Hiện miễn phí.',
+  body: etchBody(),
+  side: sideBox([['Chi phí', '<strong>Miễn phí</strong>'], ['Áp dụng', 'Inlay · onlay · overlay zirconia'], ['Dung dịch', 'Zircos-E (RH Marketing, Mỹ)'], ['Yêu cầu', `Ghi trên phiếu gửi ca hoặc <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a>`]]),
+  related: ['inlay-onlay', 'overlay', 'mao-full-zirconia'].map((s) => PRODUCTS.find((x) => x.slug === s)).map((x) => ({ name: x.name, url: `/phuc-hinh/${x.slug}/`, thumb: x.thumb })),
+  relatedTitle: 'Phục hình liên quan',
+  faq: ETCH_FAQ, sources: ETCH_SOURCES,
+  schema: [service('Xoi mòn bề mặt zirconia bằng Zircos-E', '/dich-vu/xoi-mon-zirconia-zircos-e/', { serviceType: 'Xử lý bề mặt phục hình zirconia', offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' } })],
+}));
 
 /* ---------- thông tin ---------- */
 pages.push(page({
