@@ -91,8 +91,8 @@ function shadowTexture() {
 
 // Visual presets. Zirconia lines differ only by a subtle tone; metal-ceramic shows the metal coping.
 export const LOOKS = {
-  zirconia: { color: '#f8f4ee', transmission: 0.32, roughness: 0.3, coping: 0 },
-  metal:    { color: '#f6f1e9', transmission: 0.32, roughness: 0.28, coping: 1 },
+  zirconia: { color: '#f8f4ee', transmission: 0, roughness: 0.3, coping: 0 },
+  metal:    { color: '#f6f1e9', transmission: 0, roughness: 0.28, coping: 1 },
 };
 
 /* ---------- real crown from the lab's CAD files (see _source/tools/stl_to_bin.py) ---------- */
@@ -168,7 +168,7 @@ function anchorsFrom(g) {
 export function makeCeramic() {
   return new MeshPhysicalMaterial({
     color: new Color(LOOKS.zirconia.color), roughness: 0.3, metalness: 0, vertexColors: true,
-    transmission: 0.32, thickness: 1.4, ior: 1.55,
+    transmission: 0, thickness: 1.4, ior: 1.55,
     attenuationColor: new Color('#f1e3cf'), attenuationDistance: 2.2,
     clearcoat: 0.85, clearcoatRoughness: 0.12, sheen: 0.35, sheenColor: new Color('#ffffff'),
     specularIntensity: 0.7, side: DoubleSide,
@@ -178,7 +178,9 @@ export function makeCeramic() {
 export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, models = null } = {}) {
   const renderer = new WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
   const mobile = window.matchMedia('(max-width: 760px)').matches;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 1.75));
+  // the canvas covers the whole window, so pixel count drives the cost: cap the ratio.
+  // The porcelain uses no transmission (see-through) pass, which would render the scene twice per frame.
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
   renderer.toneMapping = ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
   renderer.outputColorSpace = SRGBColorSpace;
@@ -331,14 +333,21 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, model
     return Math.tan(MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
   }
 
+  // after ~1.5 s with no scrolling, pointer movement or material change the tooth only turns slowly,
+  // so draw 30 frames a second instead of 60
+  let active = performance.now(), lastDraw = 0;
+  const poke = () => { active = performance.now(); };
   window.addEventListener('pointermove', (e) => {
+    poke();
     st.tmx = (e.clientX / W) * 2 - 1;
     st.tmy = (e.clientY / Hh) * 2 - 1;
   }, { passive: true });
   let lastY = window.scrollY;
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
-    st.scrollVel += (y - lastY) * 0.0016;
+    poke();
+    // scroll nudges the turn a little; capped so a long jump between materials never spins the tooth
+    st.scrollVel = Math.max(-0.05, Math.min(0.05, st.scrollVel + (y - lastY) * 0.00005));
     lastY = y;
   }, { passive: true });
 
@@ -366,7 +375,7 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, model
     st.trans += (st.ttrans - st.trans) * k; st.cop += (st.tcop - st.cop) * k; st.rough += (st.trough - st.rough) * k;
     st.color.lerp(st.tcolor, k); st.copColor.lerp(st.tcopColor, k);
 
-    if (!reducedMotion) st.rot += dt * 0.32 + st.scrollVel;
+    if (!reducedMotion) st.rot += dt * 0.2 + st.scrollVel * dt * 60;   // frame-rate independent
     st.scrollVel *= Math.pow(0.02, dt);
 
     const hw = worldHalfWidth(), hh = worldHalfHeight();
@@ -412,7 +421,8 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, model
     ringGroup.rotation.z = st.mx * 0.08;
 
     const hidden = st.op < 0.02 && st.top === 0;
-    if (!hidden || !wasHidden) renderer.render(scene, camera);
+    const idle = now - active > 1500 && now - lastDraw < 31;
+    if ((!hidden || !wasHidden) && !idle) { renderer.render(scene, camera); lastDraw = now; }
     wasHidden = hidden;
 
     if (onFrame) {
@@ -431,6 +441,7 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, model
 
   return {
     setStage({ x, y, s, o, ring }) {
+      poke();
       if (x !== undefined) st.tx = x;
       if (y !== undefined) st.ty = y;
       if (s !== undefined) st.ts = s;
@@ -438,6 +449,7 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, model
       if (ring !== undefined) st.tring = ring;
     },
     setMaterial({ look = 'zirconia', years = 0, tone, coping: copColor } = {}) {
+      poke();
       const L = LOOKS[look] || LOOKS.zirconia;
       st.ttrans = L.transmission; st.tcop = L.coping; st.trough = L.roughness;
       st.tcolor.set(tone || L.color);
@@ -445,7 +457,7 @@ export function initCrown(canvas, { bg = '#F3F5F9', reducedMotion = false, model
       // years === null → warranty by agreement: fade the ring out, keep its last value while fading
       if (years === null || years === undefined) st.twar = 0;
       else { st.twar = 1; st.tyears = years; }
-      st.scrollVel += 0.35; // a little spin on change
+      st.scrollVel = Math.min(0.05, st.scrollVel + 0.03); // a small turn on change (≈ 25°)
     },
     // photo of the material blank behind the crown; null hides it
     setBlank(url) { showBlank(url || null); },
