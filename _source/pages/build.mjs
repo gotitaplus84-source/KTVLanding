@@ -8,7 +8,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, BIZ, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES } from './content.mjs';
+import { SITE, BIZ, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ } from './content.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const today = new Date().toISOString().slice(0, 10);
@@ -21,8 +21,8 @@ const footLinks = `<!--@links-->
   <div class="wrap foot-links">
     <nav aria-label="Phục hình"><p class="mono dim">Phục hình</p>${PRODUCTS.map((p) => `<a href="/phuc-hinh/${p.slug}/">${p.name}</a>`).join('')}</nav>
     <nav aria-label="Vật liệu"><p class="mono dim">Vật liệu</p>${MATERIALS.map((m) => `<a href="/vat-lieu/${m.slug}/">${m.name}</a>`).join('')}<a href="/vat-lieu/so-sanh-zirconia/">So sánh zirconia</a></nav>
-    <nav aria-label="Thông tin"><p class="mono dim">Thông tin</p><a href="/thoi-gian-san-xuat/">Thời gian sản xuất</a><a href="/bao-hanh/">Bảo hành</a><a href="/cau-hoi-thuong-gap/">Câu hỏi thường gặp</a><a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Xoi mòn Zircos-E</a><a href="/#lien-he">Liên hệ</a></nav>
-    <div><p class="mono dim">Liên hệ</p><p>${esc(BIZ.address)}<br>Giờ làm việc ${BIZ.hours}</p><p class="dim">${esc(BIZ.delivery)}</p><p>${BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')}</p></div>
+    <nav aria-label="Thông tin"><p class="mono dim">Thông tin</p><a href="/gui-ca/">Cách gửi ca</a><a href="/thoi-gian-san-xuat/">Thời gian sản xuất</a><a href="/bao-hanh/">Bảo hành</a><a href="/cau-hoi-thuong-gap/">Câu hỏi thường gặp</a><a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Xoi mòn Zircos-E</a><a href="/#lien-he">Liên hệ</a></nav>
+    <div><p class="mono dim">Liên hệ</p><p>${esc(BIZ.address)}</p><p>${BIZ.hoursShort}</p><p class="dim">${esc(BIZ.delivery)}</p><p>${BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')}</p></div>
   </div>
   <!--/@links-->`;
 
@@ -209,23 +209,37 @@ pages.push(page({
   kicker: ['+', 'Dịch vụ · Miễn phí'], h1: 'Xoi mòn bề mặt zirconia bằng Zircos-E',
   lead: 'Tạo bề mặt vi lưu trên mặt dán của inlay, onlay, overlay zirconia bằng dung dịch xoi mòn Zircos-E, giúp tăng độ bám của xi măng nhựa. Hiện miễn phí.',
   body: etchBody(),
-  side: sideBox([['Chi phí', '<strong>Miễn phí</strong>'], ['Áp dụng', 'Inlay · onlay · overlay zirconia'], ['Thời gian', 'Ngâm tối đa 2 giờ · không trễ ca'], ['Dung dịch', 'Zircos-E (RH Marketing, Mỹ)'], ['Yêu cầu', `Ghi trên phiếu gửi ca hoặc <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a>`]]),
+  side: sideBox([['Chi phí', '<strong>Miễn phí</strong>'], ['Áp dụng', 'Inlay · onlay · overlay zirconia'], ['Thời gian', 'Ngâm tối đa 2 giờ · không trễ ca'], ['Dung dịch', 'Zircos-E (RH Marketing, Mỹ)'], ['Yêu cầu', 'Ghi trên phiếu chỉ định · <a href="/gui-ca/">cách gửi ca</a>']]),
   related: ['inlay-onlay', 'overlay', 'mao-full-zirconia'].map((s) => PRODUCTS.find((x) => x.slug === s)).map((x) => ({ name: x.name, url: `/phuc-hinh/${x.slug}/`, thumb: x.thumb })),
   relatedTitle: 'Phục hình liên quan',
   faq: ETCH_FAQ, sources: ETCH_SOURCES,
   schema: [service('Xoi mòn bề mặt zirconia bằng Zircos-E', '/dich-vu/xoi-mon-zirconia-zircos-e/', { serviceType: 'Xử lý bề mặt phục hình zirconia', offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' } })],
 }));
 
+pages.push(page({
+  path: '/gui-ca/',
+  title: 'Cách gửi ca cho labo răng sứ | KTV Dental Lab',
+  desc: 'Gửi ca cho labo KTV Dental Lab: nhận dấu mọi phương thức (dấu, mẫu hàm, file scan), phiếu chỉ định qua Zalo, email. Răng đơn lẻ 1 ngày; lấy – giao tận nơi Bình Dương cũ.',
+  crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Cách gửi ca', url: '/gui-ca/' }],
+  kicker: ['→', 'Thông tin'], h1: 'Cách gửi ca cho labo',
+  lead: 'Nhận dấu theo mọi phương thức; phiếu chỉ định nha khoa gửi qua mọi kênh online. Không cần mẫu phiếu riêng của labo.',
+  body: sendCaseBody(),
+  side: sideBox([['Dấu', 'Mọi phương thức'], ['Phiếu chỉ định', 'Mọi kênh online'], ['Giờ làm việc', BIZ.hoursShort], ['Giao nhận', 'Khắp miền Nam · lấy/giao tận nơi Bình Dương cũ'], ['Thời gian sản xuất', fastest]]),
+  related: [{ name: 'Thời gian sản xuất', url: '/thoi-gian-san-xuat/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }, { name: 'Xoi mòn Zircos-E (miễn phí)', url: '/dich-vu/xoi-mon-zirconia-zircos-e/' }, { name: 'Bảo hành', url: '/bao-hanh/' }],
+  relatedTitle: 'Xem thêm',
+  faq: SENDCASE_FAQ,
+}));
+
 /* ---------- thông tin ---------- */
 pages.push(page({
   path: '/thoi-gian-san-xuat/',
   title: 'Thời gian sản xuất răng sứ: từ 1 ngày | KTV Dental Lab',
-  desc: `Labo răng sứ KTV Dental Lab: răng đơn lẻ 1 ngày (tối đa 36 giờ), cầu 3 – 8 đơn vị 2 ngày, cầu toàn hàm 3 ngày. Nhận ca khắp miền Nam, giao tận nơi Bình Dương cũ.`,
+  desc: `Labo răng sứ KTV Dental Lab: răng đơn lẻ 1 ngày (tối đa 36 giờ), cầu 4 – 8 đơn vị 2 ngày, cầu toàn hàm 3 ngày. Nhận ca khắp miền Nam, giao tận nơi Bình Dương cũ.`,
   crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Thời gian sản xuất', url: '/thoi-gian-san-xuat/' }],
   kicker: ['+', 'Thông tin'], h1: 'Thời gian sản xuất',
   lead: 'Răng đơn lẻ trong 1 ngày, áp dụng cho mọi loại phục hình, tính từ lúc labo nhận hàng.',
   body: turnaroundBody(),
-  side: sideBox([['Giờ làm việc', BIZ.hours], ['Giao nhận', 'Khắp miền Nam · lấy/giao tận nơi Bình Dương cũ'], ['Gửi ca · báo giá', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a>`], ['Điện thoại', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join('<br>')]]),
+  side: sideBox([['Giờ làm việc', BIZ.hoursShort], ['Giao nhận', 'Khắp miền Nam · lấy/giao tận nơi Bình Dương cũ'], ['Gửi ca', '<a href="/gui-ca/">Cách gửi ca</a>'], ['Báo giá · tư vấn', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a>`], ['Điện thoại', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join('<br>')]]),
   related: [{ name: 'Bảo hành', url: '/bao-hanh/' }, { name: 'Câu hỏi thường gặp', url: '/cau-hoi-thuong-gap/' }, ...PRODUCTS.slice(0, 2).map((x) => ({ name: x.name, url: `/phuc-hinh/${x.slug}/`, thumb: x.thumb }))],
   relatedTitle: 'Xem thêm',
 }));
@@ -251,7 +265,7 @@ pages.push(page({
   kicker: ['?', 'Hỏi đáp'], h1: 'Câu hỏi thường gặp',
   lead: 'Những câu bác sĩ và phòng khám hay hỏi khi làm việc với KTV Dental Lab.',
   body: FAQ.map(([q, a]) => `\n<h2>${esc(q)}</h2>\n<p>${a}</p>`).join(''),
-  side: sideBox([['Báo giá · Zalo', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>`], ['Giờ làm việc', BIZ.hours], ['Email', `<a href="mailto:${BIZ.email}">${BIZ.email}</a>`]]),
+  side: sideBox([['Báo giá · Zalo', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>`], ['Giờ làm việc', BIZ.hoursShort], ['Email', `<a href="mailto:${BIZ.email}">${BIZ.email}</a>`]]),
   related: [{ name: 'Thời gian sản xuất', url: '/thoi-gian-san-xuat/' }, { name: 'Bảo hành', url: '/bao-hanh/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }],
   relatedTitle: 'Xem thêm',
   sources: FAQ_SOURCES,
