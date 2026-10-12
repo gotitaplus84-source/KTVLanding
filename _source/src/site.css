@@ -416,3 +416,19 @@ body.subpage{background:var(--bg)}
   .hero-title .ln>span{transform:none}
   .hero-title em::after{transform:scaleX(1)}
 }
+
+/* ---------- popup báo giá ---------- */
+.cta-note{margin-top:12px;font-size:13px;color:var(--muted)}
+.quote-dlg{border:0;padding:0;border-radius:24px;width:100%;max-width:min(460px,calc(100vw - 32px));background:var(--paper);color:var(--ink);box-shadow:0 30px 80px -20px rgba(6,27,68,.45)}
+.quote-dlg::backdrop{background:rgba(6,27,68,.42);backdrop-filter:blur(3px)}
+@media (prefers-reduced-motion:no-preference){.quote-dlg[open]{animation:quoteIn .28s cubic-bezier(.2,.7,.2,1)}@keyframes quoteIn{from{opacity:0;transform:translateY(14px)}}}
+.quote-box{position:relative;padding:30px 28px 24px}
+.quote-box h2{font-size:23px;line-height:1.22;letter-spacing:-.02em;margin:8px 34px 12px 0}
+.quote-box p{margin:0 0 12px;font-size:15.5px;line-height:1.6;color:var(--muted)}
+.quote-box strong{color:var(--ink)}
+.quote-box .quote-k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#c4141b;margin:0}
+.quote-btns{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 14px}
+.quote-btns .btn{--h:46px;flex:1 1 auto;padding:0 18px}
+.quote-box .quote-foot{font-size:11px;letter-spacing:.05em;margin:0}
+.quote-x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:0;background:var(--bg);color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
+.quote-x:hover{background:var(--line)}

@@ -17,6 +17,25 @@ if (menuBtn && menu) {
   window.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
 }
 
+/* ---------- popup "Nhận bảng giá qua Zalo" ---------- */
+const quoteTpl = document.getElementById('quote-tpl');
+if (quoteTpl && typeof HTMLDialogElement === 'function') {
+  let dlg = null;
+  const openQuote = (e) => {
+    e.preventDefault();
+    if (!dlg) {
+      dlg = document.createElement('dialog');
+      dlg.className = 'quote-dlg';
+      dlg.setAttribute('aria-labelledby', 'quote-h');
+      dlg.append(quoteTpl.content.cloneNode(true));
+      document.body.append(dlg);
+      dlg.addEventListener('click', (ev) => { if (ev.target === dlg || ev.target.closest('[data-close]')) dlg.close(); });
+    }
+    dlg.showModal();
+  };
+  document.querySelectorAll('[data-quote]').forEach((a) => a.addEventListener('click', openQuote));
+}
+
 /* ---------- header state ---------- */
 const header = document.querySelector('.site-header');
 const onScrollHeader = () => header && header.classList.toggle('scrolled', window.scrollY > 24);
