@@ -1,0 +1,29 @@
+# Sau mỗi lần GitHub Pages triển khai xong, báo các trang vừa thay đổi cho Bing qua IndexNow.
+# Chạy tay (tab Actions → IndexNow → Run workflow) để gửi lại toàn bộ sitemap.
+name: IndexNow
+on:
+  workflow_run:
+    workflows: ["pages-build-deployment"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      all:
+        description: Gửi toàn bộ URL trong sitemap.xml
+        type: boolean
+        default: true
+permissions:
+  contents: read
+jobs:
+  indexnow:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 2
+      - name: Gửi URL tới IndexNow
+        env:
+          INDEXNOW_ALL: ${{ github.event_name == 'workflow_dispatch' && inputs.all && 'true' || 'false' }}
+        run: python3 _source/tools/indexnow.py
