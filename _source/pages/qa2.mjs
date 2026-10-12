@@ -25,8 +25,9 @@ export const QA_TOPICS_2 = [
 </ul>
 <p>Ngưỡng hở bờ thường được dẫn là 120 µm (McLean & von Fraunhofer, theo tổng quan của Al-shalan và cộng sự, 2019).</p>`],
       [52, 'Khoảng cement gap trong thiết kế mão zirconia nên để bao nhiêu?',
-        `${short('Không có một con số chung; phần mềm thiết kế thường cho khe nhỏ ở vùng bờ và khe lớn hơn từ khoảng 1 mm phía trên đường hoàn tất. Giá trị cụ thể phụ thuộc phần mềm, máy phay và loại xi măng.')}
-<p>Kale và cộng sự (2016) thử mão zirconia nguyên khối với khe 25 µm ở bờ và khe bổ sung 30, 40, 50 µm từ 1 mm phía trên đường hoàn tất: sai lệch bờ trung bình lần lượt 85, 68 và 53 µm — khe bổ sung lớn hơn cho bờ khít hơn trong thử nghiệm này. Khe quá lớn lại làm mão lỏng, giảm lưu giữ, nhất là khi gắn bằng xi măng thông thường.</p>`],
+        `${short('Không có một giá trị duy nhất cho mọi trường hợp. Khe xi măng được điều chỉnh theo từng vùng của phục hình, hình thể cùi, độ lưu giữ và cách gắn; mục tiêu là mão xuống đúng vị trí, bờ sát và vẫn đủ chỗ cho lớp xi măng.')}
+<p>Phần mềm thiết kế thường cho khe nhỏ ở vùng bờ và khe lớn hơn từ khoảng 1 mm phía trên đường hoàn tất. Kale và cộng sự (2016) thử mão zirconia nguyên khối với khe 25 µm ở bờ và khe bổ sung 30, 40, 50 µm: sai lệch bờ trung bình lần lượt 85, 68 và 53 µm. Khe quá lớn lại làm mão lỏng, giảm lưu giữ, nhất là khi gắn bằng xi măng thông thường.</p>
+<p><strong>Tại KTV Dental Lab:</strong> thông số khe xi măng được thiết lập theo phần mềm thiết kế, máy gia công, vật liệu và kinh nghiệm sản xuất của labo, điều chỉnh theo hình thể cùi và chỉ định gắn của từng ca.</p>`],
       [53, 'Cement gap quá nhỏ có thể làm mão không xuống hết không?',
         `${short('Có. Khe xi măng quá nhỏ không đủ chỗ cho xi măng thoát ra, áp lực thuỷ lực đẩy mão lên, làm hở bờ và cao khớp sau khi gắn.')}
 <p>Trong thử nghiệm của Kale và cộng sự (2016), nhóm khe bổ sung nhỏ nhất (30 µm) có sai lệch bờ lớn nhất (85 µm). Khi thử mão thấy khít nhưng sau gắn bị cao, nên nghĩ đến nguyên nhân này cùng với xi măng quá đặc hoặc ấn mão không đủ lực.</p>`],
@@ -37,11 +38,13 @@ export const QA_TOPICS_2 = [
         `${short('Có — đây là nguyên nhân thường gặp nhất khi mão không xuống hết mà mặt trong vẫn khít.')}
 <p>Dấu hiệu: chỉ nha khoa không qua được hoặc đứt sợi, bờ mão hở đều ở một phía. Chỉnh điểm tiếp xúc trên mão từng chút, dùng giấy cắn mỏng để tìm điểm chạm, sau đó đánh bóng lại vùng đã chỉnh. Điểm tiếp xúc đạt khi chỉ nha khoa đi qua với lực cản nhẹ.</p>`],
       [56, 'Labo nên chỉnh contact point như thế nào để bác sĩ dễ kiểm soát khi gắn?',
-        `${short('Điểm tiếp xúc nên đúng vị trí giải phẫu (gần gờ bên, phía mặt nhai), diện tiếp xúc nhỏ, đủ chặt để chỉ nha khoa đi qua với lực cản nhẹ — không quá chặt khiến mão không xuống, không lỏng gây nhét thức ăn.')}
-<p>Răng thật có độ di động sinh lý trong khi răng trên mẫu hàm cứng, nên điểm tiếp xúc trên mẫu cần được kiểm soát cẩn thận. Bề mặt vùng tiếp xúc được đánh bóng hoặc glaze để bác sĩ dễ chỉnh thêm nếu cần.</p>`],
+        `${short('Điểm tiếp xúc cần đủ chắc để hạn chế nhét thức ăn nhưng không quá chặt đến mức cản mão xuống hết; đặt đúng vị trí giải phẫu, gần gờ bên phía mặt nhai.')}
+<p>Trên lâm sàng, điểm tiếp xúc đạt khi chỉ nha khoa đi qua với lực cản nhẹ. Bề mặt vùng tiếp xúc được đánh bóng hoặc glaze để bác sĩ dễ chỉnh thêm nếu cần.</p>
+<p><strong>Tại KTV Dental Lab:</strong> vùng tiếp xúc được kiểm soát trong quá trình thiết kế và hoàn thiện, và kiểm tra trong bước kiểm soát chất lượng trước khi giao.</p>`],
       [57, 'Contact quá lỏng sau khi gắn mão thường do nguyên nhân nào?',
-        `${short('Thường do răng kế bên di chuyển sau khi mài (làm tạm không có tiếp xúc), dấu hoặc scan vùng tiếp xúc không chính xác, điểm tiếp xúc thiết kế thiếu, hoặc mài chỉnh quá tay khi thử.')}
-<p>Tiếp xúc lỏng gây nhét thức ăn — xem <a href="/hoi-dap/tinh-huong-lam-sang/#cau-93">câu 93</a>. Cách xử lý thường là làm lại mão với điểm tiếp xúc đủ; với tiếp xúc hơi lỏng, có thể đắp thêm sứ tại labo trước khi gắn.</p>`],
+        `${short('Tiếp xúc lỏng có thể liên quan đến dữ liệu dấu hoặc scan, vị trí răng kế bên, sai lệch mẫu hàm, việc chỉnh sửa trước khi giao, hoặc răng thay đổi vị trí sau thời điểm lấy dấu.')}
+<p>Răng kế bên dễ di chuyển khi phục hình tạm không có tiếp xúc. Tiếp xúc lỏng gây nhét thức ăn — xem <a href="/hoi-dap/tinh-huong-lam-sang/#cau-93">câu 93</a>.</p>
+<p><strong>Tại KTV Dental Lab:</strong> nếu phát hiện tiếp xúc lỏng trước khi gắn, phòng khám gửi lại để labo đánh giá và chỉnh sửa phục hình. Nếu phát hiện sau khi gắn, nên kiểm tra lại toàn bộ tình trạng lâm sàng trước khi kết luận nguyên nhân.</p>`],
       [58, 'Làm sao thiết kế emergence profile của mão răng thật để không ép lợi quá mức?',
         `${short('Giữ hình thể vùng cổ thẳng hoặc hơi phẳng theo bề mặt chân răng, tránh phình quá mức ở phần ba cổ; độ phồng tự nhiên đặt ở vị trí giải phẫu, không đẩy vào nướu.')}
 <p>Mão phình ở vùng cổ khó làm sạch, dễ tích mảng bám và viêm nướu. Gửi ảnh hoặc scan trước mài khi muốn giữ hình thể răng cũ; ghi chú nếu nướu mỏng hoặc có tụt nướu.</p>`],
@@ -49,14 +52,15 @@ export const QA_TOPICS_2 = [
         `${short('Có. Máy scan chỉ ghi được bề mặt nhìn thấy; đường hoàn tất dưới nướu dễ bị nướu che, máu và nước bọt làm mờ.')}
 <p>An và cộng sự (2024): đường hoàn tất dưới nướu 0,5 – 1,0 mm có sai lệch lớn hơn đường hoàn tất ngang nướu với cả hai máy scan thử nghiệm; nước bọt làm sai lệch tăng nhiều hơn ở nhóm dưới nướu. Cần co nướu, kiểm soát chảy máu và giữ khô khi scan — xem <a href="/hoi-dap/scan-trong-mieng/#cau-68">câu 68</a>.</p>`],
       [60, 'Khi nào bác sĩ nên gửi lại scan thay vì để labo cố sửa file?',
-        `${short('Khi đường hoàn tất không thấy liên tục, file có lỗ trống ở vùng bờ, scan khớp cắn không khớp hai bên, hoặc thiếu hàm đối diện — labo không nên tự "vẽ" phần dữ liệu không có.')}
+        `${short('Khi dữ liệu bị thiếu ở những vùng quyết định độ chính xác — đường hoàn tất, tiếp xúc, khớp cắn, scan body — hoặc khi mô mềm, máu, nước bọt che mất thông tin cần cho thiết kế.')}
 <ul>
 <li>Lỗ trống hoặc vùng mờ ở đường hoàn tất.</li>
-<li>Mô mềm hoặc nước bọt che bờ.</li>
-<li>Khớp cắn lệch giữa bên trái và bên phải, răng xuyên vào nhau trên file.</li>
-<li>Vết nhoè do bệnh nhân cử động.</li>
+<li>Thiếu vùng tiếp xúc với răng kế bên.</li>
+<li>Khớp cắn lệch giữa hai bên, răng xuyên vào nhau trên file.</li>
+<li>Scan body bị che, thiếu bề mặt hoặc nhoè.</li>
+<li>Mô mềm, máu, nước bọt che bờ.</li>
 </ul>
-<p>Scan lại vùng thiếu mất vài phút; một mão làm lại mất cả buổi hẹn.</p>`],
+<p><strong>Tại KTV Dental Lab:</strong> labo làm sạch và tối ưu được một số lỗi nhỏ của file, nhưng không "đoán" dữ liệu ở những vùng quyết định độ chính xác của phục hình — khi đó labo đề nghị scan lại.</p>`],
     ],
     sources: ['an2024', 'alshalan', 'kale', 'iowa'] },
 
@@ -72,8 +76,9 @@ export const QA_TOPICS_2 = [
         `${short('Thường kém hơn. Sai số ghép ảnh tích luỹ theo chiều dài vùng scan.')}
 <p>Theo ITI 2018, độ chính xác của dấu kỹ thuật số giảm khi khoảng cách giữa các trụ tăng. Với cầu dài: scan liên tục theo một đường, tránh bỏ sót rồi quay lại; giữ khô; kiểm tra lại vùng trụ xa nhất; khi nghi ngờ, thử sườn hoặc thử cầu trước khi hoàn thiện.</p>`],
       [63, 'Khi scan mất một đoạn margin nhỏ, labo có thể tự sửa được không?',
-        `${short('Chỉ khi đoạn thiếu rất ngắn và hai đầu đường hoàn tất rõ ràng; nếu không thấy được bờ thật, labo không nên tự nội suy — nên scan lại vùng đó.')}
-<p>Phần mềm có thể lấp lỗ, nhưng phần lấp là bề mặt suy đoán, không phải bờ răng thật. Bờ mão thiết kế trên phần suy đoán dễ hở hoặc dư. Scan bổ sung chỉ vùng thiếu thường nhanh hơn và an toàn hơn.</p>`],
+        `${short('Chỉ khi đoạn thiếu rất nhỏ và đường hoàn tất xung quanh vẫn rõ; nếu phải suy đoán vị trí thật của bờ — nhất là dưới nướu hoặc đoạn thiếu dài — nên scan lại.')}
+<p>Phần mềm có thể lấp lỗ, nhưng phần lấp là bề mặt suy đoán, không phải bờ răng thật; bờ mão thiết kế trên phần suy đoán dễ hở hoặc dư.</p>
+<p><strong>Tại KTV Dental Lab:</strong> kỹ thuật viên đánh giá dữ liệu còn đủ tin cậy để tiếp tục hay không. Nguyên tắc: xử lý dữ liệu được, nhưng không dựng lại một đường hoàn tất không có đủ thông tin lâm sàng — khi đó labo ưu tiên yêu cầu scan lại.</p>`],
       [64, 'Bác sĩ cần scan những vùng nào để labo làm một mão zirconia chính xác?',
         `${short('Cùi răng với toàn bộ đường hoàn tất, răng kế bên hai phía, phần hàm đủ để định vị, hàm đối diện, và khớp cắn hai bên.')}
 <ul>
@@ -122,8 +127,9 @@ export const QA_TOPICS_2 = [
 <li>Trên phần mềm thiết kế: thư viện scan body ghép không khớp với dữ liệu scan là dấu hiệu sai lắp hoặc sai loại scan body.</li>
 </ul>`],
       [74, 'Có thể dùng scan body khác hãng nhưng cùng connection implant không?',
-        `${short('Chỉ khi phần mềm thiết kế của labo có thư viện của đúng loại scan body đó, kèm thư viện Ti-base / abutment tương ứng. Cùng kiểu kết nối không đủ — hình dạng scan body phải khớp thư viện.')}
-<p>Labo xác định vị trí implant bằng cách ghép mô hình số của scan body (thư viện) vào dữ liệu scan. Scan body không có thư viện, hoặc thư viện sai phiên bản, sẽ cho vị trí implant sai. Ghi rõ hãng, model scan body và hệ implant trên phiếu chỉ định.</p>`],
+        `${short('Không nên mặc định cùng kiểu kết nối là dùng thay được. Scan body phải khớp đúng thư viện thiết kế và linh kiện phục hình tương ứng (Ti-base, abutment, vít).')}
+<p>Labo xác định vị trí implant bằng cách ghép mô hình số của scan body (thư viện) vào dữ liệu scan. Scan body không có thư viện, hoặc thư viện sai phiên bản, sẽ cho vị trí implant sai. Ghi rõ hãng, model scan body và hệ implant trên phiếu chỉ định.</p>
+<p><strong>Tại KTV Dental Lab:</strong> kỹ thuật viên kiểm tra hệ implant, platform, scan body và linh kiện trước khi thiết kế.</p>`],
       [75, 'Hình dạng scan body có ảnh hưởng đến độ chính xác của scan không?',
         `${short('Có. Hình dạng, vật liệu, hướng mặt vát và cách lắp scan body đều ảnh hưởng độ chính xác.')}
 <p>Tổng quan của Wan và cộng sự (2024) trên 16 nghiên cứu: hướng mặt vát, lực siết và thiết bị hình học hỗ trợ đều ảnh hưởng độ chính xác scan implant. Nghiên cứu năm 2020 trên J Adv Prosthodont: các loại scan body khác nhau lún khác nhau đáng kể khi siết.</p>`],
@@ -140,8 +146,9 @@ export const QA_TOPICS_2 = [
         `${short('Khoảng cách càng lớn, sai số càng tăng — vùng sống hàm trơn giữa các implant ít điểm mốc để phần mềm ghép ảnh.')}
 <p>ITI 2018: độ chính xác của dấu kỹ thuật số giảm khi khoảng cách giữa các implant tăng. Thiết bị hình học hỗ trợ đặt trên vùng sống hàm giúp tạo điểm mốc (Wan và cộng sự, 2024).</p>`],
       [80, 'Nếu gửi sai loại scan body cho labo thì có phải scan lại bệnh nhân không?',
-        `${short('Không nhất thiết, nếu labo có thư viện của đúng loại scan body đã dùng — chỉ cần báo đúng tên. Nếu scan body đã dùng không có thư viện, hoặc không xác định được, thường phải scan lại.')}
-<p>Ghi rõ hãng và model scan body, hệ implant, đường kính, kiểu kết nối ngay trên phiếu chỉ định giúp tránh phải scan lại. Ảnh chụp scan body trong miệng trước khi scan cũng giúp labo nhận diện.</p>`],
+        `${short('Không phải lúc nào cũng phải scan lại ngay. Labo kiểm tra hình dạng scan body, thông tin hệ implant, mã linh kiện và dữ liệu kèm theo; nếu không xác định chắc chắn được, hoặc scan body không khớp thư viện cần dùng, bác sĩ nên scan lại bằng đúng linh kiện.')}
+<p>Ghi rõ hãng và model scan body, hệ implant, đường kính, kiểu kết nối trên phiếu chỉ định; ảnh chụp scan body trong miệng trước khi scan cũng giúp nhận diện.</p>
+<p><strong>Tại KTV Dental Lab:</strong> khi thông tin scan body chưa rõ, labo đối chiếu hình dạng, mã linh kiện và hệ implant trước; chỉ đề nghị scan lại khi không thể nhận diện chính xác, để tránh sai lệch phục hình.</p>`],
     ],
     sources: ['iti2018', 'scanTorque', 'wan2024', 'shetty2025'] },
 
@@ -157,23 +164,25 @@ export const QA_TOPICS_2 = [
         `${short('Khi khoảng liên hàm hẹp (tối thiểu 4 mm), cầu dài, cầu đèo, vùng thẩm mỹ, phục hình tạm, hoặc khi cần tháo ra để vệ sinh, sửa chữa.')}
 <p>Theo Nobel Biocare. Thêm vào đó: đường hoàn tất sâu dưới niêm mạc (khó lấy xi măng thừa) cũng là lý do nên chọn bắt vít.</p>`],
       [83, 'Lỗ vít nằm ở mặt ngoài thì nên xử lý thiết kế như thế nào?',
-        `${short('Dùng kênh vít nghiêng để dời lỗ vít về mặt trong hoặc mặt nhai (0 – 25°), hoặc chuyển sang abutment cá nhân hoá kèm mão gắn xi măng.')}
-<p>Theo Nobel Biocare, kênh vít nghiêng cho phép đặt lỗ vít ở góc 0 – 25° theo mọi hướng. Khi trục implant lệch nhiều hơn, abutment cá nhân hoá chỉnh trục rồi gắn mão lên là phương án thay thế — khi đó cần đặt đường hoàn tất đủ nông để lấy hết xi măng thừa.</p>`],
+        `${short('Cân nhắc kênh vít nghiêng (angled screw channel) để dời lỗ vít về mặt trong hoặc mặt nhai — khi hệ implant và bộ linh kiện tương ứng có hỗ trợ; nếu không, chuyển sang giải pháp khác như abutment cá nhân hoá kèm mão gắn xi măng.')}
+<p>Theo Nobel Biocare, kênh vít nghiêng cho phép đặt lỗ vít ở góc 0 – 25° theo mọi hướng. Khả năng làm kênh vít nghiêng phụ thuộc platform, Ti-base / abutment, vít và cây vặn vít của hệ implant, không chỉ phụ thuộc vào thiết kế CAD. Với abutment cá nhân hoá gắn xi măng, cần đặt đường hoàn tất đủ nông để lấy hết xi măng thừa.</p>
+<p><strong>Tại KTV Dental Lab:</strong> khi hệ implant không hỗ trợ kênh vít nghiêng, labo trao đổi với bác sĩ để chọn giải pháp phục hình phù hợp hơn.</p>`],
       [84, 'Abutment cá nhân hóa có ưu điểm gì so với abutment stock?',
-        `${short('Đường hoàn tất đi theo viền niêm mạc (dễ lấy xi măng thừa), hình thể vùng xuyên niêm mạc theo từng ca, và chỉnh được trục khi implant nghiêng.')}
-<p>Abutment làm sẵn có hình dạng chuẩn, đường hoàn tất đồng mức quanh chu vi — ở vùng niêm mạc cong, một phía có thể nằm quá sâu, khó lấy xi măng thừa. Abutment cá nhân hoá được thiết kế theo dữ liệu niêm mạc của chính bệnh nhân.</p>`],
+        `${short('Abutment cá nhân hoá kiểm soát tốt hơn hình thể mô mềm, emergence profile và hướng phục hình; đường hoàn tất đi theo viền niêm mạc nên dễ lấy xi măng thừa.')}
+<p>Abutment làm sẵn có hình dạng chuẩn, đường hoàn tất đồng mức quanh chu vi — ở vùng niêm mạc cong, một phía có thể nằm quá sâu, khó lấy xi măng thừa. Abutment cá nhân hoá được thiết kế theo dữ liệu niêm mạc của chính bệnh nhân và chỉnh được trục khi implant nghiêng.</p>
+<p><strong>Tại KTV Dental Lab:</strong> chỉ định abutment cá nhân hoá phụ thuộc vị trí răng, mô mềm, khoảng phục hình và hệ implant của từng ca.</p>`],
       [85, 'Zirconia abutment nên dùng trong trường hợp nào?',
         `${short('Vùng răng trước, yêu cầu thẩm mỹ niêm mạc cao, lực nhai thấp — và nên có phần kết nối bằng kim loại.')}
 <p>Tổng quan của Totou và cộng sự (2021, 23 thử nghiệm ngẫu nhiên): abutment zirconia cho màu niêm mạc tự nhiên hơn titan; thất bại abutment ít gặp nhưng chủ yếu ở abutment sứ. Kinzer (2016) dùng abutment zirconia cá nhân hoá chủ yếu ở vùng lực thấp (răng trước), tránh thành abutment quá mỏng, và khuyến nghị phần kết nối bằng kim loại.</p>`],
       [86, 'Ti-base và zirconia abutment khác nhau thế nào?',
-        `${short('Ti-base là nền titan có kết nối kim loại với implant, phần zirconia dán lên trên; abutment zirconia nguyên khối kết nối trực tiếp zirconia vào implant — kết nối là điểm yếu nhất.')}
+        `${short('Với Ti-base + zirconia, phần titan đảm nhiệm kết nối cơ học với implant, phần zirconia tạo hình thể phục hình và vùng chuyển tiếp mô mềm. Abutment zirconia nguyên khối kết nối trực tiếp zirconia vào implant — vùng kết nối là điểm yếu nhất.')}
 ${table(['', 'Ti-base + zirconia', 'Abutment zirconia nguyên khối'], [
   ['Kết nối với implant', 'Titan', 'Zirconia'],
   ['Điểm yếu', 'Lớp dán giữa zirconia và Ti-base', 'Vùng kết nối trong'],
   ['Mòn implant', '—', 'Có báo cáo mòn titan ở implant nhiều hơn'],
   ['Thẩm mỹ niêm mạc', 'Tốt (phần lộ ra là zirconia)', 'Tốt'],
 ])}
-<p>Theo Kinzer (2016): hai ca gãy abutment của tác giả đều là abutment zirconia hoàn toàn; tác giả khuyến nghị kết nối qua thành phần kim loại.</p>`],
+<p>Theo Kinzer (2016): hai ca gãy abutment của tác giả đều là abutment zirconia hoàn toàn; tác giả khuyến nghị kết nối qua thành phần kim loại. Chỉ định cụ thể phụ thuộc vị trí răng, mô mềm, khoảng phục hình và hệ implant.</p>`],
       [87, 'Chiều cao Ti-base ảnh hưởng đến độ bám của zirconia như thế nào?',
         `${short('Ti-base càng cao, diện dán càng lớn, mão zirconia càng khó bong. Nên chọn Ti-base cao nhất mà khoảng phục hình cho phép.')}
 <p>Kendirli và cộng sự (2026) thử mão zirconia nguyên khối trên Ti-base cao 5,5 mm và 3,5 mm, implant thẳng và nghiêng 15°: Ti-base 5,5 mm làm tăng đáng kể lưu giữ; các tác giả khuyến nghị chọn Ti-base cao nhất có thể để giảm nguy cơ bong.</p>`],
@@ -207,14 +216,13 @@ ${table(['', 'Ti-base + zirconia', 'Abutment zirconia nguyên khối'], [
 </ul>`],
       [93, 'Mão zirconia sát khít nhưng thức ăn vẫn nhét vào kẽ thì do đâu?',
         `${short('Thường do điểm tiếp xúc lỏng, sai vị trí (quá thấp về phía nướu hoặc quá cao), gờ bên không ngang với răng kế bên, hoặc kẽ răng phía mặt nhai quá mở.')}
-<p>Kiểm tra bằng chỉ nha khoa và so sánh chiều cao gờ bên hai răng. Răng kế bên di chuyển sau khi làm mão cũng làm tiếp xúc mở dần. Tiếp xúc lỏng thường cần làm lại hoặc đắp thêm tại labo.</p>`],
+<p>Kiểm tra bằng chỉ nha khoa và so sánh chiều cao gờ bên hai răng. Răng kế bên di chuyển sau khi làm mão cũng làm tiếp xúc mở dần. Phát hiện trước khi gắn: gửi lại labo để đánh giá và chỉnh sửa — xem <a href="/hoi-dap/sat-khit-tiep-xuc-hinh-the/#cau-57">câu 57</a>.</p>`],
       [94, 'Răng 11 và 21 có màu khác nhau thì labo cần những hình ảnh gì để chỉnh màu?',
-        `${short('Ảnh răng với cây so màu đặt cạnh, cùng mặt phẳng; ảnh chụp thẳng và chéo; ảnh cùi răng (màu cùi); và nếu có, ảnh phân cực chéo để thấy rõ cấu trúc men.')}
+        `${short('Ảnh chính diện toàn vùng răng trước, ảnh cận răng cần phục hình và răng đối xứng, ảnh có cây so màu đặt cùng mặt phẳng với răng, ảnh nghiêng để thấy độ trong vùng rìa cắn; nếu cùi đổi màu, thêm ảnh cùi sau khi mài.')}
 <ul>
+<li>Chụp dưới ánh sáng trung tính (nguồn sáng chuẩn màu khoảng 5.500 K), không dùng filter, không flash trực diện làm cháy sáng.</li>
 <li>Cây so màu đặt cạnh răng, cùng mặt phẳng và góc, rìa cắn sát rìa cắn, thấy rõ mã màu.</li>
-<li>Ánh sáng chuẩn màu (khoảng 5.500 K), không đèn vàng, không flash trực diện làm cháy sáng.</li>
 <li>Chụp trước khi mài, khi răng chưa mất nước.</li>
-<li>Ảnh cùi răng sau khi mài, với cây so màu cùi nếu có.</li>
 </ul>
 <p>Hướng dẫn so màu: <a href="/gui-ca/#so-mau">so màu đúng cách</a>.</p>`],
       [95, 'Một răng cửa bị đổi màu nặng thì làm sao để zirconia không bị đục?',
@@ -233,13 +241,14 @@ ${table(['', 'Ti-base + zirconia', 'Abutment zirconia nguyên khối'], [
         `${short('Cắn sâu: cần đủ khoảng mặt trong răng trên, kiểm tra khoảng trong vận động ra trước. Cắn đối đầu: rìa cắn chịu lực trực tiếp — chọn zirconia độ bền cao, đủ độ dày rìa cắn, tránh dòng độ trong cao quá mỏng.')}
 <p>Gửi kèm scan hoặc mẫu hàm đối diện và khớp cắn chính xác; ghi chú khớp cắn sâu, cắn đối đầu hoặc nghiến răng trên phiếu chỉ định. Mài rìa cắn răng trước cho zirconia nguyên khối khoảng 1,8 – 2,0 mm (giáo trình Iowa).</p>`],
       [100, 'Khi bác sĩ và labo không thống nhất về hình thể hoặc khớp cắn, cần gửi những dữ liệu gì để labo chỉnh chính xác?',
-        `${short('Ảnh trong miệng có phục hình thử, chỉ rõ chỗ cần sửa; scan hoặc dấu khớp cắn mới; ảnh mặt cười; và mô tả cụ thể bằng số hoặc vị trí (ví dụ "giảm 0,5 mm rìa cắn 11", "tăng tiếp xúc xa 46").')}
+        `${short('Ảnh phục hình đang thử trong miệng, ảnh vùng cần chỉnh, mô tả cụ thể muốn tăng hoặc giảm ở đâu, ảnh giấy cắn nếu liên quan khớp cắn, và scan mới nếu tình trạng trong miệng đã thay đổi.')}
 <ul>
-<li>Ảnh thẳng, chéo, mặt cười có phục hình thử trong miệng.</li>
-<li>Đánh dấu trực tiếp trên ảnh hoặc trên phục hình vùng cần sửa.</li>
-<li>Scan lại khớp cắn hoặc dấu khớp cắn khi khớp cắn là vấn đề.</li>
-<li>Scan phục hình thử trong miệng (nếu có) để labo thấy hình thể đã chỉnh.</li>
-</ul>`],
+<li>Ảnh thẳng, chéo, mặt cười có phục hình thử; với ca thẩm mỹ, đánh dấu trực tiếp lên ảnh.</li>
+<li>Ảnh dấu giấy cắn trên phục hình khi vấn đề là khớp cắn.</li>
+<li>Mô tả bằng vị trí và mức độ, ví dụ "giảm 0,5 mm rìa cắn 11", "tăng tiếp xúc xa 46".</li>
+<li>Scan mới khi răng hoặc mô mềm đã thay đổi.</li>
+</ul>
+<p><strong>Tại KTV Dental Lab:</strong> labo chỉnh dựa trên dữ liệu cụ thể thay vì yêu cầu chung như "làm nhỏ lại" hay "hạ thêm", và kiểm soát lại phục hình sau khi sửa trước khi giao.</p>`],
     ],
     sources: ['shade', 'binici', 'katanaGuide', 'iowa'] },
 ];

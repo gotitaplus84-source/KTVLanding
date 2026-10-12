@@ -110,8 +110,9 @@ ${table(['Loại mão', 'Mặt nhai', 'Rìa cắn', 'Thành trục'], [
         `${short('Có. Góc trong và cạnh rìa cắn nên bo tròn, không để góc sắc.')}
 <p>Góc sắc trên cùi tạo điểm tập trung ứng suất trong mão và khó phay chính xác bằng mũi phay có đường kính nhất định, dẫn đến mão không xuống hết hoặc phải mài chỉnh mặt trong. Hướng dẫn Katana STML, UTML liệt kê cạnh rìa cắn sắc, rãnh và vùng lẹm là những dạng cần tránh.</p>`],
       [19, 'Mài thiếu khoảng mặt nhai thì labo nên giảm zirconia hay báo bác sĩ mài thêm?',
-        `${short('Không giảm zirconia dưới độ dày tối thiểu của dòng phôi. Khi khoảng không đủ, KTV Dental Lab báo bác sĩ vùng thiếu khoảng để bác sĩ quyết định mài thêm, chỉnh răng đối diện hoặc đổi vật liệu.')}
-<p>Mão mỏng hơn mức tối thiểu của hãng làm tăng nguy cơ nứt gãy, nhất là ở vùng chịu lực. Các hướng xử lý thường gặp: mài thêm cùi ở vùng thiếu khoảng; chỉnh nhẹ răng đối diện nếu bác sĩ chỉ định; hoặc đổi sang vật liệu cần ít khoảng hơn như mão toàn kim loại (mặt nhai 1,0 mm ở múi không chức năng).</p>`],
+        `${short('Khi thiếu khoảng đến mức ảnh hưởng độ bền, hình thể hoặc khớp cắn, labo không tự ý làm mỏng zirconia để hoàn thành ca mà trao đổi lại với bác sĩ. Khi chỉ thiếu rất ít và vẫn trong giới hạn an toàn của vật liệu, kỹ thuật viên có thể tối ưu thiết kế.')}
+<p>Mão mỏng hơn mức tối thiểu của hãng làm tăng nguy cơ nứt gãy, nhất là ở vùng chịu lực. Hướng xử lý thường gặp khi thiếu khoảng nhiều: mài thêm cùi ở vùng thiếu; chỉnh nhẹ răng đối diện nếu bác sĩ chỉ định; hoặc đổi sang vật liệu cần ít khoảng hơn như mão toàn kim loại (mặt nhai 1,0 mm ở múi không chức năng).</p>
+<p><strong>Tại KTV Dental Lab:</strong> kỹ thuật viên đánh giá mức thiếu khoảng trên từng ca, liên hệ bác sĩ khi cần, và không làm mỏng zirconia vượt quá giới hạn an toàn của vật liệu.</p>`],
       [20, 'Khi khoảng phục hình quá ít, zirconia hay kim loại-sứ sẽ phù hợp hơn?',
         `${short('Zirconia nguyên khối hoặc toàn kim loại; kim loại – sứ cần nhiều khoảng nhất vì phải chứa cả sườn và lớp sứ.')}
 <p>Theo giáo trình Iowa: mặt nhai cần 1,0 – 1,5 mm cho zirconia nguyên khối, 1,5 mm (múi chức năng) / 1,0 mm cho toàn kim loại, nhưng 1,5 – 2,0 mm cho kim loại – sứ. Với khoảng liên hàm rất hẹp ở răng hàm không cần thẩm mỹ, <a href="/phuc-hinh/mao-full-kim-loai/">mão toàn kim loại</a> là lựa chọn mài ít nhất.</p>`],
