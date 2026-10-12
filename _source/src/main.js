@@ -94,6 +94,8 @@ function showMaterial(i, crown) {
     panel.querySelector('[data-f="country"]').textContent = d.country;
     panel.querySelector('[data-f="maker"]').textContent = d.maker;
     panel.querySelector('[data-f="note"]').textContent = d.note || '';
+    const link = panel.querySelector('[data-f="link"]');
+    if (link && d.slug) { link.href = `/vat-lieu/${d.slug}/`; link.querySelector('[data-f="lname"]').textContent = d.name; }
     if (matScroll) matScroll.classList.toggle('no-war', !hasWar);
     if (hasWar) {
       const yEl = panel.querySelector('[data-f="years"]');
@@ -117,54 +119,61 @@ idxLinks.forEach((a, j) => a.addEventListener('click', (e) => {
   steps[j].scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
 }));
 
-/* ---------- 3D crown ---------- */
-async function boot() {
-  const canvas = document.getElementById('stage3d');
-  let crown = null;
-  const ok = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch { return false; } })();
-  if (canvas && ok) {
-    try {
-      const { initCrown, loadToothModels } = await import('./crown.js');
-      let models = null;
-      try { models = await loadToothModels(); } catch (err) { console.warn('real crown model unavailable, using fallback', err); }
-      crown = initCrown(canvas, { reducedMotion: reduced, models });
-      root.classList.add('webgl');
-    } catch (err) { console.warn('3D disabled', err); root.classList.add('no-webgl'); }
-  } else root.classList.add('no-webgl');
+/* ---------- scroll stages (run immediately; the 3D crown joins later) ---------- */
+let crown = null;
+const stageEls = [...document.querySelectorAll('[data-stage]')];
 
-  // stage per section
-  const stageEls = [...document.querySelectorAll('[data-stage]')];
-
-  function pickStage() {
-    const mid = window.innerHeight * 0.5;
-    let best = null;
-    for (const el of stageEls) {            // deepest (last) element spanning the middle wins
-      const r = el.getBoundingClientRect();
-      if (r.top <= mid && r.bottom >= mid) best = el;
-    }
-    if (!best) return;
-    const cfg = JSON.parse(isMobile() ? (best.dataset.stageM || best.dataset.stage) : best.dataset.stage);
-    crown && crown.setStage(cfg);
-    if (best.classList.contains('mat-scroll')) {
-      // which step crosses the middle?
-      let idx = 0;
-      steps.forEach((s, i) => { const r = s.getBoundingClientRect(); if (r.top < mid) idx = i; });
-      showMaterial(idx, crown);
-      if (crown) crown.setBlank(steps[idx].dataset.blank);   // photo of that material's blank, if any
-    } else {
-      if (crown) crown.setBlank(null);
-      if (crown && activeMat !== -1 && best.id === 'top') {
-        activeMat = -1;
-        crown.setMaterial({ look: 'zirconia', years: 0 });
-      }
+function pickStage() {
+  const mid = window.innerHeight * 0.5;
+  let best = null;
+  for (const el of stageEls) {            // deepest (last) element spanning the middle wins
+    const r = el.getBoundingClientRect();
+    if (r.top <= mid && r.bottom >= mid) best = el;
+  }
+  if (!best) return;
+  const cfg = JSON.parse(isMobile() ? (best.dataset.stageM || best.dataset.stage) : best.dataset.stage);
+  crown && crown.setStage(cfg);
+  if (best.classList.contains('mat-scroll')) {
+    // which step crosses the middle?
+    let idx = 0;
+    steps.forEach((s, i) => { const r = s.getBoundingClientRect(); if (r.top < mid) idx = i; });
+    showMaterial(idx, crown);
+    if (crown) crown.setBlank(steps[idx].dataset.blank);   // photo of that material's blank, if any
+  } else {
+    if (crown) crown.setBlank(null);
+    if (crown && activeMat !== -1 && best.id === 'top') {
+      activeMat = -1;
+      crown.setMaterial({ look: 'zirconia', years: 0 });
     }
   }
+}
+if (stageEls.length) {
   window.addEventListener('scroll', pickStage, { passive: true });
   window.addEventListener('resize', pickStage);
   pickStage();
-  if (!crown) showMaterial(0, null);
+  if (activeMat === -1) showMaterial(0, null);
 }
-boot();
+
+/* ---------- 3D crown: loaded only once the page has painted and the browser is idle ----------
+   Until then (and on devices without WebGL) a still render of the same crown sits in the hero. */
+async function loadCrown() {
+  const canvas = document.getElementById('stage3d');
+  if (!canvas) return;
+  const ok = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch { return false; } })();
+  if (!ok) { root.classList.add('no-webgl'); return; }
+  try {
+    const { initCrown, loadToothModels } = await import('./crown.js');
+    let models = null;
+    try { models = await loadToothModels(); } catch (err) { console.warn('real crown model unavailable, using fallback', err); }
+    crown = initCrown(canvas, { reducedMotion: reduced, models });
+    root.classList.add('webgl');
+    activeMat = -1;                        // re-apply the current section/material to the crown
+    pickStage();
+  } catch (err) { console.warn('3D disabled', err); root.classList.add('no-webgl'); }
+}
+const whenIdle = (fn) => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 3000 }) : setTimeout(fn, 1500));
+if (document.readyState === 'complete') whenIdle(loadCrown);
+else window.addEventListener('load', () => whenIdle(loadCrown), { once: true });
 
 /* ---------- year in footer ---------- */
 document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
