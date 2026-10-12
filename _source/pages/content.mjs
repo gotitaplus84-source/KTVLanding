@@ -353,7 +353,7 @@ ${table(['', 'Inlay', 'Onlay'], [
 <li><strong>Kim loại</strong> (<a href="/vat-lieu/ni-cr/">Ni-Cr</a>, <a href="/vat-lieu/co-cr/">Co-Cr</a>) — vùng răng sau không cần thẩm mỹ.</li>
 </ul>
 <h2>Xử lý mặt dán inlay · onlay zirconia</h2>
-<p>Inlay, onlay ít lưu giữ cơ học nên phụ thuộc nhiều vào dán. Labo có thể <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">xoi mòn mặt dán bằng Zircos-E</a> trước khi giao — hiện miễn phí. Khi gắn, dùng xi măng nhựa kèm primer chứa MDP.</p>
+<p>Inlay, onlay ít lưu giữ cơ học nên phụ thuộc nhiều vào dán. Labo có thể <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">xoi mòn mặt dán bằng Zircos-E</a> trước khi giao — hiện miễn phí, không làm ca chậm hơn. Phòng khám gắn theo quy trình thông thường.</p>
 <h2>Gửi ca cho labo</h2>
 ${SEND_CASE}`,
     faq: [['Inlay khác miếng trám thường thế nào?', 'Miếng trám thường được bác sĩ đắp trực tiếp trong miệng; inlay được labo chế tác ngoài miệng theo dấu hoặc file scan rồi gắn vào, nên kiểm soát hình thể và điểm tiếp xúc tốt hơn với lỗ hổng lớn.'],
@@ -588,20 +588,19 @@ ${table(['Nghiên cứu', 'Kết quả chính'], [
 <h2>Dịch vụ tại KTV Dental Lab</h2>
 ${table(['Mục', 'Chi tiết'], [
   ['Áp dụng', 'Thường dùng cho <a href="/phuc-hinh/inlay-onlay/">inlay · onlay</a> và <a href="/phuc-hinh/overlay/">overlay</a> zirconia. Trường hợp khác, trao đổi với labo.'],
-  ['Xử lý', 'Mặt dán của phục hình được xoi mòn bằng Zircos-E tại labo, trước khi giao.'],
+  ['Xử lý', 'Phục hình được ngâm trong dung dịch Zircos-E tại labo trước khi giao — tối đa 2 giờ, tuỳ kích thước phục hình. Không thổi cát trước và sau khi xoi mòn.'],
+  ['Thời gian', 'Thời gian ngâm đã được tính sẵn trong <a href="/thoi-gian-san-xuat/">thời gian sản xuất</a> — ca không bị trễ thêm.'],
   ['Chi phí', '<strong>Hiện miễn phí</strong>'],
   ['Cách yêu cầu', `Ghi “Xoi mòn Zircos-E” trên phiếu gửi ca, hoặc nhắn Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>.`],
 ])}
 <h2>Khi gắn tại phòng khám</h2>
-<ul>
-<li>Dùng <strong>xi măng nhựa</strong> và primer / chất dán có chứa <strong>MDP</strong> — trong nghiên cứu của Sokolowski, dùng primer sau xoi mòn cho độ bền dán cao hơn.</li>
-<li>Làm sạch mặt dán sau khi thử phục hình trong miệng, theo hướng dẫn của hãng xi măng.</li>
-</ul>`;
+<p>Phòng khám gắn theo <strong>quy trình gắn thông thường</strong>; không cần thổi cát lại mặt dán.</p>`;
 }
 export const ETCH_FAQ = [
   ['Xoi mòn Zircos-E có mất phí không?', 'Hiện KTV Dental Lab xử lý miễn phí.'],
   ['Dịch vụ áp dụng cho loại phục hình nào?', 'Thường dùng cho inlay, onlay và overlay zirconia — các phục hình phụ thuộc nhiều vào dán. Trường hợp khác, bác sĩ trao đổi với labo.'],
-  ['Xoi mòn có thay thế được primer MDP không?', 'Không. Xoi mòn tạo bề mặt vi lưu; primer chứa MDP vẫn cần để tạo liên kết hoá học. Trong nghiên cứu của Sokolowski và cộng sự (2023), nhóm xoi mòn kèm primer có độ bền dán cao nhất.'],
+  ['Xoi mòn có làm ca bị chậm không?', 'Không. Thời gian ngâm (tối đa 2 giờ, tuỳ kích thước phục hình) đã được tính sẵn trong thời gian sản xuất.'],
+  ['Phòng khám có cần thổi cát hay xử lý thêm trước khi gắn không?', 'Không cần thổi cát. Labo không thổi cát trước và sau khi xoi mòn; phòng khám gắn theo quy trình gắn thông thường.'],
   ['Xoi mòn có làm yếu zirconia không?', 'Các nghiên cứu in vitro hiện có tập trung vào độ bền dán, chưa đánh giá đầy đủ ảnh hưởng lên độ bền uốn của zirconia.'],
 ];
 export const ETCH_SOURCES = ['zircosE', 'sokolowski', 'alawawda', 'cho2017'];

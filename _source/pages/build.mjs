@@ -209,7 +209,7 @@ pages.push(page({
   kicker: ['+', 'Dịch vụ · Miễn phí'], h1: 'Xoi mòn bề mặt zirconia bằng Zircos-E',
   lead: 'Tạo bề mặt vi lưu trên mặt dán của inlay, onlay, overlay zirconia bằng dung dịch xoi mòn Zircos-E, giúp tăng độ bám của xi măng nhựa. Hiện miễn phí.',
   body: etchBody(),
-  side: sideBox([['Chi phí', '<strong>Miễn phí</strong>'], ['Áp dụng', 'Inlay · onlay · overlay zirconia'], ['Dung dịch', 'Zircos-E (RH Marketing, Mỹ)'], ['Yêu cầu', `Ghi trên phiếu gửi ca hoặc <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a>`]]),
+  side: sideBox([['Chi phí', '<strong>Miễn phí</strong>'], ['Áp dụng', 'Inlay · onlay · overlay zirconia'], ['Thời gian', 'Ngâm tối đa 2 giờ · không trễ ca'], ['Dung dịch', 'Zircos-E (RH Marketing, Mỹ)'], ['Yêu cầu', `Ghi trên phiếu gửi ca hoặc <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a>`]]),
   related: ['inlay-onlay', 'overlay', 'mao-full-zirconia'].map((s) => PRODUCTS.find((x) => x.slug === s)).map((x) => ({ name: x.name, url: `/phuc-hinh/${x.slug}/`, thumb: x.thumb })),
   relatedTitle: 'Phục hình liên quan',
   faq: ETCH_FAQ, sources: ETCH_SOURCES,
