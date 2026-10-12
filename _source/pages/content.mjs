@@ -553,19 +553,27 @@ ${SEND_CASE}`,
 <h2>Các loại cùi giả tại KTV Dental Lab</h2>
 ${table(['Loại', 'Đặc điểm', 'Phù hợp'], [
   ['Cùi giả kim loại', 'Chốt và cùi đúc liền một khối theo hình ống tuỷ', 'Răng mất nhiều mô, làm mão sứ – kim loại'],
-  ['Chốt gài', 'Thiết kế theo chỉ định của bác sĩ', 'Theo thiết kế ca'],
+  ['Chốt gài (chốt rời)', 'Cùi đúc kèm một chân chốt rời, xuyên qua cùi chính vào ống tuỷ thứ hai', 'Răng sau có từ 2 ống tuỷ trở lên, các ống tuỷ chếch nhau'],
   ['Cùi giả Zirconia', 'Màu trắng, không kim loại', 'Mão toàn sứ ở vùng thẩm mỹ'],
 ])}
+<h2>Chốt gài — cùi giả cho răng nhiều ống tuỷ</h2>
+<p>Răng sau thường có từ 2 ống tuỷ trở lên, và các ống tuỷ thường chếch nhau. Một cùi giả đúc liền với hai chốt chếch nhau sẽ không lắp vào được, vì không có chung một hướng vào. <strong>Chốt gài</strong> giải quyết bằng cách tách làm hai phần:</p>
+<ul>
+<li><strong>Cùi chính</strong> đúc liền với chốt cắm vào ống tuỷ thứ nhất, có sẵn một lỗ xuyên qua thân cùi theo hướng của ống tuỷ thứ hai.</li>
+<li><strong>Chân chốt rời</strong> được cắm qua lỗ này vào ống tuỷ thứ hai sau khi cùi chính đã vào vị trí, khoá cùi giả vào chân răng.</li>
+</ul>
+<p>Nhờ vậy cùi giả dùng được cả hai ống tuỷ theo đúng hướng tự nhiên của chúng, không phải mài rộng ống tuỷ để tạo một hướng vào chung.</p>
 <h2>Cùi giả đúc khác cùi đắp trực tiếp thế nào?</h2>
 <p>Cùi giả đúc được labo chế tác theo dấu ống tuỷ, chốt và cùi liền một khối, khít với hình dạng ống tuỷ. Cùi đắp trực tiếp (chốt làm sẵn kết hợp vật liệu tái tạo cùi) được bác sĩ thực hiện ngay trên ghế. Cùi đúc phù hợp khi ống tuỷ loe rộng hoặc thân răng mất gần hết.</p>
 <h2>Gửi ca cho labo</h2>
 <ul>
-<li>Dấu ống tuỷ rõ toàn bộ chiều dài chốt, không bọt, cùng vùng cùi, hàm đối diện và khớp cắn.</li>
+<li>Dấu ống tuỷ rõ toàn bộ chiều dài chốt, không bọt, cùng vùng cùi, hàm đối diện và khớp cắn. Với chốt gài, lấy dấu đủ các ống tuỷ sẽ đặt chốt.</li>
 <li>Loại cùi mong muốn và loại mão sẽ làm trên cùi.</li>
 </ul>
 <p>Chi tiết: <a href="/gui-ca/">cách gửi ca</a>.</p>`,
     faq: [['Khi nào cần cùi giả?', 'Khi răng đã điều trị tuỷ mất nhiều mô, phần thân răng còn lại không đủ giữ mão. Quyết định dựa trên lượng mô răng thật còn lại, đặc biệt vùng đai 1,5 – 2,0 mm phía trên đường hoàn tất.'],
       ['Cùi giả zirconia khác cùi giả kim loại thế nào?', 'Cùi zirconia màu trắng, không kim loại, phù hợp làm nền cho mão toàn sứ ở vùng thẩm mỹ; cùi kim loại đúc liền chốt, thường dùng với mão sứ – kim loại.'],
+      ['Chốt gài là gì?', 'Chốt gài (chốt rời) là cùi giả đúc gồm cùi chính có chốt vào một ống tuỷ và một chân chốt rời xuyên qua cùi chính vào ống tuỷ thứ hai. Dùng cho răng sau có từ 2 ống tuỷ trở lên, các ống tuỷ chếch nhau nên không lắp được cùi đúc liền một khối.'],
       ['Vì sao vùng đai (ferrule) quan trọng?', 'Mô răng thật ôm 360° phía trên đường hoàn tất giúp răng chống gãy; theo Mamoun (2017), vùng này nên cao khoảng 1,5 – 2,0 mm.']],
     sources: ['mamoun'] },
 
