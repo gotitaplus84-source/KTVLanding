@@ -374,6 +374,15 @@ body.subpage{background:var(--bg)}
 .refs ol{font-size:14px;line-height:1.55;margin-bottom:12px}
 .refs li{margin:6px 0;overflow-wrap:anywhere}
 .refs .note{margin:0}
+.byline{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 26px!important}
+.qa-toc{margin:0 0 22px;padding-left:30px;font-size:15.5px;line-height:1.5}
+.qa-toc li{margin:6px 0}.qa-toc li::marker{color:var(--muted);font-family:var(--m);font-size:12px}
+.qa-toc-box{padding:18px 22px 6px;border-radius:18px;background:var(--paper);box-shadow:0 0 0 1px var(--line);margin-bottom:34px}
+.qa-item{scroll-margin-top:96px;padding-top:6px}
+.qa-item h2{font-size:clamp(21px,1.9vw,26px);line-height:1.25;margin:44px 0 12px}
+.qa-n{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#c4141b;margin-bottom:6px}
+.prose .qa-short{font-weight:600;padding-left:14px;border-left:3px solid var(--blue)}
+
 @media (max-width:600px){.prose table{font-size:14px}.prose th,.prose td{padding:11px 12px}.refs{padding:18px}}
 .page-side{position:sticky;top:104px;background:var(--paper);border-radius:22px;padding:24px 26px;box-shadow:0 1px 0 var(--line),0 20px 44px -26px rgba(6,27,68,.3)}
 .page-side dl div{padding:13px 0;border-bottom:1px solid var(--line)}

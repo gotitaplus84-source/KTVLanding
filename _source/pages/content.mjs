@@ -48,6 +48,16 @@ export const SOURCES = {
   yousry: ['Yousry M. và cs. (2024). Translucency of recent zirconia materials and material-related variables affecting their translucency: a systematic review and meta-analysis. BMC Oral Health 24:309', 'https://link.springer.com/article/10.1186/s12903-024-04070-7'],
   binici: ['Binici Aygün E. và cs. (2025). Factors Affecting the Color Change of Monolithic Zirconia Ceramics: A Narrative Review. J Funct Biomater 16(2):58', 'https://www.mdpi.com/2079-4983/16/2/58'],
   shade: ['Guidelines for Visual Shade Selection — Shade Selection for Indirect Esthetic Restorations (CE690), Dentalcare', 'https://www.dentalcare.com/en-us/ce-courses/ce690/guidelines-for-visual-shade-selection'],
+  alsahafi: ['Alsahafi T., Sulaiman T.A. (2024). Effective and predictable bonding of zirconia restorations. Oral Health Group', 'https://www.oralhealthgroup.com/features/effective-and-predictable-bonding-of-zirconia-restorations/'],
+  blatz: ['Blatz M.B. (2024). Reliably Bonding Zirconia. Inside Dental Technology', 'https://idt.cdeworld.com/courses/5434'],
+  bisco: ['3 essential tips for bonding to zirconia — BISCO', 'https://bisco.com/3-essential-tips-for-bonding-to-zirconia'],
+  christensen: ['Christensen G.J. (2024). Successful cementing of zirconia crowns: Still a problem. Dental Economics', 'https://dentaleconomics.com/science-tech/article/14286611/successful-cementing-of-zirconia-crowns-still-a-problem'],
+  shirazi: ['Sarraf Shirazi A. và cs. (2024). Effect of Different Cleaning Methods on Bond Strength of Resin to Saliva-Contaminated Zirconia: A Systematic Review and Meta-analysis of in Vitro Studies. Annali di Stomatologia 15(1):27–38', 'https://doi.org/10.59987/ads/2024.1.27-38'],
+  ishii: ['Ishii R. và cs. (2015). Influence of surface treatment of contaminated zirconia on surface free energy and resin cement bonding. Dental Materials Journal 34(1):91–97', 'https://doi.org/10.4012/dmj.2014-066'],
+  recement: ['(2025). Effect of Surface Cleaning and Heat Treatment on Shear Bond Strength of Cement-Contaminated Zirconia. Thieme', 'https://doi.org/10.1055/s-0045-1811225'],
+  difiore: ['Di Fiore A., Monaco C., Stellini E. (2023). Retrospective clinical study of 1472-unit monolithic zirconia restorations with feather-edge margins realized with digital workflow. Clinical Oral Investigations 27:6567–6575', 'https://doi.org/10.1007/s00784-023-05262-1'],
+  leitao: ['Leitão C.I.M.B. và cs. (2022). Clinical performance of monolithic CAD/CAM tooth-supported zirconia restorations: systematic review and meta-analysis. J Prosthodont Res 66(3):374–384', 'https://doi.org/10.2186/jpr.JPR_D_21_00081'],
+  alves: ['Alves L.M.M. và cs. (2019). The Wear Performance of Glazed and Polished Full Contour Zirconia. Brazilian Dental Journal 30(5):511–518', 'https://scielo.br/j/bdj/a/S9bR5vCK6ymJcVzmG6PPp4t/?lang=en'],
   zircosE: ['Zircos-E Etching Solution — RH Marketing (Lab Management Today)', 'https://lmtmag.com/products/rh-marketing-zircos-e-etching-solution'],
   sokolowski: ['Sokolowski G. và cs. (2023). The Shear Bond Strength of Resin-Based Luting Cement to Zirconia Ceramics after Different Surface Treatments. Materials 16(15):5433', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10419834'],
   cho2017: ['Cho J.H. và cs. (2017). Effect of zirconia surface treatment using nitric acid-hydrofluoric acid on the shear bond strengths of resin cements. J Adv Prosthodont 9(2):77–84', 'https://synapse.koreamed.org/articles/1054452'],
@@ -96,7 +106,8 @@ const ZR_CEMENT = `<p>Zirconia không xoi mòn được bằng axit HF và khôn
 <li><strong>Xi măng thông thường</strong> (glass ionomer, glass ionomer biến tính nhựa) khi cùi đủ chiều cao và độ thuôn hợp lý.</li>
 <li><strong>Xi măng nhựa</strong> khi cùi ngắn hoặc thuôn nhiều: thổi cát mặt trong bằng Al₂O₃ 50 µm (khoảng 2,5 bar), sau đó dùng primer có chứa <strong>MDP</strong>.</li>
 </ul>
-<p>Với inlay, onlay, overlay zirconia, labo <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">xoi mòn mặt dán bằng Zircos-E</a> theo yêu cầu — hiện miễn phí.</p>`;
+<p>Với inlay, onlay, overlay zirconia, labo <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">xoi mòn mặt dán bằng Zircos-E</a> theo yêu cầu — hiện miễn phí.</p>
+<p>Hỏi đáp chi tiết: <a href="/hoi-dap/gan-mao-zirconia/">gắn mão zirconia</a> · <a href="/hoi-dap/bong-mao-zirconia/">mão zirconia bị bong</a>.</p>`;
 
 const ZR_ADJUST = `<ul>
 <li>Chỉnh khớp bằng mũi kim cương hạt mịn, có làm mát bằng nước; tránh mũi thô và đá mài xanh ở bước hoàn tất.</li>
@@ -383,6 +394,7 @@ ${PREP_NOTE}
 ${PREP_RULES}
 <h2>Chỉnh khớp và đánh bóng trong miệng</h2>
 ${ZR_ADJUST}
+<p>Hỏi đáp chi tiết: <a href="/hoi-dap/khop-can-me-gay-zirconia/">mẻ, gãy, chỉnh khớp zirconia</a> · <a href="/hoi-dap/mai-cui-zirconia/">mài cùi cho zirconia</a>.</p>
 <h2>Gắn mão zirconia</h2>
 ${ZR_CEMENT}
 <h2>Gửi ca cho labo</h2>

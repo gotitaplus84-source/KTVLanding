@@ -9,6 +9,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SITE, BIZ, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES } from './content.mjs';
+import { QA_TOPICS, QA_UPDATED } from './qa.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const today = new Date().toISOString().slice(0, 10);
@@ -21,7 +22,7 @@ const footLinks = `<!--@links-->
   <div class="wrap foot-links">
     <nav aria-label="Phục hình"><p class="mono dim">Phục hình</p>${PRODUCTS.map((p) => `<a href="/phuc-hinh/${p.slug}/">${p.name}</a>`).join('')}</nav>
     <nav aria-label="Vật liệu"><p class="mono dim">Vật liệu</p>${MATERIALS.map((m) => `<a href="/vat-lieu/${m.slug}/">${m.name}</a>`).join('')}<a href="/vat-lieu/so-sanh-zirconia/">So sánh zirconia</a></nav>
-    <nav aria-label="Thông tin"><p class="mono dim">Thông tin</p><a href="/gui-ca/">Cách gửi ca</a><a href="/thoi-gian-san-xuat/">Thời gian sản xuất</a><a href="/bao-hanh/">Bảo hành</a><a href="/cau-hoi-thuong-gap/">Câu hỏi thường gặp</a><a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Xoi mòn Zircos-E</a><a href="/#lien-he">Liên hệ</a></nav>
+    <nav aria-label="Thông tin"><p class="mono dim">Thông tin</p><a href="/gui-ca/">Cách gửi ca</a><a href="/thoi-gian-san-xuat/">Thời gian sản xuất</a><a href="/bao-hanh/">Bảo hành</a><a href="/cau-hoi-thuong-gap/">Câu hỏi thường gặp</a><a href="/hoi-dap/">Hỏi đáp kỹ thuật</a><a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Xoi mòn Zircos-E</a><a href="/#lien-he">Liên hệ</a></nav>
     <div><p class="mono dim">Liên hệ</p><p>${esc(BIZ.address)}</p><p>${BIZ.hoursShort}</p><p class="dim">${esc(BIZ.delivery)}</p><p>${BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')}</p></div>
   </div>
   <!--/@links-->`;
@@ -41,7 +42,7 @@ const HEAD_COMMON = grab(/<meta name="theme-color"[^>]*>/) + '\n' +
   grab(/<link rel="icon" href[\s\S]*?<link rel="stylesheet" href="\/assets\/css\/site.css">/);
 
 /* ---------- page template ---------- */
-function page({ path, title, desc, crumbs, kicker, h1, lead, img, imgAlt, side, body, related, relatedTitle, schema = [], faq = [], sources = [] }) {
+function page({ path, title, desc, crumbs, kicker, h1, lead, img, imgAlt, side, body, related, relatedTitle, schema = [], faq = [], sources = [], pageExtra = {} }) {
   const url = SITE + path;
   for (const k of sources) if (!SOURCES[k]) throw new Error(`${path}: thiếu nguồn "${k}" trong SOURCES`);
   if (faq.length) {
@@ -55,7 +56,7 @@ function page({ path, title, desc, crumbs, kicker, h1, lead, img, imgAlt, side, 
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'WebPage', '@id': url + '#page', url, name: title, description: desc, inLanguage: 'vi',
-        publisher: { '@id': SITE + '/#org' }, ...(img ? { primaryImageOfPage: SITE + img } : {}) },
+        publisher: { '@id': SITE + '/#org' }, ...(img ? { primaryImageOfPage: SITE + img } : {}), ...pageExtra },
       { '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: SITE + c.url })) },
       ...schema,
     ],
@@ -230,6 +231,57 @@ pages.push(page({
   faq: SENDCASE_FAQ, sources: SENDCASE_SOURCES,
 }));
 
+/* ---------- hỏi đáp kỹ thuật ---------- */
+{
+  const upd = QA_UPDATED.split('-').reverse().join('/');
+  const byline = `\n<p class="byline mono">Biên soạn: KTV Dental Lab · Cập nhật: ${upd}</p>`;
+  const extra = { author: { '@id': SITE + '/#org' }, dateModified: QA_UPDATED };
+  const total = QA_TOPICS.reduce((n, t) => n + t.qs.length, 0);
+  const hubSide = sideBox([['Biên soạn', 'KTV Dental Lab'], ['Cập nhật', upd], ['Số câu hỏi', String(total)], ['Hỏi thêm · tư vấn', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a>`]]);
+  pages.push(page({
+    path: '/hoi-dap/',
+    title: 'Hỏi đáp kỹ thuật phục hình zirconia cho bác sĩ | KTV Dental Lab',
+    desc: `${total} câu hỏi bác sĩ hay gặp khi làm phục hình zirconia: chọn vật liệu, mài cùi, gắn mão, bong mão, mẻ – gãy. Trả lời ngắn gọn, có số liệu và nguồn.`,
+    crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Hỏi đáp kỹ thuật', url: '/hoi-dap/' }],
+    kicker: ['?', 'Hỏi đáp kỹ thuật'], h1: 'Hỏi đáp kỹ thuật cho bác sĩ',
+    lead: 'Những câu hỏi thường gặp khi làm phục hình zirconia — trả lời thẳng, kèm số liệu từ hướng dẫn của hãng và nghiên cứu.',
+    body: byline + QA_TOPICS.map((t) => `
+<h2><a href="/hoi-dap/${t.slug}/">${esc(t.name)}</a></h2>
+<p>${esc(t.lead)}</p>
+<ol class="qa-toc">${t.qs.map(([n, q]) => `<li value="${n}"><a href="/hoi-dap/${t.slug}/#cau-${n}">${esc(q)}</a></li>`).join('')}</ol>`).join(''),
+    side: hubSide,
+    related: [{ name: 'Cách gửi ca', url: '/gui-ca/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }, { name: 'Xoi mòn Zircos-E (miễn phí)', url: '/dich-vu/xoi-mon-zirconia-zircos-e/' }, { name: 'Câu hỏi thường gặp', url: '/cau-hoi-thuong-gap/' }],
+    relatedTitle: 'Xem thêm',
+    pageExtra: extra,
+    schema: [{ '@type': 'ItemList', name: 'Hỏi đáp kỹ thuật', itemListElement: QA_TOPICS.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t.name, url: `${SITE}/hoi-dap/${t.slug}/` })) }],
+  }));
+  for (const t of QA_TOPICS) {
+    const path = `/hoi-dap/${t.slug}/`;
+    const first = t.qs[0][0], last = t.qs[t.qs.length - 1][0];
+    pages.push(page({
+      path,
+      title: `${t.title} | KTV Dental Lab`,
+      desc: t.lead.length > 158 ? t.lead.slice(0, 155) + '…' : t.lead,
+      crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Hỏi đáp kỹ thuật', url: '/hoi-dap/' }, { name: t.name, url: path }],
+      kicker: [`${first}–${last}`, 'Hỏi đáp kỹ thuật'], h1: esc(t.name),
+      lead: esc(t.lead),
+      body: byline + `
+<nav class="qa-toc-box" aria-label="Các câu hỏi"><ol class="qa-toc">${t.qs.map(([n, q]) => `<li value="${n}"><a href="#cau-${n}">${esc(q)}</a></li>`).join('')}</ol></nav>` +
+        t.qs.map(([n, q, a]) => `
+<section class="qa-item" id="cau-${n}" aria-labelledby="cau-${n}-h">
+<h2 id="cau-${n}-h"><span class="qa-n mono">Câu ${n}</span> ${esc(q)}</h2>
+${a}
+</section>`).join(''),
+      side: sideBox([['Biên soạn', 'KTV Dental Lab'], ['Cập nhật', upd], ['Chủ đề', `<a href="/hoi-dap/">${QA_TOPICS.length} chủ đề · ${total} câu</a>`], ['Hỏi thêm · tư vấn', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a>`]]),
+      related: QA_TOPICS.filter((x) => x !== t).map((x) => ({ name: x.name, url: `/hoi-dap/${x.slug}/` })),
+      relatedTitle: 'Chủ đề khác',
+      sources: t.sources,
+      pageExtra: extra,
+      schema: [{ '@type': 'FAQPage', mainEntity: t.qs.map(([n, q, a]) => ({ '@type': 'Question', name: q, url: `${SITE}${path}#cau-${n}`, acceptedAnswer: { '@type': 'Answer', text: strip(a) } })) }],
+    }));
+  }
+}
+
 /* ---------- thông tin ---------- */
 pages.push(page({
   path: '/thoi-gian-san-xuat/',
@@ -266,7 +318,7 @@ pages.push(page({
   lead: 'Những câu bác sĩ và phòng khám hay hỏi khi làm việc với KTV Dental Lab.',
   body: FAQ.map(([q, a]) => `\n<h2>${esc(q)}</h2>\n<p>${a}</p>`).join(''),
   side: sideBox([['Báo giá · Zalo', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>`], ['Giờ làm việc', BIZ.hoursShort], ['Email', `<a href="mailto:${BIZ.email}">${BIZ.email}</a>`]]),
-  related: [{ name: 'Thời gian sản xuất', url: '/thoi-gian-san-xuat/' }, { name: 'Bảo hành', url: '/bao-hanh/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }],
+  related: [{ name: 'Hỏi đáp kỹ thuật cho bác sĩ', url: '/hoi-dap/' }, { name: 'Thời gian sản xuất', url: '/thoi-gian-san-xuat/' }, { name: 'Bảo hành', url: '/bao-hanh/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }],
   relatedTitle: 'Xem thêm',
   sources: FAQ_SOURCES,
   schema: [{ '@type': 'FAQPage', mainEntity: FAQ.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: strip(a) } })) }],
@@ -322,6 +374,10 @@ ${L('Thời gian sản xuất', '/thoi-gian-san-xuat/')}
 ${L('Bảo hành', '/bao-hanh/')}
 ${L('Xoi mòn zirconia bằng Zircos-E (miễn phí)', '/dich-vu/xoi-mon-zirconia-zircos-e/')}
 ${L('Câu hỏi thường gặp', '/cau-hoi-thuong-gap/')}
+
+## Hỏi đáp kỹ thuật cho bác sĩ
+
+${QA_TOPICS.map((t) => L(t.name, `/hoi-dap/${t.slug}/`, t.qs.map((q) => q[1]).join(' · '))).join('\n')}
 
 ## Optional
 
