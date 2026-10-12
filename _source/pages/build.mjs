@@ -8,7 +8,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, BIZ, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ } from './content.mjs';
+import { SITE, BIZ, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES } from './content.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const today = new Date().toISOString().slice(0, 10);
@@ -49,7 +49,7 @@ function page({ path, title, desc, crumbs, kicker, h1, lead, img, imgAlt, side, 
     schema = [...schema, { '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: strip(a) } })) }];
   }
   if (sources.length) {
-    body += `\n<section class="refs" aria-labelledby="refs-h">\n<h2 id="refs-h">Nguồn tham khảo</h2>\n<ol>${sources.map((k) => `<li><a href="${SOURCES[k][1]}" target="_blank" rel="noopener">${esc(SOURCES[k][0])}</a></li>`).join('')}</ol>\n<p class="note">Thông số vật liệu theo công bố của nhà sản xuất; số liệu lâm sàng chỉ để tham khảo — quyết định điều trị thuộc về bác sĩ.</p>\n</section>`;
+    body += `\n<section class="refs" aria-labelledby="refs-h">\n<h2 id="refs-h">Nguồn tham khảo</h2>\n<ol>${sources.map((k) => `<li><a href="${SOURCES[k][1]}" target="_blank" rel="noopener">${esc(SOURCES[k][0])}</a></li>`).join('')}</ol>\n</section>`;
   }
   const ld = {
     '@context': 'https://schema.org',
@@ -227,7 +227,7 @@ pages.push(page({
   side: sideBox([['Dấu', 'Mọi phương thức'], ['Phiếu chỉ định', 'Mọi kênh online'], ['Giờ làm việc', BIZ.hoursShort], ['Giao nhận', 'Khắp miền Nam · lấy/giao tận nơi Bình Dương cũ'], ['Thời gian sản xuất', fastest]]),
   related: [{ name: 'Thời gian sản xuất', url: '/thoi-gian-san-xuat/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }, { name: 'Xoi mòn Zircos-E (miễn phí)', url: '/dich-vu/xoi-mon-zirconia-zircos-e/' }, { name: 'Bảo hành', url: '/bao-hanh/' }],
   relatedTitle: 'Xem thêm',
-  faq: SENDCASE_FAQ,
+  faq: SENDCASE_FAQ, sources: SENDCASE_SOURCES,
 }));
 
 /* ---------- thông tin ---------- */
