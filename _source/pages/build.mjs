@@ -170,7 +170,7 @@ for (const m of MATERIALS) {
       : `Hợp kim ${m.name} (${m.maker}, ${m.country}) cho răng sứ kim loại và mão toàn kim loại tại labo KTV Dental Lab, TP HCM – Bình Dương.`,
     crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Vật liệu', url: '/#vat-lieu' }, { name: m.name, url: path }],
     kicker: [String(MATERIALS.indexOf(m) + 1).padStart(2, '0'), zr ? 'Vật liệu · Zirconia' : 'Vật liệu · Hợp kim'],
-    h1: zr ? `Răng sứ ${esc(m.name)}` : `Răng sứ kim loại ${esc(m.name)}`,
+    h1: zr ? `Răng sứ <span class="nw">${esc(m.name)}</span>` : `Răng sứ kim loại <span class="nw">${esc(m.name)}</span>`,
     lead: m.lead,
     img: m.img, imgAlt: m.imgAlt, body: materialBody(m),
     side: sideBox([['Loại', zr ? `Zirconia${m.multilayer ? ' · có Multilayer' : ''}` : 'Hợp kim không quý'], ['Xuất xứ', esc(m.country)], ['Nhà sản xuất', esc(m.maker)], ['Bảo hành', `<strong>${war}</strong>`], ['Thời gian sản xuất', fastest]]),

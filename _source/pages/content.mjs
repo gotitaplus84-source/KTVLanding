@@ -176,7 +176,7 @@ export const MATERIALS = [
     lead: 'Hợp kim nickel – chrome của Eisenbacher Dentalwaren ED (Đức) và Aalba Dent (Mỹ), làm sườn răng sứ kim loại và mão toàn kim loại.',
     about: `<p><strong>Ni-Cr</strong> (nickel – chrome) là hợp kim không quý, được dùng lâu đời làm <strong>sườn răng sứ kim loại</strong> và <strong>mão toàn kim loại</strong> nhờ cứng, bền và chi phí hợp lý. KTV Dental Lab dùng hợp kim của Eisenbacher Dentalwaren ED (Đức) và Aalba Dent (Mỹ).</p>
 <h3>Lưu ý dị ứng nickel</h3>
-<p>Dị ứng nickel khá phổ biến trong cộng đồng — các khảo sát thử áp da ghi nhận khoảng 10 – 30% ở nữ và 1 – 3% ở nam. Với bệnh nhân có tiền sử dị ứng nickel (ví dụ dị ứng khuyên tai, dây đồng hồ), bác sĩ nên cân nhắc vật liệu khác như <a href="/vat-lieu/co-cr/">Co-Cr</a> (kiểm tra thành phần) hoặc <a href="/phuc-hinh/mao-full-zirconia/">zirconia</a>.</p>`,
+<p>Dị ứng nickel khá phổ biến trong cộng đồng — các khảo sát thử áp da ghi nhận khoảng 10 – 30% ở nữ và 1 – 3% ở nam. Với bệnh nhân có tiền sử dị ứng nickel (ví dụ dị ứng khuyên tai, dây đồng hồ), bác sĩ nên cân nhắc vật liệu khác như <a href="/vat-lieu/co-cr/">Co-Cr</a> (mẫu hợp kim Co-Cr của labo có kết quả kiểm nghiệm Ni 0,00%) hoặc <a href="/phuc-hinh/mao-full-zirconia/">zirconia</a>.</p>`,
     specs: [['Loại', 'Hợp kim không quý nickel – chrome'], ['Hãng', 'Eisenbacher Dentalwaren ED (Đức), Aalba Dent (Mỹ)'], ['Dùng cho', 'Sườn mão sứ đắp sứ, mão toàn kim loại, inlay/onlay, cùi giả kim loại'], ['Bảo hành tại KTV', '<strong>Theo thỏa thuận</strong> với phòng khám']],
     specsNote: '',
     choose: 'Răng sau cần độ bền và chi phí hợp lý; mão toàn kim loại khi khoảng phục hình hạn chế. Tránh dùng cho bệnh nhân dị ứng nickel.',
@@ -186,13 +186,24 @@ export const MATERIALS = [
 
   { slug: 'co-cr', name: 'Co-Cr', kind: 'metal', country: 'Đức', maker: 'Eisenbacher Dentalwaren ED', years: null,
     img: '/assets/img/products/metal-lg.webp', imgAlt: 'Mão răng toàn kim loại', multilayer: false,
-    lead: 'Hợp kim cobalt – chrome của Eisenbacher Dentalwaren ED (Đức), làm sườn răng sứ kim loại và mão toàn kim loại.',
+    lead: 'Hợp kim cobalt – chrome của Eisenbacher Dentalwaren ED (Đức), làm sườn răng sứ kim loại và mão toàn kim loại. Kết quả kiểm nghiệm thành phần tại Viện Vật liệu xây dựng: Ni 0,00%.',
     about: `<p><strong>Co-Cr</strong> (cobalt – chrome) là hợp kim không quý có thành phần chính là cobalt và chrome, dùng làm <strong>sườn răng sứ kim loại</strong> và <strong>mão toàn kim loại</strong>. KTV Dental Lab dùng hợp kim Co-Cr của Eisenbacher Dentalwaren ED (Đức).</p>
-<p>Với bệnh nhân dị ứng nickel, Co-Cr thường được cân nhắc thay cho Ni-Cr; bác sĩ có thể đề nghị labo cung cấp thông số thành phần của hợp kim để kiểm tra trước khi chỉ định.</p>`,
+<p>Với bệnh nhân dị ứng nickel, Co-Cr thường được cân nhắc thay cho Ni-Cr. Vì vậy KTV Dental Lab đã gửi mẫu kiểm nghiệm thành phần (xem bên dưới).</p>
+<h2>Kết quả kiểm nghiệm thành phần</h2>
+<p>Mẫu phần kim loại của răng sứ Co-Cr do labo sản xuất được <strong>Trung tâm Phân tích, Kiểm định vật liệu xây dựng — Viện Vật liệu xây dựng (VIBM, Bộ Xây dựng)</strong> phân tích theo phương pháp tham chiếu ISO 22674:2022 (phiếu kết quả số 1958/VLXD-TTKĐ, ngày 26/05/2026).</p>
+${table(['Nguyên tố', 'Kết quả (%)'], [
+  ['Cobalt (Co)', '46,70'],
+  ['Chrome (Cr)', '38,40'],
+  ['Tungsten (W)', '4,54'],
+  ['<strong>Nickel (Ni)</strong>', '<strong>0,00</strong>'],
+  ['Titan (Ti), Molypden (Mo), Kẽm (Zn)', '0,00'],
+])}
+<p class="note">Trích các nguyên tố chính; phiếu còn ghi kết quả của Fe, Al, Si, Ca, Ag, P, Mn, S. Kết quả chỉ có giá trị với mẫu đã gửi thử nghiệm. <a href="/assets/img/docs/co-cr-thanh-phan-vibm.webp" target="_blank" rel="noopener">Xem toàn văn phiếu kết quả thử nghiệm</a>.</p>`,
     specs: [['Loại', 'Hợp kim không quý cobalt – chrome'], ['Hãng', 'Eisenbacher Dentalwaren ED (Đức)'], ['Dùng cho', 'Sườn mão sứ đắp sứ, mão toàn kim loại, inlay/onlay, cùi giả kim loại'], ['Bảo hành tại KTV', '<strong>Theo thỏa thuận</strong> với phòng khám']],
     specsNote: '',
-    choose: 'Răng sứ kim loại cho bệnh nhân cần tránh nickel (sau khi kiểm tra thành phần hợp kim), hoặc khi bác sĩ ưu tiên hợp kim cobalt – chrome.',
-    faq: [['Co-Cr khác Ni-Cr thế nào?', 'Ni-Cr có thành phần chính là nickel và chrome; Co-Cr có thành phần chính là cobalt và chrome. Co-Cr thường được cân nhắc cho bệnh nhân dị ứng nickel — nên kiểm tra thông số thành phần hợp kim trước khi chỉ định.'],
+    choose: 'Răng sứ kim loại cho bệnh nhân cần tránh nickel (mẫu Co-Cr của labo có kết quả Ni 0,00%), hoặc khi bác sĩ ưu tiên hợp kim cobalt – chrome.',
+    faq: [['Co-Cr khác Ni-Cr thế nào?', 'Ni-Cr có thành phần chính là nickel và chrome; Co-Cr có thành phần chính là cobalt và chrome. Co-Cr thường được cân nhắc cho bệnh nhân dị ứng nickel.'],
+      ['Răng sứ Co-Cr của KTV Dental Lab có chứa nickel không?', 'Mẫu phần kim loại răng sứ Co-Cr của labo được Viện Vật liệu xây dựng (VIBM) phân tích, kết quả Ni 0,00% (phiếu số 1958/VLXD-TTKĐ, 26/05/2026); thành phần chính là cobalt 46,70%, chrome 38,40%, tungsten 4,54%.'],
       ['Răng sứ Co-Cr bảo hành bao lâu?', 'Răng sứ kim loại tại KTV Dental Lab được bảo hành theo thỏa thuận với phòng khám.']],
     sources: ['nickel'] },
 ];
@@ -303,7 +314,7 @@ ${ZR_CEMENT}`,
 <h2>Vật liệu</h2>
 ${table(['Hợp kim', 'Hãng', 'Ghi chú'], [
   ['<a href="/vat-lieu/ni-cr/">Ni-Cr</a>', 'Eisenbacher Dentalwaren ED (Đức), Aalba Dent (Mỹ)', 'Tránh cho bệnh nhân dị ứng nickel'],
-  ['<a href="/vat-lieu/co-cr/">Co-Cr</a>', 'Eisenbacher Dentalwaren ED (Đức)', 'Thường cân nhắc khi cần tránh nickel (kiểm tra thành phần)'],
+  ['<a href="/vat-lieu/co-cr/">Co-Cr</a>', 'Eisenbacher Dentalwaren ED (Đức)', 'Kết quả kiểm nghiệm mẫu: Ni 0,00% — <a href="/vat-lieu/co-cr/">xem chi tiết</a>'],
 ])}
 <h2>Hướng dẫn mài cùi tham khảo</h2>
 <p>Theo tài liệu giảng dạy phục hình của Đại học Iowa, mão toàn kim loại cần mài mặt nhai khoảng <strong>1,5 mm</strong> ở múi chức năng và <strong>1,0 mm</strong> ở múi không chức năng; thành trục <strong>0,5 – 1,0 mm</strong> — ít hơn so với mão sứ – kim loại (mặt nhai 1,5 – 2,0 mm).</p>
