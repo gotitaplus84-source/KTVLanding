@@ -8,7 +8,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, BIZ, QUOTE_LINKS, QUOTE_TEXT, QUOTE_TPL, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES, localBody, LOCAL_FAQ, LOCAL_SOURCES, LOCAL_AREAS, hcmBody, HCM_FAQ, HCM_SOURCES } from './content.mjs';
+import { SITE, BIZ, QUOTE_LINKS, QUOTE_TEXT, QUOTE_TPL, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES, localBody, LOCAL_FAQ, LOCAL_SOURCES, LOCAL_AREAS, hcmBody, HCM_FAQ, HCM_SOURCES, legalBody, LEGAL_FAQ, LEGAL_SOURCES } from './content.mjs';
 import { QA_TOPICS as QA_1, QA_UPDATED } from './qa.mjs';
 import { QA_TOPICS_2 } from './qa2.mjs';
 const QA_TOPICS = [...QA_1, ...QA_TOPICS_2];
@@ -24,7 +24,7 @@ const footLinks = `<!--@links-->
   <div class="wrap foot-links">
     <nav aria-label="Phục hình"><p class="mono dim">Phục hình</p>${PRODUCTS.map((p) => `<a href="/phuc-hinh/${p.slug}/">${p.name}</a>`).join('')}</nav>
     <nav aria-label="Vật liệu"><p class="mono dim">Vật liệu</p>${MATERIALS.map((m) => `<a href="/vat-lieu/${m.slug}/">${m.name}</a>`).join('')}<a href="/vat-lieu/so-sanh-zirconia/">So sánh zirconia</a></nav>
-    <nav aria-label="Thông tin"><p class="mono dim">Thông tin</p><a href="/labo-rang-su-binh-duong/">Labo răng sứ Bình Dương</a><a href="/labo-rang-su-tp-hcm/">Labo răng sứ TP HCM</a><a href="/gui-ca/">Cách gửi ca</a><a href="/thoi-gian-san-xuat/">Thời gian sản xuất</a><a href="/bao-hanh/">Bảo hành</a><a href="/cau-hoi-thuong-gap/">Câu hỏi thường gặp</a><a href="/hoi-dap/">Hỏi đáp kỹ thuật</a><a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Xoi mòn Zircos-E</a><a href="/#lien-he">Liên hệ</a></nav>
+    <nav aria-label="Thông tin"><p class="mono dim">Thông tin</p><a href="/labo-rang-su-binh-duong/">Labo răng sứ Bình Dương</a><a href="/labo-rang-su-tp-hcm/">Labo răng sứ TP HCM</a><a href="/gui-ca/">Cách gửi ca</a><a href="/thoi-gian-san-xuat/">Thời gian sản xuất</a><a href="/bao-hanh/">Bảo hành</a><a href="/cau-hoi-thuong-gap/">Câu hỏi thường gặp</a><a href="/hoi-dap/">Hỏi đáp kỹ thuật</a><a href="/phap-ly/">Thông tin pháp lý</a><a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Xoi mòn Zircos-E</a><a href="/#lien-he">Liên hệ</a></nav>
     <div><p class="mono dim">Liên hệ</p><p>${esc(BIZ.address)}</p><p>${BIZ.hoursShort}</p><p class="dim">${esc(BIZ.delivery)}</p><p>${BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')}</p></div>
   </div>
   <!--/@links-->`;
@@ -321,6 +321,21 @@ pages.push(page({
   schema: [service('Labo răng sứ tại TP Hồ Chí Minh', '/labo-rang-su-tp-hcm/', { serviceType: 'Sản xuất phục hình răng sứ cho phòng khám nha khoa', areaServed: [{ '@type': 'City', name: 'TP Hồ Chí Minh' }, { '@type': 'Place', name: 'Bình Dương cũ' }, { '@type': 'Place', name: 'Bà Rịa – Vũng Tàu cũ' }, { '@type': 'Place', name: 'Miền Nam Việt Nam' }] })],
 }));
 
+pages.push(page({
+  path: '/phap-ly/',
+  title: 'Thông tin pháp lý – Công ty TNHH MTV KTV | KTV Dental Lab',
+  desc: 'Thông tin pháp lý của KTV Dental Lab: Công ty TNHH MTV KTV, mã số thuế 3703340735, chứng nhận ISO 13485:2016, nguồn gốc vật liệu, kết quả kiểm nghiệm Co-Cr.',
+  crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Thông tin pháp lý', url: '/phap-ly/' }],
+  kicker: ['§', 'Thông tin'], h1: 'Thông tin pháp lý',
+  lead: 'Doanh nghiệp, mã số thuế, chứng nhận chất lượng và nguồn gốc vật liệu — tra cứu được tại nguồn chính thức.',
+  body: legalBody(),
+  side: sideBox([['Doanh nghiệp', BIZ.legal], ['Mã số thuế', '3703340735'], ['Chứng nhận', `${BIZ.iso.std}<br>số ${BIZ.iso.no}`], ['Email', `<a href="mailto:${BIZ.email}">${BIZ.email}</a>`]]),
+  related: [{ name: 'Bảo hành', url: '/bao-hanh/' }, { name: 'Co-Cr: kết quả kiểm nghiệm', url: '/vat-lieu/co-cr/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }, { name: 'Câu hỏi thường gặp', url: '/cau-hoi-thuong-gap/' }],
+  relatedTitle: 'Xem thêm',
+  faq: LEGAL_FAQ, sources: LEGAL_SOURCES,
+  pageExtra: { about: { '@id': SITE + '/#org' }, dateModified: today },
+}));
+
 /* ---------- thông tin ---------- */
 pages.push(page({
   path: '/thoi-gian-san-xuat/',
@@ -412,6 +427,7 @@ ${L('So sánh các dòng zirconia', '/vat-lieu/so-sanh-zirconia/', 'độ bền,
 ${L('Labo răng sứ Bình Dương (Thủ Dầu Một)', '/labo-rang-su-binh-duong/', 'địa chỉ, khu vực giao nhận, thời gian sản xuất, bảo hành')}
 ${L('Labo răng sứ TP HCM', '/labo-rang-su-tp-hcm/', 'gửi ca từ xa: file scan, dấu, lịch hẹn')}
 ${L('Cách gửi ca', '/gui-ca/')}
+${L('Thông tin pháp lý', '/phap-ly/', 'tên doanh nghiệp, mã số thuế, ISO 13485, nguồn gốc vật liệu')}
 ${L('Thời gian sản xuất', '/thoi-gian-san-xuat/')}
 ${L('Bảo hành', '/bao-hanh/')}
 ${L('Xoi mòn zirconia bằng Zircos-E (miễn phí)', '/dich-vu/xoi-mon-zirconia-zircos-e/')}

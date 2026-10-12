@@ -1052,3 +1052,47 @@ export const HCM_FAQ = [
   ['Làm sao nhận báo giá?', `Nhắn Zalo ${QUOTE_TEXT} để nhận bảng báo giá mới nhất và tư vấn chọn vật liệu.`],
 ];
 export const HCM_SOURCES = ['nq202', 'an2024', 'iti2018', 'dwx52'];
+
+/* ---------- Thông tin pháp lý (chỉ thông tin công khai) ---------- */
+export function legalBody() {
+  return `
+<p class="qa-short">KTV Dental Lab là tên thương mại của <strong>${BIZ.legal}</strong>, mã số thuế <strong>3703340735</strong>, địa chỉ ${BIZ.address}. Hệ thống quản lý chất lượng đạt <strong>${BIZ.iso.std}</strong> do ${BIZ.iso.body} chứng nhận. Thông tin dưới đây phòng khám tự tra cứu được tại nguồn chính thức.</p>
+<h2>Thông tin doanh nghiệp</h2>
+${table(['Mục', 'Chi tiết'], [
+  ['Tên doanh nghiệp', BIZ.legal],
+  ['Tên thương mại', BIZ.name],
+  ['Mã số thuế', '3703340735'],
+  ['Địa chỉ', `${BIZ.address} (${BIZ.area})`],
+  ['Điện thoại', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')],
+  ['Email', `<a href="mailto:${BIZ.email}">${BIZ.email}</a>`],
+  ['Website', `<a href="${SITE}/">ktvlab.com</a>`],
+])}
+<p>Tra cứu mã số thuế và trạng thái doanh nghiệp: <a href="https://tracuunnt.gdt.gov.vn/tcnnt/mstdn.jsp" target="_blank" rel="noopener">trang tra cứu người nộp thuế của Cục Thuế</a> · <a href="https://dangkykinhdoanh.gov.vn/" target="_blank" rel="noopener">Cổng thông tin quốc gia về đăng ký doanh nghiệp</a>.</p>
+<h2>Chứng nhận hệ thống quản lý chất lượng</h2>
+${table(['Mục', 'Chi tiết'], [
+  ['Tiêu chuẩn', `${BIZ.iso.std} — hệ thống quản lý chất lượng cho lĩnh vực trang thiết bị y tế`],
+  ['Tổ chức chứng nhận', BIZ.iso.body],
+  ['Số giấy chứng nhận', BIZ.iso.no],
+  ['Hiệu lực', BIZ.iso.valid],
+  ['Phạm vi', 'Sản xuất và kinh doanh răng sứ kim loại, răng sứ không kim loại'],
+  ['Giám sát', 'Đánh giá giám sát định kỳ hằng năm'],
+])}
+<p>Tra cứu chứng chỉ: <a href="https://isocert.org.vn/tra-cuu-chung-chi-iso" target="_blank" rel="noopener">website ISOCERT</a>. ISO 13485 là tiêu chuẩn quốc tế về hệ thống quản lý chất lượng cho tổ chức trong lĩnh vực thiết bị y tế — chứng nhận cách labo kiểm soát và truy xuất quy trình sản xuất.</p>
+<h2>Nguồn gốc vật liệu</h2>
+<p>Mỗi dòng vật liệu được công bố tên hãng và xuất xứ:</p>
+${table(['Vật liệu', 'Loại', 'Nhà sản xuất', 'Xuất xứ'], MATERIALS.map((m) => [link(m), m.kind === 'zirconia' ? 'Zirconia' : 'Hợp kim', m.maker, m.country]), 'wide')}
+<h2>Kiểm nghiệm vật liệu</h2>
+<p>Mẫu phần kim loại của răng sứ Co-Cr do labo sản xuất được Trung tâm Phân tích, Kiểm định vật liệu xây dựng — Viện Vật liệu xây dựng (VIBM) phân tích theo phương pháp tham chiếu ISO 22674:2022: <strong>Ni 0,00%</strong> (phiếu kết quả số 1958/VLXD-TTKĐ, ngày 26/05/2026). <a href="/vat-lieu/co-cr/">Xem kết quả và toàn văn phiếu</a>.</p>
+<h2>Hoá đơn và chứng từ</h2>
+<p>Phòng khám cần thông tin xuất hoá đơn hoặc chứng từ cho hồ sơ, vui lòng trao đổi với labo khi bắt đầu hợp tác: <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a> · <a href="mailto:${BIZ.email}">${BIZ.email}</a>.</p>
+<h2>Địa chỉ sau sắp xếp đơn vị hành chính</h2>
+<p>Từ ngày 01/7/2025, theo Nghị quyết 202/2025/QH15, tỉnh Bình Dương được sắp xếp vào TP Hồ Chí Minh. Địa chỉ của labo ghi theo đơn vị hành chính mới: phường Phú Lợi, TP Hồ Chí Minh (khu vực Thủ Dầu Một, Bình Dương cũ).</p>`;
+}
+export const LEGAL_FAQ = [
+  ['KTV Dental Lab là doanh nghiệp nào?', `${BIZ.legal}, mã số thuế 3703340735, địa chỉ ${BIZ.address}.`],
+  ['Làm sao kiểm tra mã số thuế của labo?', 'Nhập mã số thuế 3703340735 trên trang tra cứu người nộp thuế của Cục Thuế hoặc Cổng thông tin quốc gia về đăng ký doanh nghiệp.'],
+  ['Chứng nhận ISO 13485 của labo tra cứu ở đâu?', `Trên website ${BIZ.iso.body} (isocert.org.vn), với số giấy chứng nhận ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}.`],
+  ['Vật liệu của labo có rõ nguồn gốc không?', 'Có. Mỗi dòng zirconia và hợp kim được công bố tên nhà sản xuất và xuất xứ; mẫu hợp kim Co-Cr có kết quả kiểm nghiệm thành phần tại Viện Vật liệu xây dựng.'],
+  ['Phòng khám cần hoá đơn, chứng từ thì liên hệ thế nào?', `Trao đổi với labo khi bắt đầu hợp tác qua điện thoại ${BIZ.phones[0].text} hoặc email ${BIZ.email}.`],
+];
+export const LEGAL_SOURCES = ['iso13485', 'nq202'];

@@ -48,6 +48,7 @@ Labo sản xuất phục hình theo từng ca của phòng khám nha khoa và gi
 - [Labo răng sứ Bình Dương (Thủ Dầu Một)](https://ktvlab.com/labo-rang-su-binh-duong/): địa chỉ, khu vực giao nhận, thời gian sản xuất, bảo hành
 - [Labo răng sứ TP HCM](https://ktvlab.com/labo-rang-su-tp-hcm/): gửi ca từ xa: file scan, dấu, lịch hẹn
 - [Cách gửi ca](https://ktvlab.com/gui-ca/)
+- [Thông tin pháp lý](https://ktvlab.com/phap-ly/): tên doanh nghiệp, mã số thuế, ISO 13485, nguồn gốc vật liệu
 - [Thời gian sản xuất](https://ktvlab.com/thoi-gian-san-xuat/)
 - [Bảo hành](https://ktvlab.com/bao-hanh/)
 - [Xoi mòn zirconia bằng Zircos-E (miễn phí)](https://ktvlab.com/dich-vu/xoi-mon-zirconia-zircos-e/)
