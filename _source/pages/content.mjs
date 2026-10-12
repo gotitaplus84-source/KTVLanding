@@ -72,6 +72,7 @@ export const SOURCES = {
   kendirli: ['Kendirli C. và cs. (2026). The Effect of Implant Angle and Ti-Base Abutment Height on Monolithic Zirconia Crown Retention. Meandros Med Dent J', 'https://doi.org/10.69601/meandrosmdj.1789538'],
   nq202: ['Nghị quyết 202/2025/QH15 về sắp xếp đơn vị hành chính cấp tỉnh — tóm tắt trên Thư viện Pháp luật', 'https://thuvienphapluat.vn/phap-luat-nha-dat/cap-nhat-thong-tin-dia-chi-van-phong-dang-ky-dat-dai-tinh-binh-duong-sau-khi-sap-nhap-tu-ngay-01720-5312.html'],
   iso13485: ['ISO 13485:2016 — Medical devices — Quality management systems — Requirements for regulatory purposes (ISO)', 'https://www.iso.org/standard/59752.html'],
+  dwx52: ['DWX-52Di 5 Axis Dental Milling Machine — DGSHAPE / Roland DGA', 'https://www.rolanddga.com/en-la/products/dental/dwx-52di-5-axis-dental-milling-machine'],
   zircosE: ['Zircos-E Etching Solution — RH Marketing (Lab Management Today)', 'https://lmtmag.com/products/rh-marketing-zircos-e-etching-solution'],
   sokolowski: ['Sokolowski G. và cs. (2023). The Shear Bond Strength of Resin-Based Luting Cement to Zirconia Ceramics after Different Surface Treatments. Materials 16(15):5433', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10419834'],
   cho2017: ['Cho J.H. và cs. (2017). Effect of zirconia surface treatment using nitric acid-hydrofluoric acid on the shear bond strengths of resin cements. J Adv Prosthodont 9(2):77–84', 'https://synapse.koreamed.org/articles/1054452'],
@@ -894,6 +895,7 @@ const quickInfo = (deliveryRow) => table(['Mục', 'Chi tiết'], [
   ['Điện thoại labo', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')],
   ['Báo giá, tư vấn ban đầu', `Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>`],
   ['Chứng nhận', `${BIZ.iso.std} — ${BIZ.iso.body}, số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}`],
+  ['Máy phay CAD/CAM', 'DGSHAPE DWX-52Di — 5 trục'],
   ['Thời gian sản xuất', 'Răng đơn lẻ, 2 – 3 đơn vị: 1 ngày · cầu 4 – 8 đơn vị: 2 ngày · cầu toàn hàm: 3 ngày'],
   ['Bảo hành', 'Zirconia 3 – 15 năm theo dòng phôi · răng sứ kim loại theo thỏa thuận'],
   ['Giao nhận', deliveryRow],
@@ -925,7 +927,7 @@ ${quickInfo('Lấy và giao tận nơi khu vực Bình Dương cũ · nhận ca 
 ${materialTable()}
 <p>Chọn dòng theo ca: <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a> · <a href="/hoi-dap/chon-vat-lieu-zirconia/">hỏi đáp chọn vật liệu</a>.</p>
 <h2>Máy CAD/CAM quan trọng, nhưng máy không tự tạo ra phục hình tốt</h2>
-<p>Máy phay chính xác là một phần của labo số, nhưng máy không tự quyết định:</p>
+<p>KTV Dental Lab dùng máy phay nha khoa 5 trục <strong>DGSHAPE DWX-52Di</strong> (Roland DGA) cho quy trình CAD/CAM. Máy phay chính xác là một phần quan trọng của labo số, nhưng máy không tự quyết định:</p>
 <ul>
 <li>đường hoàn tất nằm ở đâu;</li>
 <li>khe xi măng bao nhiêu;</li>
@@ -935,7 +937,7 @@ ${materialTable()}
 <li>hình thể vùng cổ có ép mô mềm không;</li>
 <li>bác sĩ muốn giữ hình thể răng cũ đến mức nào.</li>
 </ul>
-<p>Những quyết định đó nằm ở thiết kế và kiểm soát của kỹ thuật viên. Một phục hình tốt cần đủ chuỗi: <strong>dữ liệu đúng → thiết kế đúng → vật liệu đúng → gia công chính xác → kiểm soát sau sản xuất</strong>. Thiếu một mắt xích, máy tốt cũng không sửa được cả quy trình.</p>
+<p>Những quyết định đó nằm ở thiết kế và kiểm soát của kỹ thuật viên. Giới thiệu máy không nhằm nói “có máy này nên răng sẽ hoàn hảo”: một phục hình tốt cần đủ chuỗi: <strong>dữ liệu đúng → thiết kế đúng → vật liệu đúng → gia công chính xác → kiểm soát sau sản xuất</strong>. Thiếu một mắt xích, máy tốt cũng không sửa được cả quy trình.</p>
 <h2>Độ sát khít không bắt đầu ở máy phay</h2>
 <p>Mão không xuống hết có thể bắt đầu từ đường hoàn tất chưa rõ, mô mềm che bờ, vùng scan nhiễu do nước bọt hoặc máu, tiếp xúc quá chặt, khe xi măng chưa phù hợp, hoặc dữ liệu khớp cắn sai. Theo An và cộng sự (2024), đường hoàn tất dưới nướu và nước bọt đều làm giảm đáng kể độ chính xác khi scan.</p>
 <p>File scan nhìn đẹp không đồng nghĩa mọi dữ liệu cần thiết đều đủ để sản xuất. Labo số cần đọc file dưới góc độ sản xuất và báo lại vùng có nguy cơ trước khi thiết kế. KTV nhận dấu truyền thống, mẫu hàm và file scan trong miệng — mục tiêu là dữ liệu đủ tốt cho từng ca, không ép phòng khám theo một quy trình duy nhất.</p>
@@ -981,7 +983,7 @@ export const LOCAL_FAQ = [
   ['Răng toàn sứ tại labo bảo hành bao lâu?', `Theo dòng zirconia: ${zr.map((m) => `${m.name} ${m.years} năm`).join(', ')}. Răng sứ kim loại bảo hành theo thỏa thuận với phòng khám.`],
   ['Labo có làm việc trực tiếp với bệnh nhân không?', 'Không. KTV Dental Lab sản xuất phục hình theo chỉ định của phòng khám nha khoa và giao trực tiếp đến phòng khám.'],
 ];
-export const LOCAL_SOURCES = ['nq202', 'iso13485', 'katana', 'an2024', 'iowa'];
+export const LOCAL_SOURCES = ['nq202', 'iso13485', 'katana', 'dwx52', 'an2024', 'iowa'];
 
 export function hcmBody() {
   return `
@@ -1033,4 +1035,4 @@ export const HCM_FAQ = [
   ['Labo có chứng nhận chất lượng không?', `Có. ${BIZ.legal} đạt ${BIZ.iso.std}, do ${BIZ.iso.body} chứng nhận (số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}).`],
   ['Làm sao nhận báo giá?', `Nhắn Zalo ${BIZ.quote.label} để nhận bảng báo giá mới nhất và tư vấn chọn vật liệu.`],
 ];
-export const HCM_SOURCES = ['nq202', 'an2024', 'iti2018'];
+export const HCM_SOURCES = ['nq202', 'an2024', 'iti2018', 'dwx52'];

@@ -388,6 +388,7 @@ Labo sản xuất phục hình theo từng ca của phòng khám nha khoa và gi
 - Báo giá, tư vấn ban đầu: Zalo ${BIZ.quote.label}
 - Khu vực: ${BIZ.delivery}
 - Chứng nhận: ${BIZ.iso.std}, ${BIZ.iso.body}, số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}
+- Máy phay CAD/CAM: DGSHAPE DWX-52Di (5 trục)
 - Thời gian sản xuất (mọi loại phục hình, tính từ lúc labo nhận hàng): ${TURNAROUND.map((t) => `${t.what.toLowerCase()} ${t.time}${t.max ? ` (${t.max})` : ''}`).join('; ')}
 - Bảo hành: ${zr.map((m) => `${m.name} ${m.years} năm`).join(', ')}; răng sứ kim loại (${metal.map((m) => m.name).join(', ')}) theo thỏa thuận; phục hình trên implant như phục hình trên răng thật cùng dòng vật liệu
 - Gửi ca: nhận dấu theo mọi phương thức (dấu, mẫu hàm, file scan trong miệng); phiếu chỉ định nha khoa gửi qua mọi kênh online
