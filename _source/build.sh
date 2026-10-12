@@ -7,4 +7,6 @@ OUT=..
 rm -f "$OUT"/assets/js/*.js
 npx esbuild src/main.js --bundle --splitting --format=esm --minify --target=es2020 --outdir="$OUT/assets/js" --chunk-names=[name]-[hash] --legal-comments=none
 npx esbuild src/site.css --minify --outfile="$OUT/assets/css/site.css"
+# trang con + liên kết chân trang + sitemap.xml (từ pages/content.mjs)
+node pages/build.mjs
 echo "Xong. Commit thư mục assets/ ở gốc repo lên GitHub."
