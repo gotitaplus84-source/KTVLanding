@@ -70,6 +70,8 @@ export const SOURCES = {
   kinzer: ['Kinzer G. (2016). How to achieve success with custom zirconia abutments — Spear Education', 'https://www.speareducation.com/spear-review/2016/07/how-to-achieve-success-with-custom-zirconia-abutments'],
   pardal: ['Pardal-Peláez B. và cs. (2018). Strategies to reduce torque loss of abutment screws. J Oral Res Rev 10(2):68–75', 'https://doi.org/10.4103/jorr.jorr_37_17'],
   kendirli: ['Kendirli C. và cs. (2026). The Effect of Implant Angle and Ti-Base Abutment Height on Monolithic Zirconia Crown Retention. Meandros Med Dent J', 'https://doi.org/10.69601/meandrosmdj.1789538'],
+  nq202: ['Nghị quyết 202/2025/QH15 về sắp xếp đơn vị hành chính cấp tỉnh — tóm tắt trên Thư viện Pháp luật', 'https://thuvienphapluat.vn/phap-luat-nha-dat/cap-nhat-thong-tin-dia-chi-van-phong-dang-ky-dat-dai-tinh-binh-duong-sau-khi-sap-nhap-tu-ngay-01720-5312.html'],
+  iso13485: ['ISO 13485:2016 — Medical devices — Quality management systems — Requirements for regulatory purposes (ISO)', 'https://www.iso.org/standard/59752.html'],
   zircosE: ['Zircos-E Etching Solution — RH Marketing (Lab Management Today)', 'https://lmtmag.com/products/rh-marketing-zircos-e-etching-solution'],
   sokolowski: ['Sokolowski G. và cs. (2023). The Shear Bond Strength of Resin-Based Luting Cement to Zirconia Ceramics after Different Surface Treatments. Materials 16(15):5433', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10419834'],
   cho2017: ['Cho J.H. và cs. (2017). Effect of zirconia surface treatment using nitric acid-hydrofluoric acid on the shear bond strengths of resin cements. J Adv Prosthodont 9(2):77–84', 'https://synapse.koreamed.org/articles/1054452'],
@@ -881,3 +883,154 @@ export const ETCH_FAQ = [
   ['Xoi mòn có làm yếu zirconia không?', 'Các nghiên cứu in vitro hiện có tập trung vào độ bền dán, chưa đánh giá đầy đủ ảnh hưởng lên độ bền uốn của zirconia.'],
 ];
 export const ETCH_SOURCES = ['zircosE', 'sokolowski', 'alawawda', 'cho2017'];
+
+/* ---------- Trang địa phương: Bình Dương và TP HCM ---------- */
+export const LOCAL_AREAS = ['Thủ Dầu Một', 'Thuận An', 'Dĩ An', 'Tân Uyên', 'Bến Cát', 'Bàu Bàng', 'Bắc Tân Uyên', 'Phú Giáo', 'Dầu Tiếng'];
+const MAPS = 'https://www.google.com/maps/search/?api=1&amp;query=614%2F18%2F21%20L%C3%AA%20H%E1%BB%93ng%20Phong%2C%20Ph%C3%BA%20L%E1%BB%A3i%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh';
+const quickInfo = (deliveryRow) => table(['Mục', 'Chi tiết'], [
+  ['Labo', `${BIZ.name} — ${BIZ.legal}`],
+  ['Địa chỉ', `${BIZ.address} (${BIZ.area}) · <a href="${MAPS}" target="_blank" rel="noopener">Chỉ đường</a>`],
+  ['Giờ làm việc', BIZ.hours],
+  ['Điện thoại labo', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')],
+  ['Báo giá, tư vấn ban đầu', `Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>`],
+  ['Chứng nhận', `${BIZ.iso.std} — ${BIZ.iso.body}, số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}`],
+  ['Thời gian sản xuất', 'Răng đơn lẻ, 2 – 3 đơn vị: 1 ngày · cầu 4 – 8 đơn vị: 2 ngày · cầu toàn hàm: 3 ngày'],
+  ['Bảo hành', 'Zirconia 3 – 15 năm theo dòng phôi · răng sứ kim loại theo thỏa thuận'],
+  ['Giao nhận', deliveryRow],
+]);
+const materialTable = () => table(['Dòng zirconia', 'Nhà sản xuất', 'Xuất xứ', 'Bảo hành'], zr.map((m) => [link(m), m.maker, m.country, `<strong>${m.years} năm</strong>`]), 'wide');
+const turnaroundNote = '<p class="note">Tính từ khi labo nhận đủ hàng và dữ liệu hợp lệ. Ca đặc biệt, dữ liệu cần bổ sung hoặc yêu cầu thẩm mỹ phức tạp được trao đổi riêng với phòng khám.</p>';
+
+export function localBody() {
+  return `
+<p class="qa-short">KTV Dental Lab là labo răng sứ tại <strong>${BIZ.address}</strong> — khu vực Thủ Dầu Một, Bình Dương cũ. Labo sản xuất phục hình cho phòng khám nha khoa, đạt <strong>${BIZ.iso.std}</strong>, răng đơn lẻ trong <strong>1 ngày</strong>, lấy và giao tận nơi trong khu vực Bình Dương cũ.</p>
+<h2>Thông tin nhanh</h2>
+${quickInfo('Lấy và giao tận nơi khu vực Bình Dương cũ · nhận ca khắp miền Nam')}
+<h2>Chọn labo không chỉ là chọn nơi “làm răng sứ”</h2>
+<p>Với phòng khám, một mão zirconia đẹp chưa phải là toàn bộ vấn đề. Labo phù hợp còn phải giúp bác sĩ kiểm soát những điều ít xuất hiện trong quảng cáo: mão có xuống hết không, tiếp xúc có phải chỉnh nhiều không, khớp cắn có ổn định không, màu có tái lập được ở lần chỉnh sau không, vật liệu thực tế có đúng chỉ định không, ca khó có được trao đổi trước khi sản xuất không, và ngày giao có đủ ổn định để xếp lịch bệnh nhân.</p>
+<p>Vì vậy câu hỏi khi tìm labo răng sứ tại Bình Dương không chỉ là “giá một răng bao nhiêu?”, mà là: <strong>labo này có giúp phòng khám kiểm soát chất lượng của cả quá trình phục hình không?</strong></p>
+<h2>Một labo tốt nên hỏi lại khi dữ liệu chưa đủ</h2>
+<p>Labo luôn trả lời “làm được” chưa chắc là labo dễ làm việc nhất. Có những ca mà lựa chọn đúng là dừng lại và hỏi:</p>
+<ul>
+<li>Đường hoàn tất chưa rõ, hoặc scan mất một vùng ở bờ.</li>
+<li>Khoảng phục hình thiếu, cùi quá thấp.</li>
+<li>Thiếu dữ liệu tiếp xúc với răng kế bên; scan khớp cắn có dấu hiệu sai.</li>
+<li>Ảnh màu răng thiếu ánh sáng chuẩn.</li>
+<li>Hướng implant hoặc vị trí lỗ vít tạo giới hạn thiết kế.</li>
+</ul>
+<p>Nếu labo cố đoán để kịp giao, vấn đề chỉ lộ ra khi bác sĩ thử răng trên bệnh nhân. Sửa dữ liệu trước khi phay đơn giản hơn nhiều so với sửa một phục hình đã hoàn thiện. Cách KTV xử lý từng tình huống: <a href="/hoi-dap/mai-cui-zirconia/#cau-19">thiếu khoảng</a>, <a href="/hoi-dap/sat-khit-tiep-xuc-hinh-the/#cau-60">khi nào cần scan lại</a>, <a href="/hoi-dap/scan-trong-mieng/#cau-63">margin bị thiếu</a>.</p>
+<h2>Với zirconia, tên thương hiệu chưa nói hết</h2>
+<p>“Cercon hay Katana tốt hơn?” là câu hỏi thường gặp, nhưng chưa đủ. Ngay trong cùng một hãng, các dòng phôi khác nhau về độ trong, độ bền, chỉ định và độ dày tối thiểu — ví dụ Katana UTML có độ trong 51% với độ bền uốn 557 MPa, còn Katana HTML PLUS 45% với 1.150 MPa. Phôi nhiều lớp (Multilayer) tạo chuyển màu ngay trong phôi để mão nguyên khối có thẩm mỹ tự nhiên hơn.</p>
+<p>Một răng hàm chịu lực lớn, một răng cửa cần độ trong, một cùi đổi màu và một cầu nhiều đơn vị cần những ưu tiên khác nhau — không nhất thiết chọn theo bảng giá từ thấp đến cao. KTV Dental Lab chế tác 6 dòng zirconia, mỗi dòng có hãng, xuất xứ và bảo hành riêng:</p>
+${materialTable()}
+<p>Chọn dòng theo ca: <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a> · <a href="/hoi-dap/chon-vat-lieu-zirconia/">hỏi đáp chọn vật liệu</a>.</p>
+<h2>Máy CAD/CAM quan trọng, nhưng máy không tự tạo ra phục hình tốt</h2>
+<p>Máy phay chính xác là một phần của labo số, nhưng máy không tự quyết định:</p>
+<ul>
+<li>đường hoàn tất nằm ở đâu;</li>
+<li>khe xi măng bao nhiêu;</li>
+<li>vùng nối của cầu thiết kế thế nào;</li>
+<li>tiếp xúc chặt hay nhẹ;</li>
+<li>múi nào đang chịu lực;</li>
+<li>hình thể vùng cổ có ép mô mềm không;</li>
+<li>bác sĩ muốn giữ hình thể răng cũ đến mức nào.</li>
+</ul>
+<p>Những quyết định đó nằm ở thiết kế và kiểm soát của kỹ thuật viên. Một phục hình tốt cần đủ chuỗi: <strong>dữ liệu đúng → thiết kế đúng → vật liệu đúng → gia công chính xác → kiểm soát sau sản xuất</strong>. Thiếu một mắt xích, máy tốt cũng không sửa được cả quy trình.</p>
+<h2>Độ sát khít không bắt đầu ở máy phay</h2>
+<p>Mão không xuống hết có thể bắt đầu từ đường hoàn tất chưa rõ, mô mềm che bờ, vùng scan nhiễu do nước bọt hoặc máu, tiếp xúc quá chặt, khe xi măng chưa phù hợp, hoặc dữ liệu khớp cắn sai. Theo An và cộng sự (2024), đường hoàn tất dưới nướu và nước bọt đều làm giảm đáng kể độ chính xác khi scan.</p>
+<p>File scan nhìn đẹp không đồng nghĩa mọi dữ liệu cần thiết đều đủ để sản xuất. Labo số cần đọc file dưới góc độ sản xuất và báo lại vùng có nguy cơ trước khi thiết kế. KTV nhận dấu truyền thống, mẫu hàm và file scan trong miệng — mục tiêu là dữ liệu đủ tốt cho từng ca, không ép phòng khám theo một quy trình duy nhất.</p>
+<h2>Bác sĩ nên biết chính xác mình nhận vật liệu gì</h2>
+<p>“Zirconia Đức”, “sứ Nhật”, “sứ Mỹ” dễ hiểu nhưng chưa nói được nhiều. Thông tin vật liệu nên có tối thiểu: <strong>hãng sản xuất, tên thương mại, xuất xứ, loại phục hình được chỉ định, thời hạn bảo hành</strong>. KTV công khai từng dòng vật liệu thay vì gom thành “răng toàn sứ cao cấp”; với hợp kim, mẫu Co-Cr của labo có <a href="/vat-lieu/co-cr/">kết quả kiểm nghiệm thành phần</a> tại Viện Vật liệu xây dựng (Ni 0,00%).</p>
+<p>Bảo hành dài nhất không mặc nhiên là phù hợp nhất với mọi ca — điều quan trọng là bác sĩ biết mình đang đặt hàng thứ gì.</p>
+<h2>ISO 13485 nói lên cách labo vận hành</h2>
+<p>ISO 13485 là tiêu chuẩn quốc tế về hệ thống quản lý chất lượng cho tổ chức trong lĩnh vực thiết bị y tế, đặt ra yêu cầu để sản phẩm đáp ứng nhất quán yêu cầu của khách hàng và quy định. Tiêu chuẩn này không nói kỹ thuật viên nào đắp răng cửa đẹp hơn; nó nói tổ chức kiểm soát quy trình của mình ra sao — và khả năng truy xuất khi cần.</p>
+<p>Hệ thống quản lý chất lượng của ${BIZ.legal} đạt ${BIZ.iso.std}, chứng nhận bởi ${BIZ.iso.body}, số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid} — <a href="https://isocert.org.vn/tra-cuu-chung-chi-iso" target="_blank" rel="noopener">tra cứu tại ISOCERT</a>.</p>
+<h2>Thời gian sản xuất nên là một thông số công khai</h2>
+<p>Một ca làm nhanh nhưng không đoán được ngày giao gây khó cho phòng khám hơn một ca cần thêm vài giờ nhưng có lịch rõ ràng: bệnh nhân đã được hẹn, ghế nha có lịch. Thời gian sản xuất hiện tại của KTV:</p>
+${turnaroundTable()}
+${turnaroundNote}
+<h2>Bảo hành tốt không chỉ là “bao nhiêu năm”</h2>
+<p>Khi phục hình gặp vấn đề sau vài tháng, việc đầu tiên là xác định chuyện gì đã xảy ra: gãy vật liệu, mẻ sứ, bong mão, thay đổi cùi, bệnh lý răng trụ, chỉnh sửa lâm sàng sau khi giao hay thay đổi kế hoạch điều trị là những tình huống rất khác nhau. Bảo hành có giá trị khi đi cùng khả năng xác định ca nào, vật liệu gì, sản xuất khi nào và phục hình ban đầu ra sao.</p>
+<p>KTV bảo hành theo dòng vật liệu: Upcera, UNC 3 năm; Katana, DDBio 5 năm; Cercon 7 năm; Lava 15 năm; phục hình trên implant theo dòng vật liệu tương ứng — <a href="/bao-hanh/">bảng bảo hành</a>.</p>
+<h2>Lợi thế của labo gần phòng khám là vòng phản hồi ngắn</h2>
+<p>Với phòng khám ở khu vực Bình Dương cũ, labo gần giúp giao nhận thuận tiện — nhưng lợi ích lớn hơn là trao đổi nhanh: ca cần chỉnh màu, mẫu cần kiểm tra lại, ca khó cần bàn trực tiếp giữa bác sĩ và kỹ thuật viên. KTV lấy và giao tận nơi tại:</p>
+<ul class="area-list">${LOCAL_AREAS.map((a) => `<li>${a}</li>`).join('')}</ul>
+<h2>Phường Phú Lợi — Bình Dương cũ, nay thuộc TP Hồ Chí Minh</h2>
+<p>Từ ngày 01/7/2025, theo Nghị quyết 202/2025/QH15, toàn bộ tỉnh Bình Dương được sắp xếp vào TP Hồ Chí Minh. Địa chỉ labo ghi phường Phú Lợi, TP Hồ Chí Minh; vị trí vẫn ở khu vực Thủ Dầu Một. Phòng khám ở các khu vực khác của TP Hồ Chí Minh: xem <a href="/labo-rang-su-tp-hcm/">labo răng sứ TP HCM</a>.</p>
+<h2>KTV Dental Lab phù hợp với phòng khám nào?</h2>
+<p>KTV làm việc với phòng khám nha khoa, không tiếp nhận bệnh nhân trực tiếp. Labo phù hợp với phòng khám muốn biết rõ vật liệu đang dùng, muốn trao đổi trực tiếp khi ca có vấn đề kỹ thuật, cần thời gian sản xuất ngắn và muốn làm việc với labo có hệ thống quản lý chất lượng chuẩn hoá.</p>
+${table(['Phục hình', 'Vật liệu'], PRODUCTS.map((p) => [`<a href="/phuc-hinh/${p.slug}/">${p.name}</a>`, p.short]))}
+<p>Một lần hỏi thêm trước khi phay tốt hơn một lần làm lại khi bệnh nhân đã ngồi trên ghế.</p>
+<h2>Labo tốt không khiến bác sĩ phải nghĩ về labo quá nhiều</h2>
+<ul>
+<li>Khi dữ liệu đủ, ca được sản xuất đúng.</li>
+<li>Khi dữ liệu chưa đủ, labo hỏi.</li>
+<li>Khi vật liệu được chỉ định, bác sĩ biết mình nhận gì.</li>
+<li>Khi có vấn đề, hai bên có dữ liệu để cùng tìm nguyên nhân.</li>
+</ul>
+<p>Báo giá và tư vấn vật liệu: Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a> · gửi ca: <a href="/gui-ca/">cách gửi ca</a>.</p>`;
+}
+export const LOCAL_FAQ = [
+  ['Labo răng sứ KTV Dental Lab ở đâu tại Bình Dương?', `${BIZ.address} — khu vực Thủ Dầu Một, Bình Dương cũ (từ 01/7/2025 thuộc TP Hồ Chí Minh).`],
+  ['KTV có nhận file scan trong miệng không?', 'Có. KTV nhận dấu truyền thống, mẫu hàm hoặc file scan trong miệng.'],
+  ['Có thể chọn cụ thể hãng zirconia không?', `Có. Vật liệu được chỉ định theo từng dòng: ${zr.map((m) => m.name).join(', ')}.`],
+  ['Một răng zirconia đơn lẻ mất bao lâu?', '1 ngày, tối đa 36 giờ, tính từ khi labo nhận đủ hàng và dữ liệu hợp lệ.'],
+  ['Labo có lấy và giao hàng tận nơi ở Thuận An, Dĩ An, Tân Uyên, Bến Cát không?', `Có. Labo lấy và giao tận nơi trong khu vực Bình Dương cũ: ${LOCAL_AREAS.join(', ')}.`],
+  ['Labo có làm phục hình trên implant không?', 'Có. KTV làm phục hình răng sứ trên implant theo chỉ định riêng của bác sĩ.'],
+  ['Nếu scan hoặc chỉ định có điểm bất thường thì sao?', 'Labo trao đổi lại với phòng khám trước khi chuyển sang sản xuất.'],
+  ['Răng toàn sứ tại labo bảo hành bao lâu?', `Theo dòng zirconia: ${zr.map((m) => `${m.name} ${m.years} năm`).join(', ')}. Răng sứ kim loại bảo hành theo thỏa thuận với phòng khám.`],
+  ['Labo có làm việc trực tiếp với bệnh nhân không?', 'Không. KTV Dental Lab sản xuất phục hình theo chỉ định của phòng khám nha khoa và giao trực tiếp đến phòng khám.'],
+];
+export const LOCAL_SOURCES = ['nq202', 'iso13485', 'katana', 'an2024', 'iowa'];
+
+export function hcmBody() {
+  return `
+<p class="qa-short">KTV Dental Lab là labo răng sứ tại <strong>TP Hồ Chí Minh</strong> — ${BIZ.address}, khu vực Thủ Dầu Một (Bình Dương cũ). Labo nhận ca từ phòng khám trên toàn thành phố và khắp miền Nam: file scan trong miệng gửi online, dấu và mẫu hàm được sắp xếp giao nhận; răng đơn lẻ sản xuất trong <strong>1 ngày</strong> kể từ khi labo nhận hàng.</p>
+<h2>Thông tin nhanh</h2>
+${quickInfo('Lấy và giao tận nơi khu vực Bình Dương cũ · các khu vực khác của TP HCM và miền Nam: file scan online hoặc liên hệ sắp xếp giao nhận')}
+<h2>TP Hồ Chí Minh mới — labo ở khu vực Bình Dương cũ</h2>
+<p>Từ ngày 01/7/2025, theo Nghị quyết 202/2025/QH15, TP Hồ Chí Minh, tỉnh Bình Dương và tỉnh Bà Rịa – Vũng Tàu được sắp xếp thành TP Hồ Chí Minh mới. KTV Dental Lab nằm ở phường Phú Lợi — khu vực Thủ Dầu Một, Bình Dương cũ — và phục vụ phòng khám ở cả ba khu vực.</p>
+<h2>Gửi ca từ xa: dữ liệu số là đường giao hàng nhanh nhất</h2>
+<p>Với phòng khám không ở gần labo, file scan trong miệng gửi online loại bỏ thời gian vận chuyển dấu. Điều kiện là file đủ dữ liệu để sản xuất — labo không nên đoán phần bị thiếu. Trước khi gửi, kiểm tra:</p>
+${table(['Kiểm tra', 'Vì sao quan trọng'], [
+  ['Đường hoàn tất thấy liên tục, không bị nướu, máu, nước bọt che', 'Đường hoàn tất dưới nướu và nước bọt làm giảm rõ độ chính xác của scan (An và cộng sự, 2024)'],
+  ['Có hàm đối diện và khớp cắn hai bên', 'Không có hàm đối diện, labo không biết khoảng phục hình và điểm chạm khớp'],
+  ['Thấy rõ vùng tiếp xúc với răng kế bên', 'Thiếu dữ liệu tiếp xúc dễ dẫn đến tiếp xúc quá chặt hoặc lỏng'],
+  ['Implant: ghi hãng, model scan body, hệ implant, đường kính, kết nối', 'Scan body phải khớp đúng thư viện thiết kế và linh kiện'],
+  ['Ảnh màu răng với cây so màu, ánh sáng trung tính', 'Labo không gặp trực tiếp bệnh nhân — ảnh là dữ liệu màu duy nhất'],
+], 'wide')}
+<p>Chi tiết: <a href="/gui-ca/">cách gửi ca</a> · <a href="/hoi-dap/scan-trong-mieng/">hỏi đáp scan trong miệng</a> · <a href="/hoi-dap/scan-body-implant/">scan body implant</a>.</p>
+<h2>Gửi dấu và mẫu hàm từ xa</h2>
+<p>Phòng khám ngoài khu vực Bình Dương cũ vẫn gửi được dấu truyền thống và mẫu hàm — liên hệ labo để sắp xếp giao nhận. Đóng gói dấu kèm phiếu chỉ định, ghi rõ ngày hẹn bệnh nhân. Phiếu chỉ định gửi trước qua kênh online để labo kiểm tra thông tin trong lúc chờ hàng.</p>
+<h2>Xếp lịch hẹn bệnh nhân với labo ở xa</h2>
+${turnaroundTable()}
+${turnaroundNote}
+<p>Thời gian trên tính từ khi labo nhận hàng. Với dấu và mẫu hàm gửi từ xa, cộng thêm thời gian vận chuyển hai chiều khi xếp lịch hẹn; với file scan, thời gian sản xuất bắt đầu ngay khi labo nhận file hợp lệ.</p>
+<h2>Màu răng khi labo không gặp bệnh nhân</h2>
+<p>Với ca răng trước, ảnh là dữ liệu màu quan trọng nhất. Gửi ảnh chính diện vùng răng trước, ảnh cận răng cần phục hình và răng đối xứng, ảnh có cây so màu cùng mặt phẳng với răng, ảnh nghiêng thấy độ trong rìa cắn; nếu cùi đổi màu, thêm ảnh cùi sau mài. Chụp dưới ánh sáng trung tính, không dùng filter. So màu ở đầu buổi hẹn, trước khi mài — <a href="/gui-ca/#so-mau">hướng dẫn so màu</a>.</p>
+<h2>Vật liệu rõ nguồn gốc, bảo hành theo dòng</h2>
+${materialTable()}
+<p>Răng sứ kim loại: <a href="/vat-lieu/ni-cr/">Ni-Cr</a>, <a href="/vat-lieu/co-cr/">Co-Cr</a> (mẫu Co-Cr có kết quả kiểm nghiệm Ni 0,00%). Phục hình trên implant bảo hành như phục hình trên răng thật cùng dòng vật liệu.</p>
+<h2>Phục hình labo sản xuất</h2>
+${table(['Phục hình', 'Vật liệu'], PRODUCTS.map((p) => [`<a href="/phuc-hinh/${p.slug}/">${p.name}</a>`, p.short]))}
+<p>Dịch vụ đi kèm: <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">xoi mòn mặt dán Zircos-E</a> cho inlay, onlay, overlay zirconia — hiện miễn phí.</p>
+<h2>Bắt đầu với một ca đầu tiên</h2>
+<ol>
+<li>Nhắn Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a> để nhận báo giá và tư vấn chọn vật liệu.</li>
+<li>Gửi file scan hoặc liên hệ sắp xếp giao nhận dấu; gửi phiếu chỉ định qua kênh online.</li>
+<li>Labo kiểm tra dữ liệu; nếu thiếu, labo trao đổi lại trước khi sản xuất.</li>
+<li>Nhận phục hình đúng lịch; bảo hành theo dòng vật liệu.</li>
+</ol>
+<p>Phòng khám ở khu vực Bình Dương cũ: xem <a href="/labo-rang-su-binh-duong/">labo răng sứ Bình Dương</a> — lấy và giao tận nơi.</p>`;
+}
+export const HCM_FAQ = [
+  ['KTV Dental Lab có phải labo răng sứ ở TP HCM không?', `Có. Labo ở ${BIZ.address} — khu vực Thủ Dầu Một, Bình Dương cũ, thuộc TP Hồ Chí Minh từ 01/7/2025.`],
+  ['Phòng khám ở khu vực TP HCM cũ gửi ca thế nào?', 'Gửi file scan trong miệng qua kênh online, hoặc liên hệ labo để sắp xếp giao nhận dấu và mẫu hàm; phiếu chỉ định gửi qua mọi kênh online.'],
+  ['Thời gian sản xuất tính từ khi nào?', 'Từ khi labo nhận đủ hàng và dữ liệu hợp lệ: răng đơn lẻ, 2 – 3 đơn vị 1 ngày; cầu 4 – 8 đơn vị 2 ngày; cầu toàn hàm 3 ngày; hai hàm 4 ngày. Với dấu gửi từ xa, cộng thêm thời gian vận chuyển khi xếp lịch hẹn.'],
+  ['Labo có nhận ca từ Bà Rịa – Vũng Tàu cũ và các tỉnh miền Nam không?', 'Có. KTV Dental Lab nhận ca khắp khu vực miền Nam.'],
+  ['Gửi file scan cần những gì?', 'Hàm làm việc với đường hoàn tất liên tục, hàm đối diện, khớp cắn hai bên, ảnh màu với cây so màu; với implant, ghi hãng và model scan body, hệ implant, đường kính, kết nối.'],
+  ['Labo có giao tận nơi ở TP HCM không?', 'Labo lấy và giao tận nơi trong khu vực Bình Dương cũ; các khu vực khác liên hệ labo để sắp xếp giao nhận.'],
+  ['Labo có chứng nhận chất lượng không?', `Có. ${BIZ.legal} đạt ${BIZ.iso.std}, do ${BIZ.iso.body} chứng nhận (số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}).`],
+  ['Làm sao nhận báo giá?', `Nhắn Zalo ${BIZ.quote.label} để nhận bảng báo giá mới nhất và tư vấn chọn vật liệu.`],
+];
+export const HCM_SOURCES = ['nq202', 'an2024', 'iti2018'];
