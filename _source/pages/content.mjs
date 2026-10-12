@@ -70,6 +70,7 @@ export const SOURCES = {
   kinzer: ['Kinzer G. (2016). How to achieve success with custom zirconia abutments — Spear Education', 'https://www.speareducation.com/spear-review/2016/07/how-to-achieve-success-with-custom-zirconia-abutments'],
   pardal: ['Pardal-Peláez B. và cs. (2018). Strategies to reduce torque loss of abutment screws. J Oral Res Rev 10(2):68–75', 'https://doi.org/10.4103/jorr.jorr_37_17'],
   kendirli: ['Kendirli C. và cs. (2026). The Effect of Implant Angle and Ti-Base Abutment Height on Monolithic Zirconia Crown Retention. Meandros Med Dent J', 'https://doi.org/10.69601/meandrosmdj.1789538'],
+  nq202: ['Nghị quyết 202/2025/QH15 về sắp xếp đơn vị hành chính cấp tỉnh — tóm tắt trên Thư viện Pháp luật', 'https://thuvienphapluat.vn/phap-luat-nha-dat/cap-nhat-thong-tin-dia-chi-van-phong-dang-ky-dat-dai-tinh-binh-duong-sau-khi-sap-nhap-tu-ngay-01720-5312.html'],
   zircosE: ['Zircos-E Etching Solution — RH Marketing (Lab Management Today)', 'https://lmtmag.com/products/rh-marketing-zircos-e-etching-solution'],
   sokolowski: ['Sokolowski G. và cs. (2023). The Shear Bond Strength of Resin-Based Luting Cement to Zirconia Ceramics after Different Surface Treatments. Materials 16(15):5433', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10419834'],
   cho2017: ['Cho J.H. và cs. (2017). Effect of zirconia surface treatment using nitric acid-hydrofluoric acid on the shear bond strengths of resin cements. J Adv Prosthodont 9(2):77–84', 'https://synapse.koreamed.org/articles/1054452'],
@@ -881,3 +882,80 @@ export const ETCH_FAQ = [
   ['Xoi mòn có làm yếu zirconia không?', 'Các nghiên cứu in vitro hiện có tập trung vào độ bền dán, chưa đánh giá đầy đủ ảnh hưởng lên độ bền uốn của zirconia.'],
 ];
 export const ETCH_SOURCES = ['zircosE', 'sokolowski', 'alawawda', 'cho2017'];
+
+/* ---------- Trang địa phương: labo răng sứ Bình Dương ---------- */
+export const LOCAL_AREAS = ['Thủ Dầu Một', 'Thuận An', 'Dĩ An', 'Tân Uyên', 'Bến Cát', 'Bàu Bàng', 'Bắc Tân Uyên', 'Phú Giáo', 'Dầu Tiếng'];
+export function localBody() {
+  const zrRows = zr.map((m) => [link(m), m.country, `<strong>${m.years} năm</strong>`]);
+  return `
+<p class="qa-short">KTV Dental Lab là labo răng sứ tại <strong>${BIZ.address}</strong> — khu vực Thủ Dầu Một, Bình Dương cũ. Labo sản xuất răng sứ kim loại và răng toàn sứ zirconia cho phòng khám nha khoa, hệ thống quản lý chất lượng đạt <strong>${BIZ.iso.std}</strong>, răng đơn lẻ làm trong <strong>1 ngày</strong>, lấy và giao tận nơi trong khu vực Bình Dương cũ.</p>
+<h2>Thông tin nhanh</h2>
+${table(['Mục', 'Chi tiết'], [
+  ['Tên', `${BIZ.name} — ${BIZ.legal}`],
+  ['Địa chỉ', `${BIZ.address} (${BIZ.area}) · <a href="https://www.google.com/maps/search/?api=1&amp;query=614%2F18%2F21%20L%C3%AA%20H%E1%BB%93ng%20Phong%2C%20Ph%C3%BA%20L%E1%BB%A3i%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh" target="_blank" rel="noopener">Chỉ đường</a>`],
+  ['Giờ làm việc', BIZ.hours],
+  ['Điện thoại', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')],
+  ['Báo giá, tư vấn ban đầu', `Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>`],
+  ['Email', `<a href="mailto:${BIZ.email}">${BIZ.email}</a>`],
+  ['Chứng nhận', `${BIZ.iso.std} — ${BIZ.iso.body}, số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}`],
+  ['Thời gian sản xuất', 'Răng đơn lẻ, 2 – 3 đơn vị: 1 ngày · cầu 4 – 8 đơn vị: 2 ngày · cầu toàn hàm: 3 ngày'],
+  ['Bảo hành', 'Zirconia 3 – 15 năm theo dòng phôi · răng sứ kim loại theo thỏa thuận'],
+  ['Giao nhận', 'Lấy và giao tận nơi khu vực Bình Dương cũ · nhận ca khắp miền Nam'],
+])}
+<h2>Phường Phú Lợi — Bình Dương cũ, nay thuộc TP Hồ Chí Minh</h2>
+<p>Từ ngày 01/7/2025, theo Nghị quyết 202/2025/QH15, toàn bộ tỉnh Bình Dương được sắp xếp vào TP Hồ Chí Minh. Địa chỉ của labo vì vậy ghi là phường Phú Lợi, TP Hồ Chí Minh; trên thực tế labo vẫn nằm ở khu vực Thủ Dầu Một, phục vụ phòng khám trong toàn bộ khu vực Bình Dương cũ.</p>
+<h2>Khu vực lấy và giao hàng tận nơi</h2>
+<p>Labo lấy dấu, mẫu hàm và giao phục hình tận phòng khám trong khu vực Bình Dương cũ:</p>
+<ul class="area-list">${LOCAL_AREAS.map((a) => `<li>${a}</li>`).join('')}</ul>
+<p>Phòng khám ở TP Hồ Chí Minh và các tỉnh, thành khác thuộc miền Nam gửi ca qua file scan hoặc liên hệ labo để sắp xếp giao nhận — xem <a href="/gui-ca/">cách gửi ca</a>.</p>
+<h2>Phục hình labo sản xuất</h2>
+${table(['Phục hình', 'Vật liệu'], PRODUCTS.map((p) => [`<a href="/phuc-hinh/${p.slug}/">${p.name}</a>`, p.short]))}
+<p>Dịch vụ đi kèm: <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">xoi mòn mặt dán zirconia bằng Zircos-E</a> cho inlay, onlay, overlay — hiện miễn phí.</p>
+<h2>Răng toàn sứ tại labo: 6 dòng zirconia, bảo hành theo dòng</h2>
+<p>Răng toàn sứ (răng sứ không kim loại) tại KTV Dental Lab làm bằng <strong>zirconia</strong> — nguyên khối, Multilayer nhiều lớp màu, hoặc sườn zirconia đắp sứ. Mỗi dòng phôi có xuất xứ, nhà sản xuất và thời hạn bảo hành rõ ràng:</p>
+${table(['Dòng zirconia', 'Xuất xứ', 'Bảo hành'], zrRows)}
+<p>Răng sứ kim loại dùng hợp kim <a href="/vat-lieu/ni-cr/">Ni-Cr</a> và <a href="/vat-lieu/co-cr/">Co-Cr</a> — mẫu Co-Cr của labo có kết quả kiểm nghiệm thành phần Ni 0,00% tại Viện Vật liệu xây dựng. Độ bền, độ trong từng dòng: <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a>.</p>
+<h2>Răng toàn sứ có ưu điểm gì?</h2>
+<ul>
+<li><strong>Không kim loại:</strong> không lộ viền xám ở cổ răng, không lo dị ứng kim loại.</li>
+<li><strong>Zirconia nguyên khối không có lớp sứ đắp</strong> nên không có biến chứng mẻ sứ đắp. Theo tổng quan của Sailer và cộng sự (2015), mão sứ đắp trên sườn zirconia bị mất do vỡ sứ đắp khoảng 3,2% sau 5 năm, so với 0,3% ở mão sứ – kim loại.</li>
+<li><strong>Mài ít hơn:</strong> mặt nhai 1,0 – 1,5 mm cho zirconia nguyên khối, so với 1,5 – 2,0 mm cho mão sứ – kim loại (giáo trình Đại học Iowa).</li>
+<li><strong>Bền:</strong> nhiều dòng zirconia có độ bền uốn trên 1.000 MPa theo công bố của hãng, ví dụ Cercon ht 1.200 MPa, DD Bio ZX² 1.150 ± 150 MPa.</li>
+</ul>
+<h2>Chọn labo răng sứ: 6 điều nên kiểm tra</h2>
+${table(['Tiêu chí', 'Cách kiểm tra', 'KTV Dental Lab'], [
+  ['Hệ thống quản lý chất lượng', 'Số giấy chứng nhận, tra cứu được trên website tổ chức chứng nhận', `${BIZ.iso.std}, số ${BIZ.iso.no} — <a href="https://isocert.org.vn/tra-cuu-chung-chi-iso" target="_blank" rel="noopener">tra cứu tại ISOCERT</a>`],
+  ['Nguồn gốc vật liệu', 'Tên hãng, xuất xứ từng dòng phôi, hợp kim', '6 dòng zirconia từ 5 quốc gia; hợp kim Eisenbacher (Đức), Aalba Dent (Mỹ)'],
+  ['Bảo hành', 'Thời hạn cụ thể theo từng dòng, không chỉ “bảo hành lâu dài”', '3 – 15 năm theo dòng zirconia — <a href="/bao-hanh/">bảng bảo hành</a>'],
+  ['Thời gian sản xuất', 'Cam kết bằng số ngày, tính từ khi nhận hàng', 'Răng đơn lẻ 1 ngày (tối đa 36 giờ) — <a href="/thoi-gian-san-xuat/">chi tiết</a>'],
+  ['Kiểm nghiệm vật liệu', 'Kết quả kiểm nghiệm của đơn vị độc lập', 'Co-Cr: Ni 0,00% (VIBM) — <a href="/vat-lieu/co-cr/">xem phiếu</a>'],
+  ['Hỗ trợ kỹ thuật', 'Labo trả lời được câu hỏi về mài cùi, gắn mão, scan', '<a href="/hoi-dap/">100 câu hỏi đáp kỹ thuật</a> có nguồn'],
+], 'wide')}
+<h2>Quy trình làm việc với labo</h2>
+<ol>
+<li><strong>Báo giá, tư vấn vật liệu:</strong> nhắn Zalo ${BIZ.quote.label}.</li>
+<li><strong>Gửi ca:</strong> dấu, mẫu hàm hoặc file scan; phiếu chỉ định gửi qua mọi kênh online — <a href="/gui-ca/">cách gửi ca</a>.</li>
+<li><strong>Sản xuất:</strong> tính từ lúc labo nhận hàng — răng đơn lẻ 1 ngày, cầu 4 – 8 đơn vị 2 ngày.</li>
+<li><strong>Giao phục hình</strong> tận phòng khám trong khu vực Bình Dương cũ.</li>
+<li><strong>Bảo hành</strong> theo dòng vật liệu; phục hình trên implant bảo hành như trên răng thật cùng dòng vật liệu.</li>
+</ol>
+<h2>Chi phí răng sứ tại labo phụ thuộc vào gì?</h2>
+<ul>
+<li><strong>Dòng vật liệu:</strong> zirconia có bảo hành dài (Lava 15 năm, Cercon 7 năm) khác dòng tối ưu chi phí (Upcera, UNC 3 năm); răng sứ kim loại có chi phí thấp hơn.</li>
+<li><strong>Loại phục hình:</strong> mão nguyên khối, mão đắp sứ, Multilayer, inlay · onlay, overlay, cùi giả, phục hình trên implant.</li>
+<li><strong>Số đơn vị</strong> và độ phức tạp của ca (cầu dài, toàn hàm, thẩm mỹ răng trước).</li>
+</ul>
+<p>Bảng giá mới nhất: nhắn Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>.</p>`;
+}
+export const LOCAL_FAQ = [
+  ['Labo răng sứ KTV Dental Lab ở đâu tại Bình Dương?', `${BIZ.address} — khu vực Thủ Dầu Một, Bình Dương cũ (từ 01/7/2025 thuộc TP Hồ Chí Minh).`],
+  ['Labo có lấy và giao hàng tận nơi ở Thuận An, Dĩ An, Tân Uyên, Bến Cát không?', `Có. Labo lấy và giao hàng tận nơi trong khu vực Bình Dương cũ, gồm ${LOCAL_AREAS.join(', ')}.`],
+  ['Làm răng toàn sứ ở labo mất bao lâu?', 'Tính từ lúc labo nhận hàng: răng đơn lẻ, 2 – 3 đơn vị 1 ngày (tối đa 36 giờ); cầu 4 – 8 đơn vị 2 ngày (tối đa 60 giờ); cầu toàn hàm 3 ngày; hai hàm 4 ngày.'],
+  ['Răng toàn sứ tại labo bảo hành bao lâu?', `Theo dòng zirconia: ${zr.map((m) => `${m.name} ${m.years} năm`).join(', ')}. Răng sứ kim loại bảo hành theo thỏa thuận với phòng khám.`],
+  ['Labo có chứng nhận chất lượng không?', `Có. Hệ thống quản lý chất lượng của ${BIZ.legal} đạt ${BIZ.iso.std}, do ${BIZ.iso.body} chứng nhận (số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}).`],
+  ['Giờ làm việc của labo?', `${BIZ.hours}.`],
+  ['Phòng khám ngoài Bình Dương có gửi ca được không?', 'Được. Labo nhận ca khắp khu vực miền Nam; phòng khám gửi file scan qua kênh online hoặc liên hệ labo để sắp xếp giao nhận.'],
+  ['Labo có làm việc trực tiếp với bệnh nhân không?', 'KTV Dental Lab sản xuất phục hình theo chỉ định của phòng khám nha khoa và giao phục hình trực tiếp đến phòng khám.'],
+  ['Làm sao nhận báo giá răng sứ của labo?', `Nhắn Zalo ${BIZ.quote.label} để nhận bảng báo giá mới nhất và tư vấn chọn vật liệu.`],
+];
+export const LOCAL_SOURCES = ['nq202', 'sailer', 'iowa', 'cerconBro', 'ddbio'];
