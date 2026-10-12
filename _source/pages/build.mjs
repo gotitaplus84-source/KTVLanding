@@ -8,7 +8,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, BIZ, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES, localBody, LOCAL_FAQ, LOCAL_SOURCES, LOCAL_AREAS, hcmBody, HCM_FAQ, HCM_SOURCES } from './content.mjs';
+import { SITE, BIZ, QUOTE_LINKS, QUOTE_TEXT, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES, localBody, LOCAL_FAQ, LOCAL_SOURCES, LOCAL_AREAS, hcmBody, HCM_FAQ, HCM_SOURCES } from './content.mjs';
 import { QA_TOPICS as QA_1, QA_UPDATED } from './qa.mjs';
 import { QA_TOPICS_2 } from './qa2.mjs';
 const QA_TOPICS = [...QA_1, ...QA_TOPICS_2];
@@ -195,7 +195,7 @@ for (const m of MATERIALS) {
     kicker: ['≈', 'Vật liệu · So sánh'], h1: 'So sánh các dòng zirconia',
     lead: `6 dòng phôi zirconia tại KTV Dental Lab — ${zrs.map((m) => m.name).join(', ')} — đặt cạnh nhau theo độ bền, độ trong, xuất xứ và bảo hành (từ 3 đến 15 năm).`,
     body: compareBody(),
-    side: sideBox([['Dòng zirconia', String(zrs.length)], ['Bảo hành', '3 – 15 năm'], ['Thời gian sản xuất', fastest], ['Tư vấn chọn phôi', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a>`]]),
+    side: sideBox([['Dòng zirconia', String(zrs.length)], ['Bảo hành', '3 – 15 năm'], ['Thời gian sản xuất', fastest], ['Tư vấn chọn phôi', `Zalo ${QUOTE_LINKS}`]]),
     related: zrs.map((x) => ({ name: x.name, url: `/vat-lieu/${x.slug}/`, thumb: x.img })),
     relatedTitle: 'Chi tiết từng dòng',
     faq: COMPARE_FAQ, sources: COMPARE_SOURCES,
@@ -239,7 +239,7 @@ pages.push(page({
   const byline = `\n<p class="byline mono">Biên soạn: KTV Dental Lab · Cập nhật: ${upd}</p>`;
   const extra = { author: { '@id': SITE + '/#org' }, dateModified: QA_UPDATED };
   const total = QA_TOPICS.reduce((n, t) => n + t.qs.length, 0);
-  const hubSide = sideBox([['Biên soạn', 'KTV Dental Lab'], ['Cập nhật', upd], ['Số câu hỏi', String(total)], ['Hỏi thêm · tư vấn', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a>`]]);
+  const hubSide = sideBox([['Biên soạn', 'KTV Dental Lab'], ['Cập nhật', upd], ['Số câu hỏi', String(total)], ['Hỏi thêm · tư vấn', `Zalo ${QUOTE_LINKS}`]]);
   pages.push(page({
     path: '/hoi-dap/',
     title: 'Hỏi đáp kỹ thuật phục hình cho bác sĩ | KTV Dental Lab',
@@ -274,7 +274,7 @@ pages.push(page({
 <h2 id="cau-${n}-h"><span class="qa-n mono">Câu ${n}</span> ${esc(q)}</h2>
 ${a}
 </section>`).join(''),
-      side: sideBox([['Biên soạn', 'KTV Dental Lab'], ['Cập nhật', upd], ['Chủ đề', `<a href="/hoi-dap/">${QA_TOPICS.length} chủ đề · ${total} câu</a>`], ['Hỏi thêm · tư vấn', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a>`]]),
+      side: sideBox([['Biên soạn', 'KTV Dental Lab'], ['Cập nhật', upd], ['Chủ đề', `<a href="/hoi-dap/">${QA_TOPICS.length} chủ đề · ${total} câu</a>`], ['Hỏi thêm · tư vấn', `Zalo ${QUOTE_LINKS}`]]),
       related: QA_TOPICS.filter((x) => x !== t).map((x) => ({ name: x.name, url: `/hoi-dap/${x.slug}/` })),
       relatedTitle: 'Chủ đề khác',
       sources: t.sources,
@@ -293,7 +293,7 @@ pages.push(page({
   kicker: ['◎', 'Bình Dương · Thủ Dầu Một'], h1: 'Labo răng sứ Bình Dương: bác sĩ nên nhìn gì trước khi chọn nơi gửi ca?',
   lead: 'Vật liệu, độ sát khít, thời gian sản xuất, bảo hành và cách phối hợp ca — những điều nên kiểm tra trước khi gửi ca, và cách KTV Dental Lab đáp ứng từng điều.',
   body: localBody(),
-  side: sideBox([['Địa chỉ', `${esc(BIZ.address)}`], ['Giờ làm việc', BIZ.hoursShort], ['Điện thoại', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join('<br>')], ['Báo giá · Zalo', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>`], ['Thời gian sản xuất', fastest]]),
+  side: sideBox([['Địa chỉ', `${esc(BIZ.address)}`], ['Giờ làm việc', BIZ.hoursShort], ['Điện thoại', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join('<br>')], ['Báo giá · Zalo', `${QUOTE_LINKS}`], ['Thời gian sản xuất', fastest]]),
   related: [{ name: 'Labo răng sứ TP HCM', url: '/labo-rang-su-tp-hcm/' }, { name: 'Cách gửi ca', url: '/gui-ca/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }, { name: 'Hỏi đáp kỹ thuật cho bác sĩ', url: '/hoi-dap/' }],
   relatedTitle: 'Xem thêm',
   faq: LOCAL_FAQ, sources: LOCAL_SOURCES,
@@ -309,7 +309,7 @@ pages.push(page({
   kicker: ['◎', 'TP Hồ Chí Minh'], h1: 'Labo răng sứ TP HCM: gửi ca từ xa sao cho chính xác',
   lead: 'Phòng khám ở TP Hồ Chí Minh và miền Nam gửi ca cho KTV Dental Lab qua file scan hoặc dấu truyền thống — cần những gì để ca về đúng, đúng lịch.',
   body: hcmBody(),
-  side: sideBox([['Địa chỉ', `${esc(BIZ.address)}`], ['Gửi file scan', '<a href="/gui-ca/">Cách gửi ca</a>'], ['Báo giá · Zalo', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>`], ['Giờ làm việc', BIZ.hoursShort], ['Thời gian sản xuất', fastest]]),
+  side: sideBox([['Địa chỉ', `${esc(BIZ.address)}`], ['Gửi file scan', '<a href="/gui-ca/">Cách gửi ca</a>'], ['Báo giá · Zalo', `${QUOTE_LINKS}`], ['Giờ làm việc', BIZ.hoursShort], ['Thời gian sản xuất', fastest]]),
   related: [{ name: 'Labo răng sứ Bình Dương', url: '/labo-rang-su-binh-duong/' }, { name: 'Cách gửi ca', url: '/gui-ca/' }, { name: 'Hỏi đáp: scan trong miệng', url: '/hoi-dap/scan-trong-mieng/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }],
   relatedTitle: 'Xem thêm',
   faq: HCM_FAQ, sources: HCM_SOURCES,
@@ -326,7 +326,7 @@ pages.push(page({
   kicker: ['+', 'Thông tin'], h1: 'Thời gian sản xuất',
   lead: 'Răng đơn lẻ trong 1 ngày, áp dụng cho mọi loại phục hình, tính từ lúc labo nhận hàng.',
   body: turnaroundBody(),
-  side: sideBox([['Giờ làm việc', BIZ.hoursShort], ['Giao nhận', 'Khắp miền Nam · lấy/giao tận nơi Bình Dương cũ'], ['Gửi ca', '<a href="/gui-ca/">Cách gửi ca</a>'], ['Báo giá · tư vấn', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a>`], ['Điện thoại', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join('<br>')]]),
+  side: sideBox([['Giờ làm việc', BIZ.hoursShort], ['Giao nhận', 'Khắp miền Nam · lấy/giao tận nơi Bình Dương cũ'], ['Gửi ca', '<a href="/gui-ca/">Cách gửi ca</a>'], ['Báo giá · tư vấn', `Zalo ${QUOTE_LINKS}`], ['Điện thoại', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join('<br>')]]),
   related: [{ name: 'Bảo hành', url: '/bao-hanh/' }, { name: 'Câu hỏi thường gặp', url: '/cau-hoi-thuong-gap/' }, ...PRODUCTS.slice(0, 2).map((x) => ({ name: x.name, url: `/phuc-hinh/${x.slug}/`, thumb: x.thumb }))],
   relatedTitle: 'Xem thêm',
 }));
@@ -352,7 +352,7 @@ pages.push(page({
   kicker: ['?', 'Hỏi đáp'], h1: 'Câu hỏi thường gặp',
   lead: 'Những câu bác sĩ và phòng khám hay hỏi khi làm việc với KTV Dental Lab.',
   body: FAQ.map(([q, a]) => `\n<h2>${esc(q)}</h2>\n<p>${a}</p>`).join(''),
-  side: sideBox([['Báo giá · Zalo', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>`], ['Giờ làm việc', BIZ.hoursShort], ['Email', `<a href="mailto:${BIZ.email}">${BIZ.email}</a>`]]),
+  side: sideBox([['Báo giá · Zalo', `${QUOTE_LINKS}`], ['Giờ làm việc', BIZ.hoursShort], ['Email', `<a href="mailto:${BIZ.email}">${BIZ.email}</a>`]]),
   related: [{ name: 'Hỏi đáp kỹ thuật cho bác sĩ', url: '/hoi-dap/' }, { name: 'Thời gian sản xuất', url: '/thoi-gian-san-xuat/' }, { name: 'Bảo hành', url: '/bao-hanh/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }],
   relatedTitle: 'Xem thêm',
   sources: FAQ_SOURCES,
@@ -385,7 +385,7 @@ Labo sản xuất phục hình theo từng ca của phòng khám nha khoa và gi
 - Giờ làm việc: ${BIZ.hours}
 - Điện thoại: ${BIZ.phones.map((p) => `${p.text} (${p.label.toLowerCase()})`).join(', ')}
 - Email: ${BIZ.email}
-- Báo giá, tư vấn ban đầu: Zalo ${BIZ.quote.label}
+- Báo giá, tư vấn ban đầu (Zalo): ${QUOTE_TEXT}
 - Khu vực: ${BIZ.delivery}
 - Chứng nhận: ${BIZ.iso.std}, ${BIZ.iso.body}, số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}
 - Máy phay CAD/CAM: DGSHAPE DWX-52Di (5 trục)
