@@ -14,7 +14,8 @@ export const BIZ = {
   legal: 'CÔNG TY TNHH MTV KTV',
   address: '614/18/21 Lê Hồng Phong, phường Phú Lợi, TP Hồ Chí Minh',
   area: 'khu vực Thủ Dầu Một, Bình Dương cũ',
-  quote: { tel: '0772829989', label: '077 282 9989', zalo: 'https://zalo.me/0772829989' },
+  quote: { tel: '0904241929', label: '090 424 1929', zalo: 'https://zalo.me/0904241929' },
+  quote2: { tel: '0772829989', label: '077 282 9989', zalo: 'https://zalo.me/0772829989' },
   phones: [
     { label: 'Cố định', tel: '02746514429', text: '0274 651 4429' },
     { label: 'Di động', tel: '0984241929', text: '098 424 1929' },
@@ -26,6 +27,10 @@ export const BIZ = {
   delivery: 'Nhận ca khắp khu vực miền Nam; lấy và giao hàng nhanh tận nơi tại khu vực Bình Dương cũ.',
   iso: { std: 'ISO 13485:2016', body: 'ISOCERT', no: '9199302854823-MED', valid: '19/06/2026 – 18/06/2029' },
 };
+
+// Số báo giá, tư vấn ban đầu, Zalo: hai số song song (090 424 1929 là số chính).
+export const QUOTE_LINKS = `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a> · <a href="${BIZ.quote2.zalo}" target="_blank" rel="noopener">${BIZ.quote2.label}</a>`;
+export const QUOTE_TEXT = `${BIZ.quote.label} hoặc ${BIZ.quote2.label}`;
 
 /* ---------- Nguồn tham khảo ---------- */
 export const SOURCES = {
@@ -708,7 +713,7 @@ ${table(['Nhu cầu', 'Dòng phù hợp'], [
   ['Bảo hành dài', 'Lava (15 năm), Cercon (7 năm)'],
   ['Tối ưu chi phí', 'Upcera, UNC (3 năm)'],
 ])}
-<p>Labo tư vấn dòng phù hợp theo vị trí răng, số đơn vị, khớp cắn và yêu cầu thẩm mỹ — gọi hoặc nhắn Zalo <a href="tel:${BIZ.quote.tel}">${BIZ.quote.label}</a>.</p>`;
+<p>Labo tư vấn dòng phù hợp theo vị trí răng, số đơn vị, khớp cắn và yêu cầu thẩm mỹ — gọi hoặc nhắn Zalo ${QUOTE_LINKS}.</p>`;
 }
 export const COMPARE_FAQ = [
   ['Dòng zirconia nào bảo hành lâu nhất?', 'Tại KTV Dental Lab, Lava được bảo hành 15 năm, tiếp theo là Cercon 7 năm, Katana và DDBio 5 năm, UNC và Upcera 3 năm.'],
@@ -730,7 +735,7 @@ ${turnaroundTable()}
 </ul>
 <p>Chi tiết: <a href="/gui-ca/">cách gửi ca</a>.</p>
 <h2>Giờ làm việc</h2>
-<p>${BIZ.hours}. Gửi ca: gọi <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a>. Báo giá, tư vấn ban đầu: Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>.</p>
+<p>${BIZ.hours}. Gửi ca: gọi <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a>. Báo giá, tư vấn ban đầu: Zalo ${QUOTE_LINKS}.</p>
 <h2>Khu vực giao nhận</h2>
 <ul>
 <li>Nhận ca từ phòng khám <strong>khắp khu vực miền Nam</strong>.</li>
@@ -781,7 +786,7 @@ export const FAQ = [
   ['KTV Dental Lab có chứng nhận chất lượng gì?',
     `Hệ thống quản lý chất lượng của Công ty TNHH MTV KTV đạt ${BIZ.iso.std}, do ${BIZ.iso.body} chứng nhận (giấy chứng nhận số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}). <a href="https://isocert.org.vn/tra-cuu-chung-chi-iso" target="_blank" rel="noopener">Tra cứu chứng chỉ trên website ISOCERT</a>.`],
   ['Làm sao để nhận báo giá?',
-    `Gọi hoặc nhắn Zalo <a href="tel:${BIZ.quote.tel}">${BIZ.quote.label}</a> để nhận bảng báo giá mới nhất và tư vấn chọn vật liệu.`],
+    `Gọi hoặc nhắn Zalo ${QUOTE_LINKS} để nhận bảng báo giá mới nhất và tư vấn chọn vật liệu.`],
   ['Labo ở đâu?',
     `${BIZ.address} (${BIZ.area}). Điện thoại: ${BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(', ')}.`],
   ['Răng sứ kim loại và răng sứ không kim loại khác nhau thế nào?',
@@ -837,7 +842,7 @@ ${turnaroundTable()}
 <ul>
 <li>Điện thoại: ${BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')}</li>
 <li>Email: <a href="mailto:${BIZ.email}">${BIZ.email}</a></li>
-<li>Báo giá, tư vấn ban đầu qua Zalo: <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a></li>
+<li>Báo giá, tư vấn ban đầu qua Zalo: ${QUOTE_LINKS}</li>
 </ul>`;
 }
 export const SENDCASE_FAQ = [
@@ -893,7 +898,7 @@ const quickInfo = (deliveryRow) => table(['Mục', 'Chi tiết'], [
   ['Địa chỉ', `${BIZ.address} (${BIZ.area}) · <a href="${MAPS}" target="_blank" rel="noopener">Chỉ đường</a>`],
   ['Giờ làm việc', BIZ.hours],
   ['Điện thoại labo', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')],
-  ['Báo giá, tư vấn ban đầu', `Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>`],
+  ['Báo giá, tư vấn ban đầu', `Zalo ${QUOTE_LINKS}`],
   ['Chứng nhận', `${BIZ.iso.std} — ${BIZ.iso.body}, số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}`],
   ['Máy phay CAD/CAM', 'DGSHAPE DWX-52Di — 5 trục'],
   ['Thời gian sản xuất', 'Răng đơn lẻ, 2 – 3 đơn vị: 1 ngày · cầu 4 – 8 đơn vị: 2 ngày · cầu toàn hàm: 3 ngày'],
@@ -970,7 +975,7 @@ ${table(['Phục hình', 'Vật liệu'], PRODUCTS.map((p) => [`<a href="/phuc-h
 <li>Khi vật liệu được chỉ định, bác sĩ biết mình nhận gì.</li>
 <li>Khi có vấn đề, hai bên có dữ liệu để cùng tìm nguyên nhân.</li>
 </ul>
-<p>Báo giá và tư vấn vật liệu: Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a> · gửi ca: <a href="/gui-ca/">cách gửi ca</a>.</p>`;
+<p>Báo giá và tư vấn vật liệu: Zalo ${QUOTE_LINKS} · gửi ca: <a href="/gui-ca/">cách gửi ca</a>.</p>`;
 }
 export const LOCAL_FAQ = [
   ['Labo răng sứ KTV Dental Lab ở đâu tại Bình Dương?', `${BIZ.address} — khu vực Thủ Dầu Một, Bình Dương cũ (từ 01/7/2025 thuộc TP Hồ Chí Minh).`],
@@ -1018,7 +1023,7 @@ ${table(['Phục hình', 'Vật liệu'], PRODUCTS.map((p) => [`<a href="/phuc-h
 <p>Dịch vụ đi kèm: <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">xoi mòn mặt dán Zircos-E</a> cho inlay, onlay, overlay zirconia — hiện miễn phí.</p>
 <h2>Bắt đầu với một ca đầu tiên</h2>
 <ol>
-<li>Nhắn Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a> để nhận báo giá và tư vấn chọn vật liệu.</li>
+<li>Nhắn Zalo ${QUOTE_LINKS} để nhận báo giá và tư vấn chọn vật liệu.</li>
 <li>Gửi file scan hoặc liên hệ sắp xếp giao nhận dấu; gửi phiếu chỉ định qua kênh online.</li>
 <li>Labo kiểm tra dữ liệu; nếu thiếu, labo trao đổi lại trước khi sản xuất.</li>
 <li>Nhận phục hình đúng lịch; bảo hành theo dòng vật liệu.</li>
@@ -1033,6 +1038,6 @@ export const HCM_FAQ = [
   ['Gửi file scan cần những gì?', 'Hàm làm việc với đường hoàn tất liên tục, hàm đối diện, khớp cắn hai bên, ảnh màu với cây so màu; với implant, ghi hãng và model scan body, hệ implant, đường kính, kết nối.'],
   ['Labo có giao tận nơi ở TP HCM không?', 'Labo lấy và giao tận nơi trong khu vực Bình Dương cũ; các khu vực khác liên hệ labo để sắp xếp giao nhận.'],
   ['Labo có chứng nhận chất lượng không?', `Có. ${BIZ.legal} đạt ${BIZ.iso.std}, do ${BIZ.iso.body} chứng nhận (số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}).`],
-  ['Làm sao nhận báo giá?', `Nhắn Zalo ${BIZ.quote.label} để nhận bảng báo giá mới nhất và tư vấn chọn vật liệu.`],
+  ['Làm sao nhận báo giá?', `Nhắn Zalo ${QUOTE_TEXT} để nhận bảng báo giá mới nhất và tư vấn chọn vật liệu.`],
 ];
 export const HCM_SOURCES = ['nq202', 'an2024', 'iti2018', 'dwx52'];
