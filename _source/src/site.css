@@ -220,6 +220,8 @@ html.no-webgl .materials{background:var(--bg)}
 .link{display:inline-block;margin-top:10px;font-weight:700;text-decoration:none;border-bottom:1.5px solid currentColor;padding-bottom:2px;transition:color .3s}
 .link:hover{color:var(--red)}
 .link.big{font-size:22px;margin-top:0}
+.svc-link{margin-top:22px;font-size:15px;line-height:1.5;max-width:34ch}
+.svc-link .mono{font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-right:6px}
 .c-cta{background:var(--paper);border-radius:24px;padding:26px;box-shadow:0 30px 60px -40px rgba(6,27,68,.35);border:1px solid var(--line)}
 .c-cta p{color:var(--muted)}
 .c-cta strong{color:var(--ink)}

@@ -21,7 +21,8 @@ export const BIZ = {
     { label: 'Di động', tel: '0904241929', text: '090 424 1929' },
   ],
   email: 'ktvlab8@gmail.com',
-  hours: '8h00 – 20h00',
+  hours: 'Thứ 2 – Thứ 7: 8h00 – 20h00 · Chủ nhật: 8h00 – 12h00',
+  hoursShort: 'T2 – T7: 8h00 – 20h00<br>CN: 8h00 – 12h00',
   delivery: 'Nhận ca khắp khu vực miền Nam; lấy và giao hàng nhanh tận nơi tại khu vực Bình Dương cũ.',
   iso: { std: 'ISO 13485:2016', body: 'ISOCERT', no: '9199302854823-MED', valid: '19/06/2026 – 18/06/2029' },
 };
@@ -52,7 +53,7 @@ export const SOURCES = {
 /* ---------- Thời gian sản xuất (áp dụng cho mọi loại phục hình, tính từ lúc labo nhận hàng) ---------- */
 export const TURNAROUND = [
   { what: 'Răng đơn lẻ, 2 – 3 đơn vị', time: '1 ngày', max: 'tối đa 36 giờ' },
-  { what: 'Cầu răng 3 – 8 đơn vị', time: '2 ngày', max: 'tối đa 60 giờ' },
+  { what: 'Cầu răng 4 – 8 đơn vị', time: '2 ngày', max: 'tối đa 60 giờ' },
   { what: 'Cầu toàn hàm', time: '3 ngày', max: '' },
   { what: 'Hai hàm toàn hàm', time: '4 ngày', max: '' },
 ];
@@ -78,7 +79,8 @@ const SEND_CASE = `<ul>
 <li><strong>Màu răng</strong> theo bảng màu VITA, kèm ảnh chụp răng kế bên với cây so màu nếu có — đặc biệt với răng trước.</li>
 <li><strong>Vật liệu và dòng phôi</strong> mong muốn; nếu chưa chắc, ghi yêu cầu (thẩm mỹ, chịu lực, chi phí) để labo tư vấn.</li>
 <li>Ghi chú đặc biệt: răng trụ cầu, nhịp cầu, độ dày hạn chế, khớp cắn sâu, nghiến răng…</li>
-</ul>`;
+</ul>
+<p>Labo nhận dấu theo mọi phương thức, phiếu chỉ định gửi qua mọi kênh online — xem <a href="/gui-ca/">cách gửi ca</a>.</p>`;
 
 const ZR_CEMENT = `<p>Zirconia không xoi mòn bằng axit HF và không silane hoá được như sứ thuỷ tinh (lithium disilicate). Hai cách gắn thường dùng:</p>
 <ul>
@@ -511,8 +513,9 @@ ${turnaroundTable()}
 <li>Ghi rõ màu răng (bảng màu VITA), vật liệu / dòng phôi và ngày hẹn bệnh nhân.</li>
 <li>Với implant: ghi hệ implant, loại abutment và kiểu lưu giữ.</li>
 </ul>
+<p>Xem đầy đủ <a href="/gui-ca/">cách gửi ca</a>.</p>
 <h2>Giờ làm việc</h2>
-<p>${BIZ.hours}. Gọi <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a> hoặc nhắn Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a> để gửi ca và nhận báo giá.</p>
+<p>${BIZ.hours}. Gửi ca: gọi <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a> — xem <a href="/gui-ca/">cách gửi ca</a>. Báo giá, tư vấn ban đầu: Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>.</p>
 <h2>Khu vực giao nhận</h2>
 <ul>
 <li>Nhận ca từ phòng khám <strong>khắp khu vực miền Nam</strong>.</li>
@@ -548,6 +551,8 @@ export const FAQ = [
   ['Labo nhận ca ở những khu vực nào?',
     'KTV Dental Lab nhận ca khắp khu vực miền Nam, và lấy – giao hàng nhanh tận nơi tại khu vực Bình Dương cũ.'],
   ['Giờ làm việc của labo?', `${BIZ.hours}.`],
+  ['Gửi ca cho labo như thế nào?',
+    'Labo nhận dấu theo mọi phương thức (dấu, mẫu hàm hoặc file scan trong miệng); phiếu chỉ định nha khoa gửi qua mọi kênh online như Zalo, email, tin nhắn. <a href="/gui-ca/">Xem cách gửi ca</a>.'],
   ['Phục hình trên implant được bảo hành thế nào?',
     'Phục hình trên implant được bảo hành như phục hình trên răng thật cùng dòng vật liệu.'],
   ['KTV Dental Lab có chứng nhận chất lượng gì?',
@@ -568,6 +573,44 @@ export const FAQ = [
     'KTV Dental Lab sản xuất phục hình cho phòng khám nha khoa ở khu vực miền Nam và giao phục hình trực tiếp đến phòng khám.'],
 ];
 export const FAQ_SOURCES = ['spear'];
+
+/* ---------- Cách gửi ca ---------- */
+export function sendCaseBody() {
+  return `
+<p>KTV Dental Lab nhận dấu theo <strong>mọi phương thức</strong> và nhận phiếu chỉ định nha khoa qua <strong>mọi kênh online</strong>. Phòng khám không cần dùng mẫu phiếu riêng của labo.</p>
+<h2>1. Gửi dấu</h2>
+${table(['Phương thức', 'Ghi chú'], [
+  ['Dấu, mẫu hàm', 'Lấy và giao tận nơi tại khu vực Bình Dương cũ. Phòng khám ở các tỉnh, thành khác thuộc miền Nam: liên hệ labo để sắp xếp giao nhận.'],
+  ['File scan trong miệng', 'Gửi file qua kênh online, kèm hàm làm việc, hàm đối diện và khớp cắn.'],
+])}
+<h2>2. Gửi phiếu chỉ định</h2>
+<p>Phiếu chỉ định nha khoa gửi qua <strong>mọi kênh online</strong> — Zalo, email, tin nhắn… — cùng lúc hoặc trước khi labo nhận dấu. Phiếu nên có:</p>
+<ul>
+<li>Tên phòng khám, bác sĩ; tên hoặc mã bệnh nhân.</li>
+<li>Vị trí răng và loại phục hình (mão, cầu, inlay · onlay, overlay, cùi giả, phục hình trên implant).</li>
+<li>Vật liệu và dòng phôi — xem <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a> nếu chưa chọn.</li>
+<li>Màu răng theo bảng màu VITA, kèm ảnh so màu nếu có — đặc biệt với răng trước.</li>
+<li>Cầu răng: răng trụ, nhịp cầu. Implant: hệ implant, đường kính, kiểu kết nối, loại abutment, bắt vít hay gắn xi măng.</li>
+<li>Yêu cầu thêm, ví dụ <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">xoi mòn Zircos-E</a> cho inlay, onlay, overlay zirconia (miễn phí).</li>
+<li>Ngày hẹn bệnh nhân.</li>
+</ul>
+<h2>3. Thời gian sản xuất</h2>
+<p>Áp dụng cho mọi loại phục hình, tính <strong>kể từ lúc labo nhận hàng</strong>:</p>
+${turnaroundTable()}
+<p>Giờ làm việc: ${BIZ.hours}.</p>
+<h2>4. Liên hệ</h2>
+<ul>
+<li>Điện thoại: ${BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')}</li>
+<li>Email: <a href="mailto:${BIZ.email}">${BIZ.email}</a></li>
+<li>Báo giá, tư vấn ban đầu qua Zalo: <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a></li>
+</ul>`;
+}
+export const SENDCASE_FAQ = [
+  ['Labo nhận dấu theo hình thức nào?', 'Mọi phương thức: dấu, mẫu hàm hoặc file scan trong miệng.'],
+  ['Có cần dùng mẫu phiếu chỉ định của labo không?', 'Không. Phiếu chỉ định nha khoa của phòng khám gửi qua bất kỳ kênh online nào (Zalo, email, tin nhắn…) đều được.'],
+  ['Thời gian sản xuất tính từ khi nào?', `Tính từ lúc labo nhận hàng: ${TURNAROUND.map((t) => `${t.what.toLowerCase()} — ${t.time}`).join('; ')}.`],
+  ['Phòng khám ngoài Bình Dương có gửi ca được không?', 'Được. Labo nhận ca khắp khu vực miền Nam; lấy và giao hàng tận nơi tại khu vực Bình Dương cũ, các khu vực khác liên hệ labo để sắp xếp giao nhận.'],
+];
 
 /* ---------- Dịch vụ: xoi mòn zirconia bằng Zircos-E ---------- */
 export function etchBody() {
@@ -591,7 +634,7 @@ ${table(['Mục', 'Chi tiết'], [
   ['Xử lý', 'Phục hình được ngâm trong dung dịch Zircos-E tại labo trước khi giao — tối đa 2 giờ, tuỳ kích thước phục hình. Không thổi cát trước và sau khi xoi mòn.'],
   ['Thời gian', 'Thời gian ngâm đã được tính sẵn trong <a href="/thoi-gian-san-xuat/">thời gian sản xuất</a> — ca không bị trễ thêm.'],
   ['Chi phí', '<strong>Hiện miễn phí</strong>'],
-  ['Cách yêu cầu', `Ghi “Xoi mòn Zircos-E” trên phiếu gửi ca, hoặc nhắn Zalo <a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>.`],
+  ['Cách yêu cầu', 'Ghi “Xoi mòn Zircos-E” trên phiếu chỉ định khi <a href="/gui-ca/">gửi ca</a>.'],
 ])}
 <h2>Khi gắn tại phòng khám</h2>
 <p>Phòng khám gắn theo <strong>quy trình gắn thông thường</strong>; không cần thổi cát lại mặt dán.</p>`;
