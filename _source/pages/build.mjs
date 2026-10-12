@@ -9,7 +9,9 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SITE, BIZ, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES } from './content.mjs';
-import { QA_TOPICS, QA_UPDATED } from './qa.mjs';
+import { QA_TOPICS as QA_1, QA_UPDATED } from './qa.mjs';
+import { QA_TOPICS_2 } from './qa2.mjs';
+const QA_TOPICS = [...QA_1, ...QA_TOPICS_2];
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const today = new Date().toISOString().slice(0, 10);
@@ -240,11 +242,11 @@ pages.push(page({
   const hubSide = sideBox([['Biên soạn', 'KTV Dental Lab'], ['Cập nhật', upd], ['Số câu hỏi', String(total)], ['Hỏi thêm · tư vấn', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a>`]]);
   pages.push(page({
     path: '/hoi-dap/',
-    title: 'Hỏi đáp kỹ thuật phục hình zirconia cho bác sĩ | KTV Dental Lab',
-    desc: `${total} câu hỏi bác sĩ hay gặp khi làm phục hình zirconia: chọn vật liệu, mài cùi, gắn mão, bong mão, mẻ – gãy. Trả lời ngắn gọn, có số liệu và nguồn.`,
+    title: 'Hỏi đáp kỹ thuật phục hình cho bác sĩ | KTV Dental Lab',
+    desc: `${total} câu hỏi bác sĩ hay gặp khi làm phục hình: chọn zirconia, mài cùi, gắn và bong mão, mẻ – gãy, sát khít, scan, scan body, implant, tình huống lâm sàng. Có số liệu và nguồn.`,
     crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Hỏi đáp kỹ thuật', url: '/hoi-dap/' }],
     kicker: ['?', 'Hỏi đáp kỹ thuật'], h1: 'Hỏi đáp kỹ thuật cho bác sĩ',
-    lead: 'Những câu hỏi thường gặp khi làm phục hình zirconia — trả lời thẳng, kèm số liệu từ hướng dẫn của hãng và nghiên cứu.',
+    lead: 'Những câu hỏi thường gặp khi làm phục hình zirconia, scan và implant — trả lời thẳng, kèm số liệu từ hướng dẫn của hãng và nghiên cứu.',
     body: byline + QA_TOPICS.map((t) => `
 <h2><a href="/hoi-dap/${t.slug}/">${esc(t.name)}</a></h2>
 <p>${esc(t.lead)}</p>
