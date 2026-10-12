@@ -8,7 +8,7 @@ Labo sản xuất phục hình theo từng ca của phòng khám nha khoa và gi
 
 - Tên: KTV Dental Lab — pháp nhân CÔNG TY TNHH MTV KTV, mã số thuế 3703340735
 - Địa chỉ: 614/18/21 Lê Hồng Phong, phường Phú Lợi, TP Hồ Chí Minh (khu vực Thủ Dầu Một, Bình Dương cũ)
-- Giờ làm việc: Thứ 2 – Thứ 7: 8h00 – 20h00 · Chủ nhật: 8h00 – 12h00
+- Giờ làm việc: Thứ 2 – Thứ 7: 8h00 – 20h00; Chủ nhật: 8h00 – 12h00
 - Điện thoại: 0274 651 4429 (cố định), 098 424 1929 (di động), 090 424 1929 (di động)
 - Email: ktvlab8@gmail.com
 - Báo giá, tư vấn ban đầu (Zalo): 090 424 1929 hoặc 077 282 9989
@@ -23,14 +23,14 @@ Labo sản xuất phục hình theo từng ca của phòng khám nha khoa và gi
 
 ## Phục hình
 
-- [Mão sứ đắp sứ trên sườn kim loại & Zirconia](https://ktvlab.com/phuc-hinh/mao-su-dap-su/): Ni-Cr · Co-Cr · Zirconia
-- [Mão zirconia nguyên khối (Full màu)](https://ktvlab.com/phuc-hinh/mao-full-zirconia/): Upcera · UNC · Katana · DDBio · Cercon · Lava
+- [Mão sứ đắp sứ trên sườn kim loại & Zirconia](https://ktvlab.com/phuc-hinh/mao-su-dap-su/): Sườn Ni-Cr, Co-Cr hoặc zirconia
+- [Mão zirconia nguyên khối (Full màu)](https://ktvlab.com/phuc-hinh/mao-full-zirconia/): Upcera, UNC, Katana, DDBio, Cercon, Lava
 - [Mão zirconia Multilayer (nhiều lớp màu)](https://ktvlab.com/phuc-hinh/mao-zirconia-multilayer/): Zirconia nhiều lớp
-- [Mão toàn kim loại Ni-Cr, Co-Cr](https://ktvlab.com/phuc-hinh/mao-full-kim-loai/): Ni-Cr · Co-Cr
-- [Inlay · Onlay kim loại và Zirconia](https://ktvlab.com/phuc-hinh/inlay-onlay/): Kim loại · Zirconia
+- [Mão toàn kim loại Ni-Cr, Co-Cr](https://ktvlab.com/phuc-hinh/mao-full-kim-loai/): Ni-Cr, Co-Cr
+- [Inlay, onlay kim loại và zirconia](https://ktvlab.com/phuc-hinh/inlay-onlay/): Kim loại hoặc zirconia
 - [Overlay Zirconia phủ mặt nhai](https://ktvlab.com/phuc-hinh/overlay/): Zirconia
-- [Cùi giả kim loại, chốt gài và Zirconia](https://ktvlab.com/phuc-hinh/cui-gia/): Kim loại · Chốt gài · Zirconia
-- [Phục hình răng sứ trên Implant](https://ktvlab.com/phuc-hinh/phuc-hinh-tren-implant/): Sứ kim loại & sứ không kim loại · theo chỉ định riêng
+- [Cùi giả kim loại, chốt gài và Zirconia](https://ktvlab.com/phuc-hinh/cui-gia/): Kim loại, chốt gài, zirconia
+- [Phục hình răng sứ trên Implant](https://ktvlab.com/phuc-hinh/phuc-hinh-tren-implant/): Sứ kim loại và sứ không kim loại, theo chỉ định riêng
 
 ## Vật liệu
 
@@ -40,7 +40,7 @@ Labo sản xuất phục hình theo từng ca của phòng khám nha khoa và gi
 - [DDBio](https://ktvlab.com/vat-lieu/ddbio/): zirconia, Dental Direkt GmbH, Đức; bảo hành 5 năm
 - [Cercon](https://ktvlab.com/vat-lieu/cercon/): zirconia, Dentsply Sirona, Đức; bảo hành 7 năm
 - [Lava](https://ktvlab.com/vat-lieu/lava/): zirconia, Solventum (3M), Mỹ; bảo hành 15 năm
-- [Ni-Cr](https://ktvlab.com/vat-lieu/ni-cr/): hợp kim, Eisenbacher Dentalwaren ED · Aalba Dent, Đức / Mỹ; bảo hành theo thỏa thuận
+- [Ni-Cr](https://ktvlab.com/vat-lieu/ni-cr/): hợp kim, Eisenbacher Dentalwaren ED, Aalba Dent, Đức / Mỹ; bảo hành theo thỏa thuận
 - [Co-Cr](https://ktvlab.com/vat-lieu/co-cr/): hợp kim, Eisenbacher Dentalwaren ED, Đức; bảo hành theo thỏa thuận
 - [So sánh các dòng zirconia](https://ktvlab.com/vat-lieu/so-sanh-zirconia/): độ bền, độ trong theo công bố của hãng, xuất xứ, bảo hành
 

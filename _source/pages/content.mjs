@@ -22,29 +22,28 @@ export const BIZ = {
     { label: 'Di động', tel: '0904241929', text: '090 424 1929' },
   ],
   email: 'ktvlab8@gmail.com',
-  hours: 'Thứ 2 – Thứ 7: 8h00 – 20h00 · Chủ nhật: 8h00 – 12h00',
+  hours: 'Thứ 2 – Thứ 7: 8h00 – 20h00; Chủ nhật: 8h00 – 12h00',
   hoursShort: 'T2 – T7: 8h00 – 20h00<br>CN: 8h00 – 12h00',
   delivery: 'Nhận ca khắp khu vực miền Nam; lấy và giao hàng nhanh tận nơi tại khu vực Bình Dương cũ.',
   iso: { std: 'ISO 13485:2016', body: 'ISOCERT', no: '9199302854823-MED', valid: '19/06/2026 – 18/06/2029' },
 };
 
 // Số báo giá, tư vấn ban đầu, Zalo: hai số song song (090 424 1929 là số chính).
-export const QUOTE_LINKS = `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a> · <a href="${BIZ.quote2.zalo}" target="_blank" rel="noopener">${BIZ.quote2.label}</a>`;
+export const QUOTE_LINKS = `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a> hoặc <a href="${BIZ.quote2.zalo}" target="_blank" rel="noopener">${BIZ.quote2.label}</a>`;
 export const QUOTE_TEXT = `${BIZ.quote.label} hoặc ${BIZ.quote2.label}`;
 
 // Nhập phôi theo yêu cầu: danh mục vật liệu không cố định.
-export const MORE_BLANKS = `<p class="more-blanks"><strong>Cần dòng phôi zirconia khác?</strong> Gọi KTV Dental Lab — labo liên hệ đối tác và nhập phôi chính hãng loại đó theo yêu cầu của phòng khám. Điện thoại <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a> · Zalo ${QUOTE_LINKS}.</p>`;
+export const MORE_BLANKS = `<p class="more-blanks"><strong>Cần dòng phôi zirconia khác?</strong> Gọi KTV Dental Lab, labo sẽ liên hệ đối tác và nhập phôi chính hãng loại đó theo yêu cầu của phòng khám. Điện thoại <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a> · Zalo ${QUOTE_LINKS}.</p>`;
 export const MORE_BLANKS_TEXT = 'Ngoài các dòng phôi hiện có, nếu phòng khám cần dòng phôi zirconia khác, KTV Dental Lab liên hệ đối tác và nhập phôi chính hãng loại đó theo yêu cầu.';
 
 // Popup "Nhận bảng giá qua Zalo" — nút có thuộc tính data-quote mở popup này (main.js); không có JS thì mở Zalo trực tiếp.
 export const QUOTE_TPL = `<template id="quote-tpl"><div class="quote-box">
 <button class="quote-x" type="button" data-close aria-label="Đóng">×</button>
-<p class="quote-k mono">Bảng giá cho phòng khám</p>
 <h2 id="quote-h">Bảng giá được gửi riêng cho từng phòng khám</h2>
 <p>Labo không đăng bảng giá công khai, để giá labo là thông tin riêng giữa labo và phòng khám — không ảnh hưởng đến cách phòng khám tư vấn và báo giá với bệnh nhân.</p>
 <p>Chỉ cần nhắn <strong>“bảng giá”</strong> qua Zalo — labo gửi bảng giá, không gọi điện làm phiền.</p>
 <div class="quote-btns"><a class="btn btn-red" href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a><a class="btn btn-line" href="${BIZ.quote2.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote2.label}</a></div>
-<p class="quote-foot mono">Giờ làm việc: ${BIZ.hours}</p>
+<p class="quote-foot">Giờ làm việc: ${BIZ.hours}</p>
 </div></template>`;
 
 /* ---------- Nguồn tham khảo ---------- */
@@ -142,7 +141,7 @@ const ZR_CEMENT = `<p>Zirconia không xoi mòn được bằng axit HF và khôn
 <li><strong>Xi măng nhựa</strong> khi cùi ngắn hoặc thuôn nhiều: thổi cát mặt trong bằng Al₂O₃ 50 µm (khoảng 2,5 bar), sau đó dùng primer có chứa <strong>MDP</strong>.</li>
 </ul>
 <p>Với inlay, onlay, overlay zirconia, labo <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">xoi mòn mặt dán bằng Zircos-E</a> theo yêu cầu — hiện miễn phí.</p>
-<p>Hỏi đáp chi tiết: <a href="/hoi-dap/gan-mao-zirconia/">gắn mão zirconia</a> · <a href="/hoi-dap/bong-mao-zirconia/">mão zirconia bị bong</a>.</p>`;
+<p>Hỏi đáp chi tiết: <a href="/hoi-dap/gan-mao-zirconia/">gắn mão zirconia</a>, <a href="/hoi-dap/bong-mao-zirconia/">mão zirconia bị bong</a>.</p>`;
 
 const ZR_ADJUST = `<ul>
 <li>Chỉnh khớp bằng mũi kim cương hạt mịn, có làm mát bằng nước; tránh mũi thô và đá mài xanh ở bước hoàn tất.</li>
@@ -306,7 +305,7 @@ ${table(['Loại ca', 'Dòng phù hợp', 'Lưu ý'], [
       ['Lava Plus có đắp sứ được không?', 'Được. Lava Plus dùng được dạng nguyên khối, đắp sứ một phần hoặc đắp sứ toàn phần.']],
     sources: ['lavaBro', 'lavaSpec'] },
 
-  { slug: 'ni-cr', name: 'Ni-Cr', kind: 'metal', country: 'Đức / Mỹ', maker: 'Eisenbacher Dentalwaren ED · Aalba Dent', years: null,
+  { slug: 'ni-cr', name: 'Ni-Cr', kind: 'metal', country: 'Đức / Mỹ', maker: 'Eisenbacher Dentalwaren ED, Aalba Dent', years: null,
     img: '/assets/img/products/pfm-lg.webp', imgAlt: 'Mão sứ trên sườn kim loại, cắt mở thấy sườn', multilayer: false,
     lead: 'Hợp kim nickel – chrome của Eisenbacher Dentalwaren ED (Đức) và Aalba Dent (Mỹ), làm sườn răng sứ kim loại và mão toàn kim loại.',
     about: `<p><strong>Ni-Cr</strong> (nickel – chrome) là hợp kim không quý, được dùng lâu đời làm <strong>sườn răng sứ kim loại</strong> và <strong>mão toàn kim loại</strong> nhờ cứng, bền và chi phí hợp lý. KTV Dental Lab dùng hợp kim của Eisenbacher Dentalwaren ED (Đức) và Aalba Dent (Mỹ).</p>
@@ -354,11 +353,11 @@ const zr = MATERIALS.filter((m) => m.kind === 'zirconia');
 const ml = MATERIALS.filter((m) => m.multilayer);
 const bySlug = (s) => MATERIALS.find((m) => m.slug === s);
 const link = (m) => `<a href="/vat-lieu/${m.slug}/">${m.name}</a>`;
-const list = (arr) => arr.map(link).join(' · ');
+const list = (arr) => arr.map(link).join(', ');
 
 /* ---------- Phục hình ---------- */
 export const PRODUCTS = [
-  { slug: 'mao-su-dap-su', name: 'Mão sứ đắp sứ', short: 'Ni-Cr · Co-Cr · Zirconia',
+  { slug: 'mao-su-dap-su', name: 'Mão sứ đắp sứ', short: 'Sườn Ni-Cr, Co-Cr hoặc zirconia',
     img: '/assets/img/products/pfm-lg.webp', thumb: '/assets/img/products/pfm.webp', imgAlt: 'Mão sứ đắp sứ trên sườn kim loại, cắt mở thấy sườn',
     title: 'Mão sứ đắp sứ trên sườn kim loại & Zirconia',
     lead: 'Sườn chịu lực bên trong, sứ đắp nhiều lớp bên ngoài. KTV Dental Lab làm mão sứ đắp sứ trên sườn Ni-Cr, Co-Cr và Zirconia.',
@@ -397,7 +396,7 @@ ${SEND_CASE}
       ['Mão sứ đắp trên sườn zirconia có dễ mẻ không?', 'Theo tổng quan của Sailer và cộng sự (2015), tỉ lệ mất mão do vỡ sứ đắp sau 5 năm khoảng 3,2% với sườn zirconia và 0,3% với sườn kim loại.']],
     sources: ['sailer', 'iowa'] },
 
-  { slug: 'mao-full-zirconia', name: 'Mão Full màu', short: zr.map((m) => m.name).join(' · '),
+  { slug: 'mao-full-zirconia', name: 'Mão Full màu', short: zr.map((m) => m.name).join(', '),
     img: '/assets/img/products/zirconia-lg.webp', thumb: '/assets/img/products/zirconia.webp', imgAlt: 'Mão răng zirconia nguyên khối (full màu)',
     title: 'Mão zirconia nguyên khối (Full màu)',
     lead: `Phay nguyên khối từ phôi zirconia, nhuộm màu và nướng bóng — không có lớp sứ đắp. KTV Dental Lab làm mão full màu trên nhiều dòng phôi: ${zr.map((m) => m.name).join(', ')} và nhập dòng khác theo yêu cầu.`,
@@ -430,7 +429,7 @@ ${PREP_NOTE}
 ${PREP_RULES}
 <h2>Chỉnh khớp và đánh bóng trong miệng</h2>
 ${ZR_ADJUST}
-<p>Hỏi đáp chi tiết: <a href="/hoi-dap/khop-can-me-gay-zirconia/">mẻ, gãy, chỉnh khớp zirconia</a> · <a href="/hoi-dap/mai-cui-zirconia/">mài cùi cho zirconia</a>.</p>
+<p>Hỏi đáp chi tiết: <a href="/hoi-dap/khop-can-me-gay-zirconia/">mẻ, gãy, chỉnh khớp zirconia</a>, <a href="/hoi-dap/mai-cui-zirconia/">mài cùi cho zirconia</a>.</p>
 <h2>Gắn mão zirconia</h2>
 ${ZR_CEMENT}
 <h2>Gửi ca cho labo</h2>
@@ -480,7 +479,7 @@ ${ZR_CEMENT}`,
       ['Cầu Multilayer làm được mấy đơn vị?', 'Tuỳ dòng phôi: Katana STML, UTML đến 3 đơn vị; Katana YML và Cercon ht ML dùng được cho cầu nhiều đơn vị theo chỉ định của hãng.']],
     sources: ['katana', 'katanaYML', 'katanaGuide', 'cerconML', 'shade'] },
 
-  { slug: 'mao-full-kim-loai', name: 'Full kim loại', short: 'Ni-Cr · Co-Cr',
+  { slug: 'mao-full-kim-loai', name: 'Full kim loại', short: 'Ni-Cr, Co-Cr',
     img: '/assets/img/products/metal-lg.webp', thumb: '/assets/img/products/metal.webp', imgAlt: 'Mão răng toàn kim loại',
     title: 'Mão toàn kim loại Ni-Cr, Co-Cr',
     lead: 'Mão đúc hoàn toàn bằng hợp kim, không phủ sứ — mài ít, bền, chi phí hợp lý. KTV Dental Lab làm mão full kim loại bằng Ni-Cr và Co-Cr.',
@@ -519,9 +518,9 @@ ${SEND_CASE}
       ['Nên chọn Ni-Cr hay Co-Cr cho mão toàn kim loại?', 'Cả hai đều là hợp kim không quý, cứng và bền. Với bệnh nhân dị ứng nickel, chọn Co-Cr — mẫu Co-Cr của labo có kết quả kiểm nghiệm Ni 0,00%.']],
     sources: ['iowa', 'nickel'] },
 
-  { slug: 'inlay-onlay', name: 'Inlay · Onlay', short: 'Kim loại · Zirconia',
+  { slug: 'inlay-onlay', name: 'Inlay, Onlay', short: 'Kim loại hoặc zirconia',
     img: null, thumb: null, imgAlt: '',
-    title: 'Inlay · Onlay kim loại và Zirconia',
+    title: 'Inlay, onlay kim loại và zirconia',
     lead: 'Phục hình từng phần, giữ lại tối đa mô răng thật. KTV Dental Lab làm inlay, onlay bằng kim loại và Zirconia.',
     body: `
 <h2>Inlay và onlay là gì?</h2>
@@ -548,7 +547,7 @@ ${table(['', 'Inlay', 'Onlay'], [
 <li><strong>Zirconia</strong> — màu răng, bền. Nhiều dòng zirconia có chỉ định inlay/onlay theo hãng (ví dụ <a href="/vat-lieu/katana/">Katana HT</a>, <a href="/vat-lieu/lava/">Lava Plus</a> cho cầu inlay/onlay).</li>
 <li><strong>Kim loại</strong> (<a href="/vat-lieu/ni-cr/">Ni-Cr</a>, <a href="/vat-lieu/co-cr/">Co-Cr</a>) — vùng răng sau không cần thẩm mỹ.</li>
 </ul>
-<h2>Xử lý mặt dán inlay · onlay zirconia</h2>
+<h2>Xử lý mặt dán inlay, onlay zirconia</h2>
 <p>Inlay, onlay ít lưu giữ cơ học nên phụ thuộc nhiều vào lớp dán. Labo <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">xoi mòn mặt dán bằng Zircos-E</a> trước khi giao — hiện miễn phí, không làm ca chậm hơn. Phòng khám gắn theo quy trình thông thường.</p>
 <h2>Gửi ca cho labo</h2>
 ${SEND_CASE}`,
@@ -589,7 +588,7 @@ ${SEND_CASE}`,
       ['Overlay zirconia có được xử lý bề mặt dán không?', 'Có. Labo xoi mòn mặt dán bằng Zircos-E theo yêu cầu, hiện miễn phí.']],
     sources: ['spear', 'katanaYML'] },
 
-  { slug: 'cui-gia', name: 'Cùi giả', short: 'Kim loại · Chốt gài · Zirconia',
+  { slug: 'cui-gia', name: 'Cùi giả', short: 'Kim loại, chốt gài, zirconia',
     img: '/assets/img/products/core-lg.webp', thumb: '/assets/img/products/core.webp', imgAlt: 'Cùi giả đúc kèm chốt (hình minh hoạ)',
     title: 'Cùi giả kim loại, chốt gài và Zirconia',
     lead: 'Tái tạo phần thân răng đã mất để làm nền giữ mão. KTV Dental Lab làm cùi giả kim loại, chốt gài và Zirconia.',
@@ -625,7 +624,7 @@ ${table(['Loại', 'Đặc điểm', 'Phù hợp'], [
       ['Vì sao vùng đai (ferrule) quan trọng?', 'Mô răng thật ôm 360° phía trên đường hoàn tất giúp răng chống gãy; theo Mamoun (2017), vùng này nên cao khoảng 1,5 – 2,0 mm.']],
     sources: ['mamoun'] },
 
-  { slug: 'phuc-hinh-tren-implant', name: 'Phục hình trên Implant', short: 'Sứ kim loại & sứ không kim loại · theo chỉ định riêng',
+  { slug: 'phuc-hinh-tren-implant', name: 'Phục hình trên Implant', short: 'Sứ kim loại và sứ không kim loại, theo chỉ định riêng',
     img: '/assets/img/products/implant-lg.webp', thumb: '/assets/img/products/implant.webp', imgAlt: 'Mão sứ trên trụ implant (hình minh hoạ)',
     title: 'Phục hình răng sứ trên Implant',
     lead: 'Mão sứ kim loại và sứ không kim loại trên implant, theo chỉ định riêng từng ca. Bảo hành như phục hình trên răng thật cùng dòng vật liệu.',
@@ -672,12 +671,12 @@ export function materialBody(m) {
     ? `<ul>
 <li><a href="/phuc-hinh/mao-full-zirconia/">Mão zirconia nguyên khối (full màu)</a></li>
 ${m.multilayer ? '<li><a href="/phuc-hinh/mao-zirconia-multilayer/">Mão zirconia Multilayer</a></li>\n' : ''}<li><a href="/phuc-hinh/mao-su-dap-su/">Sườn zirconia cho mão sứ đắp sứ</a></li>
-<li><a href="/phuc-hinh/overlay/">Overlay</a>, <a href="/phuc-hinh/inlay-onlay/">inlay · onlay</a>, <a href="/phuc-hinh/cui-gia/">cùi giả</a> zirconia và <a href="/phuc-hinh/phuc-hinh-tren-implant/">phục hình trên implant</a> theo chỉ định</li>
+<li><a href="/phuc-hinh/overlay/">Overlay</a>, <a href="/phuc-hinh/inlay-onlay/">inlay, onlay</a>, <a href="/phuc-hinh/cui-gia/">cùi giả</a> zirconia và <a href="/phuc-hinh/phuc-hinh-tren-implant/">phục hình trên implant</a> theo chỉ định</li>
 </ul>`
     : `<ul>
 <li><a href="/phuc-hinh/mao-su-dap-su/">Sườn cho mão sứ đắp sứ (răng sứ kim loại)</a></li>
 <li><a href="/phuc-hinh/mao-full-kim-loai/">Mão toàn kim loại</a></li>
-<li><a href="/phuc-hinh/inlay-onlay/">Inlay · onlay</a> và <a href="/phuc-hinh/cui-gia/">cùi giả</a> kim loại</li>
+<li><a href="/phuc-hinh/inlay-onlay/">Inlay, onlay</a> và <a href="/phuc-hinh/cui-gia/">cùi giả</a> kim loại</li>
 </ul>`;
   const specs = m.specsTable || (m.specs ? table(['Thông số', 'Giá trị'], m.specs) + (m.specsNote ? `<p class="note">${m.specsNote}</p>` : '') : '');
   return `
@@ -742,7 +741,7 @@ export const COMPARE_SOURCES = ['katana', 'katanaYML', 'cerconBro', 'cerconML', 
 
 export function turnaroundBody() {
   return `
-<p>Thời gian sản xuất áp dụng cho <strong>mọi loại phục hình</strong> — sứ kim loại, zirconia, Multilayer, inlay · onlay, overlay, cùi giả, phục hình trên implant — và được tính <strong>kể từ lúc labo nhận hàng</strong>.</p>
+<p>Thời gian sản xuất áp dụng cho <strong>mọi loại phục hình</strong> — sứ kim loại, zirconia, Multilayer, inlay, onlay, overlay, cùi giả, phục hình trên implant — và được tính <strong>kể từ lúc labo nhận hàng</strong>.</p>
 ${turnaroundTable()}
 <h2>Để ca về đúng hẹn</h2>
 <ul>
@@ -778,8 +777,8 @@ ${table(['Dòng vật liệu', 'Loại', 'Xuất xứ', 'Nhà sản xuất', 'B�
 ${table(['Bảo hành', 'Dòng zirconia'], [
   ['15 năm', link(bySlug('lava'))],
   ['7 năm', link(bySlug('cercon'))],
-  ['5 năm', `${link(bySlug('katana'))} · ${link(bySlug('ddbio'))}`],
-  ['3 năm', `${link(bySlug('unc'))} · ${link(bySlug('upcera'))}`],
+  ['5 năm', `${link(bySlug('katana'))}, ${link(bySlug('ddbio'))}`],
+  ['3 năm', `${link(bySlug('unc'))}, ${link(bySlug('upcera'))}`],
 ])}
 <p>Độ bền, độ trong từng dòng: <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a>.</p>`;
 }
@@ -787,7 +786,7 @@ ${table(['Bảo hành', 'Dòng zirconia'], [
 /* ---------- Câu hỏi thường gặp (trang chung) ---------- */
 export const FAQ = [
   ['KTV Dental Lab nhận làm những loại phục hình nào?',
-    `Mão sứ đắp sứ (sườn Ni-Cr, Co-Cr, Zirconia), mão zirconia nguyên khối (full màu), mão zirconia Multilayer, mão toàn kim loại, inlay · onlay, overlay, cùi giả và phục hình trên implant. <a href="/#phuc-hinh">Xem danh sách phục hình</a>.`],
+    `Mão sứ đắp sứ (sườn Ni-Cr, Co-Cr, Zirconia), mão zirconia nguyên khối (full màu), mão zirconia Multilayer, mão toàn kim loại, inlay, onlay, overlay, cùi giả và phục hình trên implant. <a href="/#phuc-hinh">Xem danh sách phục hình</a>.`],
   ['Labo đang dùng những dòng phôi zirconia nào?',
     `Hiện có ${zr.map((m) => `${link(m)} (${m.country})`).join(', ')}. ${MORE_BLANKS_TEXT} <a href="/vat-lieu/so-sanh-zirconia/">So sánh các dòng zirconia</a>.`],
   ['Phòng khám muốn dùng dòng phôi zirconia khác thì sao?',
@@ -837,7 +836,7 @@ ${table(['Phương thức', 'Ghi chú'], [
 <p>Phiếu chỉ định nha khoa gửi qua <strong>mọi kênh online</strong> — Zalo, email, tin nhắn… — cùng lúc hoặc trước khi labo nhận dấu. Phiếu nên có:</p>
 <ul>
 <li>Tên phòng khám, bác sĩ; tên hoặc mã bệnh nhân.</li>
-<li>Vị trí răng và loại phục hình (mão, cầu, inlay · onlay, overlay, cùi giả, phục hình trên implant).</li>
+<li>Vị trí răng và loại phục hình (mão, cầu, inlay, onlay, overlay, cùi giả, phục hình trên implant).</li>
 <li>Vật liệu và dòng phôi — xem <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a> nếu chưa chọn.</li>
 <li>Màu răng theo bảng màu VITA, kèm ảnh so màu — đặc biệt với răng trước.</li>
 <li>Cầu răng: răng trụ, nhịp cầu. Implant: hệ implant, đường kính, kiểu kết nối, loại abutment, bắt vít hay gắn xi măng.</li>
@@ -860,7 +859,7 @@ ${turnaroundTable()}
 <p>Giờ làm việc: ${BIZ.hours}.</p>
 <h2>5. Liên hệ</h2>
 <ul>
-<li>Điện thoại: ${BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')}</li>
+<li>Điện thoại: ${BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(', ')}</li>
 <li>Email: <a href="mailto:${BIZ.email}">${BIZ.email}</a></li>
 <li>Báo giá, tư vấn ban đầu qua Zalo: ${QUOTE_LINKS}</li>
 </ul>`;
@@ -892,7 +891,7 @@ ${table(['Nghiên cứu', 'Kết quả chính'], [
 <p class="note">Chưa có dữ liệu lâm sàng dài hạn; ảnh hưởng của xoi mòn lên độ bền uốn của zirconia chưa được đánh giá trong các nghiên cứu trên.</p>
 <h2>Dịch vụ tại KTV Dental Lab</h2>
 ${table(['Mục', 'Chi tiết'], [
-  ['Áp dụng', 'Thường dùng cho <a href="/phuc-hinh/inlay-onlay/">inlay · onlay</a> và <a href="/phuc-hinh/overlay/">overlay</a> zirconia. Trường hợp khác, trao đổi với labo.'],
+  ['Áp dụng', 'Thường dùng cho <a href="/phuc-hinh/inlay-onlay/">inlay, onlay</a> và <a href="/phuc-hinh/overlay/">overlay</a> zirconia. Trường hợp khác, trao đổi với labo.'],
   ['Xử lý', 'Phục hình được ngâm trong dung dịch Zircos-E tại labo trước khi giao — tối đa 2 giờ, tuỳ kích thước phục hình. Không thổi cát trước và sau khi xoi mòn.'],
   ['Thời gian', 'Thời gian ngâm đã được tính sẵn trong <a href="/thoi-gian-san-xuat/">thời gian sản xuất</a> — ca không bị trễ thêm.'],
   ['Chi phí', '<strong>Hiện miễn phí</strong>'],
@@ -915,14 +914,14 @@ export const LOCAL_AREAS = ['Thủ Dầu Một', 'Thuận An', 'Dĩ An', 'Tân U
 const MAPS = 'https://www.google.com/maps/search/?api=1&amp;query=614%2F18%2F21%20L%C3%AA%20H%E1%BB%93ng%20Phong%2C%20Ph%C3%BA%20L%E1%BB%A3i%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh';
 const quickInfo = (deliveryRow) => table(['Mục', 'Chi tiết'], [
   ['Labo', `${BIZ.name} — ${BIZ.legal}`],
-  ['Địa chỉ', `${BIZ.address} (${BIZ.area}) · <a href="${MAPS}" target="_blank" rel="noopener">Chỉ đường</a>`],
+  ['Địa chỉ', `${BIZ.address} (${BIZ.area}). <a href="${MAPS}" target="_blank" rel="noopener">Chỉ đường</a>`],
   ['Giờ làm việc', BIZ.hours],
-  ['Điện thoại labo', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')],
+  ['Điện thoại labo', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(', ')],
   ['Báo giá, tư vấn ban đầu', `Zalo ${QUOTE_LINKS}`],
   ['Chứng nhận', `${BIZ.iso.std} — ${BIZ.iso.body}, số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}`],
   ['Máy phay CAD/CAM', 'DGSHAPE DWX-52Di — 5 trục'],
-  ['Thời gian sản xuất', 'Răng đơn lẻ, 2 – 3 đơn vị: 1 ngày · cầu 4 – 8 đơn vị: 2 ngày · cầu toàn hàm: 3 ngày'],
-  ['Bảo hành', 'Zirconia 3 – 15 năm theo dòng phôi · răng sứ kim loại theo thỏa thuận'],
+  ['Thời gian sản xuất', 'Răng đơn lẻ, 2 – 3 đơn vị: 1 ngày; cầu 4 – 8 đơn vị: 2 ngày; cầu toàn hàm: 3 ngày'],
+  ['Bảo hành', 'Zirconia 3 – 15 năm theo dòng phôi; răng sứ kim loại theo thỏa thuận'],
   ['Giao nhận', deliveryRow],
 ]);
 const materialTable = () => table(['Dòng zirconia', 'Nhà sản xuất', 'Xuất xứ', 'Bảo hành'], zr.map((m) => [link(m), m.maker, m.country, `<strong>${m.years} năm</strong>`]), 'wide');
@@ -932,7 +931,7 @@ export function localBody() {
   return `
 <p class="qa-short">KTV Dental Lab là labo răng sứ tại <strong>${BIZ.address}</strong> — khu vực Thủ Dầu Một, Bình Dương cũ. Labo sản xuất phục hình cho phòng khám nha khoa, đạt <strong>${BIZ.iso.std}</strong>, răng đơn lẻ trong <strong>1 ngày</strong>, lấy và giao tận nơi trong khu vực Bình Dương cũ.</p>
 <h2>Thông tin nhanh</h2>
-${quickInfo('Lấy và giao tận nơi khu vực Bình Dương cũ · nhận ca khắp miền Nam')}
+${quickInfo('Lấy và giao tận nơi khu vực Bình Dương cũ; nhận ca khắp miền Nam')}
 <h2>Chọn labo không chỉ là chọn nơi “làm răng sứ”</h2>
 <p>Với phòng khám, một mão zirconia đẹp chưa phải là toàn bộ vấn đề. Labo phù hợp còn phải giúp bác sĩ kiểm soát những điều ít xuất hiện trong quảng cáo: mão có xuống hết không, tiếp xúc có phải chỉnh nhiều không, khớp cắn có ổn định không, màu có tái lập được ở lần chỉnh sau không, vật liệu thực tế có đúng chỉ định không, ca khó có được trao đổi trước khi sản xuất không, và ngày giao có đủ ổn định để xếp lịch bệnh nhân.</p>
 <p>Vì vậy câu hỏi khi tìm labo răng sứ tại Bình Dương không chỉ là “giá một răng bao nhiêu?”, mà là: <strong>labo này có giúp phòng khám kiểm soát chất lượng của cả quá trình phục hình không?</strong></p>
@@ -950,7 +949,7 @@ ${quickInfo('Lấy và giao tận nơi khu vực Bình Dương cũ · nhận ca 
 <p>“Cercon hay Katana tốt hơn?” là câu hỏi thường gặp, nhưng chưa đủ. Ngay trong cùng một hãng, các dòng phôi khác nhau về độ trong, độ bền, chỉ định và độ dày tối thiểu — ví dụ Katana UTML có độ trong 51% với độ bền uốn 557 MPa, còn Katana HTML PLUS 45% với 1.150 MPa. Phôi nhiều lớp (Multilayer) tạo chuyển màu ngay trong phôi để mão nguyên khối có thẩm mỹ tự nhiên hơn.</p>
 <p>Một răng hàm chịu lực lớn, một răng cửa cần độ trong, một cùi đổi màu và một cầu nhiều đơn vị cần những ưu tiên khác nhau — không nhất thiết chọn theo bảng giá từ thấp đến cao. KTV Dental Lab chế tác đa dạng dòng zirconia, mỗi dòng có hãng, xuất xứ và bảo hành riêng:</p>
 ${materialTable()}
-<p>Chọn dòng theo ca: <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a> · <a href="/hoi-dap/chon-vat-lieu-zirconia/">hỏi đáp chọn vật liệu</a>.</p>
+<p>Chọn dòng theo ca: <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a>, <a href="/hoi-dap/chon-vat-lieu-zirconia/">hỏi đáp chọn vật liệu</a>.</p>
 ${MORE_BLANKS}
 <h2>Máy CAD/CAM quan trọng, nhưng máy không tự tạo ra phục hình tốt</h2>
 <p>KTV Dental Lab dùng máy phay nha khoa 5 trục <strong>DGSHAPE DWX-52Di</strong> (Roland DGA) cho quy trình CAD/CAM. Máy phay chính xác là một phần quan trọng của labo số, nhưng máy không tự quyết định:</p>
@@ -996,7 +995,7 @@ ${table(['Phục hình', 'Vật liệu'], PRODUCTS.map((p) => [`<a href="/phuc-h
 <li>Khi vật liệu được chỉ định, bác sĩ biết mình nhận gì.</li>
 <li>Khi có vấn đề, hai bên có dữ liệu để cùng tìm nguyên nhân.</li>
 </ul>
-<p>Báo giá và tư vấn vật liệu: Zalo ${QUOTE_LINKS} · gửi ca: <a href="/gui-ca/">cách gửi ca</a>.</p>`;
+<p>Báo giá và tư vấn vật liệu: Zalo ${QUOTE_LINKS}. Gửi ca: <a href="/gui-ca/">cách gửi ca</a>.</p>`;
 }
 export const LOCAL_FAQ = [
   ['Labo răng sứ KTV Dental Lab ở đâu tại Bình Dương?', `${BIZ.address} — khu vực Thủ Dầu Một, Bình Dương cũ (từ 01/7/2025 thuộc TP Hồ Chí Minh).`],
@@ -1015,7 +1014,7 @@ export function hcmBody() {
   return `
 <p class="qa-short">KTV Dental Lab là labo răng sứ tại <strong>TP Hồ Chí Minh</strong> — ${BIZ.address}, khu vực Thủ Dầu Một (Bình Dương cũ). Labo nhận ca từ phòng khám trên toàn thành phố và khắp miền Nam: file scan trong miệng gửi online, dấu và mẫu hàm được sắp xếp giao nhận; răng đơn lẻ sản xuất trong <strong>1 ngày</strong> kể từ khi labo nhận hàng.</p>
 <h2>Thông tin nhanh</h2>
-${quickInfo('Lấy và giao tận nơi khu vực Bình Dương cũ · các khu vực khác của TP HCM và miền Nam: file scan online hoặc liên hệ sắp xếp giao nhận')}
+${quickInfo('Lấy và giao tận nơi khu vực Bình Dương cũ; các khu vực khác của TP HCM và miền Nam: file scan online hoặc liên hệ sắp xếp giao nhận')}
 <h2>TP Hồ Chí Minh mới — labo ở khu vực Bình Dương cũ</h2>
 <p>Từ ngày 01/7/2025, theo Nghị quyết 202/2025/QH15, TP Hồ Chí Minh, tỉnh Bình Dương và tỉnh Bà Rịa – Vũng Tàu được sắp xếp thành TP Hồ Chí Minh mới. KTV Dental Lab nằm ở phường Phú Lợi — khu vực Thủ Dầu Một, Bình Dương cũ — và phục vụ phòng khám ở cả ba khu vực.</p>
 <h2>Gửi ca từ xa: dữ liệu số là đường giao hàng nhanh nhất</h2>
@@ -1027,7 +1026,7 @@ ${table(['Kiểm tra', 'Vì sao quan trọng'], [
   ['Implant: ghi hãng, model scan body, hệ implant, đường kính, kết nối', 'Scan body phải khớp đúng thư viện thiết kế và linh kiện'],
   ['Ảnh màu răng với cây so màu, ánh sáng trung tính', 'Labo không gặp trực tiếp bệnh nhân — ảnh là dữ liệu màu duy nhất'],
 ], 'wide')}
-<p>Chi tiết: <a href="/gui-ca/">cách gửi ca</a> · <a href="/hoi-dap/scan-trong-mieng/">hỏi đáp scan trong miệng</a> · <a href="/hoi-dap/scan-body-implant/">scan body implant</a>.</p>
+<p>Chi tiết: <a href="/gui-ca/">cách gửi ca</a>, <a href="/hoi-dap/scan-trong-mieng/">hỏi đáp scan trong miệng</a>, <a href="/hoi-dap/scan-body-implant/">scan body implant</a>.</p>
 <h2>Gửi dấu và mẫu hàm từ xa</h2>
 <p>Phòng khám ngoài khu vực Bình Dương cũ vẫn gửi được dấu truyền thống và mẫu hàm — liên hệ labo để sắp xếp giao nhận. Đóng gói dấu kèm phiếu chỉ định, ghi rõ ngày hẹn bệnh nhân. Phiếu chỉ định gửi trước qua kênh online để labo kiểm tra thông tin trong lúc chờ hàng.</p>
 <h2>Xếp lịch hẹn bệnh nhân với labo ở xa</h2>
@@ -1073,11 +1072,11 @@ ${table(['Mục', 'Chi tiết'], [
   ['Tên thương mại', BIZ.name],
   ['Mã số thuế', '3703340735'],
   ['Địa chỉ', `${BIZ.address} (${BIZ.area})`],
-  ['Điện thoại', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')],
+  ['Điện thoại', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(', ')],
   ['Email', `<a href="mailto:${BIZ.email}">${BIZ.email}</a>`],
   ['Website', `<a href="${SITE}/">ktvlab.com</a>`],
 ])}
-<p>Tra cứu mã số thuế và trạng thái doanh nghiệp: <a href="https://tracuunnt.gdt.gov.vn/tcnnt/mstdn.jsp" target="_blank" rel="noopener">trang tra cứu người nộp thuế của Cục Thuế</a> · <a href="https://dangkykinhdoanh.gov.vn/" target="_blank" rel="noopener">Cổng thông tin quốc gia về đăng ký doanh nghiệp</a>.</p>
+<p>Tra cứu mã số thuế và trạng thái doanh nghiệp: <a href="https://tracuunnt.gdt.gov.vn/tcnnt/mstdn.jsp" target="_blank" rel="noopener">trang tra cứu người nộp thuế của Cục Thuế</a> và <a href="https://dangkykinhdoanh.gov.vn/" target="_blank" rel="noopener">Cổng thông tin quốc gia về đăng ký doanh nghiệp</a>.</p>
 <h2>Chứng nhận hệ thống quản lý chất lượng</h2>
 ${table(['Mục', 'Chi tiết'], [
   ['Tiêu chuẩn', `${BIZ.iso.std} — hệ thống quản lý chất lượng cho lĩnh vực trang thiết bị y tế`],
@@ -1094,7 +1093,7 @@ ${table(['Vật liệu', 'Loại', 'Nhà sản xuất', 'Xuất xứ'], MATERIAL
 <h2>Kiểm nghiệm vật liệu</h2>
 <p>Mẫu phần kim loại của răng sứ Co-Cr do labo sản xuất được Trung tâm Phân tích, Kiểm định vật liệu xây dựng — Viện Vật liệu xây dựng (VIBM) phân tích theo phương pháp tham chiếu ISO 22674:2022: <strong>Ni 0,00%</strong> (phiếu kết quả số 1958/VLXD-TTKĐ, ngày 26/05/2026). <a href="/vat-lieu/co-cr/">Xem kết quả và toàn văn phiếu</a>.</p>
 <h2>Hoá đơn và chứng từ</h2>
-<p>Phòng khám cần thông tin xuất hoá đơn hoặc chứng từ cho hồ sơ, vui lòng trao đổi với labo khi bắt đầu hợp tác: <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a> · <a href="mailto:${BIZ.email}">${BIZ.email}</a>.</p>
+<p>Phòng khám cần thông tin xuất hoá đơn hoặc chứng từ cho hồ sơ, vui lòng trao đổi với labo khi bắt đầu hợp tác: <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a> hoặc email <a href="mailto:${BIZ.email}">${BIZ.email}</a>.</p>
 <h2>Địa chỉ sau sắp xếp đơn vị hành chính</h2>
 <p>Từ ngày 01/7/2025, theo Nghị quyết 202/2025/QH15, tỉnh Bình Dương được sắp xếp vào TP Hồ Chí Minh. Địa chỉ của labo ghi theo đơn vị hành chính mới: phường Phú Lợi, TP Hồ Chí Minh (khu vực Thủ Dầu Một, Bình Dương cũ).</p>`;
 }

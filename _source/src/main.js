@@ -42,59 +42,6 @@ const onScrollHeader = () => header && header.classList.toggle('scrolled', windo
 window.addEventListener('scroll', onScrollHeader, { passive: true });
 onScrollHeader();
 
-/* ---------- reveal on scroll ---------- */
-const io = new IntersectionObserver((entries) => {
-  for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-}, { rootMargin: '0px 0px -12% 0px' });
-document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
-
-/* ---------- count-up numbers ---------- */
-const countIO = new IntersectionObserver((entries) => {
-  for (const e of entries) {
-    if (!e.isIntersecting) continue;
-    const el = e.target; countIO.unobserve(el);
-    const to = parseFloat(el.dataset.count); const pad = el.dataset.pad ? +el.dataset.pad : 0;
-    if (reduced) { el.textContent = String(to).padStart(pad, '0'); continue; }
-    const t0 = performance.now(), dur = 1200;
-    const step = (t) => {
-      const p = Math.min(1, (t - t0) / dur); const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = String(Math.round(to * eased)).padStart(pad, '0');
-      if (p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }
-}, { threshold: 0.6 });
-document.querySelectorAll('[data-count]').forEach((el) => countIO.observe(el));
-
-/* ---------- custom cursor (fine pointers only) ---------- */
-if (window.matchMedia('(pointer: fine)').matches && !reduced) {
-  const dot = document.createElement('div'); dot.className = 'cursor-dot';
-  const ring = document.createElement('div'); ring.className = 'cursor-ring';
-  document.body.append(dot, ring);
-  let x = -100, y = -100, rx = -100, ry = -100;
-  window.addEventListener('pointermove', (e) => { x = e.clientX; y = e.clientY; root.classList.add('has-cursor'); }, { passive: true });
-  document.addEventListener('pointerleave', () => root.classList.remove('has-cursor'));
-  document.addEventListener('pointerover', (e) => {
-    const hot = e.target.closest('a, button, [data-hot]');
-    ring.classList.toggle('hot', !!hot);
-  });
-  const tick = () => {
-    rx += (x - rx) * 0.18; ry += (y - ry) * 0.18;
-    dot.style.transform = `translate(${x}px, ${y}px)`;
-    ring.style.transform = `translate(${rx}px, ${ry}px)`;
-    requestAnimationFrame(tick);
-  };
-  tick();
-}
-
-/* ---------- live clock in the hero (Asia/Ho_Chi_Minh) ---------- */
-const clock = document.querySelector('[data-clock]');
-if (clock) {
-  const fmt = new Intl.DateTimeFormat('vi-VN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Ho_Chi_Minh' });
-  const upd = () => { clock.textContent = fmt.format(new Date()); };
-  upd(); setInterval(upd, 1000);
-}
-
 /* ---------- materials panel ---------- */
 const steps = [...document.querySelectorAll('.mat-step')];
 const panel = document.querySelector('.mat-panel');
@@ -127,7 +74,6 @@ function showMaterial(i, crown) {
       }
       panel.querySelector('[data-f="bar"]').style.setProperty('--p', (target / 15).toFixed(3));
     }
-    panel.querySelector('[data-f="num"]').textContent = String(i + 1).padStart(2, '0');
     panel.classList.remove('swap'); void panel.offsetWidth; panel.classList.add('swap');
   }
   idxLinks.forEach((a, j) => a.classList.toggle('on', j === i));
