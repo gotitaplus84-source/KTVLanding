@@ -32,6 +32,17 @@ export const BIZ = {
 export const QUOTE_LINKS = `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a> · <a href="${BIZ.quote2.zalo}" target="_blank" rel="noopener">${BIZ.quote2.label}</a>`;
 export const QUOTE_TEXT = `${BIZ.quote.label} hoặc ${BIZ.quote2.label}`;
 
+// Popup "Nhận bảng giá qua Zalo" — nút có thuộc tính data-quote mở popup này (main.js); không có JS thì mở Zalo trực tiếp.
+export const QUOTE_TPL = `<template id="quote-tpl"><div class="quote-box">
+<button class="quote-x" type="button" data-close aria-label="Đóng">×</button>
+<p class="quote-k mono">Bảng giá cho phòng khám</p>
+<h2 id="quote-h">Bảng giá được gửi riêng cho từng phòng khám</h2>
+<p>Labo không đăng bảng giá công khai, để giá labo là thông tin riêng giữa labo và phòng khám — không ảnh hưởng đến cách phòng khám tư vấn và báo giá với bệnh nhân.</p>
+<p>Chỉ cần nhắn <strong>“bảng giá”</strong> qua Zalo — labo gửi bảng giá, không gọi điện làm phiền.</p>
+<div class="quote-btns"><a class="btn btn-red" href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote.label}</a><a class="btn btn-line" href="${BIZ.quote2.zalo}" target="_blank" rel="noopener">Zalo ${BIZ.quote2.label}</a></div>
+<p class="quote-foot mono">Giờ làm việc: ${BIZ.hours}</p>
+</div></template>`;
+
 /* ---------- Nguồn tham khảo ---------- */
 export const SOURCES = {
   iowa: ['Crown preparation guidelines — University of Iowa College of Dentistry (D3 Prosthodontics)', 'https://pressbooks.uiowa.edu/d3pros/?p=223'],

@@ -8,7 +8,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, BIZ, QUOTE_LINKS, QUOTE_TEXT, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES, localBody, LOCAL_FAQ, LOCAL_SOURCES, LOCAL_AREAS, hcmBody, HCM_FAQ, HCM_SOURCES } from './content.mjs';
+import { SITE, BIZ, QUOTE_LINKS, QUOTE_TEXT, QUOTE_TPL, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES, localBody, LOCAL_FAQ, LOCAL_SOURCES, LOCAL_AREAS, hcmBody, HCM_FAQ, HCM_SOURCES } from './content.mjs';
 import { QA_TOPICS as QA_1, QA_UPDATED } from './qa.mjs';
 import { QA_TOPICS_2 } from './qa2.mjs';
 const QA_TOPICS = [...QA_1, ...QA_TOPICS_2];
@@ -32,6 +32,8 @@ const footLinks = `<!--@links-->
 let index = readFileSync(join(ROOT, 'index.html'), 'utf8');
 if (!index.includes('<!--@links-->')) throw new Error('index.html thiếu <!--@links--> trong chân trang');
 index = index.replace(/<!--@links-->[\s\S]*?<!--\/@links-->/, footLinks);
+if (!index.includes('<!--@quote-->')) throw new Error('index.html thiếu <!--@quote-->');
+index = index.replace(/<!--@quote-->[\s\S]*?<!--\/@quote-->/, `<!--@quote-->\n${QUOTE_TPL}\n<!--/@quote-->`);
 writeFileSync(join(ROOT, 'index.html'), index);
 
 /* ---------- pieces taken from the home page ---------- */
@@ -108,9 +110,10 @@ ${MENU}
       <h1>${h1}</h1>
       <p class="page-lead">${lead}</p>
       <div class="page-cta">
-        <a class="btn btn-red" href="tel:${BIZ.quote.tel}">Gọi báo giá ${BIZ.quote.label}</a>
-        <a class="btn btn-line" href="${BIZ.quote.zalo}" target="_blank" rel="noopener">Nhắn Zalo <span aria-hidden="true">↗</span></a>
+        <a class="btn btn-red" href="${BIZ.quote.zalo}" target="_blank" rel="noopener" data-quote>Nhận bảng giá qua Zalo</a>
+        ${path === '/gui-ca/' ? `<a class="btn btn-line" href="tel:${BIZ.phones[0].tel}">Gọi labo ${BIZ.phones[0].text}</a>` : '<a class="btn btn-line" href="/gui-ca/">Gửi ca cho labo</a>'}
       </div>
+      <p class="cta-note">Nhắn “bảng giá” — labo gửi bảng giá, không gọi điện làm phiền.</p>
     </div>
     ${img ? `<figure class="page-fig"><img src="${img}" alt="${esc(imgAlt)}" width="400" height="400" fetchpriority="high"></figure>` : ''}
   </header>
@@ -124,6 +127,7 @@ ${MENU}
 
 ${FOOTER}
 
+${QUOTE_TPL}
 <script type="module" src="/assets/js/main.js"></script>
 </body>
 </html>
