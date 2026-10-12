@@ -8,7 +8,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, BIZ, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES, localBody, LOCAL_FAQ, LOCAL_SOURCES, LOCAL_AREAS } from './content.mjs';
+import { SITE, BIZ, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES, localBody, LOCAL_FAQ, LOCAL_SOURCES, LOCAL_AREAS, hcmBody, HCM_FAQ, HCM_SOURCES } from './content.mjs';
 import { QA_TOPICS as QA_1, QA_UPDATED } from './qa.mjs';
 import { QA_TOPICS_2 } from './qa2.mjs';
 const QA_TOPICS = [...QA_1, ...QA_TOPICS_2];
@@ -24,7 +24,7 @@ const footLinks = `<!--@links-->
   <div class="wrap foot-links">
     <nav aria-label="Phục hình"><p class="mono dim">Phục hình</p>${PRODUCTS.map((p) => `<a href="/phuc-hinh/${p.slug}/">${p.name}</a>`).join('')}</nav>
     <nav aria-label="Vật liệu"><p class="mono dim">Vật liệu</p>${MATERIALS.map((m) => `<a href="/vat-lieu/${m.slug}/">${m.name}</a>`).join('')}<a href="/vat-lieu/so-sanh-zirconia/">So sánh zirconia</a></nav>
-    <nav aria-label="Thông tin"><p class="mono dim">Thông tin</p><a href="/labo-rang-su-binh-duong/">Labo răng sứ Bình Dương</a><a href="/gui-ca/">Cách gửi ca</a><a href="/thoi-gian-san-xuat/">Thời gian sản xuất</a><a href="/bao-hanh/">Bảo hành</a><a href="/cau-hoi-thuong-gap/">Câu hỏi thường gặp</a><a href="/hoi-dap/">Hỏi đáp kỹ thuật</a><a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Xoi mòn Zircos-E</a><a href="/#lien-he">Liên hệ</a></nav>
+    <nav aria-label="Thông tin"><p class="mono dim">Thông tin</p><a href="/labo-rang-su-binh-duong/">Labo răng sứ Bình Dương</a><a href="/labo-rang-su-tp-hcm/">Labo răng sứ TP HCM</a><a href="/gui-ca/">Cách gửi ca</a><a href="/thoi-gian-san-xuat/">Thời gian sản xuất</a><a href="/bao-hanh/">Bảo hành</a><a href="/cau-hoi-thuong-gap/">Câu hỏi thường gặp</a><a href="/hoi-dap/">Hỏi đáp kỹ thuật</a><a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Xoi mòn Zircos-E</a><a href="/#lien-he">Liên hệ</a></nav>
     <div><p class="mono dim">Liên hệ</p><p>${esc(BIZ.address)}</p><p>${BIZ.hoursShort}</p><p class="dim">${esc(BIZ.delivery)}</p><p>${BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(' · ')}</p></div>
   </div>
   <!--/@links-->`;
@@ -287,18 +287,34 @@ ${a}
 /* ---------- trang địa phương ---------- */
 pages.push(page({
   path: '/labo-rang-su-binh-duong/',
-  title: 'Labo răng sứ Bình Dương, Thủ Dầu Một – ISO 13485 | KTV Dental Lab',
-  desc: 'Labo răng sứ tại phường Phú Lợi (Thủ Dầu Một, Bình Dương cũ): răng toàn sứ zirconia 6 dòng, bảo hành 3 – 15 năm, răng đơn lẻ 1 ngày, giao tận nơi.',
+  title: 'Labo răng sứ Bình Dương cho phòng khám | KTV Dental Lab',
+  desc: 'Tìm labo răng sứ tại Bình Dương? Những điều bác sĩ nên kiểm tra: vật liệu, độ sát khít, thời gian sản xuất, bảo hành, ISO 13485 và cách phối hợp ca.',
   crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Labo răng sứ Bình Dương', url: '/labo-rang-su-binh-duong/' }],
-  kicker: ['◎', 'Bình Dương · Thủ Dầu Một'], h1: 'Labo răng sứ tại Bình Dương',
-  lead: 'Răng sứ kim loại và răng toàn sứ zirconia cho phòng khám nha khoa khu vực Thủ Dầu Một và Bình Dương cũ — ISO 13485:2016, răng đơn lẻ 1 ngày, lấy và giao tận nơi.',
+  kicker: ['◎', 'Bình Dương · Thủ Dầu Một'], h1: 'Labo răng sứ Bình Dương: bác sĩ nên nhìn gì trước khi chọn nơi gửi ca?',
+  lead: 'Vật liệu, độ sát khít, thời gian sản xuất, bảo hành và cách phối hợp ca — những điều nên kiểm tra trước khi gửi ca, và cách KTV Dental Lab đáp ứng từng điều.',
   body: localBody(),
   side: sideBox([['Địa chỉ', `${esc(BIZ.address)}`], ['Giờ làm việc', BIZ.hoursShort], ['Điện thoại', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join('<br>')], ['Báo giá · Zalo', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>`], ['Thời gian sản xuất', fastest]]),
-  related: [{ name: 'Cách gửi ca', url: '/gui-ca/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }, { name: 'Bảo hành', url: '/bao-hanh/' }, { name: 'Hỏi đáp kỹ thuật cho bác sĩ', url: '/hoi-dap/' }],
+  related: [{ name: 'Labo răng sứ TP HCM', url: '/labo-rang-su-tp-hcm/' }, { name: 'Cách gửi ca', url: '/gui-ca/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }, { name: 'Hỏi đáp kỹ thuật cho bác sĩ', url: '/hoi-dap/' }],
   relatedTitle: 'Xem thêm',
   faq: LOCAL_FAQ, sources: LOCAL_SOURCES,
   pageExtra: { about: { '@id': SITE + '/#org' }, dateModified: today },
   schema: [service('Labo răng sứ tại Bình Dương', '/labo-rang-su-binh-duong/', { serviceType: 'Sản xuất phục hình răng sứ cho phòng khám nha khoa', areaServed: [...LOCAL_AREAS.map((a) => ({ '@type': 'Place', name: `${a}, Bình Dương cũ` })), { '@type': 'Place', name: 'Miền Nam Việt Nam' }] })],
+}));
+
+pages.push(page({
+  path: '/labo-rang-su-tp-hcm/',
+  title: 'Labo răng sứ TP HCM cho phòng khám – nhận file scan | KTV Dental Lab',
+  desc: 'Labo răng sứ tại TP HCM (Phú Lợi, Bình Dương cũ): nhận file scan online, dấu và mẫu hàm; răng đơn lẻ 1 ngày, 6 dòng zirconia, ISO 13485, nhận ca khắp miền Nam.',
+  crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Labo răng sứ TP HCM', url: '/labo-rang-su-tp-hcm/' }],
+  kicker: ['◎', 'TP Hồ Chí Minh'], h1: 'Labo răng sứ TP HCM: gửi ca từ xa sao cho chính xác',
+  lead: 'Phòng khám ở TP Hồ Chí Minh và miền Nam gửi ca cho KTV Dental Lab qua file scan hoặc dấu truyền thống — cần những gì để ca về đúng, đúng lịch.',
+  body: hcmBody(),
+  side: sideBox([['Địa chỉ', `${esc(BIZ.address)}`], ['Gửi file scan', '<a href="/gui-ca/">Cách gửi ca</a>'], ['Báo giá · Zalo', `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a>`], ['Giờ làm việc', BIZ.hoursShort], ['Thời gian sản xuất', fastest]]),
+  related: [{ name: 'Labo răng sứ Bình Dương', url: '/labo-rang-su-binh-duong/' }, { name: 'Cách gửi ca', url: '/gui-ca/' }, { name: 'Hỏi đáp: scan trong miệng', url: '/hoi-dap/scan-trong-mieng/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }],
+  relatedTitle: 'Xem thêm',
+  faq: HCM_FAQ, sources: HCM_SOURCES,
+  pageExtra: { about: { '@id': SITE + '/#org' }, dateModified: today },
+  schema: [service('Labo răng sứ tại TP Hồ Chí Minh', '/labo-rang-su-tp-hcm/', { serviceType: 'Sản xuất phục hình răng sứ cho phòng khám nha khoa', areaServed: [{ '@type': 'City', name: 'TP Hồ Chí Minh' }, { '@type': 'Place', name: 'Bình Dương cũ' }, { '@type': 'Place', name: 'Bà Rịa – Vũng Tàu cũ' }, { '@type': 'Place', name: 'Miền Nam Việt Nam' }] })],
 }));
 
 /* ---------- thông tin ---------- */
@@ -389,6 +405,7 @@ ${L('So sánh các dòng zirconia', '/vat-lieu/so-sanh-zirconia/', 'độ bền,
 ## Thông tin cho phòng khám
 
 ${L('Labo răng sứ Bình Dương (Thủ Dầu Một)', '/labo-rang-su-binh-duong/', 'địa chỉ, khu vực giao nhận, thời gian sản xuất, bảo hành')}
+${L('Labo răng sứ TP HCM', '/labo-rang-su-tp-hcm/', 'gửi ca từ xa: file scan, dấu, lịch hẹn')}
 ${L('Cách gửi ca', '/gui-ca/')}
 ${L('Thời gian sản xuất', '/thoi-gian-san-xuat/')}
 ${L('Bảo hành', '/bao-hanh/')}

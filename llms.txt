@@ -45,6 +45,7 @@ Labo sản xuất phục hình theo từng ca của phòng khám nha khoa và gi
 ## Thông tin cho phòng khám
 
 - [Labo răng sứ Bình Dương (Thủ Dầu Một)](https://ktvlab.com/labo-rang-su-binh-duong/): địa chỉ, khu vực giao nhận, thời gian sản xuất, bảo hành
+- [Labo răng sứ TP HCM](https://ktvlab.com/labo-rang-su-tp-hcm/): gửi ca từ xa: file scan, dấu, lịch hẹn
 - [Cách gửi ca](https://ktvlab.com/gui-ca/)
 - [Thời gian sản xuất](https://ktvlab.com/thoi-gian-san-xuat/)
 - [Bảo hành](https://ktvlab.com/bao-hanh/)
