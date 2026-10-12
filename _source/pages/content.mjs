@@ -32,6 +32,10 @@ export const BIZ = {
 export const QUOTE_LINKS = `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a> · <a href="${BIZ.quote2.zalo}" target="_blank" rel="noopener">${BIZ.quote2.label}</a>`;
 export const QUOTE_TEXT = `${BIZ.quote.label} hoặc ${BIZ.quote2.label}`;
 
+// Nhập phôi theo yêu cầu: danh mục vật liệu không cố định.
+export const MORE_BLANKS = `<p class="more-blanks"><strong>Cần dòng phôi zirconia khác?</strong> Gọi KTV Dental Lab — labo liên hệ đối tác và nhập phôi chính hãng loại đó theo yêu cầu của phòng khám. Điện thoại <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a> · Zalo ${QUOTE_LINKS}.</p>`;
+export const MORE_BLANKS_TEXT = 'Ngoài các dòng phôi hiện có, nếu phòng khám cần dòng phôi zirconia khác, KTV Dental Lab liên hệ đối tác và nhập phôi chính hãng loại đó theo yêu cầu.';
+
 // Popup "Nhận bảng giá qua Zalo" — nút có thuộc tính data-quote mở popup này (main.js); không có JS thì mở Zalo trực tiếp.
 export const QUOTE_TPL = `<template id="quote-tpl"><div class="quote-box">
 <button class="quote-x" type="button" data-close aria-label="Đóng">×</button>
@@ -295,7 +299,7 @@ ${table(['Loại ca', 'Dòng phù hợp', 'Lưu ý'], [
     more: `<h2>Hoàn thiện màu</h2>
 <p>Lava Plus là phôi trắng, được nhuộm bằng hệ dung dịch của hãng trước khi thiêu kết: 16 màu VITA classical và 2 màu bleach. Lớp glaze sau cùng giúp màu khớp với màu đã chọn và cho bề mặt bóng mịn.</p>
 <h2>Bảo hành 15 năm</h2>
-<p>Lava là dòng có thời hạn bảo hành dài nhất trong 6 dòng zirconia tại KTV Dental Lab, phù hợp phòng khám muốn cam kết dài hạn với bệnh nhân cho mão và cầu không kim loại.</p>`,
+<p>Lava là dòng có thời hạn bảo hành dài nhất trong các dòng zirconia hiện có tại KTV Dental Lab, phù hợp phòng khám muốn cam kết dài hạn với bệnh nhân cho mão và cầu không kim loại.</p>`,
     choose: 'Khi cần thời hạn bảo hành dài nhất tại labo (15 năm), cùng phạm vi chỉ định rộng từ mão đơn lẻ đến cầu dài, cầu cong và cầu trên implant.',
     faq: [['Răng sứ Lava bảo hành bao lâu?', 'Phục hình zirconia Lava tại KTV Dental Lab được bảo hành 15 năm — dài nhất trong các dòng vật liệu của labo.'],
       ['Lava Plus có làm được cầu dài không?', 'Có. Theo 3M, Lava Plus được chỉ định cho cầu 3 – 4 đơn vị, cầu dài và cầu cong, cầu đèo, và cầu trên implant.'],
@@ -396,7 +400,7 @@ ${SEND_CASE}
   { slug: 'mao-full-zirconia', name: 'Mão Full màu', short: zr.map((m) => m.name).join(' · '),
     img: '/assets/img/products/zirconia-lg.webp', thumb: '/assets/img/products/zirconia.webp', imgAlt: 'Mão răng zirconia nguyên khối (full màu)',
     title: 'Mão zirconia nguyên khối (Full màu)',
-    lead: `Phay nguyên khối từ phôi zirconia, nhuộm màu và nướng bóng — không có lớp sứ đắp. KTV Dental Lab làm mão full màu trên 6 dòng phôi: ${zr.map((m) => m.name).join(', ')}.`,
+    lead: `Phay nguyên khối từ phôi zirconia, nhuộm màu và nướng bóng — không có lớp sứ đắp. KTV Dental Lab làm mão full màu trên nhiều dòng phôi: ${zr.map((m) => m.name).join(', ')} và nhập dòng khác theo yêu cầu.`,
     body: `
 <h2>Mão full màu là gì?</h2>
 <p>Mão full màu (zirconia nguyên khối, <em>full-contour</em>) được phay trọn hình răng từ một phôi zirconia, sau đó thiêu kết, nhuộm màu và nướng bóng. Không có lớp sứ đắp bên ngoài nên không có nguy cơ <strong>mẻ lớp sứ đắp</strong> — biến chứng thường gặp của mão sứ đắp sứ.</p>
@@ -416,9 +420,10 @@ ${table(['Thế hệ', 'Yttria', 'Độ bền uốn', 'Độ trong', 'Chỉ đ�
 ], 'wide')}
 <p class="note">Theo tổng quan của Yousry và cộng sự (2024, <em>BMC Oral Health</em>) và Binici Aygün và cộng sự (2025, <em>J Funct Biomater</em>).</p>
 <p>Phôi nhiều lớp thế hệ mới kết hợp các loại zirconia này trong cùng một phôi — xem <a href="/phuc-hinh/mao-zirconia-multilayer/">mão zirconia Multilayer</a>.</p>
-<h2>6 dòng phôi zirconia tại KTV Dental Lab</h2>
+<h2>Các dòng phôi zirconia tại KTV Dental Lab</h2>
 ${table(['Dòng', 'Xuất xứ', 'Nhà sản xuất', 'Bảo hành'], zr.map((m) => [link(m), m.country, m.maker, `${m.years} năm`]))}
 <p>Độ bền, độ trong từng dòng: <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a>.</p>
+${MORE_BLANKS}
 <h2>Hướng dẫn mài cùi</h2>
 ${PREP_TABLE}
 ${PREP_NOTE}
@@ -690,13 +695,15 @@ ${m.kind === 'zirconia' ? `<h2>Gắn và chỉnh khớp</h2>\n<p>Mão ${m.name} 
 <h2>Bảo hành</h2>
 <p>Phục hình ${m.name} tại KTV Dental Lab được bảo hành ${war}. Phục hình trên implant bảo hành như phục hình trên răng thật cùng dòng vật liệu. Xem <a href="/bao-hanh/">bảng bảo hành tất cả dòng vật liệu</a>.</p>
 <h2>So sánh với các dòng khác</h2>
-<p>${m.kind === 'zirconia' ? `Các dòng zirconia khác tại labo: ${list(zr.filter((x) => x.slug !== m.slug))}. Xem <a href="/vat-lieu/so-sanh-zirconia/">bảng so sánh các dòng zirconia</a>.` : `Hợp kim còn lại: ${list(MATERIALS.filter((x) => x.kind === 'metal' && x.slug !== m.slug))}. Răng sứ không kim loại: ${list(zr)}.`}</p>`;
+<p>${m.kind === 'zirconia' ? `Các dòng zirconia khác tại labo: ${list(zr.filter((x) => x.slug !== m.slug))}. Xem <a href="/vat-lieu/so-sanh-zirconia/">bảng so sánh các dòng zirconia</a>.` : `Hợp kim còn lại: ${list(MATERIALS.filter((x) => x.kind === 'metal' && x.slug !== m.slug))}. Răng sứ không kim loại: ${list(zr)}.`}</p>
+${m.kind === 'zirconia' ? MORE_BLANKS : ''}`;
 }
 
 /* ---------- So sánh zirconia ---------- */
 export function compareBody() {
   return `
-<p>KTV Dental Lab dùng 6 dòng phôi zirconia từ 5 quốc gia, bảo hành từ 3 đến 15 năm. Độ bền uốn và độ trong ghi theo công bố của từng hãng.</p>
+<p>Các dòng phôi zirconia hiện có tại KTV Dental Lab, bảo hành từ 3 đến 15 năm. Độ bền uốn và độ trong ghi theo công bố của từng hãng.</p>
+${MORE_BLANKS}
 ${table(['Dòng', 'Xuất xứ', 'Độ bền uốn', 'Độ trong', 'Nhiều lớp', 'Bảo hành'], [
   [link(bySlug('lava')), 'Mỹ', 'Lava Plus: 1.100 MPa', 'Độ trong cao', '—', '<strong>15 năm</strong>'],
   [link(bySlug('cercon')), 'Đức', 'ht: 1.200 · xt: 750 · ht ML: 1.200 → 750 MPa', 'ht: 41% · xt: 49% · ht ML: 41 – 49%', 'Có (ht ML)', '<strong>7 năm</strong>'],
@@ -782,7 +789,9 @@ export const FAQ = [
   ['KTV Dental Lab nhận làm những loại phục hình nào?',
     `Mão sứ đắp sứ (sườn Ni-Cr, Co-Cr, Zirconia), mão zirconia nguyên khối (full màu), mão zirconia Multilayer, mão toàn kim loại, inlay · onlay, overlay, cùi giả và phục hình trên implant. <a href="/#phuc-hinh">Xem danh sách phục hình</a>.`],
   ['Labo đang dùng những dòng phôi zirconia nào?',
-    `${zr.map((m) => `${link(m)} (${m.country})`).join(', ')}. <a href="/vat-lieu/so-sanh-zirconia/">So sánh các dòng zirconia</a>.`],
+    `Hiện có ${zr.map((m) => `${link(m)} (${m.country})`).join(', ')}. ${MORE_BLANKS_TEXT} <a href="/vat-lieu/so-sanh-zirconia/">So sánh các dòng zirconia</a>.`],
+  ['Phòng khám muốn dùng dòng phôi zirconia khác thì sao?',
+    `Gọi hoặc nhắn KTV Dental Lab — labo liên hệ đối tác và nhập phôi chính hãng loại đó theo yêu cầu. Điện thoại ${BIZ.phones[0].text}, Zalo ${QUOTE_TEXT}.`],
   ['Răng sứ được bảo hành bao lâu?',
     `Tuỳ dòng vật liệu: ${zr.map((m) => `${m.name} ${m.years} năm`).join(', ')}; răng sứ kim loại Ni-Cr, Co-Cr bảo hành theo thỏa thuận. <a href="/bao-hanh/">Xem bảng bảo hành</a>.`],
   ['Labo làm một ca mất bao lâu?',
@@ -939,9 +948,10 @@ ${quickInfo('Lấy và giao tận nơi khu vực Bình Dương cũ · nhận ca 
 <p>Nếu labo cố đoán để kịp giao, vấn đề chỉ lộ ra khi bác sĩ thử răng trên bệnh nhân. Sửa dữ liệu trước khi phay đơn giản hơn nhiều so với sửa một phục hình đã hoàn thiện. Cách KTV xử lý từng tình huống: <a href="/hoi-dap/mai-cui-zirconia/#cau-19">thiếu khoảng</a>, <a href="/hoi-dap/sat-khit-tiep-xuc-hinh-the/#cau-60">khi nào cần scan lại</a>, <a href="/hoi-dap/scan-trong-mieng/#cau-63">margin bị thiếu</a>.</p>
 <h2>Với zirconia, tên thương hiệu chưa nói hết</h2>
 <p>“Cercon hay Katana tốt hơn?” là câu hỏi thường gặp, nhưng chưa đủ. Ngay trong cùng một hãng, các dòng phôi khác nhau về độ trong, độ bền, chỉ định và độ dày tối thiểu — ví dụ Katana UTML có độ trong 51% với độ bền uốn 557 MPa, còn Katana HTML PLUS 45% với 1.150 MPa. Phôi nhiều lớp (Multilayer) tạo chuyển màu ngay trong phôi để mão nguyên khối có thẩm mỹ tự nhiên hơn.</p>
-<p>Một răng hàm chịu lực lớn, một răng cửa cần độ trong, một cùi đổi màu và một cầu nhiều đơn vị cần những ưu tiên khác nhau — không nhất thiết chọn theo bảng giá từ thấp đến cao. KTV Dental Lab chế tác 6 dòng zirconia, mỗi dòng có hãng, xuất xứ và bảo hành riêng:</p>
+<p>Một răng hàm chịu lực lớn, một răng cửa cần độ trong, một cùi đổi màu và một cầu nhiều đơn vị cần những ưu tiên khác nhau — không nhất thiết chọn theo bảng giá từ thấp đến cao. KTV Dental Lab chế tác đa dạng dòng zirconia, mỗi dòng có hãng, xuất xứ và bảo hành riêng:</p>
 ${materialTable()}
 <p>Chọn dòng theo ca: <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a> · <a href="/hoi-dap/chon-vat-lieu-zirconia/">hỏi đáp chọn vật liệu</a>.</p>
+${MORE_BLANKS}
 <h2>Máy CAD/CAM quan trọng, nhưng máy không tự tạo ra phục hình tốt</h2>
 <p>KTV Dental Lab dùng máy phay nha khoa 5 trục <strong>DGSHAPE DWX-52Di</strong> (Roland DGA) cho quy trình CAD/CAM. Máy phay chính xác là một phần quan trọng của labo số, nhưng máy không tự quyết định:</p>
 <ul>
@@ -991,7 +1001,7 @@ ${table(['Phục hình', 'Vật liệu'], PRODUCTS.map((p) => [`<a href="/phuc-h
 export const LOCAL_FAQ = [
   ['Labo răng sứ KTV Dental Lab ở đâu tại Bình Dương?', `${BIZ.address} — khu vực Thủ Dầu Một, Bình Dương cũ (từ 01/7/2025 thuộc TP Hồ Chí Minh).`],
   ['KTV có nhận file scan trong miệng không?', 'Có. KTV nhận dấu truyền thống, mẫu hàm hoặc file scan trong miệng.'],
-  ['Có thể chọn cụ thể hãng zirconia không?', `Có. Vật liệu được chỉ định theo từng dòng: ${zr.map((m) => m.name).join(', ')}.`],
+  ['Có thể chọn cụ thể hãng zirconia không?', `Có. Vật liệu được chỉ định theo từng dòng hiện có: ${zr.map((m) => m.name).join(', ')}. ${MORE_BLANKS_TEXT}`],
   ['Một răng zirconia đơn lẻ mất bao lâu?', '1 ngày, tối đa 36 giờ, tính từ khi labo nhận đủ hàng và dữ liệu hợp lệ.'],
   ['Labo có lấy và giao hàng tận nơi ở Thuận An, Dĩ An, Tân Uyên, Bến Cát không?', `Có. Labo lấy và giao tận nơi trong khu vực Bình Dương cũ: ${LOCAL_AREAS.join(', ')}.`],
   ['Labo có làm phục hình trên implant không?', 'Có. KTV làm phục hình răng sứ trên implant theo chỉ định riêng của bác sĩ.'],
@@ -1079,7 +1089,7 @@ ${table(['Mục', 'Chi tiết'], [
 ])}
 <p>Tra cứu chứng chỉ: <a href="https://isocert.org.vn/tra-cuu-chung-chi-iso" target="_blank" rel="noopener">website ISOCERT</a>. ISO 13485 là tiêu chuẩn quốc tế về hệ thống quản lý chất lượng cho tổ chức trong lĩnh vực thiết bị y tế — chứng nhận cách labo kiểm soát và truy xuất quy trình sản xuất.</p>
 <h2>Nguồn gốc vật liệu</h2>
-<p>Mỗi dòng vật liệu được công bố tên hãng và xuất xứ:</p>
+<p>Mỗi dòng vật liệu hiện có được công bố tên hãng và xuất xứ. Dòng phôi zirconia khác: labo nhập chính hãng theo yêu cầu của phòng khám.</p>
 ${table(['Vật liệu', 'Loại', 'Nhà sản xuất', 'Xuất xứ'], MATERIALS.map((m) => [link(m), m.kind === 'zirconia' ? 'Zirconia' : 'Hợp kim', m.maker, m.country]), 'wide')}
 <h2>Kiểm nghiệm vật liệu</h2>
 <p>Mẫu phần kim loại của răng sứ Co-Cr do labo sản xuất được Trung tâm Phân tích, Kiểm định vật liệu xây dựng — Viện Vật liệu xây dựng (VIBM) phân tích theo phương pháp tham chiếu ISO 22674:2022: <strong>Ni 0,00%</strong> (phiếu kết quả số 1958/VLXD-TTKĐ, ngày 26/05/2026). <a href="/vat-lieu/co-cr/">Xem kết quả và toàn văn phiếu</a>.</p>

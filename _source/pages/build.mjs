@@ -194,12 +194,12 @@ for (const m of MATERIALS) {
   pages.push(page({
     path: '/vat-lieu/so-sanh-zirconia/',
     title: 'So sánh răng sứ zirconia: Lava, Cercon, Katana, DDBio | KTV Dental Lab',
-    desc: 'Bảng so sánh độ bền uốn, độ trong (theo công bố của hãng), xuất xứ và thời hạn bảo hành 6 dòng phôi zirconia tại labo KTV Dental Lab, kèm gợi ý chọn dòng theo ca.',
+    desc: 'Bảng so sánh độ bền uốn, độ trong (theo công bố của hãng), xuất xứ và thời hạn bảo hành các dòng phôi zirconia tại labo KTV Dental Lab, kèm gợi ý chọn dòng theo ca.',
     crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Vật liệu', url: '/#vat-lieu' }, { name: 'So sánh zirconia', url: '/vat-lieu/so-sanh-zirconia/' }],
     kicker: ['≈', 'Vật liệu · So sánh'], h1: 'So sánh các dòng zirconia',
-    lead: `6 dòng phôi zirconia tại KTV Dental Lab — ${zrs.map((m) => m.name).join(', ')} — đặt cạnh nhau theo độ bền, độ trong, xuất xứ và bảo hành (từ 3 đến 15 năm).`,
+    lead: `Các dòng phôi zirconia tại KTV Dental Lab — ${zrs.map((m) => m.name).join(', ')} — đặt cạnh nhau theo độ bền, độ trong, xuất xứ và bảo hành (từ 3 đến 15 năm).`,
     body: compareBody(),
-    side: sideBox([['Dòng zirconia', String(zrs.length)], ['Bảo hành', '3 – 15 năm'], ['Thời gian sản xuất', fastest], ['Tư vấn chọn phôi', `Zalo ${QUOTE_LINKS}`]]),
+    side: sideBox([['Dòng zirconia', 'Đa dạng · nhập theo yêu cầu'], ['Bảo hành', '3 – 15 năm'], ['Thời gian sản xuất', fastest], ['Tư vấn chọn phôi', `Zalo ${QUOTE_LINKS}`]]),
     related: zrs.map((x) => ({ name: x.name, url: `/vat-lieu/${x.slug}/`, thumb: x.img })),
     relatedTitle: 'Chi tiết từng dòng',
     faq: COMPARE_FAQ, sources: COMPARE_SOURCES,
@@ -308,7 +308,7 @@ pages.push(page({
 pages.push(page({
   path: '/labo-rang-su-tp-hcm/',
   title: 'Labo răng sứ TP HCM cho phòng khám – nhận file scan | KTV Dental Lab',
-  desc: 'Labo răng sứ tại TP HCM (Phú Lợi, Bình Dương cũ): nhận file scan online, dấu và mẫu hàm; răng đơn lẻ 1 ngày, 6 dòng zirconia, ISO 13485, nhận ca khắp miền Nam.',
+  desc: 'Labo răng sứ tại TP HCM (Phú Lợi, Bình Dương cũ): nhận file scan online, dấu và mẫu hàm; răng đơn lẻ 1 ngày, đa dạng dòng zirconia, ISO 13485, nhận ca khắp miền Nam.',
   crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Labo răng sứ TP HCM', url: '/labo-rang-su-tp-hcm/' }],
   kicker: ['◎', 'TP Hồ Chí Minh'], h1: 'Labo răng sứ TP HCM: gửi ca từ xa sao cho chính xác',
   lead: 'Phòng khám ở TP Hồ Chí Minh và miền Nam gửi ca cho KTV Dental Lab qua file scan hoặc dấu truyền thống — cần những gì để ca về đúng, đúng lịch.',
@@ -411,6 +411,7 @@ Labo sản xuất phục hình theo từng ca của phòng khám nha khoa và gi
 - Thời gian sản xuất (mọi loại phục hình, tính từ lúc labo nhận hàng): ${TURNAROUND.map((t) => `${t.what.toLowerCase()} ${t.time}${t.max ? ` (${t.max})` : ''}`).join('; ')}
 - Bảo hành: ${zr.map((m) => `${m.name} ${m.years} năm`).join(', ')}; răng sứ kim loại (${metal.map((m) => m.name).join(', ')}) theo thỏa thuận; phục hình trên implant như phục hình trên răng thật cùng dòng vật liệu
 - Gửi ca: nhận dấu theo mọi phương thức (dấu, mẫu hàm, file scan trong miệng); phiếu chỉ định nha khoa gửi qua mọi kênh online
+- Vật liệu: đa dạng dòng phôi zirconia; phòng khám cần dòng khác thì labo liên hệ đối tác, nhập phôi chính hãng theo yêu cầu
 - Dịch vụ miễn phí: xoi mòn mặt dán zirconia bằng dung dịch Zircos-E cho inlay, onlay, overlay
 
 ## Phục hình

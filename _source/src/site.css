@@ -432,3 +432,5 @@ body.subpage{background:var(--bg)}
 .quote-box .quote-foot{font-size:11px;letter-spacing:.05em;margin:0}
 .quote-x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:0;background:var(--bg);color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
 .quote-x:hover{background:var(--line)}
+.prose .more-blanks{padding:16px 20px;border-radius:16px;background:var(--blue-50);color:var(--ink);font-size:15.5px;line-height:1.6;margin:8px 0 22px}
+.mat-foot p+p{margin-top:8px}
