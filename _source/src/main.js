@@ -167,6 +167,9 @@ if (stageEls.length) {
 async function loadCrown() {
   const canvas = document.getElementById('stage3d');
   if (!canvas) return;
+  // data saver or a 2G link: keep the still render rather than download three.js and the tooth models (~0.9 MB)
+  const net = navigator.connection;
+  if (net && (net.saveData || /2g/.test(net.effectiveType || ''))) { root.classList.add('no-webgl'); return; }
   const ok = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch { return false; } })();
   if (!ok) { root.classList.add('no-webgl'); return; }
   try {
@@ -197,3 +200,7 @@ if (document.querySelector('.dock') && !document.querySelector('[data-rx]')) {
 /* ---------- phiếu chỉ định online (/phieu-chi-dinh/) ---------- */
 const rxRoot = document.querySelector('[data-rx]');
 if (rxRoot) import('./rx.js').then(({ initRx }) => initRx(rxRoot)).catch((err) => console.warn('rx tool unavailable', err));
+
+/* ---------- chọn nhanh dòng zirconia (/vat-lieu/so-sanh-zirconia/) ---------- */
+const pickRoot = document.querySelector('[data-pick]');
+if (pickRoot) import('./pick.js').then(({ initPick }) => initPick(pickRoot)).catch((err) => console.warn('pick tool unavailable', err));
