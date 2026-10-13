@@ -1130,13 +1130,13 @@ export function rxBody() {
 <li><strong>Không bắt buộc.</strong> Labo vẫn nhận phiếu chỉ định của phòng khám qua mọi kênh online; công cụ này chỉ giúp soạn nhanh, đủ ý và dễ đọc.</li>
 <li><strong>Chọn răng trên sơ đồ</strong> (ký hiệu FDI: 11 – 48), chọn loại phục hình, vật liệu và màu, rồi bấm “Thêm vào phiếu”. Với cầu răng, bấm vào từng răng trong hạng mục để đánh dấu răng trụ hay nhịp.</li>
 <li><strong>Gửi:</strong> sao chép và dán vào Zalo, gửi email, hoặc in / lưu PDF để kèm hộp dấu.</li>
-<li><strong>Riêng tư:</strong> phiếu được soạn ngay trên trình duyệt, không gửi đi đâu cho đến khi bác sĩ tự gửi. Tên phòng khám và bác sĩ được nhớ trên máy này cho lần sau; nên ghi mã bệnh nhân thay vì họ tên đầy đủ.</li>
+<li><strong>Riêng tư:</strong> phiếu được soạn ngay trên trình duyệt, không gửi đi đâu cho đến khi bác sĩ tự gửi. Chỉ tên phòng khám, bác sĩ và số điện thoại được nhớ trên máy này cho lần sau; thông tin bệnh nhân và các hạng mục chỉ giữ trong thẻ trình duyệt đang mở, đóng thẻ là xoá. Nên ghi mã bệnh nhân thay vì họ tên đầy đủ.</li>
 </ul>
 <p>Chưa chọn được dòng phôi? Chọn “Labo đề xuất” và ghi yêu cầu (thẩm mỹ, chịu lực, bảo hành) — hoặc xem <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a>. Cách lấy dấu, so màu: <a href="/gui-ca/">cách gửi ca</a>.</p>`;
 }
 export const RX_FAQ = [
   ['Có bắt buộc dùng phiếu chỉ định online của labo không?', 'Không. Labo nhận phiếu chỉ định của phòng khám qua mọi kênh online; phiếu online chỉ là công cụ soạn nhanh, không bắt buộc.'],
-  ['Thông tin trên phiếu có được lưu lên máy chủ không?', 'Không. Phiếu được soạn trên trình duyệt của bác sĩ và chỉ được gửi khi bác sĩ tự dán vào Zalo, gửi email hoặc in ra. Tên phòng khám, bác sĩ được nhớ trên chính máy đó cho lần sau.'],
+  ['Thông tin trên phiếu có được lưu lên máy chủ không?', 'Không. Phiếu được soạn trên trình duyệt của bác sĩ và chỉ được gửi khi bác sĩ tự dán vào Zalo, gửi email hoặc in ra. Chỉ tên phòng khám, bác sĩ, số điện thoại được nhớ trên chính máy đó cho lần sau; thông tin bệnh nhân và hạng mục mất khi đóng thẻ trình duyệt.'],
   ['Gửi phiếu cho labo bằng cách nào?', `Bấm “Sao chép, mở Zalo” rồi dán vào khung chat Zalo ${BIZ.quote.label}; hoặc bấm “Gửi email” để mở email soạn sẵn đến ${BIZ.email}; hoặc in, lưu PDF để kèm dấu.`],
   ['Thời gian sản xuất trên phiếu tính thế nào?', `Theo bảng thời gian sản xuất của labo, tính từ lúc labo nhận hàng: ${TURNAROUND.map((t) => `${t.what.toLowerCase()} — ${t.time}`).join('; ')}.`],
 ];
