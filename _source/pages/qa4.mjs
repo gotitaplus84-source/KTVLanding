@@ -85,10 +85,11 @@ ${'<div class="table-wrap"><table><thead><tr><th>Kiểu nhịp</th><th>Tiếp x�
 <li><strong>Thẻ:</strong> thẻ bảo hành của labo và thẻ chứng nhận xuất xứ của hãng phôi đi kèm, đúng dòng vật liệu trên phiếu — xem <a href="/bao-hanh/#the-bao-hanh">thẻ bảo hành và thẻ xuất xứ</a>.</li>
 <li><strong>Ngày hẹn:</strong> phục hình về kịp lịch bệnh nhân; nếu cần chỉnh, báo labo ngay để còn thời gian.</li>
 </ul>
-<p>Có sai khác so với phiếu, chụp ảnh và nhắn labo trước buổi hẹn. Phiếu ghi rõ ngay từ đầu giúp tránh phần lớn nhầm lẫn — <a href="/phieu-chi-dinh/">phiếu chỉ định online</a> có sẵn các mục này.</p>`],
+<p>Có sai khác so với phiếu, chụp ảnh và nhắn labo trước buổi hẹn. Tại KTV Dental Lab, ca làm lại hoặc sửa khi chưa gắn cố định được làm lại miễn phí; rơi vỡ, thất lạc được hỗ trợ tối đa — xem <a href="/bao-hanh/#lam-lai">làm lại, sửa ca</a>. Phiếu ghi rõ ngay từ đầu giúp tránh phần lớn nhầm lẫn — <a href="/phieu-chi-dinh/">phiếu chỉ định online</a> có sẵn các mục này.</p>`],
       [126, 'Phục hình labo giao có cần khử khuẩn lại trước khi thử trong miệng không?',
         `${short('Phục hình phải được khử khuẩn trước khi vào miệng, nhưng không nhất thiết làm hai lần. Theo hướng dẫn của CDC (Hoa Kỳ), labo và phòng khám thống nhất bên nào khử khuẩn khâu cuối; nếu labo đã khử khuẩn và ghi rõ, phòng khám không cần lặp lại; nếu không có ghi nhận, phòng khám khử khuẩn trước khi thử.')}
 <ul>
+<li><strong>Tại KTV Dental Lab:</strong> khử khuẩn và kiểm soát bụi là quy trình được chú trọng và theo dõi trong hệ thống quản lý chất lượng ISO 13485 của labo. Phòng khám có thể trao đổi với labo về cách ghi nhận trên ca giao.</li>
 <li><strong>Thống nhất trước với labo:</strong> ai khử khuẩn khâu cuối, và labo ghi nhận việc này ở đâu (trên phiếu giao, nhãn túi). Khử khuẩn lặp lại không cần thiết có thể làm hại bề mặt một số vật liệu.</li>
 <li><strong>Khi không có ghi nhận:</strong> làm sạch, khử khuẩn bằng dung dịch có hoạt tính ít nhất mức trung bình, đúng thời gian tiếp xúc, rồi rửa sạch — theo hướng dẫn của hãng dung dịch và tương thích với vật liệu.</li>
 <li>Với zirconia sẽ gắn bằng xi măng nhựa, tránh để mặt trong tiếp xúc chất làm bẩn bề mặt; sau thử miệng, mặt trong cần làm sạch lại trước khi gắn — xem <a href="/hoi-dap/gan-mao-zirconia/#cau-28">câu 28</a> và <a href="/hoi-dap/gan-mao-zirconia/#cau-30">câu 30</a>.</li>
@@ -111,6 +112,7 @@ ${'<div class="table-wrap"><table><thead><tr><th>Kiểu nhịp</th><th>Tiếp x�
 <li><strong>Tiếp xúc và khớp cắn:</strong> giữ tiếp xúc bên để răng kế bên không di chuyển; khớp cắn nhẹ hơn răng thật.</li>
 <li><strong>Thời gian chờ:</strong> càng ngắn càng ít biến chứng. Thời gian sản xuất tại labo: răng đơn lẻ, 2 – 3 đơn vị 1 ngày, tính từ lúc labo nhận hàng — xem <a href="/thoi-gian-san-xuat/">thời gian sản xuất</a>.</li>
 </ul>
+<p>Cần răng tạm làm sẵn: KTV Dental Lab làm răng tạm khi phòng khám yêu cầu — ghi trên phiếu chỉ định.</p>
 <p>Răng tạm bị bong hoặc vỡ trong lúc chờ: gắn lại sớm, vì vài ngày không có răng tạm là đủ để nướu phủ lên bờ viền hoặc răng đối diện trồi xuống.</p>`],
       [129, 'Gắn răng tạm bằng xi măng có eugenol có ảnh hưởng khi gắn mão bằng xi măng nhựa không?',
         `${short('Có thể, nhưng không phải lúc nào cũng vậy. Bằng chứng chủ yếu từ phòng thí nghiệm; điều quan trọng nhất là làm sạch cơ học hết xi măng tạm trước khi gắn chính thức.')}
@@ -213,7 +215,7 @@ ${'<div class="table-wrap"><table><thead><tr><th>Kiểu nhịp</th><th>Tiếp x�
 <tr><td>Xoi mòn HF và silane</td><td>Không hiệu quả; dùng thổi cát + primer MDP</td><td>Có — dán bền</td></tr>
 <tr><td>Gắn</td><td>Xi măng thông thường hoặc xi măng nhựa</td><td>Thường dán bằng xi măng nhựa</td></tr>
 </tbody></table></div>
-<p>Số liệu zirconia theo tổng quan của Yousry và cộng sự (2024); chi tiết từng thế hệ: <a href="/hoi-dap/chon-vat-lieu-zirconia/#cau-1">câu 1</a>. Các dòng vật liệu KTV Dental Lab đang công bố là zirconia (từ 3 đến 15 năm bảo hành) và hợp kim cho răng sứ kim loại — xem <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a>. Cần vật liệu khác, trao đổi trực tiếp với labo.</p>`],
+<p>Số liệu zirconia theo tổng quan của Yousry và cộng sự (2024); chi tiết từng thế hệ: <a href="/hoi-dap/chon-vat-lieu-zirconia/#cau-1">câu 1</a>. KTV Dental Lab không làm lithium disilicate (E.max); vật liệu của labo là zirconia (từ 3 đến 15 năm bảo hành) và hợp kim cho răng sứ kim loại — xem <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a>. Với mão răng trước cần độ trong cao, có thể cân nhắc zirconia Multilayer — xem <a href="/phuc-hinh/mao-zirconia-multilayer/">mão Multilayer</a>.</p>`],
       [139, 'Răng sứ có ảnh hưởng đến chụp MRI, CT không?',
         `${short('Mão zirconia và sứ không kim loại gây rất ít nhiễu ảnh MRI. Mão sứ trên hợp kim không quý như Co-Cr, Ni-Cr gây nhiễu nhiều hơn, chủ yếu ảnh hưởng vùng hàm mặt gần răng đó.')}
 <p>Gao và cộng sự (2022, <em>Scientific Reports</em>) chụp MRI 1,5 T trên mẫu: mão nhựa, sứ, zirconia và sứ trên hợp kim quý tạo ít nhiễu ảnh; titan nguyên chất và sứ trên hợp kim không quý tạo nhiễu ảnh đáng kể. Trên implant titan, mão Co-Cr và Ni-Cr làm vùng nhiễu ảnh tăng thêm.</p>

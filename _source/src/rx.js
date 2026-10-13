@@ -61,7 +61,7 @@ export function initRx(root) {
   const years = (brand) => (D.zirconia.find((m) => m.name === brand) || {}).years || null;
   const hasShade = (it) => it.mat !== 'metal' && it.type !== 'cui';
 
-  const blank = () => ({ clinic: '', doctor: '', phone: '', patient: '', due: '', imp: 'scan', opp: true, bite: true, photo: false, etch: false, note: '', items: [] });
+  const blank = () => ({ clinic: '', doctor: '', phone: '', patient: '', due: '', imp: 'scan', opp: true, bite: true, photo: false, etch: false, tam: false, note: '', items: [] });
   const saved = store.get();
   const S = Object.assign(blank(), saved);
   const sel = new Set();
@@ -144,6 +144,9 @@ export function initRx(root) {
         <label><input type="checkbox" data-k="bite"> Khớp cắn</label>
         <label><input type="checkbox" data-k="photo"> Ảnh so màu</label>
       </fieldset>
+      <fieldset class="rx-checks"><legend>Yêu cầu thêm</legend>
+        <label><input type="checkbox" data-k="tam"> Làm răng tạm</label>
+      </fieldset>
       <label class="rx-check-etch"><input type="checkbox" data-k="etch"> <span><strong>Xoi mòn Zircos-E</strong> mặt dán zirconia (miễn phí, cho inlay, onlay, overlay). <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Tìm hiểu</a></span></label>
       <label class="rx-f"><span>Ghi chú chung</span><textarea data-k="note" rows="3"></textarea></label>
     </section>
@@ -209,7 +212,7 @@ export function initRx(root) {
     if (S.items.length) S.items.forEach((it, i) => L.push(itemLine(it, i)));
     else L.push('(chưa có hạng mục)');
     L.push('');
-    const extra = [S.etch && 'Xoi mòn Zircos-E mặt dán zirconia'].filter(Boolean);
+    const extra = [S.tam && 'Làm răng tạm', S.etch && 'Xoi mòn Zircos-E mặt dán zirconia'].filter(Boolean);
     if (extra.length) L.push(`Yêu cầu thêm: ${extra.join('; ')}`);
     if (S.note.trim()) L.push(`Ghi chú: ${S.note.trim()}`);
     const n = units();

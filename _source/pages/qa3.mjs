@@ -118,7 +118,7 @@ export const QA_TOPICS_3 = [
 <li>Không để dấu dưới nắng hoặc trong cốp xe nóng; không xếp chồng dấu lên nhau.</li>
 <li>Phiếu chỉ định gửi trước qua Zalo hoặc email giúp labo chuẩn bị — soạn nhanh bằng <a href="/phieu-chi-dinh/">phiếu chỉ định online</a>.</li>
 </ul>
-<p>KTV Dental Lab lấy và giao hàng tận nơi tại khu vực Bình Dương cũ; phòng khám ở các tỉnh, thành khác thuộc miền Nam liên hệ labo để sắp xếp giao nhận. Thời gian sản xuất tính từ lúc labo nhận hàng — xem <a href="/thoi-gian-san-xuat/">thời gian sản xuất</a>.</p>`],
+<p>KTV Dental Lab lấy và giao hàng tận nơi tại khu vực Bình Dương cũ; phòng khám ở xa gửi qua mọi dịch vụ chuyển phát hoặc nhà xe tuyến cố định, labo gửi trả phục hình theo đúng phương thức đã nhận. Thời gian sản xuất tính từ lúc labo nhận hàng — xem <a href="/thoi-gian-san-xuat/">thời gian sản xuất</a>.</p>`],
     ],
     sources: ['gomezpolo', 'sdcep', 'an2024'] },
 ];
