@@ -224,7 +224,7 @@ ${table(['', 'Ti-base + zirconia', 'Abutment zirconia nguyên khối'], [
 <li>Cây so màu đặt cạnh răng, cùng mặt phẳng và góc, rìa cắn sát rìa cắn, thấy rõ mã màu.</li>
 <li>Chụp trước khi mài, khi răng chưa mất nước.</li>
 </ul>
-<p>Hướng dẫn so màu: <a href="/gui-ca/#so-mau">so màu đúng cách</a>.</p>`],
+<p>Hướng dẫn so màu: <a href="/gui-ca/#so-mau">so màu đúng cách</a>; chi tiết hơn: <a href="/hoi-dap/so-mau-rang-su/">so màu và truyền đạt màu cho labo</a>.</p>`],
       [95, 'Một răng cửa bị đổi màu nặng thì làm sao để zirconia không bị đục?',
         `${short('Cân bằng giữa che màu và độ trong: mài đủ khoảng để có độ dày che màu, dùng lõi zirconia ít trong hơn ở vùng ngà kết hợp lớp men trong (đắp sứ hoặc cut-back), và chọn xi măng có độ đục phù hợp.')}
 <p>Binici Aygün và cộng sự (2025): phục hình dày hơn che màu nền tốt hơn nhưng giảm độ trong; với nền tối màu, độ đục của xi măng càng quan trọng. Dùng zirconia rất đục và mỏng để che màu dễ làm răng trông "chết". Gửi ảnh cùi răng với cây so màu cùi để labo chọn lõi và độ dày.</p>`],

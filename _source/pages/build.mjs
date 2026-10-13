@@ -8,10 +8,11 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, BIZ, QUOTE_LINKS, QUOTE_TEXT, QUOTE_TPL, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES, localBody, LOCAL_FAQ, LOCAL_SOURCES, LOCAL_AREAS, hcmBody, HCM_FAQ, HCM_SOURCES, legalBody, LEGAL_FAQ, LEGAL_SOURCES, rxBody, rxData, RX_FAQ } from './content.mjs';
+import { SITE, BIZ, QUOTE_LINKS, QUOTE_TEXT, QUOTE_TPL, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, TURNAROUND_FAQ, WARRANTY_FAQ, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES, localBody, LOCAL_FAQ, LOCAL_SOURCES, LOCAL_AREAS, hcmBody, HCM_FAQ, HCM_SOURCES, legalBody, LEGAL_FAQ, LEGAL_SOURCES, rxBody, rxData, RX_FAQ } from './content.mjs';
 import { QA_TOPICS as QA_1, QA_UPDATED } from './qa.mjs';
 import { QA_TOPICS_2 } from './qa2.mjs';
-const QA_TOPICS = [...QA_1, ...QA_TOPICS_2];
+import { QA_TOPICS_3 } from './qa3.mjs';
+const QA_TOPICS = [...QA_1, ...QA_TOPICS_2, ...QA_TOPICS_3];
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const today = new Date().toISOString().slice(0, 10);
@@ -49,6 +50,8 @@ if (!index.includes('<!--@links-->')) throw new Error('index.html thiếu <!--@l
 index = index.replace(/<!--@links-->[\s\S]*?<!--\/@links-->/, footLinks);
 if (!index.includes('<!--@quote-->')) throw new Error('index.html thiếu <!--@quote-->');
 index = index.replace(/<!--@quote-->[\s\S]*?<!--\/@quote-->/, `<!--@quote-->\n${QUOTE_TPL}\n<!--/@quote-->`);
+const homeDesc = (index.match(/<meta name="description" content="([^"]*)"/) || [])[1] || '';
+if (!homeDesc || homeDesc.length > 160) throw new Error(`index.html: meta description dài ${homeDesc.length} ký tự (tối đa 160)`);
 emit('/', join(ROOT, 'index.html'), index);
 
 /* ---------- pieces taken from the home page ---------- */
@@ -61,8 +64,9 @@ const HEAD_COMMON = grab(/<meta name="theme-color"[^>]*>/) + '\n' +
   grab(/<link rel="icon" href[\s\S]*?<link rel="stylesheet" href="\/assets\/css\/site.css">/);
 
 /* ---------- page template ---------- */
-function page({ path, title, desc, crumbs, h1, lead, img, imgAlt, side, wide = false, body, related, relatedTitle, schema = [], faq = [], sources = [], pageExtra = {} }) {
+function page({ path, title, desc, crumbs, h1, lead, img, imgAlt, side, wide = false, body, related, relatedTitle, schema = [], faq = [], sources = [], pageExtra = {}, article = null }) {
   const url = SITE + path;
+  if (desc.length > 160) throw new Error(`${path}: meta description dài ${desc.length} ký tự (tối đa 160)`);
   for (const k of sources) if (!SOURCES[k]) throw new Error(`${path}: thiếu nguồn "${k}" trong SOURCES`);
   if (faq.length) {
     body += `\n<section class="faq-block" aria-labelledby="faq-h">\n<h2 id="faq-h">Câu hỏi thường gặp</h2>\n${faq.map(([q, a]) => `<div class="qa"><h3>${esc(q)}</h3><p>${a}</p></div>`).join('\n')}\n</section>`;
@@ -94,7 +98,7 @@ function page({ path, title, desc, crumbs, h1, lead, img, imgAlt, side, wide = f
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${url}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="${article ? 'article' : 'website'}">
 <meta property="og:site_name" content="KTV Dental Lab">
 <meta property="og:locale" content="vi_VN">
 <meta property="og:url" content="${url}">
@@ -103,6 +107,9 @@ function page({ path, title, desc, crumbs, h1, lead, img, imgAlt, side, wide = f
 <meta property="og:image" content="${SITE}/assets/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KTV Dental Lab — labo răng sứ">${article ? `
+<meta property="article:published_time" content="${article.published}">
+<meta property="article:modified_time" content="${article.modified}">` : ''}
 <meta name="twitter:card" content="summary_large_image">
 ${HEAD_COMMON}
 <script>document.documentElement.classList.add('js')</script>
@@ -166,7 +173,7 @@ for (const p of PRODUCTS) {
   pages.push(page({
     path,
     title: `${p.title} | KTV Dental Lab`,
-    desc: fit(strip(p.lead), ' Labo ISO 13485 tại TP HCM – Bình Dương.'),
+    desc: p.desc || fit(strip(p.lead), ' Labo ISO 13485 tại TP HCM – Bình Dương.'),
     crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Phục hình', url: '/#phuc-hinh' }, { name: p.name, url: path }],
     h1: esc(p.title), lead: p.lead, img: p.img, imgAlt: p.imgAlt, body: p.body,
     side: sideBox([['Vật liệu', esc(p.short)], ['Thời gian sản xuất', fastest], ['Bảo hành', '<a href="/bao-hanh/">Theo dòng vật liệu</a>'], ['Giao nhận', 'Khắp miền Nam; lấy và giao tận nơi ở Bình Dương cũ']]),
@@ -186,7 +193,7 @@ for (const m of MATERIALS) {
     path,
     title: zr ? `Răng sứ ${m.name} – zirconia ${m.country}, bảo hành ${war} | KTV Dental Lab` : `Răng sứ kim loại ${m.name} | KTV Dental Lab`,
     desc: zr
-      ? `Răng sứ zirconia ${m.name} (${m.maker}, ${m.country}) tại labo KTV Dental Lab: mão nguyên khối${m.multilayer ? ', Multilayer' : ''}, sườn sứ đắp. Bảo hành ${war}. TP HCM – Bình Dương.`
+      ? fit(`Răng sứ zirconia ${m.name} (${m.maker}, ${m.country}) tại labo KTV Dental Lab: mão nguyên khối${m.multilayer ? ', Multilayer' : ''}, sườn sứ đắp. Bảo hành ${war}.`, ' TP HCM – Bình Dương.')
       : `Hợp kim ${m.name} (${m.maker}, ${m.country}) cho răng sứ kim loại và mão toàn kim loại tại labo KTV Dental Lab, TP HCM – Bình Dương.`,
     crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Vật liệu', url: '/#vat-lieu' }, { name: m.name, url: path }],
     h1: zr ? `Răng sứ <span class="nw">${esc(m.name)}</span>` : `Răng sứ kim loại <span class="nw">${esc(m.name)}</span>`,
@@ -206,7 +213,7 @@ for (const m of MATERIALS) {
   pages.push(page({
     path: '/vat-lieu/so-sanh-zirconia/',
     title: 'So sánh răng sứ zirconia: Lava, Cercon, Katana, DDBio | KTV Dental Lab',
-    desc: 'Bảng so sánh độ bền uốn, độ trong (theo công bố của hãng), xuất xứ và thời hạn bảo hành các dòng phôi zirconia tại labo KTV Dental Lab, kèm gợi ý chọn dòng theo ca.',
+    desc: 'So sánh độ bền uốn, độ trong (theo công bố của hãng), xuất xứ và bảo hành các dòng phôi zirconia tại labo KTV Dental Lab, kèm gợi ý chọn dòng theo ca.',
     crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Vật liệu', url: '/#vat-lieu' }, { name: 'So sánh zirconia', url: '/vat-lieu/so-sanh-zirconia/' }],
     h1: 'So sánh các dòng zirconia',
     lead: `Các dòng phôi zirconia tại KTV Dental Lab — ${zrs.map((m) => m.name).join(', ')} — đặt cạnh nhau theo độ bền, độ trong, xuất xứ và bảo hành (từ 3 đến 15 năm).`,
@@ -238,7 +245,7 @@ pages.push(page({
 pages.push(page({
   path: '/gui-ca/',
   title: 'Cách gửi ca cho labo răng sứ | KTV Dental Lab',
-  desc: 'Gửi ca cho labo KTV Dental Lab: nhận dấu mọi phương thức (dấu, mẫu hàm, file scan), phiếu chỉ định qua Zalo, email. Răng đơn lẻ 1 ngày; lấy – giao tận nơi Bình Dương cũ.',
+  desc: 'Gửi ca cho labo KTV Dental Lab: nhận dấu, mẫu hàm, file scan; phiếu chỉ định qua Zalo, email. Răng đơn lẻ 1 ngày; lấy – giao tận nơi Bình Dương cũ.',
   crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Cách gửi ca', url: '/gui-ca/' }],
   h1: 'Cách gửi ca cho labo',
   lead: 'Nhận dấu theo mọi phương thức; phiếu chỉ định nha khoa gửi qua mọi kênh online. Không cần mẫu phiếu riêng của labo.',
@@ -252,7 +259,7 @@ pages.push(page({
 pages.push(page({
   path: '/phieu-chi-dinh/',
   title: 'Phiếu chỉ định online có sơ đồ răng | KTV Dental Lab',
-  desc: 'Soạn phiếu chỉ định nha khoa trong 1 phút: chọn răng trên sơ đồ FDI, loại phục hình, dòng phôi, màu VITA, implant. Sao chép gửi Zalo, email hoặc in PDF. Miễn phí, không cần tài khoản.',
+  desc: 'Soạn phiếu chỉ định nha khoa: chọn răng trên sơ đồ FDI, phục hình, dòng phôi, màu VITA, implant; gửi Zalo, email hoặc in PDF. Miễn phí, không cần tài khoản.',
   crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Cách gửi ca', url: '/gui-ca/' }, { name: 'Phiếu chỉ định online', url: '/phieu-chi-dinh/' }],
   h1: 'Phiếu chỉ định online',
   lead: 'Chọn răng trên sơ đồ, chọn phục hình, vật liệu, màu — phiếu tự soạn sẵn để gửi labo qua Zalo, email hoặc in kèm dấu. Không bắt buộc, không cần tài khoản.',
@@ -265,16 +272,38 @@ pages.push(page({
 }));
 
 /* ---------- hỏi đáp kỹ thuật ---------- */
+// Trang dịch vụ / vật liệu liên quan cho từng chủ đề (chủ đề mới ghi thẳng "links" trong file hỏi đáp).
+const ORG_REF = { '@type': 'Organization', '@id': SITE + '/#org', name: BIZ.name, url: SITE + '/' };
+const P = (slug) => { const x = PRODUCTS.find((p) => p.slug === slug); if (!x) throw new Error('QA_LINKS: không có phục hình ' + slug); return [x.name, `/phuc-hinh/${slug}/`]; };
+const ZR_COMPARE = ['So sánh các dòng zirconia', '/vat-lieu/so-sanh-zirconia/'];
+const ETCH = ['Xoi mòn Zircos-E (miễn phí)', '/dich-vu/xoi-mon-zirconia-zircos-e/'];
+const SEND = ['Cách gửi ca', '/gui-ca/'];
+const QA_LINKS = {
+  'chon-vat-lieu-zirconia': [ZR_COMPARE, P('mao-full-zirconia'), P('mao-zirconia-multilayer'), ['Bảo hành theo dòng vật liệu', '/bao-hanh/']],
+  'mai-cui-zirconia': [P('mao-full-zirconia'), P('mao-zirconia-multilayer'), P('cui-gia'), SEND],
+  'gan-mao-zirconia': [P('mao-full-zirconia'), ETCH, P('inlay-onlay')],
+  'bong-mao-zirconia': [ETCH, P('mao-full-zirconia'), P('overlay')],
+  'khop-can-me-gay-zirconia': [P('mao-full-zirconia'), P('mao-full-kim-loai'), ZR_COMPARE],
+  'sat-khit-tiep-xuc-hinh-the': [P('mao-full-zirconia'), SEND, ['Phiếu chỉ định online', '/phieu-chi-dinh/']],
+  'scan-trong-mieng': [['Labo răng sứ TP HCM: gửi ca từ xa', '/labo-rang-su-tp-hcm/'], SEND, ['Phiếu chỉ định online', '/phieu-chi-dinh/']],
+  'scan-body-implant': [P('phuc-hinh-tren-implant'), SEND],
+  'thiet-ke-tren-implant': [P('phuc-hinh-tren-implant'), P('mao-full-zirconia'), ['Bảo hành theo dòng vật liệu', '/bao-hanh/']],
+  'tinh-huong-lam-sang': [P('mao-zirconia-multilayer'), P('mao-su-dap-su'), SEND],
+};
 {
-  const upd = QA_UPDATED.split('-').reverse().join('/');
+  // Mỗi chủ đề có thể ghi ngày đăng / ngày cập nhật riêng (published, updated); mặc định QA_UPDATED.
+  const vn = (d) => d.split('-').reverse().join('/');
+  const tUpd = (t) => t.updated || QA_UPDATED;
+  const hubUpdated = QA_TOPICS.map(tUpd).sort().at(-1);
+  const upd = vn(hubUpdated);
   const byline = `\n<p class="byline">Biên soạn: KTV Dental Lab. Cập nhật: ${upd}</p>`;
-  const extra = { author: { '@id': SITE + '/#org' }, dateModified: QA_UPDATED };
+  const extra = { author: { '@id': SITE + '/#org' }, dateModified: hubUpdated };
   const total = QA_TOPICS.reduce((n, t) => n + t.qs.length, 0);
   const hubSide = sideBox([['Biên soạn', 'KTV Dental Lab'], ['Cập nhật', upd], ['Số câu hỏi', String(total)], ['Hỏi thêm, tư vấn', `Zalo ${QUOTE_LINKS}`]]);
   pages.push(page({
     path: '/hoi-dap/',
     title: 'Hỏi đáp kỹ thuật phục hình cho bác sĩ | KTV Dental Lab',
-    desc: `${total} câu hỏi bác sĩ hay gặp khi làm phục hình: chọn zirconia, mài cùi, gắn và bong mão, mẻ – gãy, sát khít, scan, scan body, implant, tình huống lâm sàng. Có số liệu và nguồn.`,
+    desc: `${total} câu hỏi bác sĩ hay gặp khi làm phục hình: chọn zirconia, mài cùi, gắn – bong mão, mẻ gãy, sát khít, scan, implant, so màu, lấy dấu. Có nguồn.`,
     crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Hỏi đáp kỹ thuật', url: '/hoi-dap/' }],
     h1: 'Hỏi đáp kỹ thuật cho bác sĩ',
     lead: 'Những câu hỏi thường gặp khi làm phục hình zirconia, scan và implant — trả lời thẳng, kèm số liệu từ hướng dẫn của hãng và nghiên cứu.',
@@ -290,27 +319,33 @@ pages.push(page({
   }));
   for (const t of QA_TOPICS) {
     const path = `/hoi-dap/${t.slug}/`;
-    const first = t.qs[0][0], last = t.qs[t.qs.length - 1][0];
+    const published = t.published || QA_UPDATED, modified = tUpd(t);
+    const tByline = `\n<p class="byline">Biên soạn: KTV Dental Lab. Cập nhật: ${vn(modified)}</p>`;
+    const desc = t.lead.length > 158 ? t.lead.slice(0, t.lead.lastIndexOf(' ', 155)) + '…' : t.lead;
     pages.push(page({
       path,
       title: `${t.title} | KTV Dental Lab`,
-      desc: t.lead.length > 158 ? t.lead.slice(0, 155) + '…' : t.lead,
+      desc,
       crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Hỏi đáp kỹ thuật', url: '/hoi-dap/' }, { name: t.name, url: path }],
       h1: esc(t.name),
       lead: esc(t.lead),
-      body: byline + `
+      body: tByline + `
 <nav class="qa-toc-box" aria-label="Các câu hỏi"><ol class="qa-toc">${t.qs.map(([n, q]) => `<li value="${n}"><a href="#cau-${n}">${esc(q)}</a></li>`).join('')}</ol></nav>` +
         t.qs.map(([n, q, a]) => `
 <section class="qa-item" id="cau-${n}" aria-labelledby="cau-${n}-h">
 <h2 id="cau-${n}-h"><span class="qa-n">Câu ${n}</span> ${esc(q)}</h2>
 ${a}
 </section>`).join(''),
-      side: sideBox([['Biên soạn', 'KTV Dental Lab'], ['Cập nhật', upd], ['Chủ đề', `<a href="/hoi-dap/">${QA_TOPICS.length} chủ đề, ${total} câu</a>`], ['Hỏi thêm, tư vấn', `Zalo ${QUOTE_LINKS}`]]),
-      related: QA_TOPICS.filter((x) => x !== t).map((x) => ({ name: x.name, url: `/hoi-dap/${x.slug}/` })),
-      relatedTitle: 'Chủ đề khác',
+      side: sideBox([['Biên soạn', 'KTV Dental Lab'], ['Cập nhật', vn(modified)], ['Chủ đề', `<a href="/hoi-dap/">${QA_TOPICS.length} chủ đề, ${total} câu</a>`], ['Hỏi thêm, tư vấn', `Zalo ${QUOTE_LINKS}`]]),
+      related: [...(t.links || QA_LINKS[t.slug] || []).map(([name, url]) => ({ name, url })), ...QA_TOPICS.filter((x) => x !== t).map((x) => ({ name: x.name, url: `/hoi-dap/${x.slug}/` }))],
+      relatedTitle: 'Dịch vụ và chủ đề liên quan',
       sources: t.sources,
-      pageExtra: extra,
-      schema: [{ '@type': 'FAQPage', mainEntity: t.qs.map(([n, q, a]) => ({ '@type': 'Question', name: q, url: `${SITE}${path}#cau-${n}`, acceptedAnswer: { '@type': 'Answer', text: strip(a) } })) }],
+      pageExtra: { ...extra, dateModified: modified },
+      article: { published, modified },
+      schema: [{ '@type': 'Article', '@id': SITE + path + '#article', headline: t.title, description: desc, inLanguage: 'vi',
+        datePublished: published, dateModified: modified, author: ORG_REF, publisher: ORG_REF,
+        mainEntityOfPage: { '@id': SITE + path + '#page' }, image: SITE + '/assets/img/og.jpg' },
+        { '@type': 'FAQPage', mainEntity: t.qs.map(([n, q, a]) => ({ '@type': 'Question', name: q, url: `${SITE}${path}#cau-${n}`, acceptedAnswer: { '@type': 'Answer', text: strip(a) } })) }],
     }));
   }
 }
@@ -335,7 +370,7 @@ pages.push(page({
 pages.push(page({
   path: '/labo-rang-su-tp-hcm/',
   title: 'Labo răng sứ TP HCM cho phòng khám – nhận file scan | KTV Dental Lab',
-  desc: 'Labo răng sứ tại TP HCM (Phú Lợi, Bình Dương cũ): nhận file scan online, dấu và mẫu hàm; răng đơn lẻ 1 ngày, đa dạng dòng zirconia, ISO 13485, nhận ca khắp miền Nam.',
+  desc: 'Labo răng sứ tại TP HCM (Phú Lợi, Bình Dương cũ): nhận file scan online, dấu, mẫu hàm; răng đơn lẻ 1 ngày, ISO 13485, nhận ca khắp miền Nam.',
   crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Labo răng sứ TP HCM', url: '/labo-rang-su-tp-hcm/' }],
   h1: 'Labo răng sứ TP HCM: gửi ca từ xa sao cho chính xác',
   lead: 'Phòng khám ở TP Hồ Chí Minh và miền Nam gửi ca cho KTV Dental Lab qua file scan hoặc dấu truyền thống — cần những gì để ca về đúng, đúng lịch.',
@@ -367,14 +402,14 @@ pages.push(page({
 pages.push(page({
   path: '/thoi-gian-san-xuat/',
   title: 'Thời gian sản xuất răng sứ: từ 1 ngày | KTV Dental Lab',
-  desc: `Labo răng sứ KTV Dental Lab: răng đơn lẻ 1 ngày (tối đa 36 giờ), cầu 4 – 8 đơn vị 2 ngày, cầu toàn hàm 3 ngày. Nhận ca khắp miền Nam, giao tận nơi Bình Dương cũ.`,
+  desc: `Labo răng sứ KTV Dental Lab: răng đơn lẻ 1 ngày (tối đa 36 giờ), cầu 4 – 8 đơn vị 2 ngày, cầu toàn hàm 3 ngày. Nhận ca khắp miền Nam, giao tận nơi Bình Dương.`,
   crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Thời gian sản xuất', url: '/thoi-gian-san-xuat/' }],
   h1: 'Thời gian sản xuất',
   lead: 'Răng đơn lẻ trong 1 ngày, áp dụng cho mọi loại phục hình, tính từ lúc labo nhận hàng.',
   body: turnaroundBody(),
   side: sideBox([['Giờ làm việc', BIZ.hoursShort], ['Giao nhận', 'Khắp miền Nam; lấy và giao tận nơi ở Bình Dương cũ'], ['Gửi ca', '<a href="/gui-ca/">Cách gửi ca</a>'], ['Báo giá, tư vấn', `Zalo ${QUOTE_LINKS}`], ['Điện thoại', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join('<br>')]]),
   related: [{ name: 'Bảo hành', url: '/bao-hanh/' }, { name: 'Câu hỏi thường gặp', url: '/cau-hoi-thuong-gap/' }, ...PRODUCTS.slice(0, 2).map((x) => ({ name: x.name, url: `/phuc-hinh/${x.slug}/`, thumb: x.thumb }))],
-  relatedTitle: 'Xem thêm',
+  relatedTitle: 'Xem thêm',  faq: TURNAROUND_FAQ,
 }));
 
 pages.push(page({
@@ -388,6 +423,7 @@ pages.push(page({
   side: sideBox([['Dài nhất', 'Lava, 15 năm'], ['Implant', 'Như răng thật cùng dòng vật liệu'], ['Sứ kim loại', 'Theo thỏa thuận']]),
   related: [{ name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }, ...MATERIALS.filter((m) => m.kind === 'zirconia').map((x) => ({ name: x.name, url: `/vat-lieu/${x.slug}/`, thumb: x.img }))],
   relatedTitle: 'Các dòng zirconia',
+  faq: WARRANTY_FAQ,
 }));
 
 pages.push(page({
