@@ -8,7 +8,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, BIZ, QUOTE_LINKS, QUOTE_TEXT, QUOTE_TPL, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES, localBody, LOCAL_FAQ, LOCAL_SOURCES, LOCAL_AREAS, hcmBody, HCM_FAQ, HCM_SOURCES, legalBody, LEGAL_FAQ, LEGAL_SOURCES } from './content.mjs';
+import { SITE, BIZ, QUOTE_LINKS, QUOTE_TEXT, QUOTE_TPL, SOURCES, MATERIALS, PRODUCTS, FAQ, FAQ_SOURCES, TURNAROUND, materialBody, warrantyBody, turnaroundBody, compareBody, COMPARE_FAQ, COMPARE_SOURCES, etchBody, ETCH_FAQ, ETCH_SOURCES, sendCaseBody, SENDCASE_FAQ, SENDCASE_SOURCES, localBody, LOCAL_FAQ, LOCAL_SOURCES, LOCAL_AREAS, hcmBody, HCM_FAQ, HCM_SOURCES, legalBody, LEGAL_FAQ, LEGAL_SOURCES, rxBody, rxData, RX_FAQ } from './content.mjs';
 import { QA_TOPICS as QA_1, QA_UPDATED } from './qa.mjs';
 import { QA_TOPICS_2 } from './qa2.mjs';
 const QA_TOPICS = [...QA_1, ...QA_TOPICS_2];
@@ -24,9 +24,10 @@ const footLinks = `<!--@links-->
   <div class="wrap foot-links">
     <nav aria-label="Phục hình"><p class="lbl dim">Phục hình</p>${PRODUCTS.map((p) => `<a href="/phuc-hinh/${p.slug}/">${p.name}</a>`).join('')}</nav>
     <nav aria-label="Vật liệu"><p class="lbl dim">Vật liệu</p>${MATERIALS.map((m) => `<a href="/vat-lieu/${m.slug}/">${m.name}</a>`).join('')}<a href="/vat-lieu/so-sanh-zirconia/">So sánh zirconia</a></nav>
-    <nav aria-label="Thông tin"><p class="lbl dim">Thông tin</p><a href="/labo-rang-su-binh-duong/">Labo răng sứ Bình Dương</a><a href="/labo-rang-su-tp-hcm/">Labo răng sứ TP HCM</a><a href="/gui-ca/">Cách gửi ca</a><a href="/thoi-gian-san-xuat/">Thời gian sản xuất</a><a href="/bao-hanh/">Bảo hành</a><a href="/cau-hoi-thuong-gap/">Câu hỏi thường gặp</a><a href="/hoi-dap/">Hỏi đáp kỹ thuật</a><a href="/phap-ly/">Thông tin pháp lý</a><a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Xoi mòn Zircos-E</a><a href="/#lien-he">Liên hệ</a></nav>
+    <nav aria-label="Thông tin"><p class="lbl dim">Thông tin</p><a href="/labo-rang-su-binh-duong/">Labo răng sứ Bình Dương</a><a href="/labo-rang-su-tp-hcm/">Labo răng sứ TP HCM</a><a href="/gui-ca/">Cách gửi ca</a><a href="/phieu-chi-dinh/">Phiếu chỉ định online</a><a href="/thoi-gian-san-xuat/">Thời gian sản xuất</a><a href="/bao-hanh/">Bảo hành</a><a href="/cau-hoi-thuong-gap/">Câu hỏi thường gặp</a><a href="/hoi-dap/">Hỏi đáp kỹ thuật</a><a href="/phap-ly/">Thông tin pháp lý</a><a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Xoi mòn Zircos-E</a><a href="/#lien-he">Liên hệ</a></nav>
     <div><p class="lbl dim">Liên hệ</p><p>${esc(BIZ.address)}</p><p>${BIZ.hoursShort}</p><p class="dim">${esc(BIZ.delivery)}</p><p>${BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join('<br>')}</p></div>
   </div>
+  <nav class="dock" aria-label="Liên hệ nhanh"><a href="tel:${BIZ.phones[0].tel}"><b>Gọi</b>${BIZ.phones[0].text}</a><a href="${BIZ.quote.zalo}" target="_blank" rel="noopener"><b>Zalo</b>${BIZ.quote.label}</a><a href="/phieu-chi-dinh/" class="dock-rx"><b>Lên phiếu</b>chỉ định</a></nav>
   <!--/@links-->`;
 
 let index = readFileSync(join(ROOT, 'index.html'), 'utf8');
@@ -46,7 +47,7 @@ const HEAD_COMMON = grab(/<meta name="theme-color"[^>]*>/) + '\n' +
   grab(/<link rel="icon" href[\s\S]*?<link rel="stylesheet" href="\/assets\/css\/site.css">/);
 
 /* ---------- page template ---------- */
-function page({ path, title, desc, crumbs, h1, lead, img, imgAlt, side, body, related, relatedTitle, schema = [], faq = [], sources = [], pageExtra = {} }) {
+function page({ path, title, desc, crumbs, h1, lead, img, imgAlt, side, wide = false, body, related, relatedTitle, schema = [], faq = [], sources = [], pageExtra = {} }) {
   const url = SITE + path;
   for (const k of sources) if (!SOURCES[k]) throw new Error(`${path}: thiếu nguồn "${k}" trong SOURCES`);
   if (faq.length) {
@@ -116,10 +117,10 @@ ${MENU}
     </div>
     ${img ? `<figure class="page-fig"><img src="${img}" alt="${esc(imgAlt)}" width="400" height="400" fetchpriority="high"></figure>` : ''}
   </header>
-  <div class="page-body">
+  <div class="page-body${wide ? ' is-wide' : ''}">
     <article class="prose">${body}
-    </article>
-    <aside class="page-side">${side}</aside>
+    </article>${side ? `
+    <aside class="page-side">${side}</aside>` : ''}
   </div>${rel}
 </div>
 </main>
@@ -229,9 +230,24 @@ pages.push(page({
   lead: 'Nhận dấu theo mọi phương thức; phiếu chỉ định nha khoa gửi qua mọi kênh online. Không cần mẫu phiếu riêng của labo.',
   body: sendCaseBody(),
   side: sideBox([['Dấu', 'Mọi phương thức'], ['Phiếu chỉ định', 'Mọi kênh online'], ['Giờ làm việc', BIZ.hoursShort], ['Giao nhận', 'Khắp miền Nam; lấy và giao tận nơi ở Bình Dương cũ'], ['Thời gian sản xuất', fastest]]),
-  related: [{ name: 'Thời gian sản xuất', url: '/thoi-gian-san-xuat/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }, { name: 'Xoi mòn Zircos-E (miễn phí)', url: '/dich-vu/xoi-mon-zirconia-zircos-e/' }, { name: 'Bảo hành', url: '/bao-hanh/' }],
+  related: [{ name: 'Phiếu chỉ định online', url: '/phieu-chi-dinh/' }, { name: 'Thời gian sản xuất', url: '/thoi-gian-san-xuat/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }, { name: 'Xoi mòn Zircos-E (miễn phí)', url: '/dich-vu/xoi-mon-zirconia-zircos-e/' }],
   relatedTitle: 'Xem thêm',
   faq: SENDCASE_FAQ, sources: SENDCASE_SOURCES,
+}));
+
+pages.push(page({
+  path: '/phieu-chi-dinh/',
+  title: 'Phiếu chỉ định online có sơ đồ răng | KTV Dental Lab',
+  desc: 'Soạn phiếu chỉ định nha khoa trong 1 phút: chọn răng trên sơ đồ FDI, loại phục hình, dòng phôi, màu VITA, implant. Sao chép gửi Zalo, email hoặc in PDF. Miễn phí, không cần tài khoản.',
+  crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Cách gửi ca', url: '/gui-ca/' }, { name: 'Phiếu chỉ định online', url: '/phieu-chi-dinh/' }],
+  h1: 'Phiếu chỉ định online',
+  lead: 'Chọn răng trên sơ đồ, chọn phục hình, vật liệu, màu — phiếu tự soạn sẵn để gửi labo qua Zalo, email hoặc in kèm dấu. Không bắt buộc, không cần tài khoản.',
+  body: rxBody() + `\n<script type="application/json" id="rx-data">${JSON.stringify(rxData()).replace(/</g, '\\u003c')}</script>`,
+  side: '', wide: true,
+  related: [{ name: 'Cách gửi ca', url: '/gui-ca/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }, { name: 'Thời gian sản xuất', url: '/thoi-gian-san-xuat/' }, { name: 'Xoi mòn Zircos-E (miễn phí)', url: '/dich-vu/xoi-mon-zirconia-zircos-e/' }],
+  relatedTitle: 'Xem thêm',
+  faq: RX_FAQ,
+  schema: [{ '@type': 'WebApplication', name: 'Phiếu chỉ định online — KTV Dental Lab', url: SITE + '/phieu-chi-dinh/', applicationCategory: 'HealthApplication', operatingSystem: 'Mọi trình duyệt', inLanguage: 'vi', isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' }, provider: { '@id': SITE + '/#org' } }],
 }));
 
 /* ---------- hỏi đáp kỹ thuật ---------- */
@@ -407,7 +423,7 @@ Labo sản xuất phục hình theo từng ca của phòng khám nha khoa và gi
 - Máy phay CAD/CAM: DGSHAPE DWX-52Di (5 trục)
 - Thời gian sản xuất (mọi loại phục hình, tính từ lúc labo nhận hàng): ${TURNAROUND.map((t) => `${t.what.toLowerCase()} ${t.time}${t.max ? ` (${t.max})` : ''}`).join('; ')}
 - Bảo hành: ${zr.map((m) => `${m.name} ${m.years} năm`).join(', ')}; răng sứ kim loại (${metal.map((m) => m.name).join(', ')}) theo thỏa thuận; phục hình trên implant như phục hình trên răng thật cùng dòng vật liệu
-- Gửi ca: nhận dấu theo mọi phương thức (dấu, mẫu hàm, file scan trong miệng); phiếu chỉ định nha khoa gửi qua mọi kênh online
+- Gửi ca: nhận dấu theo mọi phương thức (dấu, mẫu hàm, file scan trong miệng); phiếu chỉ định nha khoa gửi qua mọi kênh online (có công cụ soạn phiếu online tại ${SITE}/phieu-chi-dinh/, không bắt buộc)
 - Vật liệu: đa dạng dòng phôi zirconia; phòng khám cần dòng khác thì labo liên hệ đối tác, nhập phôi chính hãng theo yêu cầu
 - Dịch vụ miễn phí: xoi mòn mặt dán zirconia bằng dung dịch Zircos-E cho inlay, onlay, overlay
 
@@ -425,6 +441,7 @@ ${L('So sánh các dòng zirconia', '/vat-lieu/so-sanh-zirconia/', 'độ bền,
 ${L('Labo răng sứ Bình Dương (Thủ Dầu Một)', '/labo-rang-su-binh-duong/', 'địa chỉ, khu vực giao nhận, thời gian sản xuất, bảo hành')}
 ${L('Labo răng sứ TP HCM', '/labo-rang-su-tp-hcm/', 'gửi ca từ xa: file scan, dấu, lịch hẹn')}
 ${L('Cách gửi ca', '/gui-ca/')}
+${L('Phiếu chỉ định online', '/phieu-chi-dinh/', 'soạn phiếu chỉ định có sơ đồ răng FDI, gửi qua Zalo, email hoặc in; không bắt buộc')}
 ${L('Thông tin pháp lý', '/phap-ly/', 'tên doanh nghiệp, mã số thuế, ISO 13485, nguồn gốc vật liệu')}
 ${L('Thời gian sản xuất', '/thoi-gian-san-xuat/')}
 ${L('Bảo hành', '/bao-hanh/')}

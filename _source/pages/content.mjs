@@ -843,6 +843,7 @@ ${table(['Phương thức', 'Ghi chú'], [
 <li>Yêu cầu thêm, ví dụ <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">xoi mòn Zircos-E</a> cho inlay, onlay, overlay zirconia (miễn phí).</li>
 <li>Ngày hẹn bệnh nhân.</li>
 </ul>
+<p>Muốn soạn nhanh cho đủ ý? Dùng <a href="/phieu-chi-dinh/">phiếu chỉ định online</a>: chọn răng trên sơ đồ, chọn phục hình, vật liệu, màu, rồi sao chép gửi Zalo, email hoặc in kèm dấu.</p>
 <h2 id="so-mau">3. So màu đúng cách</h2>
 <ul>
 <li><strong>So màu ở đầu buổi hẹn,</strong> trước khi mài răng và trước khi đặt đê cao su: răng mất nước sẽ sáng và đục hơn, mắt cũng mỏi dần trong buổi điều trị.</li>
@@ -1105,3 +1106,34 @@ export const LEGAL_FAQ = [
   ['Phòng khám cần hoá đơn, chứng từ thì liên hệ thế nào?', `Trao đổi với labo khi bắt đầu hợp tác qua điện thoại ${BIZ.phones[0].text} hoặc email ${BIZ.email}.`],
 ];
 export const LEGAL_SOURCES = ['iso13485', 'nq202'];
+
+/* ---------- Phiếu chỉ định online (công cụ /phieu-chi-dinh/, chạy bằng src/rx.js) ---------- */
+// Dữ liệu cho công cụ: lấy từ MATERIALS, TURNAROUND, BIZ để trang luôn khớp danh mục của labo.
+export const rxData = () => ({
+  zirconia: MATERIALS.filter((m) => m.kind === 'zirconia').map((m) => ({ name: m.name, ml: !!m.multilayer, years: m.years })),
+  metal: MATERIALS.filter((m) => m.kind !== 'zirconia').map((m) => m.name),
+  turnaround: TURNAROUND.map((t) => ({ what: t.what, time: t.time, max: t.max })),
+  zalo: { url: BIZ.quote.zalo, label: BIZ.quote.label },
+  email: BIZ.email,
+  hours: BIZ.hours,
+});
+export function rxBody() {
+  return `
+<div class="rx" id="rx" data-rx>
+<noscript><p class="more-blanks">Công cụ cần bật JavaScript. Phòng khám vẫn có thể gửi phiếu chỉ định của mình qua Zalo hoặc email như thường — xem <a href="/gui-ca/">cách gửi ca</a>.</p></noscript>
+</div>
+<h2>Phiếu này dùng thế nào?</h2>
+<ul>
+<li><strong>Không bắt buộc.</strong> Labo vẫn nhận phiếu chỉ định của phòng khám qua mọi kênh online; công cụ này chỉ giúp soạn nhanh, đủ ý và dễ đọc.</li>
+<li><strong>Chọn răng trên sơ đồ</strong> (ký hiệu FDI: 11 – 48), chọn loại phục hình, vật liệu và màu, rồi bấm “Thêm vào phiếu”. Với cầu răng, bấm vào từng răng trong hạng mục để đánh dấu răng trụ hay nhịp.</li>
+<li><strong>Gửi:</strong> sao chép và dán vào Zalo, gửi email, hoặc in / lưu PDF để kèm hộp dấu.</li>
+<li><strong>Riêng tư:</strong> phiếu được soạn ngay trên trình duyệt, không gửi đi đâu cho đến khi bác sĩ tự gửi. Tên phòng khám và bác sĩ được nhớ trên máy này cho lần sau; nên ghi mã bệnh nhân thay vì họ tên đầy đủ.</li>
+</ul>
+<p>Chưa chọn được dòng phôi? Chọn “Labo đề xuất” và ghi yêu cầu (thẩm mỹ, chịu lực, bảo hành) — hoặc xem <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a>. Cách lấy dấu, so màu: <a href="/gui-ca/">cách gửi ca</a>.</p>`;
+}
+export const RX_FAQ = [
+  ['Có bắt buộc dùng phiếu chỉ định online của labo không?', 'Không. Labo nhận phiếu chỉ định của phòng khám qua mọi kênh online; phiếu online chỉ là công cụ soạn nhanh, không bắt buộc.'],
+  ['Thông tin trên phiếu có được lưu lên máy chủ không?', 'Không. Phiếu được soạn trên trình duyệt của bác sĩ và chỉ được gửi khi bác sĩ tự dán vào Zalo, gửi email hoặc in ra. Tên phòng khám, bác sĩ được nhớ trên chính máy đó cho lần sau.'],
+  ['Gửi phiếu cho labo bằng cách nào?', `Bấm “Sao chép, mở Zalo” rồi dán vào khung chat Zalo ${BIZ.quote.label}; hoặc bấm “Gửi email” để mở email soạn sẵn đến ${BIZ.email}; hoặc in, lưu PDF để kèm dấu.`],
+  ['Thời gian sản xuất trên phiếu tính thế nào?', `Theo bảng thời gian sản xuất của labo, tính từ lúc labo nhận hàng: ${TURNAROUND.map((t) => `${t.what.toLowerCase()} — ${t.time}`).join('; ')}.`],
+];

@@ -185,3 +185,15 @@ else window.addEventListener('load', () => whenIdle(loadCrown), { once: true });
 
 /* ---------- year in footer ---------- */
 document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
+
+/* ---------- mobile quick-contact dock: appears once the page's own call buttons have scrolled away ----------
+   Not on the order-slip page, which has its own send buttons and needs the bottom of the screen. */
+if (document.querySelector('.dock') && !document.querySelector('[data-rx]')) {
+  const onDock = () => root.classList.toggle('dock-on', window.scrollY > 560);
+  window.addEventListener('scroll', onDock, { passive: true });
+  onDock();
+}
+
+/* ---------- phiếu chỉ định online (/phieu-chi-dinh/) ---------- */
+const rxRoot = document.querySelector('[data-rx]');
+if (rxRoot) import('./rx.js').then(({ initRx }) => initRx(rxRoot)).catch((err) => console.warn('rx tool unavailable', err));

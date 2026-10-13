@@ -17,7 +17,7 @@ Labo sản xuất phục hình theo từng ca của phòng khám nha khoa và gi
 - Máy phay CAD/CAM: DGSHAPE DWX-52Di (5 trục)
 - Thời gian sản xuất (mọi loại phục hình, tính từ lúc labo nhận hàng): răng đơn lẻ, 2 – 3 đơn vị 1 ngày (tối đa 36 giờ); cầu răng 4 – 8 đơn vị 2 ngày (tối đa 60 giờ); cầu toàn hàm 3 ngày; hai hàm toàn hàm 4 ngày
 - Bảo hành: Upcera 3 năm, UNC 3 năm, Katana 5 năm, DDBio 5 năm, Cercon 7 năm, Lava 15 năm; răng sứ kim loại (Ni-Cr, Co-Cr) theo thỏa thuận; phục hình trên implant như phục hình trên răng thật cùng dòng vật liệu
-- Gửi ca: nhận dấu theo mọi phương thức (dấu, mẫu hàm, file scan trong miệng); phiếu chỉ định nha khoa gửi qua mọi kênh online
+- Gửi ca: nhận dấu theo mọi phương thức (dấu, mẫu hàm, file scan trong miệng); phiếu chỉ định nha khoa gửi qua mọi kênh online (có công cụ soạn phiếu online tại https://ktvlab.com/phieu-chi-dinh/, không bắt buộc)
 - Vật liệu: đa dạng dòng phôi zirconia; phòng khám cần dòng khác thì labo liên hệ đối tác, nhập phôi chính hãng theo yêu cầu
 - Dịch vụ miễn phí: xoi mòn mặt dán zirconia bằng dung dịch Zircos-E cho inlay, onlay, overlay
 
@@ -49,6 +49,7 @@ Labo sản xuất phục hình theo từng ca của phòng khám nha khoa và gi
 - [Labo răng sứ Bình Dương (Thủ Dầu Một)](https://ktvlab.com/labo-rang-su-binh-duong/): địa chỉ, khu vực giao nhận, thời gian sản xuất, bảo hành
 - [Labo răng sứ TP HCM](https://ktvlab.com/labo-rang-su-tp-hcm/): gửi ca từ xa: file scan, dấu, lịch hẹn
 - [Cách gửi ca](https://ktvlab.com/gui-ca/)
+- [Phiếu chỉ định online](https://ktvlab.com/phieu-chi-dinh/): soạn phiếu chỉ định có sơ đồ răng FDI, gửi qua Zalo, email hoặc in; không bắt buộc
 - [Thông tin pháp lý](https://ktvlab.com/phap-ly/): tên doanh nghiệp, mã số thuế, ISO 13485, nguồn gốc vật liệu
 - [Thời gian sản xuất](https://ktvlab.com/thoi-gian-san-xuat/)
 - [Bảo hành](https://ktvlab.com/bao-hanh/)
