@@ -17,9 +17,9 @@ export const BIZ = {
   quote: { tel: '0904241929', label: '090 424 1929', zalo: 'https://zalo.me/0904241929' },
   quote2: { tel: '0772829989', label: '077 282 9989', zalo: 'https://zalo.me/0772829989' },
   phones: [
-    { label: 'Cố định', tel: '02746514429', text: '0274 651 4429' },
+    { label: 'Số chính', tel: '0904241929', text: '090 424 1929' },
     { label: 'Di động', tel: '0984241929', text: '098 424 1929' },
-    { label: 'Di động', tel: '0904241929', text: '090 424 1929' },
+    { label: 'Cố định', tel: '02746514429', text: '0274 651 4429' },
   ],
   email: 'ktvlab8@gmail.com',
   hours: 'Thứ 2 – Thứ 7: 8h00 – 20h00; Chủ nhật: 8h00 – 12h00',
@@ -27,6 +27,8 @@ export const BIZ = {
   delivery: 'Nhận ca khắp khu vực miền Nam; lấy và giao hàng nhanh tận nơi tại khu vực Bình Dương cũ.',
   iso: { std: 'ISO 13485:2016', body: 'ISOCERT', no: '9199302854823-MED', valid: '19/06/2026 – 18/06/2029' },
 };
+// Gọi, đặt hàng, tư vấn: số chính (phones[0], 090 424 1929). Số của công ty (pháp lý, hoá đơn): số cố định.
+BIZ.office = BIZ.phones.find((p) => p.label === 'Cố định');
 
 // Số báo giá, tư vấn ban đầu, Zalo: hai số song song (090 424 1929 là số chính).
 export const QUOTE_LINKS = `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a> hoặc <a href="${BIZ.quote2.zalo}" target="_blank" rel="noopener">${BIZ.quote2.label}</a>`;
@@ -1073,7 +1075,8 @@ ${table(['Mục', 'Chi tiết'], [
   ['Tên thương mại', BIZ.name],
   ['Mã số thuế', '3703340735'],
   ['Địa chỉ', `${BIZ.address} (${BIZ.area})`],
-  ['Điện thoại', BIZ.phones.map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(', ')],
+  ['Điện thoại công ty', `<a href="tel:${BIZ.office.tel}">${BIZ.office.text}</a> (cố định)`],
+  ['Di động', BIZ.phones.filter((p) => p !== BIZ.office).map((p) => `<a href="tel:${p.tel}">${p.text}</a>`).join(', ')],
   ['Email', `<a href="mailto:${BIZ.email}">${BIZ.email}</a>`],
   ['Website', `<a href="${SITE}/">ktvlab.com</a>`],
 ])}
@@ -1094,7 +1097,7 @@ ${table(['Vật liệu', 'Loại', 'Nhà sản xuất', 'Xuất xứ'], MATERIAL
 <h2>Kiểm nghiệm vật liệu</h2>
 <p>Mẫu phần kim loại của răng sứ Co-Cr do labo sản xuất được Trung tâm Phân tích, Kiểm định vật liệu xây dựng — Viện Vật liệu xây dựng (VIBM) phân tích theo phương pháp tham chiếu ISO 22674:2022: <strong>Ni 0,00%</strong> (phiếu kết quả số 1958/VLXD-TTKĐ, ngày 26/05/2026). <a href="/vat-lieu/co-cr/">Xem kết quả và toàn văn phiếu</a>.</p>
 <h2>Hoá đơn và chứng từ</h2>
-<p>Phòng khám cần thông tin xuất hoá đơn hoặc chứng từ cho hồ sơ, vui lòng trao đổi với labo khi bắt đầu hợp tác: <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a> hoặc email <a href="mailto:${BIZ.email}">${BIZ.email}</a>.</p>
+<p>Phòng khám cần thông tin xuất hoá đơn hoặc chứng từ cho hồ sơ, vui lòng trao đổi với labo khi bắt đầu hợp tác: <a href="tel:${BIZ.office.tel}">${BIZ.office.text}</a> hoặc email <a href="mailto:${BIZ.email}">${BIZ.email}</a>.</p>
 <h2>Địa chỉ sau sắp xếp đơn vị hành chính</h2>
 <p>Từ ngày 01/7/2025, theo Nghị quyết 202/2025/QH15, tỉnh Bình Dương được sắp xếp vào TP Hồ Chí Minh. Địa chỉ của labo ghi theo đơn vị hành chính mới: phường Phú Lợi, TP Hồ Chí Minh (khu vực Thủ Dầu Một, Bình Dương cũ).</p>`;
 }
@@ -1103,7 +1106,7 @@ export const LEGAL_FAQ = [
   ['Làm sao kiểm tra mã số thuế của labo?', 'Nhập mã số thuế 3703340735 trên trang tra cứu người nộp thuế của Cục Thuế hoặc Cổng thông tin quốc gia về đăng ký doanh nghiệp.'],
   ['Chứng nhận ISO 13485 của labo tra cứu ở đâu?', `Trên website ${BIZ.iso.body} (isocert.org.vn), với số giấy chứng nhận ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}.`],
   ['Vật liệu của labo có rõ nguồn gốc không?', 'Có. Mỗi dòng zirconia và hợp kim được công bố tên nhà sản xuất và xuất xứ; mẫu hợp kim Co-Cr có kết quả kiểm nghiệm thành phần tại Viện Vật liệu xây dựng.'],
-  ['Phòng khám cần hoá đơn, chứng từ thì liên hệ thế nào?', `Trao đổi với labo khi bắt đầu hợp tác qua điện thoại ${BIZ.phones[0].text} hoặc email ${BIZ.email}.`],
+  ['Phòng khám cần hoá đơn, chứng từ thì liên hệ thế nào?', `Trao đổi với labo khi bắt đầu hợp tác qua điện thoại ${BIZ.office.text} hoặc email ${BIZ.email}.`],
 ];
 export const LEGAL_SOURCES = ['iso13485', 'nq202'];
 
