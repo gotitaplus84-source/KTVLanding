@@ -97,6 +97,10 @@ export const SOURCES = {
   zircosE: ['Zircos-E Etching Solution — RH Marketing (Lab Management Today)', 'https://lmtmag.com/products/rh-marketing-zircos-e-etching-solution'],
   sokolowski: ['Sokolowski G. và cs. (2023). The Shear Bond Strength of Resin-Based Luting Cement to Zirconia Ceramics after Different Surface Treatments. Materials 16(15):5433', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10419834'],
   cho2017: ['Cho J.H. và cs. (2017). Effect of zirconia surface treatment using nitric acid-hydrofluoric acid on the shear bond strengths of resin cements. J Adv Prosthodont 9(2):77–84', 'https://synapse.koreamed.org/articles/1054452'],
+  haciali: ['Haciali C., Korkut B., Yanikoglu F. (2025). Clinical assessment of dental color during dehydration and rehydration by various dental photography techniques. Odontology 113(4):1558–1572', 'https://doi.org/10.1007/s10266-025-01081-w'],
+  ahmed2024: ['Ahmed M.A. (2024). Assessing the shade matching accuracy among dental students through visual and instrumental methods. Pakistan Journal of Medical Sciences 40(8)', 'https://doi.org/10.12669/pjms.40.8.9491'],
+  gomezpolo: ['Gómez-Polo C. và cs. (2012). Influence of technique and pouring time on dimensional stability of polyvinyl siloxane and polyether impressions. Int J Prosthodont 25(4):353–356', 'https://pubmed.ncbi.nlm.nih.gov/22720285/'],
+  sdcep: ['Disinfection of impressions and appliances before dispatch — SDCEP Practice Support Manual', 'https://www.psm.sdcep.org.uk/topics/health-and-safety-infection-control/disinfection-of-impressions-and-appliances-before-dispatch/'],
   alawawda: ['Alawawda O., Altalla H., Bayındır F. (2026). Comparative effect of Zircos-E and airborne-particle abrasion on zirconia surface treatment: A meta-analysis. J Prosthodont 35(7):988–994', 'https://doi.org/10.1111/jopr.70033'],
 };
 
@@ -398,7 +402,8 @@ ${SEND_CASE}
       ['Mão sứ đắp trên sườn zirconia có dễ mẻ không?', 'Theo tổng quan của Sailer và cộng sự (2015), tỉ lệ mất mão do vỡ sứ đắp sau 5 năm khoảng 3,2% với sườn zirconia và 0,3% với sườn kim loại.']],
     sources: ['sailer', 'iowa'] },
 
-  { slug: 'mao-full-zirconia', name: 'Mão Full màu', short: zr.map((m) => m.name).join(', '),
+  { slug: 'mao-full-zirconia', name: 'Mão Full màu',
+    desc: 'Mão zirconia nguyên khối (full màu): phay từ phôi, nhuộm màu, nướng bóng, không có lớp sứ đắp. Phôi Upcera, UNC, Katana, DDBio, Cercon, Lava. Labo ISO 13485.', short: zr.map((m) => m.name).join(', '),
     img: '/assets/img/products/zirconia-lg.webp', thumb: '/assets/img/products/zirconia.webp', imgAlt: 'Mão răng zirconia nguyên khối (full màu)',
     title: 'Mão zirconia nguyên khối (Full màu)',
     lead: `Phay nguyên khối từ phôi zirconia, nhuộm màu và nướng bóng — không có lớp sứ đắp. KTV Dental Lab làm mão full màu trên nhiều dòng phôi: ${zr.map((m) => m.name).join(', ')} và nhập dòng khác theo yêu cầu.`,
@@ -822,6 +827,13 @@ ${turnaroundTable()}
 <p>Phục hình được giao trực tiếp đến phòng khám nha khoa.</p>`;
 }
 
+export const TURNAROUND_FAQ = [
+  ['Thời gian sản xuất tính từ lúc nào?', 'Kể từ lúc labo nhận hàng — dấu, mẫu hàm hoặc file scan — và áp dụng cho mọi loại phục hình.'],
+  ['Phục hình trên implant có lâu hơn phục hình trên răng thật không?', 'Không. Bảng thời gian sản xuất áp dụng cho mọi loại phục hình, gồm cả phục hình trên implant.'],
+  ['Yêu cầu xoi mòn Zircos-E có làm ca chậm hơn không?', 'Không. Thời gian ngâm đã được tính sẵn trong thời gian sản xuất. <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Xem dịch vụ xoi mòn Zircos-E</a>.'],
+  ['Labo có lấy và giao hàng tận nơi không?', 'Có, tại khu vực Bình Dương cũ (Thủ Dầu Một và lân cận). Phòng khám ở các tỉnh, thành khác thuộc miền Nam liên hệ labo để sắp xếp giao nhận; file scan gửi qua kênh online.'],
+];
+
 /* ---------- Bảo hành ---------- */
 export function warrantyBody() {
   return `
@@ -843,6 +855,13 @@ ${table(['Bảo hành', 'Dòng zirconia'], [
 ])}
 <p>Độ bền, độ trong từng dòng: <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a>.</p>`;
 }
+
+export const WARRANTY_FAQ = [
+  ['Dòng zirconia nào được bảo hành lâu nhất?', `${[...zr].sort((a, b) => b.years - a.years).map((m) => `${m.name} ${m.years} năm`).join(', ')}.`],
+  ['Phục hình trên implant được bảo hành thế nào?', 'Như phục hình trên răng thật cùng dòng vật liệu.'],
+  ['Răng sứ kim loại Ni-Cr, Co-Cr bảo hành bao lâu?', 'Theo thỏa thuận giữa labo và phòng khám.'],
+  ['Điều kiện bảo hành chi tiết xem ở đâu?', `Liên hệ labo qua số chính <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a> để nhận điều kiện bảo hành áp dụng cho phòng khám.`],
+];
 
 /* ---------- Câu hỏi thường gặp (trang chung) ---------- */
 export const FAQ = [
@@ -893,6 +912,7 @@ ${table(['Phương thức', 'Ghi chú'], [
   ['Dấu, mẫu hàm', 'Lấy và giao tận nơi tại khu vực Bình Dương cũ. Phòng khám ở các tỉnh, thành khác thuộc miền Nam: liên hệ labo để sắp xếp giao nhận.'],
   ['File scan trong miệng', 'Gửi file qua kênh online, kèm hàm làm việc, hàm đối diện và khớp cắn.'],
 ])}
+<p>Lấy dấu, khử khuẩn, ghi khớp và đóng gói dấu: <a href="/hoi-dap/lay-dau-gui-labo/">hỏi đáp lấy dấu và gửi dấu cho labo</a>.</p>
 <h2>2. Gửi phiếu chỉ định</h2>
 <p>Phiếu chỉ định nha khoa gửi qua <strong>mọi kênh online</strong> — Zalo, email, tin nhắn… — cùng lúc hoặc trước khi labo nhận dấu. Phiếu nên có:</p>
 <ul>
@@ -915,6 +935,7 @@ ${table(['Phương thức', 'Ghi chú'], [
 <li><strong>Chụp ảnh</strong> răng kế bên cùng cây so màu đã chọn và gửi kèm phiếu — giúp labo nhìn thấy độ trong, đặc điểm bề mặt.</li>
 </ul>
 <p class="note">Theo hướng dẫn so màu bằng mắt của Dentalcare (CE690).</p>
+<p>Hỏi đáp chi tiết: <a href="/hoi-dap/so-mau-rang-su/">so màu răng sứ — thời điểm, ánh sáng, màu cùi, ảnh gửi labo</a>.</p>
 <h2>4. Thời gian sản xuất</h2>
 <p>Áp dụng cho mọi loại phục hình, tính <strong>kể từ lúc labo nhận hàng</strong>:</p>
 ${turnaroundTable()}
