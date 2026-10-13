@@ -29,6 +29,8 @@ export const BIZ = {
 };
 // Gọi, đặt hàng, tư vấn: số chính (phones[0], 090 424 1929). Số của công ty (pháp lý, hoá đơn): số cố định.
 BIZ.office = BIZ.phones.find((p) => p.label === 'Cố định');
+// Giao nhận với phòng khám ở xa labo: nhận qua mọi dịch vụ chuyển phát hoặc nhà xe tuyến cố định; gửi trả theo đúng phương thức đã nhận.
+BIZ.shipping = 'Phòng khám ở xa labo gửi dấu, mẫu hàm qua mọi dịch vụ chuyển phát hoặc nhà xe tuyến cố định; labo gửi trả phục hình theo đúng phương thức đã nhận.';
 
 // Số báo giá, tư vấn ban đầu, Zalo: hai số song song (090 424 1929 là số chính).
 export const QUOTE_LINKS = `<a href="${BIZ.quote.zalo}" target="_blank" rel="noopener">${BIZ.quote.label}</a> hoặc <a href="${BIZ.quote2.zalo}" target="_blank" rel="noopener">${BIZ.quote2.label}</a>`;
@@ -844,7 +846,7 @@ export const TURNAROUND_FAQ = [
   ['Thời gian sản xuất tính từ lúc nào?', 'Kể từ lúc labo nhận hàng — dấu, mẫu hàm hoặc file scan — và áp dụng cho mọi loại phục hình.'],
   ['Phục hình trên implant có lâu hơn phục hình trên răng thật không?', 'Không. Bảng thời gian sản xuất áp dụng cho mọi loại phục hình, gồm cả phục hình trên implant.'],
   ['Yêu cầu xoi mòn Zircos-E có làm ca chậm hơn không?', 'Không. Thời gian ngâm đã được tính sẵn trong thời gian sản xuất. <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">Xem dịch vụ xoi mòn Zircos-E</a>.'],
-  ['Labo có lấy và giao hàng tận nơi không?', 'Có, tại khu vực Bình Dương cũ (Thủ Dầu Một và lân cận). Phòng khám ở các tỉnh, thành khác thuộc miền Nam liên hệ labo để sắp xếp giao nhận; file scan gửi qua kênh online.'],
+  ['Labo có lấy và giao hàng tận nơi không?', 'Có, tại khu vực Bình Dương cũ (Thủ Dầu Một và lân cận). Phòng khám ở xa labo gửi qua mọi dịch vụ chuyển phát hoặc nhà xe tuyến cố định; labo gửi trả theo đúng phương thức đã nhận. File scan gửi qua kênh online.'],
 ];
 
 /* ---------- Bảo hành ---------- */
@@ -859,6 +861,19 @@ ${table(['Dòng vật liệu', 'Loại', 'Xuất xứ', 'Nhà sản xuất', 'B�
 <li><strong>Răng sứ kim loại (Ni-Cr, Co-Cr):</strong> theo thỏa thuận với phòng khám.</li>
 </ul>
 <p>Điều kiện bảo hành chi tiết: liên hệ labo qua <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a>.</p>
+<h2 id="the-bao-hanh">Thẻ bảo hành và thẻ xuất xứ</h2>
+<p>Mỗi phục hình được giao kèm hai loại thẻ:</p>
+${table(['Thẻ', 'Do ai cấp', 'Ý nghĩa'], [
+  ['Thẻ bảo hành của labo', BIZ.name, 'Cam kết bảo hành của labo theo thời hạn của dòng vật liệu.'],
+  ['Thẻ chứng nhận xuất xứ của hãng phôi', 'Hãng sản xuất phôi tương ứng với loại phục hình', 'Xác nhận phục hình làm từ phôi của hãng đó.'],
+])}
+<p>Phòng khám có thể giao hai thẻ cho bệnh nhân cùng lúc gắn phục hình. Khi nhận ca, kiểm tra thẻ có đi kèm và đúng dòng vật liệu ghi trên phiếu chỉ định — xem <a href="/hoi-dap/nhan-thu-gan-phuc-hinh/#cau-125">nhận phục hình từ labo cần kiểm tra gì</a>.</p>
+<h2 id="lam-lai">Làm lại, sửa ca trước khi gắn</h2>
+<ul>
+<li><strong>Ca cần làm lại hoặc sửa khi chưa gắn cố định</strong> (thử không vừa, cần chỉnh): labo <strong>làm lại miễn phí</strong>.</li>
+<li><strong>Trường hợp ngoài ý muốn</strong> như phục hình bị rơi vỡ, thất lạc: labo <strong>hỗ trợ tối đa</strong> cho phòng khám.</li>
+</ul>
+<p>Báo labo càng sớm càng tốt, kèm ảnh hoặc mô tả vấn đề, để labo kịp làm lại trước ngày hẹn bệnh nhân — thời gian sản xuất: <a href="/thoi-gian-san-xuat/">từ 1 ngày</a>.</p>
 <h2>Chọn vật liệu theo thời hạn bảo hành</h2>
 ${table(['Bảo hành', 'Dòng zirconia'], [
   ['15 năm', link(bySlug('lava'))],
@@ -873,6 +888,8 @@ export const WARRANTY_FAQ = [
   ['Dòng zirconia nào được bảo hành lâu nhất?', `${[...zr].sort((a, b) => b.years - a.years).map((m) => `${m.name} ${m.years} năm`).join(', ')}.`],
   ['Phục hình trên implant được bảo hành thế nào?', 'Như phục hình trên răng thật cùng dòng vật liệu.'],
   ['Răng sứ kim loại Ni-Cr, Co-Cr bảo hành bao lâu?', 'Theo thỏa thuận giữa labo và phòng khám.'],
+  ['Ca thử không vừa, cần làm lại có mất phí không?', 'Ca làm lại hoặc sửa khi chưa gắn cố định được làm lại miễn phí. Trường hợp rơi vỡ, thất lạc, labo hỗ trợ tối đa cho phòng khám.'],
+  ['Labo có thẻ bảo hành không?', 'Có. Mỗi phục hình được giao kèm thẻ bảo hành của KTV Dental Lab, cùng thẻ chứng nhận xuất xứ của hãng phôi tương ứng với loại phục hình.'],
   ['Điều kiện bảo hành chi tiết xem ở đâu?', `Liên hệ labo qua số chính <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a> để nhận điều kiện bảo hành áp dụng cho phòng khám.`],
 ];
 
@@ -886,6 +903,14 @@ export const FAQ = [
     `Gọi hoặc nhắn KTV Dental Lab — labo liên hệ đối tác và nhập phôi chính hãng loại đó theo yêu cầu. Điện thoại ${BIZ.phones[0].text}, Zalo ${QUOTE_TEXT}.`],
   ['Răng sứ được bảo hành bao lâu?',
     `Tuỳ dòng vật liệu: ${zr.map((m) => `${m.name} ${m.years} năm`).join(', ')}; răng sứ kim loại Ni-Cr, Co-Cr bảo hành theo thỏa thuận. <a href="/bao-hanh/">Xem bảng bảo hành</a>.`],
+  ['Labo có cấp thẻ bảo hành cho phục hình không?',
+    'Có. Mỗi phục hình được giao kèm <strong>thẻ bảo hành của KTV Dental Lab</strong>, đồng thời gửi song song <strong>thẻ chứng nhận xuất xứ của hãng phôi</strong> tương ứng với loại phục hình. Xem <a href="/bao-hanh/#the-bao-hanh">thẻ bảo hành và thẻ xuất xứ</a>.'],
+  ['Ca thử không vừa, cần làm lại có mất phí không?',
+    'Ca làm lại hoặc sửa khi chưa gắn cố định được <strong>làm lại miễn phí</strong>. Trường hợp ngoài ý muốn như rơi vỡ, thất lạc, labo hỗ trợ tối đa cho phòng khám. Xem <a href="/bao-hanh/#lam-lai">làm lại, sửa ca</a>.'],
+  ['Labo có làm răng tạm, E.max không?',
+    'Labo làm răng tạm khi phòng khám yêu cầu — ghi trên phiếu chỉ định. Labo không làm lithium disilicate (E.max); các dòng vật liệu hiện có là zirconia và hợp kim cho răng sứ kim loại.'],
+  ['Phòng khám ở xa labo gửi dấu bằng cách nào?',
+    `${BIZ.shipping} File scan trong miệng gửi qua kênh online.`],
   ['Labo làm một ca mất bao lâu?',
     `Tính từ lúc labo nhận hàng, áp dụng cho mọi loại phục hình: ${TURNAROUND.map((t) => `${t.what.toLowerCase()} — ${t.time}${t.max ? ` (${t.max})` : ''}`).join('; ')}. <a href="/thoi-gian-san-xuat/">Xem chi tiết</a>.`],
   ['Labo nhận ca ở những khu vực nào?',
@@ -922,7 +947,7 @@ export function sendCaseBody() {
 <p>KTV Dental Lab nhận dấu theo <strong>mọi phương thức</strong> và nhận phiếu chỉ định nha khoa qua <strong>mọi kênh online</strong>. Phòng khám không cần dùng mẫu phiếu riêng của labo.</p>
 <h2>1. Gửi dấu</h2>
 ${table(['Phương thức', 'Ghi chú'], [
-  ['Dấu, mẫu hàm', 'Lấy và giao tận nơi tại khu vực Bình Dương cũ. Phòng khám ở các tỉnh, thành khác thuộc miền Nam: liên hệ labo để sắp xếp giao nhận.'],
+  ['Dấu, mẫu hàm', `Lấy và giao tận nơi tại khu vực Bình Dương cũ. ${BIZ.shipping}`],
   ['File scan trong miệng', 'Gửi file qua kênh online, kèm hàm làm việc, hàm đối diện và khớp cắn.'],
 ])}
 <p>Lấy dấu, khử khuẩn, ghi khớp và đóng gói dấu: <a href="/hoi-dap/lay-dau-gui-labo/">hỏi đáp lấy dấu và gửi dấu cho labo</a>.</p>
@@ -965,7 +990,7 @@ export const SENDCASE_FAQ = [
   ['Có cần dùng mẫu phiếu chỉ định của labo không?', 'Không. Phiếu chỉ định nha khoa của phòng khám gửi qua bất kỳ kênh online nào (Zalo, email, tin nhắn…) đều được.'],
   ['Nên so màu lúc nào?', 'Ở đầu buổi hẹn, trước khi mài răng và đặt đê cao su, khi răng chưa mất nước và mắt chưa mỏi; nhìn nhanh 5 – 7 giây mỗi lần dưới ánh sáng khoảng 5.500 K.'],
   ['Thời gian sản xuất tính từ khi nào?', `Tính từ lúc labo nhận hàng: ${TURNAROUND.map((t) => `${t.what.toLowerCase()} — ${t.time}`).join('; ')}.`],
-  ['Phòng khám ngoài Bình Dương có gửi ca được không?', 'Được. Labo nhận ca khắp khu vực miền Nam; lấy và giao hàng tận nơi tại khu vực Bình Dương cũ, các khu vực khác liên hệ labo để sắp xếp giao nhận.'],
+  ['Phòng khám ngoài Bình Dương có gửi ca được không?', 'Được. Labo nhận ca khắp khu vực miền Nam; lấy và giao hàng tận nơi tại khu vực Bình Dương cũ; phòng khám ở xa gửi qua mọi dịch vụ chuyển phát hoặc nhà xe tuyến cố định, labo gửi trả theo đúng phương thức đã nhận.'],
 ];
 export const SENDCASE_SOURCES = ['shade'];
 
@@ -1108,9 +1133,9 @@ export const LOCAL_SOURCES = ['nq202', 'iso13485', 'katana', 'dwx52', 'an2024', 
 
 export function hcmBody() {
   return `
-<p class="qa-short">KTV Dental Lab là labo răng sứ tại <strong>TP Hồ Chí Minh</strong> — ${BIZ.address}, khu vực Thủ Dầu Một (Bình Dương cũ). Labo nhận ca từ phòng khám trên toàn thành phố và khắp miền Nam: file scan trong miệng gửi online, dấu và mẫu hàm được sắp xếp giao nhận; răng đơn lẻ sản xuất trong <strong>1 ngày</strong> kể từ khi labo nhận hàng.</p>
+<p class="qa-short">KTV Dental Lab là labo răng sứ tại <strong>TP Hồ Chí Minh</strong> — ${BIZ.address}, khu vực Thủ Dầu Một (Bình Dương cũ). Labo nhận ca từ phòng khám trên toàn thành phố và khắp miền Nam: file scan trong miệng gửi online, dấu và mẫu hàm gửi qua chuyển phát hoặc nhà xe tuyến cố định; răng đơn lẻ sản xuất trong <strong>1 ngày</strong> kể từ khi labo nhận hàng.</p>
 <h2>Thông tin nhanh</h2>
-${quickInfo('Lấy và giao tận nơi khu vực Bình Dương cũ; các khu vực khác của TP HCM và miền Nam: file scan online hoặc liên hệ sắp xếp giao nhận')}
+${quickInfo('Lấy và giao tận nơi khu vực Bình Dương cũ; các khu vực khác của TP HCM và miền Nam: file scan online, hoặc gửi dấu qua chuyển phát, nhà xe tuyến cố định')}
 <h2>TP Hồ Chí Minh mới — labo ở khu vực Bình Dương cũ</h2>
 <p>Từ ngày 01/7/2025, theo Nghị quyết 202/2025/QH15, TP Hồ Chí Minh, tỉnh Bình Dương và tỉnh Bà Rịa – Vũng Tàu được sắp xếp thành TP Hồ Chí Minh mới. KTV Dental Lab nằm ở phường Phú Lợi — khu vực Thủ Dầu Một, Bình Dương cũ — và phục vụ phòng khám ở cả ba khu vực.</p>
 <h2>Gửi ca từ xa: dữ liệu số là đường giao hàng nhanh nhất</h2>
@@ -1124,7 +1149,7 @@ ${table(['Kiểm tra', 'Vì sao quan trọng'], [
 ], 'wide')}
 <p>Chi tiết: <a href="/gui-ca/">cách gửi ca</a>, <a href="/hoi-dap/scan-trong-mieng/">hỏi đáp scan trong miệng</a>, <a href="/hoi-dap/scan-body-implant/">scan body implant</a>.</p>
 <h2>Gửi dấu và mẫu hàm từ xa</h2>
-<p>Phòng khám ngoài khu vực Bình Dương cũ vẫn gửi được dấu truyền thống và mẫu hàm — liên hệ labo để sắp xếp giao nhận. Đóng gói dấu kèm phiếu chỉ định, ghi rõ ngày hẹn bệnh nhân. Phiếu chỉ định gửi trước qua kênh online để labo kiểm tra thông tin trong lúc chờ hàng.</p>
+<p>Phòng khám ngoài khu vực Bình Dương cũ vẫn gửi được dấu truyền thống và mẫu hàm qua mọi dịch vụ chuyển phát hoặc nhà xe tuyến cố định; labo gửi trả phục hình theo đúng phương thức đã nhận. Đóng gói dấu kèm phiếu chỉ định, ghi rõ ngày hẹn bệnh nhân. Phiếu chỉ định gửi trước qua kênh online để labo kiểm tra thông tin trong lúc chờ hàng.</p>
 <h2>Xếp lịch hẹn bệnh nhân với labo ở xa</h2>
 ${turnaroundTable()}
 ${turnaroundNote}
@@ -1140,7 +1165,7 @@ ${table(['Phục hình', 'Vật liệu'], PRODUCTS.map((p) => [`<a href="/phuc-h
 <h2>Bắt đầu với một ca đầu tiên</h2>
 <ol>
 <li>Nhắn Zalo ${QUOTE_LINKS} để nhận báo giá và tư vấn chọn vật liệu.</li>
-<li>Gửi file scan hoặc liên hệ sắp xếp giao nhận dấu; gửi phiếu chỉ định qua kênh online.</li>
+<li>Gửi file scan, hoặc gửi dấu qua chuyển phát, nhà xe tuyến cố định; gửi phiếu chỉ định qua kênh online.</li>
 <li>Labo kiểm tra dữ liệu; nếu thiếu, labo trao đổi lại trước khi sản xuất.</li>
 <li>Nhận phục hình đúng lịch; bảo hành theo dòng vật liệu.</li>
 </ol>
@@ -1148,11 +1173,11 @@ ${table(['Phục hình', 'Vật liệu'], PRODUCTS.map((p) => [`<a href="/phuc-h
 }
 export const HCM_FAQ = [
   ['KTV Dental Lab có phải labo răng sứ ở TP HCM không?', `Có. Labo ở ${BIZ.address} — khu vực Thủ Dầu Một, Bình Dương cũ, thuộc TP Hồ Chí Minh từ 01/7/2025.`],
-  ['Phòng khám ở khu vực TP HCM cũ gửi ca thế nào?', 'Gửi file scan trong miệng qua kênh online, hoặc liên hệ labo để sắp xếp giao nhận dấu và mẫu hàm; phiếu chỉ định gửi qua mọi kênh online.'],
+  ['Phòng khám ở khu vực TP HCM cũ gửi ca thế nào?', 'Gửi file scan trong miệng qua kênh online, hoặc gửi dấu, mẫu hàm qua mọi dịch vụ chuyển phát hoặc nhà xe tuyến cố định (labo gửi trả theo đúng phương thức đã nhận); phiếu chỉ định gửi qua mọi kênh online.'],
   ['Thời gian sản xuất tính từ khi nào?', 'Từ khi labo nhận đủ hàng và dữ liệu hợp lệ: răng đơn lẻ, 2 – 3 đơn vị 1 ngày; cầu 4 – 8 đơn vị 2 ngày; cầu toàn hàm 3 ngày; hai hàm 4 ngày. Với dấu gửi từ xa, cộng thêm thời gian vận chuyển khi xếp lịch hẹn.'],
   ['Labo có nhận ca từ Bà Rịa – Vũng Tàu cũ và các tỉnh miền Nam không?', 'Có. KTV Dental Lab nhận ca khắp khu vực miền Nam.'],
   ['Gửi file scan cần những gì?', 'Hàm làm việc với đường hoàn tất liên tục, hàm đối diện, khớp cắn hai bên, ảnh màu với cây so màu; với implant, ghi hãng và model scan body, hệ implant, đường kính, kết nối.'],
-  ['Labo có giao tận nơi ở TP HCM không?', 'Labo lấy và giao tận nơi trong khu vực Bình Dương cũ; các khu vực khác liên hệ labo để sắp xếp giao nhận.'],
+  ['Labo có giao tận nơi ở TP HCM không?', 'Labo lấy và giao tận nơi trong khu vực Bình Dương cũ; các khu vực khác nhận và gửi trả qua dịch vụ chuyển phát hoặc nhà xe tuyến cố định, theo đúng phương thức phòng khám đã gửi.'],
   ['Labo có chứng nhận chất lượng không?', `Có. ${BIZ.legal} đạt ${BIZ.iso.std}, do ${BIZ.iso.body} chứng nhận (số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}).`],
   ['Làm sao nhận báo giá?', `Nhắn Zalo ${QUOTE_TEXT} để nhận bảng báo giá mới nhất và tư vấn chọn vật liệu.`],
 ];

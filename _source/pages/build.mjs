@@ -473,8 +473,11 @@ Labo sản xuất phục hình theo từng ca của phòng khám nha khoa và gi
 - Chứng nhận: ${BIZ.iso.std}, ${BIZ.iso.body}, số ${BIZ.iso.no}, hiệu lực ${BIZ.iso.valid}
 - Máy phay CAD/CAM: DGSHAPE DWX-52Di (5 trục)
 - Thời gian sản xuất (mọi loại phục hình, tính từ lúc labo nhận hàng): ${TURNAROUND.map((t) => `${t.what.toLowerCase()} ${t.time}${t.max ? ` (${t.max})` : ''}`).join('; ')}
-- Bảo hành: ${zr.map((m) => `${m.name} ${m.years} năm`).join(', ')}; răng sứ kim loại (${metal.map((m) => m.name).join(', ')}) theo thỏa thuận; phục hình trên implant như phục hình trên răng thật cùng dòng vật liệu
-- Gửi ca: nhận dấu theo mọi phương thức (dấu, mẫu hàm, file scan trong miệng); phiếu chỉ định nha khoa gửi qua mọi kênh online (có công cụ soạn phiếu online tại ${SITE}/phieu-chi-dinh/, không bắt buộc)
+- Bảo hành: ${zr.map((m) => `${m.name} ${m.years} năm`).join(', ')}; răng sứ kim loại (${metal.map((m) => m.name).join(', ')}) theo thỏa thuận; phục hình trên implant như phục hình trên răng thật cùng dòng vật liệu; mỗi phục hình giao kèm thẻ bảo hành của labo và thẻ chứng nhận xuất xứ của hãng phôi tương ứng
+- Làm lại, sửa ca: ca làm lại hoặc sửa khi chưa gắn cố định được làm lại miễn phí; rơi vỡ, thất lạc được hỗ trợ tối đa
+- Răng tạm: làm khi phòng khám yêu cầu. Labo không làm lithium disilicate (E.max)
+- Khử khuẩn, kiểm soát bụi: quy trình được theo dõi trong hệ thống quản lý chất lượng ISO 13485
+- Gửi ca: nhận dấu theo mọi phương thức (dấu, mẫu hàm, file scan trong miệng); ${BIZ.shipping} phiếu chỉ định nha khoa gửi qua mọi kênh online (có công cụ soạn phiếu online tại ${SITE}/phieu-chi-dinh/, không bắt buộc)
 - Vật liệu: đa dạng dòng phôi zirconia; phòng khám cần dòng khác thì labo liên hệ đối tác, nhập phôi chính hãng theo yêu cầu
 - Dịch vụ miễn phí: xoi mòn mặt dán zirconia bằng dung dịch Zircos-E cho inlay, onlay, overlay
 
