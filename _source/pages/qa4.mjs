@@ -85,10 +85,11 @@ ${'<div class="table-wrap"><table><thead><tr><th>Kiểu nhịp</th><th>Tiếp x�
 <li><strong>Ngày hẹn:</strong> phục hình về kịp lịch bệnh nhân; nếu cần chỉnh, báo labo ngay để còn thời gian.</li>
 </ul>
 <p>Có sai khác so với phiếu, chụp ảnh và nhắn labo trước buổi hẹn. Phiếu ghi rõ ngay từ đầu giúp tránh phần lớn nhầm lẫn — <a href="/phieu-chi-dinh/">phiếu chỉ định online</a> có sẵn các mục này.</p>`],
-      [126, 'Phục hình labo giao có cần khử khuẩn trước khi thử trong miệng không?',
-        `${short('Có. Hướng dẫn kiểm soát nhiễm khuẩn của CDC (Hoa Kỳ) xem phục hình và vật liệu đi lại giữa phòng khám và labo là nguồn lây chéo tiềm năng, cần được làm sạch và khử khuẩn trước khi xử lý.')}
+      [126, 'Phục hình labo giao có cần khử khuẩn lại trước khi thử trong miệng không?',
+        `${short('Phục hình phải được khử khuẩn trước khi vào miệng, nhưng không nhất thiết làm hai lần. Theo hướng dẫn của CDC (Hoa Kỳ), labo và phòng khám thống nhất bên nào khử khuẩn khâu cuối; nếu labo đã khử khuẩn và ghi rõ, phòng khám không cần lặp lại; nếu không có ghi nhận, phòng khám khử khuẩn trước khi thử.')}
 <ul>
-<li>Làm sạch, khử khuẩn bằng dung dịch có hoạt tính ít nhất mức trung bình, đúng thời gian tiếp xúc, rồi rửa sạch — theo hướng dẫn của hãng dung dịch và tương thích với vật liệu.</li>
+<li><strong>Thống nhất trước với labo:</strong> ai khử khuẩn khâu cuối, và labo ghi nhận việc này ở đâu (trên phiếu giao, nhãn túi). Khử khuẩn lặp lại không cần thiết có thể làm hại bề mặt một số vật liệu.</li>
+<li><strong>Khi không có ghi nhận:</strong> làm sạch, khử khuẩn bằng dung dịch có hoạt tính ít nhất mức trung bình, đúng thời gian tiếp xúc, rồi rửa sạch — theo hướng dẫn của hãng dung dịch và tương thích với vật liệu.</li>
 <li>Với zirconia sẽ gắn bằng xi măng nhựa, tránh để mặt trong tiếp xúc chất làm bẩn bề mặt; sau thử miệng, mặt trong cần làm sạch lại trước khi gắn — xem <a href="/hoi-dap/gan-mao-zirconia/#cau-28">câu 28</a> và <a href="/hoi-dap/gan-mao-zirconia/#cau-30">câu 30</a>.</li>
 <li>Phục hình thử không đạt gửi trả labo cũng cần khử khuẩn trước khi đóng gói, như với dấu — xem <a href="/hoi-dap/lay-dau-gui-labo/#cau-113">khử khuẩn dấu</a>.</li>
 </ul>`],
@@ -115,7 +116,7 @@ ${'<div class="table-wrap"><table><thead><tr><th>Kiểu nhịp</th><th>Tiếp x�
 <p>Phân tích gộp của Ding và cộng sự (2023, <em>Clinical Oral Investigations</em>) trên 14 nghiên cứu in vitro: xi măng tạm làm giảm độ bám của phục hình gián tiếp khi ngà được dán sau (delayed dentin sealing); khi ngà được dán ngay sau khi mài (immediate dentin sealing), ảnh hưởng này gần như không còn. Xi măng tạm polycarboxylate và calcium hydroxide cho kết quả tốt hơn nhóm nhựa và nhóm oxide kẽm không eugenol.</p>
 <ul>
 <li>Định gắn chính thức bằng xi măng nhựa: ưu tiên xi măng tạm không eugenol cho thuận tiện.</li>
-<li>Dù dùng loại nào: lấy sạch xi măng tạm bằng dụng cụ, làm sạch cùi (ví dụ đánh bóng với bột pumice) trước khi gắn.</li>
+<li>Dù dùng loại nào: lấy phần lớn xi măng tạm bằng dụng cụ, rồi làm sạch cùi bằng thổi hạt Al₂O₃. Trong cùng phân tích gộp, thổi Al₂O₃ đưa độ bám về mức tương đương nhóm không dùng xi măng tạm và tốt hơn chỉ dùng dụng cụ cầm tay; đánh bóng bằng pumice đơn thuần làm sạch không ổn định.</li>
 <li>Gắn bằng xi măng glass ionomer hoặc RMGI: xi măng tạm có eugenol ít đáng lo hơn.</li>
 </ul>
 <p>Chọn xi măng gắn chính thức cho zirconia: <a href="/hoi-dap/gan-mao-zirconia/#cau-21">câu 21</a>.</p>`],
