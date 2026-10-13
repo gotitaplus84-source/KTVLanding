@@ -15,6 +15,20 @@ const QA_TOPICS = [...QA_1, ...QA_TOPICS_2];
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const today = new Date().toISOString().slice(0, 10);
+const read = (f) => { try { return readFileSync(f, 'utf8'); } catch { return null; } };
+
+/* ---------- lastmod: a page keeps its previous date unless its HTML actually changed ----------
+   Previous dates come from the current sitemap.xml. Pages that print their own dateModified pass
+   LASTMOD instead of a date; it is filled with the page's lastmod, so the date alone never counts as a change. */
+const LASTMOD = '@@lastmod@@';
+const prevLastmod = Object.fromEntries([...(read(join(ROOT, 'sitemap.xml')) || '').matchAll(/<loc>[^<]*?ktvlab\.com([^<]*)<\/loc><lastmod>([^<]+)<\/lastmod>/g)].map((m) => [m[1], m[2]]));
+const lastmod = {};
+function emit(path, file, html) {
+  const prev = prevLastmod[path];
+  if (prev && html.replaceAll(LASTMOD, prev) === read(file)) { lastmod[path] = prev; return; }
+  lastmod[path] = today;
+  writeFileSync(file, html.replaceAll(LASTMOD, today));
+}
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const fit = (d, tail) => (d.length + tail.length <= 160 ? d + tail : d);
 const strip = (s) => String(s).replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
@@ -35,7 +49,7 @@ if (!index.includes('<!--@links-->')) throw new Error('index.html thiếu <!--@l
 index = index.replace(/<!--@links-->[\s\S]*?<!--\/@links-->/, footLinks);
 if (!index.includes('<!--@quote-->')) throw new Error('index.html thiếu <!--@quote-->');
 index = index.replace(/<!--@quote-->[\s\S]*?<!--\/@quote-->/, `<!--@quote-->\n${QUOTE_TPL}\n<!--/@quote-->`);
-writeFileSync(join(ROOT, 'index.html'), index);
+emit('/', join(ROOT, 'index.html'), index);
 
 /* ---------- pieces taken from the home page ---------- */
 const grab = (re) => { const m = index.match(re); if (!m) throw new Error('index.html: không tìm thấy ' + re); return m[0]; };
@@ -134,7 +148,7 @@ ${QUOTE_TPL}
 `;
   const out = join(ROOT, path, 'index.html');
   mkdirSync(dirname(out), { recursive: true });
-  writeFileSync(out, html);
+  emit(path, out, html);
   return path;
 }
 
@@ -314,7 +328,7 @@ pages.push(page({
   related: [{ name: 'Labo răng sứ TP HCM', url: '/labo-rang-su-tp-hcm/' }, { name: 'Cách gửi ca', url: '/gui-ca/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }, { name: 'Hỏi đáp kỹ thuật cho bác sĩ', url: '/hoi-dap/' }],
   relatedTitle: 'Xem thêm',
   faq: LOCAL_FAQ, sources: LOCAL_SOURCES,
-  pageExtra: { about: { '@id': SITE + '/#org' }, dateModified: today },
+  pageExtra: { about: { '@id': SITE + '/#org' }, dateModified: LASTMOD },
   schema: [service('Labo răng sứ tại Bình Dương', '/labo-rang-su-binh-duong/', { serviceType: 'Sản xuất phục hình răng sứ cho phòng khám nha khoa', areaServed: [...LOCAL_AREAS.map((a) => ({ '@type': 'Place', name: `${a}, Bình Dương cũ` })), { '@type': 'Place', name: 'Miền Nam Việt Nam' }] })],
 }));
 
@@ -330,7 +344,7 @@ pages.push(page({
   related: [{ name: 'Labo răng sứ Bình Dương', url: '/labo-rang-su-binh-duong/' }, { name: 'Cách gửi ca', url: '/gui-ca/' }, { name: 'Hỏi đáp: scan trong miệng', url: '/hoi-dap/scan-trong-mieng/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }],
   relatedTitle: 'Xem thêm',
   faq: HCM_FAQ, sources: HCM_SOURCES,
-  pageExtra: { about: { '@id': SITE + '/#org' }, dateModified: today },
+  pageExtra: { about: { '@id': SITE + '/#org' }, dateModified: LASTMOD },
   schema: [service('Labo răng sứ tại TP Hồ Chí Minh', '/labo-rang-su-tp-hcm/', { serviceType: 'Sản xuất phục hình răng sứ cho phòng khám nha khoa', areaServed: [{ '@type': 'City', name: 'TP Hồ Chí Minh' }, { '@type': 'Place', name: 'Bình Dương cũ' }, { '@type': 'Place', name: 'Bà Rịa – Vũng Tàu cũ' }, { '@type': 'Place', name: 'Miền Nam Việt Nam' }] })],
 }));
 
@@ -346,7 +360,7 @@ pages.push(page({
   related: [{ name: 'Bảo hành', url: '/bao-hanh/' }, { name: 'Co-Cr: kết quả kiểm nghiệm', url: '/vat-lieu/co-cr/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }, { name: 'Câu hỏi thường gặp', url: '/cau-hoi-thuong-gap/' }],
   relatedTitle: 'Xem thêm',
   faq: LEGAL_FAQ, sources: LEGAL_SOURCES,
-  pageExtra: { about: { '@id': SITE + '/#org' }, dateModified: today },
+  pageExtra: { about: { '@id': SITE + '/#org' }, dateModified: LASTMOD },
 }));
 
 /* ---------- thông tin ---------- */
@@ -394,7 +408,7 @@ pages.push(page({
 /* ---------- sitemap ---------- */
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pages.map((p) => `  <url><loc>${SITE}${p}</loc><lastmod>${today}</lastmod><priority>${p === '/' ? '1.0' : p.split('/').length > 3 ? '0.8' : '0.6'}</priority></url>`).join('\n')}
+${pages.map((p) => `  <url><loc>${SITE}${p}</loc><lastmod>${lastmod[p]}</lastmod><priority>${p === '/' ? '1.0' : p.split('/').length > 3 ? '0.8' : '0.6'}</priority></url>`).join('\n')}
 </urlset>
 `;
 writeFileSync(join(ROOT, 'sitemap.xml'), sitemap);

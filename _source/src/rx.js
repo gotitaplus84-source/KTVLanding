@@ -66,6 +66,14 @@ export function initRx(root) {
   const S = Object.assign(blank(), saved);
   const sel = new Set();
   const draft = { type: 'mao', mat: 'zr', brand: zrNames[0] || SUGGEST, shade: 'A2', sys: '', abut: SUGGEST, ret: SUGGEST, note: '' };
+  // điền sẵn từ công cụ chọn dòng zirconia: /phieu-chi-dinh/?type=cau&mat=ml&brand=Katana&note=…
+  {
+    const q = new URLSearchParams(location.search);
+    if (TYPES[q.get('type')]) draft.type = q.get('type');
+    if (MATS[q.get('mat')]) draft.mat = q.get('mat');
+    if (q.get('brand')) draft.brand = q.get('brand');
+    if (q.get('note')) draft.note = q.get('note').slice(0, 200);
+  }
 
   /* ---------- khung ---------- */
   const quad = ({ q, name, rev }) => {
@@ -106,7 +114,7 @@ export function initRx(root) {
           <label class="rx-f"><span>Lưu giữ</span><select data-ret>${[SUGGEST, 'Bắt vít', 'Gắn xi măng'].map((v) => opt(v, draft.ret)).join('')}</select></label>
         </div>
       </div>
-      <label class="rx-f"><span>Ghi chú cho hạng mục này <em>(không bắt buộc)</em></span><input data-inote type="text" placeholder="Ví dụ: khoảng phục hình thấp, nghiến răng, cắt lớp mặt ngoài"></label>
+      <label class="rx-f"><span>Ghi chú cho hạng mục này <em>(không bắt buộc)</em></span><input data-inote type="text" value="${esc(draft.note)}" placeholder="Ví dụ: khoảng phục hình thấp, nghiến răng, cắt lớp mặt ngoài"></label>
       <p class="rx-err" data-err role="alert"></p>
       <button type="button" class="btn btn-red rx-add" data-add>Thêm vào phiếu</button>
     </section>

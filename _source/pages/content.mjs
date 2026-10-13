@@ -701,9 +701,68 @@ ${m.kind === 'zirconia' ? MORE_BLANKS : ''}`;
 }
 
 /* ---------- So sánh zirconia ---------- */
+/* ---------- công cụ chọn dòng zirconia (trang so sánh; logic ở src/pick.js) ----------
+   Gợi ý theo chỉ định và số liệu công bố của hãng, khớp với bảng "Chọn dòng zirconia theo ca" bên dưới.
+   Khóa: vị trí (truoc | sau) hoặc cầu dài (dai) × ưu tiên (tham-my | bao-hanh | chi-phi).
+   mat: vật liệu điền sẵn vào phiếu chỉ định (ml = Multilayer, zr = nguyên khối). */
+const PICK_RULES = {
+  truoc: {
+    'tham-my': [['katana', 'UTML hoặc STML', 'Dòng trong nhất của Katana (51% và 49%), hãng chỉ định cho răng trước, cầu đến 3 đơn vị.', 'ml'],
+      ['cercon', 'xt hoặc ht ML', 'Cercon xt trong 49%; ht ML chuyển màu nhiều lớp từ cổ đến rìa cắn.', 'ml']],
+    'bao-hanh': [['lava', 'Lava Plus', 'Bảo hành dài nhất tại labo, độ trong cao.', 'zr'],
+      ['cercon', 'xt hoặc ht ML', 'Bảo hành 7 năm, có lựa chọn nhiều lớp cho răng trước.', 'ml']],
+    'chi-phi': [['unc', 'Multilayer', 'Chuyển màu sẵn trong phôi, hợp vùng thẩm mỹ với chi phí hợp lý.', 'ml'],
+      ['upcera', 'ST', 'Dòng độ trong cao của Upcera, có phôi nhiều lớp.', 'zr']],
+  },
+  sau: {
+    'tham-my': [['katana', 'YML', 'Một phôi nhiều lớp: lớp men trong, lớp thân bền 1.000 – 1.100 MPa.', 'ml'],
+      ['cercon', 'ht ML', 'Chuyển màu nhiều lớp, độ bền 1.200 MPa ở vùng cổ răng.', 'ml']],
+    'bao-hanh': [['lava', 'Lava Plus', 'Độ bền uốn 1.100 MPa, bảo hành dài nhất tại labo.', 'zr'],
+      ['cercon', 'ht', 'Độ bền uốn 1.200 MPa, bảo hành 7 năm.', 'zr']],
+    'chi-phi': [['upcera', '', 'Mão đơn lẻ, cầu ngắn răng sau với chi phí hợp lý.', 'zr'],
+      ['unc', '', 'Phôi một màu cho răng sau, sản xuất tại Hàn Quốc.', 'zr']],
+  },
+  dai: {
+    'tham-my': [['katana', 'YML', 'Hãng chỉ định cho cầu dài; chuyển màu nhiều lớp, thân phôi bền 1.100 MPa.', 'ml']],
+    'bao-hanh': [['lava', 'Lava Plus', 'Dùng được cho cầu nhiều đơn vị, bảo hành dài nhất tại labo.', 'zr'],
+      ['cercon', 'ht', 'Độ bền uốn 1.200 MPa, bảo hành 7 năm.', 'zr']],
+    'chi-phi': [['ddbio', 'ZX²', 'Hãng chỉ định cầu đến 14 đơn vị, độ bền 1.150 MPa.', 'zr'],
+      ['katana', 'HTML PLUS', 'Độ bền 1.150 MPa, dùng cho cầu nguyên khối.', 'ml']],
+  },
+};
+export const pickData = () => {
+  const out = {};
+  for (const [k, by] of Object.entries(PICK_RULES)) {
+    out[k] = {};
+    for (const [pri, list] of Object.entries(by)) {
+      out[k][pri] = list.map(([slug, line, why, mat]) => {
+        const m = bySlug(slug);
+        if (!m) throw new Error(`PICK_RULES: không có vật liệu "${slug}"`);
+        return { slug, name: m.name, line, why, mat: mat === 'ml' && !m.multilayer ? 'zr' : mat, years: m.years };
+      });
+    }
+  }
+  return out;
+};
+const chips = (name, opts) => `<fieldset class="rx-chips"><legend>${opts.legend}</legend>${opts.items.map(([v, l], i) => `<label><input type="radio" name="${name}" value="${v}"${i === 0 ? ' checked' : ''}><span>${l}</span></label>`).join('')}</fieldset>`;
+const pickTool = () => `
+<section class="pick" id="chon-dong" aria-labelledby="pick-h" data-pick hidden>
+<h2 id="pick-h">Chọn nhanh dòng zirconia cho ca</h2>
+<p class="pick-lead">Trả lời 3 câu, xem dòng phôi phù hợp rồi lên phiếu chỉ định với dòng đó.</p>
+<form class="pick-form">
+${chips('pk-pos', { legend: '1. Vị trí răng', items: [['truoc', 'Răng trước'], ['sau', 'Răng sau']] })}
+${chips('pk-len', { legend: '2. Số đơn vị', items: [['ngan', 'Mão đơn, cầu đến 3 đơn vị'], ['dai', 'Cầu 4 đơn vị trở lên']] })}
+${chips('pk-pri', { legend: '3. Ưu tiên', items: [['tham-my', 'Thẩm mỹ'], ['bao-hanh', 'Bảo hành dài'], ['chi-phi', 'Chi phí hợp lý']] })}
+</form>
+<div class="pick-out" data-pick-out aria-live="polite"></div>
+<p class="note">Gợi ý dựa trên chỉ định và số liệu công bố của hãng. Khoảng phục hình, khớp cắn, thói quen nghiến răng có thể đổi lựa chọn; labo tư vấn theo từng ca qua Zalo ${QUOTE_LINKS}.</p>
+</section>
+<script type="application/json" id="pick-data">${JSON.stringify(pickData()).replace(/</g, '\\u003c')}</script>`;
+
 export function compareBody() {
   return `
 <p>Các dòng phôi zirconia hiện có tại KTV Dental Lab, bảo hành từ 3 đến 15 năm. Độ bền uốn và độ trong ghi theo công bố của từng hãng.</p>
+${pickTool()}
 ${MORE_BLANKS}
 ${table(['Dòng', 'Xuất xứ', 'Độ bền uốn', 'Độ trong', 'Nhiều lớp', 'Bảo hành'], [
   [link(bySlug('lava')), 'Mỹ', 'Lava Plus: 1.100 MPa', 'Độ trong cao', '—', '<strong>15 năm</strong>'],
@@ -1132,7 +1191,7 @@ export function rxBody() {
 <li><strong>Gửi:</strong> sao chép và dán vào Zalo, gửi email, hoặc in / lưu PDF để kèm hộp dấu.</li>
 <li><strong>Riêng tư:</strong> phiếu được soạn ngay trên trình duyệt, không gửi đi đâu cho đến khi bác sĩ tự gửi. Chỉ tên phòng khám, bác sĩ và số điện thoại được nhớ trên máy này cho lần sau; thông tin bệnh nhân và các hạng mục chỉ giữ trong thẻ trình duyệt đang mở, đóng thẻ là xoá. Nên ghi mã bệnh nhân thay vì họ tên đầy đủ.</li>
 </ul>
-<p>Chưa chọn được dòng phôi? Chọn “Labo đề xuất” và ghi yêu cầu (thẩm mỹ, chịu lực, bảo hành) — hoặc xem <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a>. Cách lấy dấu, so màu: <a href="/gui-ca/">cách gửi ca</a>.</p>`;
+<p>Chưa chọn được dòng phôi? Dùng <a href="/vat-lieu/so-sanh-zirconia/#chon-dong">công cụ chọn nhanh dòng zirconia</a>, hoặc chọn “Labo đề xuất” và ghi yêu cầu (thẩm mỹ, chịu lực, bảo hành). Cách lấy dấu, so màu: <a href="/gui-ca/">cách gửi ca</a>.</p>`;
 }
 export const RX_FAQ = [
   ['Có bắt buộc dùng phiếu chỉ định online của labo không?', 'Không. Labo nhận phiếu chỉ định của phòng khám qua mọi kênh online; phiếu online chỉ là công cụ soạn nhanh, không bắt buộc.'],

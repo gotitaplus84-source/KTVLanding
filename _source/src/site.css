@@ -493,3 +493,15 @@ body.subpage{background:var(--bg)}
   .rx-print pre{white-space:pre-wrap;font:500 12pt/1.6 var(--f);margin:14px 0}
   .rx-print p{font-size:10pt;color:#444}
 }
+
+/* chọn nhanh dòng zirconia */
+.pick{background:var(--paper);border-radius:20px;padding:24px 22px 18px;margin:8px 0 28px;box-shadow:0 1px 0 var(--line),0 18px 40px -28px rgba(6,27,68,.35)}
+.pick h2{margin-top:0}
+.pick-lead{color:var(--muted);margin-top:-4px}
+.pick .rx-chips.is-off{opacity:.4;pointer-events:none}
+.pick .pick-list{list-style:none;padding:0;margin:4px 0 0;display:grid;gap:12px}
+.pick .pick-list li{margin:0;border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;background:var(--bg)}
+.pick-list p{margin:0 0 10px}
+.pick-name{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;font-weight:700;font-size:18px}
+.pick-name span{font-size:14px;font-weight:600;color:var(--blue)}
+.pick-go{font-size:14px;padding:10px 16px}
