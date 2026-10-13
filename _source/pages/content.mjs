@@ -859,6 +859,13 @@ ${table(['Dòng vật liệu', 'Loại', 'Xuất xứ', 'Nhà sản xuất', 'B�
 <li><strong>Răng sứ kim loại (Ni-Cr, Co-Cr):</strong> theo thỏa thuận với phòng khám.</li>
 </ul>
 <p>Điều kiện bảo hành chi tiết: liên hệ labo qua <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a>.</p>
+<h2 id="the-bao-hanh">Thẻ bảo hành và thẻ xuất xứ</h2>
+<p>Mỗi phục hình được giao kèm hai loại thẻ:</p>
+${table(['Thẻ', 'Do ai cấp', 'Ý nghĩa'], [
+  ['Thẻ bảo hành của labo', BIZ.name, 'Cam kết bảo hành của labo theo thời hạn của dòng vật liệu.'],
+  ['Thẻ chứng nhận xuất xứ của hãng phôi', 'Hãng sản xuất phôi tương ứng với loại phục hình', 'Xác nhận phục hình làm từ phôi của hãng đó.'],
+])}
+<p>Phòng khám có thể giao hai thẻ cho bệnh nhân cùng lúc gắn phục hình. Khi nhận ca, kiểm tra thẻ có đi kèm và đúng dòng vật liệu ghi trên phiếu chỉ định — xem <a href="/hoi-dap/nhan-thu-gan-phuc-hinh/#cau-125">nhận phục hình từ labo cần kiểm tra gì</a>.</p>
 <h2>Chọn vật liệu theo thời hạn bảo hành</h2>
 ${table(['Bảo hành', 'Dòng zirconia'], [
   ['15 năm', link(bySlug('lava'))],
@@ -873,6 +880,7 @@ export const WARRANTY_FAQ = [
   ['Dòng zirconia nào được bảo hành lâu nhất?', `${[...zr].sort((a, b) => b.years - a.years).map((m) => `${m.name} ${m.years} năm`).join(', ')}.`],
   ['Phục hình trên implant được bảo hành thế nào?', 'Như phục hình trên răng thật cùng dòng vật liệu.'],
   ['Răng sứ kim loại Ni-Cr, Co-Cr bảo hành bao lâu?', 'Theo thỏa thuận giữa labo và phòng khám.'],
+  ['Labo có thẻ bảo hành không?', 'Có. Mỗi phục hình được giao kèm thẻ bảo hành của KTV Dental Lab, cùng thẻ chứng nhận xuất xứ của hãng phôi tương ứng với loại phục hình.'],
   ['Điều kiện bảo hành chi tiết xem ở đâu?', `Liên hệ labo qua số chính <a href="tel:${BIZ.phones[0].tel}">${BIZ.phones[0].text}</a> để nhận điều kiện bảo hành áp dụng cho phòng khám.`],
 ];
 
@@ -886,6 +894,8 @@ export const FAQ = [
     `Gọi hoặc nhắn KTV Dental Lab — labo liên hệ đối tác và nhập phôi chính hãng loại đó theo yêu cầu. Điện thoại ${BIZ.phones[0].text}, Zalo ${QUOTE_TEXT}.`],
   ['Răng sứ được bảo hành bao lâu?',
     `Tuỳ dòng vật liệu: ${zr.map((m) => `${m.name} ${m.years} năm`).join(', ')}; răng sứ kim loại Ni-Cr, Co-Cr bảo hành theo thỏa thuận. <a href="/bao-hanh/">Xem bảng bảo hành</a>.`],
+  ['Labo có cấp thẻ bảo hành cho phục hình không?',
+    'Có. Mỗi phục hình được giao kèm <strong>thẻ bảo hành của KTV Dental Lab</strong>, đồng thời gửi song song <strong>thẻ chứng nhận xuất xứ của hãng phôi</strong> tương ứng với loại phục hình. Xem <a href="/bao-hanh/#the-bao-hanh">thẻ bảo hành và thẻ xuất xứ</a>.'],
   ['Labo làm một ca mất bao lâu?',
     `Tính từ lúc labo nhận hàng, áp dụng cho mọi loại phục hình: ${TURNAROUND.map((t) => `${t.what.toLowerCase()} — ${t.time}${t.max ? ` (${t.max})` : ''}`).join('; ')}. <a href="/thoi-gian-san-xuat/">Xem chi tiết</a>.`],
   ['Labo nhận ca ở những khu vực nào?',

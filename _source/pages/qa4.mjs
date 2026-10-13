@@ -82,6 +82,7 @@ ${'<div class="table-wrap"><table><thead><tr><th>Kiểu nhịp</th><th>Tiếp x�
 <li><strong>Trên mẫu:</strong> mão ngồi hết, bờ khít, tiếp xúc bên có, không bập bênh (với cầu).</li>
 <li><strong>Bề mặt:</strong> soi dưới đèn tìm vết nứt, mẻ, bọt; mặt trong sạch.</li>
 <li><strong>Phụ kiện implant:</strong> vít, abutment, máng định vị (nếu có) đủ và đúng hệ.</li>
+<li><strong>Thẻ:</strong> thẻ bảo hành của labo và thẻ chứng nhận xuất xứ của hãng phôi đi kèm, đúng dòng vật liệu trên phiếu — xem <a href="/bao-hanh/#the-bao-hanh">thẻ bảo hành và thẻ xuất xứ</a>.</li>
 <li><strong>Ngày hẹn:</strong> phục hình về kịp lịch bệnh nhân; nếu cần chỉnh, báo labo ngay để còn thời gian.</li>
 </ul>
 <p>Có sai khác so với phiếu, chụp ảnh và nhắn labo trước buổi hẹn. Phiếu ghi rõ ngay từ đầu giúp tránh phần lớn nhầm lẫn — <a href="/phieu-chi-dinh/">phiếu chỉ định online</a> có sẵn các mục này.</p>`],
@@ -157,7 +158,7 @@ ${'<div class="table-wrap"><table><thead><tr><th>Kiểu nhịp</th><th>Tiếp x�
   /* ===================== 15. Tuổi thọ, tháo và sửa răng sứ ===================== */
   { slug: 'tuoi-tho-thao-sua-rang-su', name: 'Tuổi thọ, tháo và sửa răng sứ',
     title: 'Răng sứ dùng được bao lâu, tháo mão zirconia, sửa mẻ sứ',
-    lead: 'Răng sứ, cầu răng, mão implant dùng được bao lâu theo nghiên cứu, vì sao hỏng, tháo mão zirconia, sửa mẻ sứ, zirconia hay E.max, răng sứ và MRI.',
+    lead: 'Răng sứ, cầu, mão implant dùng được bao lâu theo nghiên cứu, vì sao hỏng, tháo mão zirconia, sửa mẻ sứ, zirconia hay E.max, MRI, thẻ bảo hành.',
     published: '2026-10-13', updated: '2026-10-13',
     links: [['Bảo hành theo dòng vật liệu', '/bao-hanh/'], ['Mão zirconia nguyên khối', '/phuc-hinh/mao-full-zirconia/'], ['Răng sứ Co-Cr', '/vat-lieu/co-cr/'], ['So sánh các dòng zirconia', '/vat-lieu/so-sanh-zirconia/']],
     qs: [
@@ -229,6 +230,14 @@ ${'<div class="table-wrap"><table><thead><tr><th>Kiểu nhịp</th><th>Tiếp x�
 <li><strong>Đen viền nướu:</strong> gặp ở răng sứ kim loại khi nướu co lộ bờ sườn; răng toàn sứ, zirconia không có sườn kim loại — xem <a href="/vat-lieu/ni-cr/">răng sứ Ni-Cr</a> và <a href="/vat-lieu/co-cr/">Co-Cr</a>.</li>
 </ul>
 <p>Hướng dẫn chăm sóc sau gắn: <a href="/hoi-dap/nhan-thu-gan-phuc-hinh/#cau-131">câu 131</a>.</p>`],
+      [141, 'Thẻ bảo hành răng sứ và thẻ của hãng phôi khác nhau thế nào?',
+        `${short('Thẻ bảo hành là cam kết của labo (hoặc phòng khám) về việc sửa, làm lại phục hình trong thời hạn. Thẻ của hãng phôi là chứng nhận xuất xứ: phục hình được làm từ phôi của hãng đó. Hai thẻ trả lời hai câu hỏi khác nhau, nên bệnh nhân thường nhận cả hai.')}
+<ul>
+<li><strong>Thẻ bảo hành:</strong> ghi thời hạn và điều kiện bảo hành. Thời hạn thường theo dòng vật liệu — tại KTV Dental Lab từ 3 đến 15 năm với zirconia, răng sứ kim loại theo thỏa thuận.</li>
+<li><strong>Thẻ xuất xứ của hãng phôi:</strong> chứng nhận nguồn gốc vật liệu. Đây không phải cam kết bảo hành của labo, và thời hạn ghi trên thẻ hãng (nếu có) không thay cho điều kiện bảo hành của labo.</li>
+<li><strong>Tại KTV Dental Lab:</strong> mỗi phục hình được giao kèm thẻ bảo hành của labo, đồng thời gửi song song thẻ chứng nhận xuất xứ của hãng phôi tương ứng với loại phục hình — xem <a href="/bao-hanh/#the-bao-hanh">thẻ bảo hành và thẻ xuất xứ</a>.</li>
+</ul>
+<p>Lễ tân nên lưu số thẻ, vị trí răng và ngày gắn trong hồ sơ bệnh nhân để khi cần bảo hành, phòng khám liên hệ labo nhanh, kể cả khi bệnh nhân làm mất thẻ.</p>`],
     ],
     sources: ['sailer', 'tan2004', 'pjet2004cant', 'pjet', 'leitao', 'borzangy2024', 'alqarawi2022', 'yousry', 'ivoclarEmax', 'gao2022'] },
 ];
