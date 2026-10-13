@@ -342,7 +342,7 @@ pages.push(page({
   h1: 'Thông tin pháp lý',
   lead: 'Doanh nghiệp, mã số thuế, chứng nhận chất lượng và nguồn gốc vật liệu — tra cứu được tại nguồn chính thức.',
   body: legalBody(),
-  side: sideBox([['Doanh nghiệp', BIZ.legal], ['Mã số thuế', '3703340735'], ['Chứng nhận', `${BIZ.iso.std}<br>số ${BIZ.iso.no}`], ['Email', `<a href="mailto:${BIZ.email}">${BIZ.email}</a>`]]),
+  side: sideBox([['Doanh nghiệp', BIZ.legal], ['Mã số thuế', '3703340735'], ['Điện thoại công ty', `<a href="tel:${BIZ.office.tel}">${BIZ.office.text}</a>`], ['Chứng nhận', `${BIZ.iso.std}<br>số ${BIZ.iso.no}`], ['Email', `<a href="mailto:${BIZ.email}">${BIZ.email}</a>`]]),
   related: [{ name: 'Bảo hành', url: '/bao-hanh/' }, { name: 'Co-Cr: kết quả kiểm nghiệm', url: '/vat-lieu/co-cr/' }, { name: 'So sánh các dòng zirconia', url: '/vat-lieu/so-sanh-zirconia/' }, { name: 'Câu hỏi thường gặp', url: '/cau-hoi-thuong-gap/' }],
   relatedTitle: 'Xem thêm',
   faq: LEGAL_FAQ, sources: LEGAL_SOURCES,
@@ -415,7 +415,7 @@ Labo sản xuất phục hình theo từng ca của phòng khám nha khoa và gi
 - Tên: ${BIZ.name} — pháp nhân ${BIZ.legal}, mã số thuế 3703340735
 - Địa chỉ: ${BIZ.address} (${BIZ.area})
 - Giờ làm việc: ${BIZ.hours}
-- Điện thoại: ${BIZ.phones.map((p) => `${p.text} (${p.label.toLowerCase()})`).join(', ')}
+- Điện thoại: ${BIZ.phones.map((p) => `${p.text} (${p === BIZ.office ? 'cố định, số công ty' : p.label.toLowerCase()})`).join(', ')}
 - Email: ${BIZ.email}
 - Báo giá, tư vấn ban đầu (Zalo): ${QUOTE_TEXT}
 - Khu vực: ${BIZ.delivery}

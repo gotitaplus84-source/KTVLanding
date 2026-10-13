@@ -1,6 +1,10 @@
 // Phiếu chỉ định online (/phieu-chi-dinh/): sơ đồ răng FDI → hạng mục phục hình → phiếu dạng chữ
-// để dán Zalo, gửi email hoặc in. Không gửi dữ liệu đi đâu; bản nháp nằm trong localStorage của máy.
+// để dán Zalo, gửi email hoặc in. Không gửi dữ liệu đi đâu.
+// Chỉ thông tin phòng khám (tên, bác sĩ, điện thoại, cách gửi dấu) được nhớ lâu dài (localStorage);
+// dữ liệu ca — bệnh nhân, hạng mục, ghi chú — chỉ giữ trong thẻ đang mở (sessionStorage), để máy dùng chung
+// ở phòng khám không lộ ca của bệnh nhân trước.
 const KEY = 'ktv-rx-v1';
+const KEEP = ['clinic', 'doctor', 'phone', 'imp'];
 const QUADS = [
   { q: 1, name: 'Hàm trên, bên phải', rev: true },
   { q: 2, name: 'Hàm trên, bên trái', rev: false },
@@ -33,9 +37,17 @@ const SUGGEST = 'Labo đề xuất';
 const OTHER = 'Dòng khác (ghi chú)';
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const read = (area) => { try { return JSON.parse(window[area].getItem(KEY)) || {}; } catch { return {}; } };
+const write = (area, v) => { try { window[area].setItem(KEY, JSON.stringify(v)); } catch { /* chế độ riêng tư: bỏ qua */ } };
 const store = {
-  get() { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch { return null; } },
-  set(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch { /* chế độ riêng tư: bỏ qua */ } },
+  get() {
+    const keep = read('localStorage');
+    return { ...read('sessionStorage'), ...Object.fromEntries(KEEP.filter((k) => k in keep).map((k) => [k, keep[k]])) };
+  },
+  set(v) {
+    write('localStorage', Object.fromEntries(KEEP.map((k) => [k, v[k]])));
+    write('sessionStorage', v);
+  },
 };
 
 export function initRx(root) {
@@ -51,7 +63,7 @@ export function initRx(root) {
 
   const blank = () => ({ clinic: '', doctor: '', phone: '', patient: '', due: '', imp: 'scan', opp: true, bite: true, photo: false, etch: false, note: '', items: [] });
   const saved = store.get();
-  const S = Object.assign(blank(), saved || {});
+  const S = Object.assign(blank(), saved);
   const sel = new Set();
   const draft = { type: 'mao', mat: 'zr', brand: zrNames[0] || SUGGEST, shade: 'A2', sys: '', abut: SUGGEST, ret: SUGGEST, note: '' };
 
