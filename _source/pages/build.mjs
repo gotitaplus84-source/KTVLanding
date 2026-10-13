@@ -50,6 +50,8 @@ if (!index.includes('<!--@links-->')) throw new Error('index.html thiếu <!--@l
 index = index.replace(/<!--@links-->[\s\S]*?<!--\/@links-->/, footLinks);
 if (!index.includes('<!--@quote-->')) throw new Error('index.html thiếu <!--@quote-->');
 index = index.replace(/<!--@quote-->[\s\S]*?<!--\/@quote-->/, `<!--@quote-->\n${QUOTE_TPL}\n<!--/@quote-->`);
+const homeDesc = (index.match(/<meta name="description" content="([^"]*)"/) || [])[1] || '';
+if (!homeDesc || homeDesc.length > 160) throw new Error(`index.html: meta description dài ${homeDesc.length} ký tự (tối đa 160)`);
 emit('/', join(ROOT, 'index.html'), index);
 
 /* ---------- pieces taken from the home page ---------- */
@@ -271,6 +273,7 @@ pages.push(page({
 
 /* ---------- hỏi đáp kỹ thuật ---------- */
 // Trang dịch vụ / vật liệu liên quan cho từng chủ đề (chủ đề mới ghi thẳng "links" trong file hỏi đáp).
+const ORG_REF = { '@type': 'Organization', '@id': SITE + '/#org', name: BIZ.name, url: SITE + '/' };
 const P = (slug) => { const x = PRODUCTS.find((p) => p.slug === slug); if (!x) throw new Error('QA_LINKS: không có phục hình ' + slug); return [x.name, `/phuc-hinh/${slug}/`]; };
 const ZR_COMPARE = ['So sánh các dòng zirconia', '/vat-lieu/so-sanh-zirconia/'];
 const ETCH = ['Xoi mòn Zircos-E (miễn phí)', '/dich-vu/xoi-mon-zirconia-zircos-e/'];
@@ -340,7 +343,7 @@ ${a}
       pageExtra: { ...extra, dateModified: modified },
       article: { published, modified },
       schema: [{ '@type': 'Article', '@id': SITE + path + '#article', headline: t.title, description: desc, inLanguage: 'vi',
-        datePublished: published, dateModified: modified, author: { '@id': SITE + '/#org' }, publisher: { '@id': SITE + '/#org' },
+        datePublished: published, dateModified: modified, author: ORG_REF, publisher: ORG_REF,
         mainEntityOfPage: { '@id': SITE + path + '#page' }, image: SITE + '/assets/img/og.jpg' },
         { '@type': 'FAQPage', mainEntity: t.qs.map(([n, q, a]) => ({ '@type': 'Question', name: q, url: `${SITE}${path}#cau-${n}`, acceptedAnswer: { '@type': 'Answer', text: strip(a) } })) }],
     }));
