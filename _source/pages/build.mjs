@@ -13,7 +13,8 @@ import { QA_TOPICS as QA_1, QA_UPDATED } from './qa.mjs';
 import { QA_TOPICS_2 } from './qa2.mjs';
 import { QA_TOPICS_3 } from './qa3.mjs';
 import { QA_TOPICS_4 } from './qa4.mjs';
-const QA_TOPICS = [...QA_1, ...QA_TOPICS_2, ...QA_TOPICS_3, ...QA_TOPICS_4];
+import { QA_TOPICS_5 } from './qa5.mjs';
+const QA_TOPICS = [...QA_1, ...QA_TOPICS_2, ...QA_TOPICS_3, ...QA_TOPICS_4, ...QA_TOPICS_5];
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const today = new Date().toISOString().slice(0, 10);
@@ -304,7 +305,7 @@ const QA_LINKS = {
   pages.push(page({
     path: '/hoi-dap/',
     title: 'Hỏi đáp kỹ thuật phục hình cho bác sĩ | KTV Dental Lab',
-    desc: `${total} câu hỏi về phục hình cho bác sĩ, phụ tá: chọn zirconia, mài cùi, gắn – bong mão, scan, implant, so màu, cầu răng, răng tạm, tuổi thọ răng sứ.`,
+    desc: `${total} câu hỏi về phục hình cho bác sĩ, phụ tá: chọn zirconia, mài cùi, gắn – bong mão, scan, implant, so màu, cầu răng, chốt – cùi giả, inlay, onlay, tuổi thọ.`,
     crumbs: [{ name: 'Trang chủ', url: '/' }, { name: 'Hỏi đáp kỹ thuật', url: '/hoi-dap/' }],
     h1: 'Hỏi đáp kỹ thuật cho bác sĩ',
     lead: 'Những câu hỏi thường gặp khi làm phục hình zirconia, scan và implant — trả lời thẳng, kèm số liệu từ hướng dẫn của hãng và nghiên cứu.',

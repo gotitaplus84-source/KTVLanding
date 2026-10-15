@@ -117,6 +117,12 @@ export const SOURCES = {
   gomezpolo: ['Gómez-Polo C. và cs. (2012). Influence of technique and pouring time on dimensional stability of polyvinyl siloxane and polyether impressions. Int J Prosthodont 25(4):353–356', 'https://pubmed.ncbi.nlm.nih.gov/22720285/'],
   sdcep: ['Disinfection of impressions and appliances before dispatch — SDCEP Practice Support Manual', 'https://www.psm.sdcep.org.uk/topics/health-and-safety-infection-control/disinfection-of-impressions-and-appliances-before-dispatch/'],
   alawawda: ['Alawawda O., Altalla H., Bayındır F. (2026). Comparative effect of Zircos-E and airborne-particle abrasion on zirconia surface treatment: A meta-analysis. J Prosthodont 35(7):988–994', 'https://doi.org/10.1111/jopr.70033'],
+  aquilino: ['Aquilino S.A., Caplan D.J. (2002). Relationship between crown placement and the survival of endodontically treated teeth. J Prosthet Dent 87(3):256–263', 'https://pubmed.ncbi.nlm.nih.gov/11941351/'],
+  wang2019: ['Wang X. và cs. (2019). Evaluation of fiber posts vs metal posts for restoring severely damaged endodontically treated teeth: a systematic review and meta-analysis. Quintessence International 50(1):8–20', 'https://doi.org/10.3290/j.qi.a41499'],
+  morimoto: ['Morimoto S. và cs. (2016). Survival Rate of Resin and Ceramic Inlays, Onlays, and Overlays: A Systematic Review and Meta-analysis. J Dent Res 95(9):985–994', 'https://doi.org/10.1177/0022034516652848'],
+  pjet2012: ['Pjetursson B.E., Thoma D., Jung R., Zwahlen M., Zembic A. (2012). A systematic review of the survival and complication rates of implant-supported fixed dental prostheses (FDPs) after a mean observation period of at least 5 years. Clin Oral Implants Res 23(Suppl 6):22–38', 'https://pubmed.ncbi.nlm.nih.gov/23062125/'],
+  lang2004: ['Lang N.P., Pjetursson B.E., Tan K. và cs. (2004). A systematic review of the survival and complication rates of fixed partial dentures (FPDs) after an observation period of at least 5 years. II. Combined tooth–implant-supported FPDs. Clin Oral Implants Res 15(6):643–653', 'https://doi.org/10.1111/j.1600-0501.2004.01118.x'],
+  aglietta: ['Aglietta M. và cs. (2009). A systematic review of the survival and complication rates of implant supported fixed dental prostheses with cantilever extensions after an observation period of at least 5 years. Clin Oral Implants Res 20(5):441–451', 'https://doi.org/10.1111/j.1600-0501.2009.01706.x'],
 };
 
 /* ---------- Thời gian sản xuất (áp dụng cho mọi loại phục hình, tính từ lúc labo nhận hàng) ---------- */
@@ -571,6 +577,7 @@ ${table(['', 'Inlay', 'Onlay'], [
 </ul>
 <h2>Xử lý mặt dán inlay, onlay zirconia</h2>
 <p>Inlay, onlay ít lưu giữ cơ học nên phụ thuộc nhiều vào lớp dán. Labo <a href="/dich-vu/xoi-mon-zirconia-zircos-e/">xoi mòn mặt dán bằng Zircos-E</a> trước khi giao — hiện miễn phí, không làm ca chậm hơn. Phòng khám gắn theo quy trình thông thường.</p>
+<p>Hỏi đáp thêm: <a href="/hoi-dap/inlay-onlay-overlay/">inlay, onlay, overlay: tuổi thọ, mài lỗ hàn, gắn dán</a>.</p>
 <h2>Gửi ca cho labo</h2>
 ${SEND_CASE}`,
     faq: [['Inlay khác miếng trám thường thế nào?', 'Miếng trám thường được đắp trực tiếp trong miệng; inlay được labo chế tác ngoài miệng theo dấu hoặc file scan rồi gắn vào, nên kiểm soát hình thể và điểm tiếp xúc tốt hơn với lỗ hổng lớn.'],
@@ -600,7 +607,7 @@ ${table(['', 'Onlay', 'Overlay', 'Mão toàn phần'], [
   ['Lưu giữ', 'Chủ yếu nhờ dán', 'Chủ yếu nhờ dán', 'Cơ học + xi măng'],
 ], 'wide')}
 <h2>Thiết kế và vật liệu</h2>
-<p>Overlay mỏng nên cần đủ độ dày tối thiểu theo hướng dẫn của từng dòng phôi — ví dụ Katana YML: tối thiểu 0,5 mm vùng răng sau khi phục hình nằm ở nửa dưới phôi. Mài mặt nhai theo hình thể giải phẫu để độ dày phục hình đều. Các dòng phôi labo đang dùng: <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a>.</p>
+<p>Overlay mỏng nên cần đủ độ dày tối thiểu theo hướng dẫn của từng dòng phôi — ví dụ Katana YML: tối thiểu 0,5 mm vùng răng sau khi phục hình nằm ở nửa dưới phôi. Mài mặt nhai theo hình thể giải phẫu để độ dày phục hình đều. Các dòng phôi labo đang dùng: <a href="/vat-lieu/so-sanh-zirconia/">so sánh các dòng zirconia</a>. Hỏi đáp thêm: <a href="/hoi-dap/inlay-onlay-overlay/">inlay, onlay, overlay</a>.</p>
 <h2>Gắn overlay zirconia</h2>
 ${ZR_CEMENT}
 <h2>Gửi ca cho labo</h2>
@@ -634,6 +641,7 @@ ${table(['Loại', 'Đặc điểm', 'Phù hợp'], [
 <p>Nhờ vậy cùi giả dùng được cả hai ống tuỷ theo đúng hướng tự nhiên của chúng, không phải mài rộng ống tuỷ để tạo một hướng vào chung.</p>
 <h2>Cùi giả đúc khác cùi đắp trực tiếp thế nào?</h2>
 <p>Cùi giả đúc được labo chế tác theo dấu ống tuỷ, chốt và cùi liền một khối, khít với hình dạng ống tuỷ. Cùi đắp trực tiếp (chốt làm sẵn kết hợp vật liệu tái tạo cùi) được bác sĩ thực hiện ngay trên ghế. Cùi đúc phù hợp khi ống tuỷ loe rộng hoặc thân răng mất gần hết.</p>
+<p>Hỏi đáp thêm: <a href="/hoi-dap/rang-chua-tuy-chot-cui-gia/">răng chữa tuỷ có cần bọc mão, chốt sợi hay chốt kim loại, lấy dấu ống tuỷ</a>.</p>
 <h2>Gửi ca cho labo</h2>
 <ul>
 <li>Dấu ống tuỷ rõ toàn bộ chiều dài chốt, không bọt, cùng vùng cùi, hàm đối diện và khớp cắn. Với chốt gài, lấy dấu đủ các ống tuỷ sẽ đặt chốt.</li>
@@ -664,6 +672,7 @@ ${table(['', 'Bắt vít (screw-retained)', 'Gắn xi măng (cement-retained)'],
   ['Phù hợp', 'Cầu dài, cầu đèo, vùng thẩm mỹ, phục hình tạm, khi cần tháo lắp', 'Phục hình ngắn, đường hoàn tất ngang hoặc trên niêm mạc'],
 ], 'wide')}
 <p class="note">Theo Nobel Biocare: bắt vít được khuyến nghị khi có thể.</p>
+<p>Cầu trên nhiều implant, nối implant với răng thật, cầu với: xem <a href="/hoi-dap/cau-rang-tren-implant/">hỏi đáp cầu răng trên implant</a>.</p>
 <h2>Các loại abutment thường gặp</h2>
 ${table(['Loại', 'Đặc điểm'], [
   ['Abutment làm sẵn (stock)', 'Hình dạng chuẩn của hãng implant; phù hợp khi vị trí và trục implant thuận lợi'],
