@@ -186,6 +186,32 @@ const whenIdle = (fn) => ('requestIdleCallback' in window ? requestIdleCallback(
 if (document.readyState === 'complete') whenIdle(loadCrown);
 else window.addEventListener('load', () => whenIdle(loadCrown), { once: true });
 
+/* ---------- bảng và biểu đồ: hiện dần khi cuộn tới ----------
+   Nội dung là HTML tĩnh; chỉ khi script chạy và người dùng không tắt chuyển động mới ẩn trước để tạo hiệu ứng. */
+const charts = [...document.querySelectorAll('.chart, .prose .table-wrap')];
+if (charts.length && !reduced && 'IntersectionObserver' in window) {
+  root.classList.add('cv');
+  const countUp = (el) => {
+    const n = +el.dataset.n; const t0 = performance.now();
+    const fmt = (v) => String(v).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const run = (t) => { const p = Math.min(1, (t - t0) / 1100); el.textContent = fmt(Math.round(n * (1 - Math.pow(1 - p, 3)))); if (p < 1) requestAnimationFrame(run); };
+    requestAnimationFrame(run);
+  };
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (!e.isIntersecting) return;
+    io.unobserve(e.target);
+    e.target.classList.add('in');
+    e.target.querySelectorAll('[data-n]').forEach(countUp);
+  }), { rootMargin: '0px 0px -12% 0px' });
+  charts.forEach((el) => {
+    if (el.classList.contains('table-wrap')) {
+      el.classList.add('rv');
+      el.querySelectorAll('tbody tr').forEach((tr, i) => tr.style.setProperty('--i', Math.min(i, 8)));
+    }
+    io.observe(el);
+  });
+}
+
 /* ---------- year in footer ---------- */
 document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
 
