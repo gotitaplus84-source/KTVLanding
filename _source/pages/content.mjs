@@ -137,6 +137,37 @@ const table = (head, rows, cls = '') => `<div class="table-wrap${cls ? ' ' + cls
 <tbody>
 ${rows.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('\n')}
 </tbody></table></div>`;
+/* ---------- Biểu đồ: HTML/SVG tĩnh (đọc được khi không có JS), main.js chỉ thêm hiệu ứng khi cuộn tới ---------- */
+const vn = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+// rows: [nhãn (HTML), giá trị số, đơn vị hiển thị sau số, ghi chú phụ (tuỳ chọn)]
+const barChart = ({ title, sub = '', max, rows, note = '' }) => `<figure class="chart">
+<figcaption><b>${title}</b>${sub ? `<span>${sub}</span>` : ''}</figcaption>
+<ul class="bars">
+${rows.map(([label, v, unit, extra], i) => `<li style="--v:${(v / max).toFixed(3)};--i:${i}"><span class="bar-l">${label}</span><span class="bar-t" aria-hidden="true"><i></i></span><span class="bar-n"><b data-n="${v}">${vn(v)}</b>${unit}${extra ? ` <small>${extra}</small>` : ''}</span></li>`).join('\n')}
+</ul>${note ? `\n<p class="chart-note">${note}</p>` : ''}
+</figure>`;
+// Biểu đồ tán xạ độ trong (trục ngang) – độ bền uốn (trục dọc). pts: [nhãn, độ trong %, MPa, 'l' | 'r' = phía đặt nhãn]
+const scatterChart = ({ title, sub, pts, note }) => {
+  const X0 = 40, X1 = 52, Y0 = 500, Y1 = 1250, L = 46, R = 384, T = 22, B = 236;
+  const x = (t) => L + ((t - X0) / (X1 - X0)) * (R - L), y = (s) => B - ((s - Y0) / (Y1 - Y0)) * (B - T);
+  const gy = [600, 800, 1000, 1200].map((s) => `<line x1="${L}" x2="${R}" y1="${y(s).toFixed(1)}" y2="${y(s).toFixed(1)}"/><text class="sc-ax" x="${L - 7}" y="${(y(s) + 4).toFixed(1)}" text-anchor="end">${vn(s)}</text>`).join('');
+  const gx = [40, 44, 48, 52].map((t) => `<text class="sc-ax" x="${x(t).toFixed(1)}" y="${B + 19}" text-anchor="middle">${t}%</text>`).join('');
+  const dots = pts.map(([name, t, s, side], i) => {
+    const cx = x(t).toFixed(1), cy = y(s).toFixed(1), r = side === 'r', tx = (+cx + (r ? 12 : -12)).toFixed(1);
+    return `<g class="sc-pt" style="--i:${i}"><title>${name}: độ trong ${t}%, độ bền uốn ${vn(s)} MPa</title><circle cx="${cx}" cy="${cy}" r="6.5"/><text x="${tx}" y="${(+cy - 2).toFixed(1)}" text-anchor="${r ? 'start' : 'end'}">${name}<tspan x="${tx}" dy="15">${vn(s)} MPa · ${t}%</tspan></text></g>`;
+  }).join('');
+  const label = pts.map(([name, t, s]) => `${name}: ${t}%, ${vn(s)} MPa`).join('; ');
+  return `<figure class="chart">
+<figcaption><b>${title}</b><span>${sub}</span></figcaption>
+<svg class="scatter" viewBox="0 0 400 280" role="img" aria-label="${title}. ${label}">
+<g class="sc-grid">${gy}</g>${gx}
+<text class="sc-ax sc-t" x="${R}" y="${B + 38}" text-anchor="end">Độ trong →</text>
+<text class="sc-ax sc-t" x="${L - 7}" y="${T - 8}" text-anchor="end">MPa</text>
+${dots}
+</svg>
+<p class="chart-note">${note}</p>
+</figure>`;
+};
 export const turnaroundTable = () => table(['Loại ca', 'Thời gian sản xuất'],
   TURNAROUND.map((t) => [t.what, `<strong>${t.time}</strong>${t.max ? ` (${t.max})` : ''}`]));
 
@@ -802,8 +833,15 @@ ${table(['Dòng', 'Xuất xứ', 'Độ bền uốn', 'Độ trong', 'Nhiều l�
   [link(bySlug('upcera')), 'Trung Quốc', '—', 'Độ trong cao (ST)', 'Có (ST, TT-One Multilayer)', '<strong>3 năm</strong>'],
 ], 'wide')}
 <p class="note">Mỗi hãng đo theo phương pháp riêng; so sánh giữa các hãng mang tính tương đối.</p>
+${barChart({ title: 'Độ bền uốn theo công bố của hãng', sub: 'MPa, càng dài càng bền', max: 1200, rows: [
+  ['Cercon ht', 1200, ' MPa'], ['Katana HTML PLUS', 1150, ' MPa'], ['DD Bio ZX²', 1150, ' MPa', '± 150'], ['Lava Plus', 1100, ' MPa'],
+  ['Cercon xt', 750, ' MPa'], ['Katana STML', 748, ' MPa'], ['Katana UTML', 557, ' MPa'],
+], note: 'Chỉ gồm các dòng hãng công bố một con số; phôi nhiều lớp (Katana YML, Cercon ht ML) có độ bền khác nhau theo từng lớp, xem bảng trên.' })}
 <h2>Độ bền và độ trong: hai mặt của một lựa chọn</h2>
 <p>Zirconia càng nhiều yttria thì càng nhiều pha cubic, càng trong nhưng độ bền uốn càng giảm. Zirconia 5Y trong hơn 3Y khoảng 20 – 25%, nhưng độ bền uốn chỉ khoảng 700 – 800 MPa so với 900 – 1.200 MPa của 3Y. Số liệu của hãng cho thấy cùng xu hướng: Katana UTML trong nhất (51%) với 557 MPa, còn HTML PLUS (45%) đạt 1.150 MPa.</p>
+${scatterChart({ title: 'Càng trong, độ bền uốn càng giảm', sub: 'Độ trong và độ bền uốn theo công bố của hãng', pts: [
+  ['Cercon ht', 41, 1200, 'r'], ['Katana HTML PLUS', 45, 1150, 'r'], ['Cercon xt, Katana STML', 49, 750, 'l'], ['Katana UTML', 51, 557, 'l'],
+], note: 'Theo Dentsply Sirona và Kuraray Noritake Dental. Cercon xt (49%, 750 MPa) và Katana STML (49%, 748 MPa) gần trùng nhau nên gộp một điểm.' })}
 ${table(['Thế hệ', 'Độ bền uốn', 'Độ trong', 'Chỉ định thường gặp'], [
   ['3Y', 'Khoảng 900 – 1.200 MPa', 'Thấp nhất', 'Sườn đắp sứ; mão và cầu răng sau'],
   ['4Y', 'Giữa 3Y và 5Y', 'Trung gian', 'Mão răng trước và răng sau, cầu ngắn'],
@@ -833,6 +871,8 @@ export function turnaroundBody() {
   return `
 <p>Thời gian sản xuất áp dụng cho <strong>mọi loại phục hình</strong> — sứ kim loại, zirconia, Multilayer, inlay, onlay, overlay, cùi giả, phục hình trên implant — và được tính <strong>kể từ lúc labo nhận hàng</strong>.</p>
 ${turnaroundTable()}
+${barChart({ title: 'Số ngày sản xuất theo loại ca', sub: 'Tính từ lúc labo nhận hàng', max: 4,
+  rows: TURNAROUND.map((t) => [t.what, parseInt(t.time, 10), ' ngày', t.max]) })}
 <h2>Để ca về đúng hẹn</h2>
 <ul>
 <li>Gửi đủ dấu hoặc file scan hàm làm việc, hàm đối diện và khớp cắn.</li>
@@ -863,6 +903,8 @@ export function warrantyBody() {
   return `
 <p>Thời hạn bảo hành phụ thuộc vào dòng vật liệu của phục hình: từ 3 đến 15 năm với zirconia; răng sứ kim loại bảo hành theo thỏa thuận với phòng khám.</p>
 ${table(['Dòng vật liệu', 'Loại', 'Xuất xứ', 'Nhà sản xuất', 'Bảo hành'], MATERIALS.map((m) => [link(m), m.kind === 'zirconia' ? 'Zirconia' : 'Hợp kim', m.country, m.maker, `<strong>${m.years ? m.years + ' năm' : 'Theo thỏa thuận'}</strong>`]), 'wide')}
+${barChart({ title: 'Thời hạn bảo hành theo dòng zirconia', sub: 'Số năm, tại KTV Dental Lab', max: 15,
+  rows: [...zr].sort((a, b) => b.years - a.years).map((m) => [link(m), m.years, ' năm']) })}
 <h2>Phạm vi áp dụng</h2>
 <ul>
 <li><strong>Phục hình trên răng thật:</strong> theo thời hạn của dòng vật liệu trong bảng trên.</li>
